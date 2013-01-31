@@ -1,0 +1,88 @@
+
+/* application-bar styles */
+.appbar 
+{
+	background-color:#212021;
+	bottom:0px;
+	color: #fff;
+	font-size: .9em;
+	height:60px;
+	left:0px;
+	line-height: normal;
+	margin:0;
+	overflow:hidden;
+	padding: 10px 0;
+	position:fixed;
+	text-align: center;
+	width:100%;
+	z-index:100;
+}
+.light .appbar { background-color:#dfdfdf; color:#000; }
+.dark .appbar { background-color:#212021; }
+.appbar .clear { clear:both; }
+
+.appbar-buttons {
+	padding: 0 0 2px;
+	position: relative;
+	margin: 0 auto;
+	text-align: right;
+	width:252px;
+}
+
+.appbar-buttons li {
+	display: inline;
+	padding: 0 10px;
+	float:left;
+	list-style: none;
+}
+
+.appbar-buttons li a {
+	font-weight: bold;
+	background-color: transparent;
+	color: #fff;
+}
+
+.light .appbar-buttons li a { color:#000; }
+.appbar-buttons a>img { background-image:url('layout/images/metroIcons.jpg'); background-repeat:no-repeat; height:64px; width:64px; border:none;}
+.light .appbar-buttons a>img { background-image:url('layout/images/metroIcons_light.jpg'); }
+.appbar-buttons a.home>img { background-position:-104px -12px; }
+.appbar-buttons a.about>img { background-position:-198px -99px;  }
+.appbar-buttons a.twitter>img { background-position:-198px -12px;  }
+.appbar-buttons li a:active, ul#menu li.selected a, .appbar-buttons li a:hover { text-decoration: none; }
+
+.appbar a.etc, .appbar a:hover.etc,.appbar a:visited.etc
+{   
+	color:#fff;
+	cursor:pointer; 
+	display:block; 
+	font-size:32px;
+	height:60px;
+	position:absolute; 
+	right:0px; 
+	text-decoration:none;
+	top:0px; 
+	width:60px; 
+}
+.light .appbar a.etc, .light .appbar a:hover.etc, 
+.light .appbar a:visited.etc { color:#000; }
+.appbar .charm-title { font-size:10px; display:block; text-align:center; }
+.appbar .theme-options { display:block; width:644px; margin:0px auto; }
+.appbar .theme-options>li { margin:7px; display:inline; float:left; line-height:24px; height:24px; width:24px; }
+.appbar .theme-options>li>a, .appbar .theme-options>li>a:hover,
+.appbar .theme-options>li>a:visited { display:block; padding:0px; text-decoration:none; height:24px; width:24px; }
+.appbar .base-theme-options { display:block; width:130px; margin:0px auto; }
+.appbar .base-theme-options>li { margin:7px; display:inline; float:left; line-height:24px; height:24px; width:24px; }
+.appbar .base-theme-options>li>a, .appbar .base-theme-options>li>a:hover, 
+.appbar .base-theme-options>li>a:visited { display:block; padding:0px; text-decoration:none; height:24px; width:24px; }
+.appbar .base-theme-options>li>a.dark.accent { background-color:#000; }
+/* Media queries */
+@media screen and (max-width: 1025px) 
+{
+	.appbar .theme-options { width:650px; } /* ensures alignment and no wrapping on ipad */
+	.appbar .base-theme-options { width:140px; } /* ensures alignment and no wrapping on ipad */
+}
+@media screen and (max-width: 801px)
+{
+	.appbar .theme-options { width:360px; }
+}
+
