@@ -6,7 +6,7 @@
     Author     : sbaresel
 --%>
 <sql:query var="subjects" dataSource="jdbc/kscdb">
-    SELECT svtyid,svtyln FROM class_servicetypes
+    SELECT svtyid,svtysn,svtyln FROM class_servicetypes
 </sql:query>
 
 <table border="1">
