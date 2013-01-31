@@ -12,7 +12,7 @@
         <meta name="author" content="Steffen Baresel">
 	<meta name="description" content="kVASy(R) System Control.">
 	<meta name="keywords" content="kVASy, System Control, kVASy System Control">
-	<title>Login Seite - kVASy&reg; System Control</title>
+	<title>Login - kVASy&reg; System Control</title>
 	<meta name="language" content="it">
 	<meta name="charset" content="utf-8">
         <script type="text/javascript" src="script/jquery-1.8.2.min.js"></script>
