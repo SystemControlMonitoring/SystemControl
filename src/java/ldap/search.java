@@ -49,7 +49,6 @@ public class search {
       System.out.print(attr.get() + ": ");
       attr = attrs.get("mail");
       System.out.println(attr.get());
-      return(attr.get().toString());
     }
     dctx.close();
     return("OK");
