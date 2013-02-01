@@ -14,5 +14,9 @@
     </head>
     <body>
         <h1>Hello World!</h1>
+        <p>Ldap Abfrage</p>
+        <%
+            out.println( "<p>" + search.main("sbaresel") + "</p>" );
+        %>
     </body>
 </html>
