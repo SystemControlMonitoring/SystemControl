@@ -32,7 +32,7 @@
 		<p class="title"><font class="kvasy">kVASy&reg;</font> System Control</p><div id="logo-div"></div>
 		<p class="subtitle">Designed to make monitoring easier!</p>
 
-		<p class="login_username">Steffen Baresel</p>
+		<p class="login_username"><%= request.getUserPrincipal().getName() %></p>
 
 		<div id="theme-roller"></div>
 
@@ -71,7 +71,7 @@
         });
     </script>
 
-		<p class="login_shortname">sbaresel<p>
+		<p class="login_shortname"><%= request.getRemoteUser() %><p>
 
 		<div id="center">
 			<section>
