@@ -42,6 +42,34 @@ body[theme=light] .login_shortname { color: #004c8a; }
 
 /* Ende */
 
+#login-error {
+    position: absolute;
+    background-color: red;
+    color: white;
+    top: 230px;
+    left: 50px;
+    padding: 15px;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 5;
+}
+
+.login-input-error {
+    width: 175px;
+    border: 1px solid red;
+    background-color: #004c8a;
+    padding: 5px;
+    color: #ffffff;
+}
+
+.login-small-error {
+    font-size: 14px;
+    color: red;
+    font-weight: bold;
+}
+
+/* Ende */
+
 #login-div {
     background-color: #004c8a;
     position: absolute;
