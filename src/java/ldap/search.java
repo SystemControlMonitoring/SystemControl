@@ -19,8 +19,7 @@ import javax.naming.directory.SearchResult;
  * @author sbaresel
  */
 public class search {
-  public static void main(String[] args) throws Exception {
-    String userName = "sivtools";
+  public String main(String[] args) throws Exception {
     @SuppressWarnings("UseOfObsoleteCollectionType")
     Hashtable env = new Hashtable();
 
@@ -50,7 +49,9 @@ public class search {
       System.out.print(attr.get() + ": ");
       attr = attrs.get("mail");
       System.out.println(attr.get());
+      return(attr.get().toString());
     }
     dctx.close();
+    return("OK");
   }
 }
