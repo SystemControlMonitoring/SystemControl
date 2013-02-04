@@ -14,27 +14,43 @@ import javax.naming.directory.InitialDirContext;
 import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
 
+import java.io.FileInputStream;
+import java.io.BufferedInputStream;
+import java.util.Properties;
 /**
  *
  * @author sbaresel
  */
 public class search {
   public static String getDisplayName(String queryname) throws Exception {
+    Properties props = new Properties();
+    BufferedInputStream in = new BufferedInputStream(new FileInputStream("E:\\kVASy5Jars\\nb_ldap.properties"));
+    props.load(in);
+    in.close();
+    
+    String HOST = props.getProperty("HOST");
+    String PORT = props.getProperty("PORT");
+    String USERNAME = props.getProperty("USERNAME");
+    String PASSWORD = props.getProperty("PASSWORD");
+    String BASEDN = props.getProperty("BASEDN");
+    String ATTRIBUTE = props.getProperty("ATTRIBUTE");
+    String OU = props.getProperty("OU");
+    
     @SuppressWarnings("UseOfObsoleteCollectionType")
     Hashtable env = new Hashtable();
-
+    
     env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
-    env.put(Context.PROVIDER_URL, "ldap://ads02.siv.de:389/dc=siv,dc=de");
+    env.put(Context.PROVIDER_URL, "ldap://" + HOST + ":" + PORT + "/" + BASEDN );
     env.put(Context.SECURITY_AUTHENTICATION, "simple");
-    env.put(Context.SECURITY_PRINCIPAL, "siv\\sivtools");
-    env.put(Context.SECURITY_CREDENTIALS, "sivtools9");
+    env.put(Context.SECURITY_PRINCIPAL, USERNAME );
+    env.put(Context.SECURITY_CREDENTIALS, PASSWORD );
 	
     DirContext dctx = new InitialDirContext(env);
 
-    String base = "ou=SIV Benutzer";
+    String base = "ou=" + OU;
 
     SearchControls sc = new SearchControls();
-    String[] attributeFilter = { "cn", "mail" };
+    String[] attributeFilter = { ATTRIBUTE };
     sc.setReturningAttributes(attributeFilter);
     sc.setSearchScope(SearchControls.SUBTREE_SCOPE);
 
@@ -44,12 +60,8 @@ public class search {
     while (results.hasMore()) {
       SearchResult sr = (SearchResult) results.next();
       Attributes attrs = sr.getAttributes();
-
-      Attribute attr = attrs.get("cn");
-      /*System.out.print(attr.get() + ": ");*/
+      Attribute attr = attrs.get(ATTRIBUTE);
       return(attr.get().toString());
-      /*attr = attrs.get("mail");
-      System.out.println(attr.get());*/
     }
     dctx.close();
     return("OK");
