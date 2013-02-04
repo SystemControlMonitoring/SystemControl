@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="ldap.search" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -32,7 +33,7 @@
 		<p class="title"><font class="kvasy">kVASy&reg;</font> System Control</p><div id="logo-div"></div>
 		<p class="subtitle">Designed to make monitoring easier!</p>
 
-		<p class="login_username"><%= request.getUserPrincipal() %></p>
+		<% out.println( "<p class='login_username'>" + search.getDisplayName(request.getRemoteUser()) + "</p>" ); %>
 
 		<div id="theme-roller"></div>
 
@@ -90,8 +91,8 @@
 					<span>Datenbanken</span><br></br>
 					Eine &Uuml;bersicht &uuml;ber alle eingerichteten Oracle Datenbanken.
 				</a>
-				<a href="#" class="fulltext">
-					<span>Hostgruppen</span><br></br>
+				<a href="ldap.jsp" class="fulltext">
+					<span>Ldap Abfrage</span><br></br>
 					Eine &Uuml;bersicht &uuml;ber alle eingerichteten Hostgruppen.
 				</a>
 				<a href="#" class="icon">

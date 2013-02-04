@@ -19,7 +19,7 @@ import javax.naming.directory.SearchResult;
  * @author sbaresel
  */
 public class search {
-  public static String getDisplayName() throws Exception {
+  public static String getDisplayName(String queryname) throws Exception {
     @SuppressWarnings("UseOfObsoleteCollectionType")
     Hashtable env = new Hashtable();
 
@@ -31,14 +31,14 @@ public class search {
 	
     DirContext dctx = new InitialDirContext(env);
 
-    String base = "ou=People";
+    String base = "ou=SIV Benutzer";
 
     SearchControls sc = new SearchControls();
     String[] attributeFilter = { "cn", "mail" };
     sc.setReturningAttributes(attributeFilter);
     sc.setSearchScope(SearchControls.SUBTREE_SCOPE);
 
-    String filter = "(&(objectCategory=user)(sAMAccountName=sbaresel))";
+    String filter = "(&(objectCategory=user)(sAMAccountName=" + queryname + "))";
 
     NamingEnumeration results = dctx.search(base, filter, sc);
     while (results.hasMore()) {
@@ -46,9 +46,10 @@ public class search {
       Attributes attrs = sr.getAttributes();
 
       Attribute attr = attrs.get("cn");
-      System.out.print(attr.get() + ": ");
-      attr = attrs.get("mail");
-      System.out.println(attr.get());
+      /*System.out.print(attr.get() + ": ");*/
+      return(attr.get().toString());
+      /*attr = attrs.get("mail");
+      System.out.println(attr.get());*/
     }
     dctx.close();
     return("OK");
