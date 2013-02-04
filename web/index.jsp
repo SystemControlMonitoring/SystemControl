@@ -8,27 +8,33 @@
 <%@page import="ldap.search" %>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta name="author" content="Steffen Baresel">
-		<meta name="description" content="kVASy(R) System Control.">
-		<meta name="keywords" content="kVASy, System Control, kVASy System Control">
-		<title>Startseite - kVASy&reg; System Control</title>
-		<meta name="language" content="it">
-		<meta name="charset" content="utf-8">
-		<script type="text/javascript" src="script/jquery-1.8.2.min.js"></script>
-    		<script type="text/javascript" src="script/jquery.metro.js"></script>
-    		<script type="text/javascript" src="script/jquery.cookie.js"></script>
-		<script type="text/javascript" src="script/metro.js"></script>
-		<script type="text/javascript" src="script/main.js"></script>	
+    <head>
+        <meta name="author" content="Steffen Baresel">
+	<meta name="description" content="kVASy(R) System Control.">
+	<meta name="keywords" content="kVASy, System Control, kVASy System Control">
+	<title>Startseite - kVASy&reg; System Control</title>
+	<meta name="language" content="it">
+	<meta name="charset" content="utf-8">
+	<script type="text/javascript" src="script/jquery-1.8.2.min.js"></script>
+    	<script type="text/javascript" src="script/jquery.metro.js"></script>
+    	<script type="text/javascript" src="script/jquery.cookie.js"></script>
+	<script type="text/javascript" src="script/metro.js"></script>
+	<script type="text/javascript" src="script/main.js"></script>	
 
-		<!--[if lt IE 9]>
-			<script src="script/html5.js"></script>
-		<![endif]-->
+	<!--[if lt IE 9]>
+		<script src="script/html5.js"></script>
+	<![endif]-->
 
-		<link type="text/css" rel="Stylesheet" href="layout/metro.css" />
+	<!-- Smartphone -->
+        <link rel='stylesheet' media='screen and (max-device-width: 480px)' href='layout/metro.smart.css' />
+        <link rel='stylesheet' media='screen and (max-device-width: 480px)' href='layout/jquery-ui-1.9.0.custom.smart.css' />
+        <!-- Personal Computer -->
+        <link rel='stylesheet' media='screen and (min-width: 1300px)' href='layout/metro.css' />
+        <link rel='stylesheet' media='screen and (min-width: 1300px)' href='layout/jquery-ui-1.9.0.custom.css' />
+        
 
 	</head>
-	<body theme="dark">
+    <body theme="dark">
 
 		<p class="title"><font class="kvasy">kVASy&reg;</font> System Control</p><div id="logo-div"></div>
 		<p class="subtitle">Designed to make monitoring easier!</p>

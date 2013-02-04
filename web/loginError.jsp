@@ -17,8 +17,12 @@
 	<meta name="charset" content="utf-8">
         <script type="text/javascript" src="script/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" src="script/jquery-ui-1.9.0.custom.min.js"></script>
-        <link type="text/css" rel="Stylesheet" href='layout/metro.css' />
-        <link type="text/css" rel="Stylesheet" href='layout/jquery-ui-1.9.0.custom.css' />
+        <!-- Smartphone -->
+        <link rel='stylesheet' media='screen and (max-device-width: 480px)' href='layout/metro.smart.css' />
+        <link rel='stylesheet' media='screen and (max-device-width: 480px)' href='layout/jquery-ui-1.9.0.custom.smart.css' />
+        <!-- Personal Computer -->
+        <link rel='stylesheet' media='screen and (min-width: 1300px)' href='layout/metro.css' />
+        <link rel='stylesheet' media='screen and (min-width: 1300px)' href='layout/jquery-ui-1.9.0.custom.css' />
         
         <script>
         $(function() {
