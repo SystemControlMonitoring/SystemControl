@@ -25,12 +25,21 @@
 		<script src="script/html5.js"></script>
 	<![endif]-->
 
-	<!-- Smartphone -->
+	<!-- Small -->
+        <link rel='stylesheet' media='screen and (min-width: 600px) and (max-width: 899px)' href='layout/metro.800.css' />
+        <link rel='stylesheet' media='screen and (min-width: 600px) and (max-width: 899px)' href='layout/jquery-ui-1.9.0.custom.css' />
+        <!-- Personal Computer -> 1024x768 -->
+        <link rel='stylesheet' media='screen and (min-width: 900px) and (max-width: 1214px)' href='layout/metro.1024.css' />
+        <link rel='stylesheet' media='screen and (min-width: 900px) and (max-width: 1214px)' href='layout/jquery-ui-1.9.0.custom.css' />
+        <!-- Personal Computer -> 1280x1024 -->
+        <link rel='stylesheet' media='screen and (min-width: 1215px) and (max-width: 1529px)' href='layout/metro.1280.css' />
+        <link rel='stylesheet' media='screen and (min-width: 1215px) and (max-width: 1529px)' href='layout/jquery-ui-1.9.0.custom.css' />
+        <!-- Personal Computer -> 1650x1080 -->
+        <link rel='stylesheet' media='screen and (min-width: 1530px)' href='layout/metro.css' />
+        <link rel='stylesheet' media='screen and (min-width: 1530px)' href='layout/jquery-ui-1.9.0.custom.css' />
+        <!-- Smartphone -->
         <link rel='stylesheet' media='screen and (max-device-width: 480px)' href='layout/metro.smart.css' />
         <link rel='stylesheet' media='screen and (max-device-width: 480px)' href='layout/jquery-ui-1.9.0.custom.smart.css' />
-        <!-- Personal Computer -->
-        <link rel='stylesheet' media='screen and (min-width: 1300px)' href='layout/metro.css' />
-        <link rel='stylesheet' media='screen and (min-width: 1300px)' href='layout/jquery-ui-1.9.0.custom.css' />
         
 
 	</head>

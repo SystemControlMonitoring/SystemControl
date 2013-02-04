@@ -8,7 +8,6 @@ body {
 	line-height:1;
 	font-family: SansProLight;
 	font-size: 16px;
-	min-width: 1500px;
 	/*min-height: 1000px;*/
 }
 
@@ -359,7 +358,7 @@ html {
 }
 
 #center section{
-	width:1450px;
+	width:600px;
 	display:inline-block;
 	margin-right:100px;
 }
