@@ -54,12 +54,14 @@
 	</head>
     <body theme="dark">
 
-		<p class="title"><font class="kvasy">kVASy&reg;</font> System Control</p><div id="logo-div"></div>
-		<p class="subtitle">Monitoring quite simple!</p>
+        <span id="top">
+                <p class="title"><font class="kvasy">kVASy&reg;</font> System Control</p><div id="logo-div"></div>
+		<p class="subtitle">Monitoring quite simple!</p></span>
 
-		<% out.println( "<p class='login_username'>" + search.getDisplayName(request.getRemoteUser()) + "</p>" ); %>
 
-		<div id="theme-roller"></div>
+		<% out.println( "<span id='top'><p class='login_username'>" + search.getDisplayName(request.getRemoteUser()) + "</p></span>" ); %>
+
+		<span id="top"><div id="theme-roller"></div></span>
 
     <script type="text/javascript">
         function theme_Changed() {
@@ -98,26 +100,26 @@
 
 		<p class="login_shortname"><%= request.getRemoteUser() %><p>
 
-		<div id="center">
+                <div id="center">
 			<section>
 				<a href="hosts.html" class="fulltext">
 					<span>Hosts</span><br></br>
-					Eine &Uuml;bersicht &uuml;ber alle eingerichteten Server.
+					<span class="sub-grid">Eine &Uuml;bersicht &uuml;ber alle eingerichteten Server.</span>
 				</a>
 				<a href="#" class="fulltext">
 					<span>Services</span><br></br>
-					Eine &Uuml;bersicht &uuml;ber alle eingerichteten Services.
+					<span class="sub-grid">Eine &Uuml;bersicht &uuml;ber alle eingerichteten Services.</span>
 				</a>
 				<a href="#" class="search">
 					<img src="layout/images/searchIcon.png" alt="explorer" width="148" height="148">
 				</a>
 				<a href="postgresql.jsp" class="fulltext">
 					<span>Datenbanken</span><br></br>
-					Eine &Uuml;bersicht &uuml;ber alle eingerichteten Oracle Datenbanken.
+                                        <span class="sub-grid">Eine &Uuml;bersicht &uuml;ber alle eingerichteten Oracle Datenbanken.</span>
 				</a>
 				<a href="ldap.jsp" class="fulltext">
 					<span>Ldap Abfrage</span><br></br>
-					Eine &Uuml;bersicht &uuml;ber alle eingerichteten Hostgruppen.
+					<span class="sub-grid">Eine &Uuml;bersicht &uuml;ber alle eingerichteten Hostgruppen.</span>
 				</a>
 				<a href="#" class="icon">
 					<img src="layout/images/gear_icon.png" alt="games" width="148" height="148">

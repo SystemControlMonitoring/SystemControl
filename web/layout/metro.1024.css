@@ -364,6 +364,11 @@ html {
 	margin-right:100px;
 }
 
+#center a span.sub-grid {
+    font-size: 16px;
+    letter-spacing: 0px;
+}
+
 #center a{
 	display:block;
 	float:left;
