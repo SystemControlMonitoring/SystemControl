@@ -53,7 +53,7 @@
         <div id="login-error">Der Anmeldeversuch schlug fehl. Bitte überprüfen Sie Benutzernamen und Kennwort.</div>    
         
     <p class="title"><font class="kvasy">kVASy&reg;</font> System Control</p><div id="logo-div"><img class='logo' src='layout/images/logo_backgroundblue_whitetext.png' title='SIV.AG'/></div>
-    <p class="subtitle">Designed to make monitoring easier!</p>
+    <p class="subtitle">Monitoring quite simple!</p>
 
     <div id="login-div">
         <section>

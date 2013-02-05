@@ -55,7 +55,7 @@
     <body theme="dark">
 
 		<p class="title"><font class="kvasy">kVASy&reg;</font> System Control</p><div id="logo-div"></div>
-		<p class="subtitle">Designed to make monitoring easier!</p>
+		<p class="subtitle">Monitoring quite simple!</p>
 
 		<% out.println( "<p class='login_username'>" + search.getDisplayName(request.getRemoteUser()) + "</p>" ); %>
 
