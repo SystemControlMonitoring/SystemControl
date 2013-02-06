@@ -3,7 +3,8 @@
     Created on : 29.01.2013, 10:21:16
     Author     : sbaresel
 --%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="ldap.search" %>
 <!DOCTYPE html>
@@ -117,13 +118,31 @@
 					<span>Datenbanken</span><br></br>
                                         <span class="sub-grid">Eine &Uuml;bersicht &uuml;ber alle eingerichteten Oracle Datenbanken.</span>
 				</a>
-				<a href="ldap.jsp" class="fulltext">
-					<span>Ldap Abfrage</span><br></br>
-					<span class="sub-grid">Eine &Uuml;bersicht &uuml;ber alle eingerichteten Hostgruppen.</span>
+                                <a href="postgresql.jsp" class="fulltext">
+					<span>Forms/Reports</span><br></br>
+                                        <span class="sub-grid">Eine &Uuml;bersicht &uuml;ber alle eingerichteten Oracle Datenbanken.</span>
 				</a>
-				<a href="#" class="icon">
+                                <a href="#" class="icon">
 					<img src="layout/images/gear_icon.png" alt="games" width="148" height="148">
 				</a>
+                                <a href="postgresql.jsp" class="fulltext">
+					<span>SOA/BAM</span><br></br>
+                                        <span class="sub-grid">Eine &Uuml;bersicht &uuml;ber alle eingerichteten Oracle Datenbanken.</span>
+				</a>
+				<a href="postgresql.jsp" class="fulltext">
+					<span>BI</span><br></br>
+					<span class="sub-grid">Eine &Uuml;bersicht &uuml;ber alle eingerichteten Hostgruppen.</span>
+				</a>
+                                <sql:query var="starter" dataSource="jdbc/kscdb">
+                                    SELECT val1,val2,val3 FROM temp WHERE usr = '<%= request.getRemoteUser() %>' and modl = 'DASHBOARD' and key = 'STARTER'
+                                </sql:query>
+                                <c:forEach var="row" items="${starter.rowsByIndex}">
+                                    <a href="<c:out value="${row[2]}" />" class="fulltext">
+					<span><c:out value="${row[0]}" /></span><br></br>
+					<span class="sub-grid"><c:out value="${row[1]}" /></span>
+                                    </a>
+                                </c:forEach>
+				
 				<a href="" class="AddNext">
 				</a>
 			</section>
