@@ -99,10 +99,13 @@
         });
     </script>
 
-		<p class="login_shortname"><%= request.getRemoteUser() %><p>
+		<p class="login_shortname"><a href="logout.jsp">Abmelden</a><p>
 
                 <div id="center">
 			<section>
+                                <a href="#" class="icon">
+					<img src="layout/images/gear_icon.png" alt="games" width="148" height="148">
+				</a>
 				<a href="hosts.html" class="fulltext">
 					<span>Hosts</span><br></br>
 					<span class="sub-grid">Eine &Uuml;bersicht &uuml;ber alle eingerichteten Server.</span>
@@ -113,25 +116,6 @@
 				</a>
 				<a href="#" class="search">
 					<img src="layout/images/searchIcon.png" alt="explorer" width="148" height="148">
-				</a>
-				<a href="postgresql.jsp" class="fulltext">
-					<span>Datenbanken</span><br></br>
-                                        <span class="sub-grid">Eine &Uuml;bersicht &uuml;ber alle eingerichteten Oracle Datenbanken.</span>
-				</a>
-                                <a href="postgresql.jsp" class="fulltext">
-					<span>Forms/Reports</span><br></br>
-                                        <span class="sub-grid">Eine &Uuml;bersicht &uuml;ber alle eingerichteten Oracle Datenbanken.</span>
-				</a>
-                                <a href="#" class="icon">
-					<img src="layout/images/gear_icon.png" alt="games" width="148" height="148">
-				</a>
-                                <a href="postgresql.jsp" class="fulltext">
-					<span>SOA/BAM</span><br></br>
-                                        <span class="sub-grid">Eine &Uuml;bersicht &uuml;ber alle eingerichteten Oracle Datenbanken.</span>
-				</a>
-				<a href="postgresql.jsp" class="fulltext">
-					<span>BI</span><br></br>
-					<span class="sub-grid">Eine &Uuml;bersicht &uuml;ber alle eingerichteten Hostgruppen.</span>
 				</a>
                                 <sql:query var="starter" dataSource="jdbc/kscdb">
                                     SELECT val1,val2,val3 FROM temp WHERE usr = '<%= request.getRemoteUser() %>' and modl = 'DASHBOARD' and key = 'STARTER'

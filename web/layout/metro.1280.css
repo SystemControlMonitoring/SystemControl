@@ -159,6 +159,18 @@ body[theme=light] .login_shortname { color: #004c8a; }
 	height: 200px;
 }
 
+#logout-success {
+    position: absolute;
+    background-color: green;
+    color: white;
+    top: 230px;
+    left: 50px;
+    padding: 15px;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 5;
+}
+
 /* Ende */
 
 .logo {
