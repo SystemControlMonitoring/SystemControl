@@ -10,6 +10,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="shortcut icon" href="layout/images/favicon.ico" type="image/vnd.microsoft.icon" />
         <meta name="author" content="Steffen Baresel">
 	<meta name="description" content="kVASy(R) System Control.">
 	<meta name="keywords" content="kVASy, System Control, kVASy System Control">
@@ -56,48 +57,13 @@
     <body theme="dark">
 
         <span id="top">
-                <p class="title"><font class="kvasy">kVASy&reg;</font> System Control</p><div id="logo-div"></div>
+                <p class="title"><font class="kvasy">kVASy&reg;</font> System Control</p><div id="logo-div"><img class='logo' src='layout/images/logo_backgroundblue_whitetext.png' title='SIV.AG'/></div>
 		<p class="subtitle">Monitoring quite simple!</p></span>
 
 
 		<% out.println( "<span id='top'><p class='login_username'>" + search.getDisplayName(request.getRemoteUser()) + "</p></span>" ); %>
 
-		<span id="top"><div id="theme-roller"></div></span>
-
-    <script type="text/javascript">
-        function theme_Changed() {
-            	var theme = $(this).attr("theme");
-            	$(document.body).attr("theme", theme);
-            	$.cookie("jquery.metro.theme", theme);
-		location.reload();
-        }
-
-        function setDefault() {
-            	var theme = "dark";
-            	$.cookie("jquery.metro.theme", theme);
-		$("#theme-roller").append("<span class='theme-box' theme='light'  title='light' ></span>");
-		$("span.theme-box").click(theme_Changed);
-		$("#logo-div").append("<img class='logo' src='layout/images/logo_backgroundblue_whitetext.png' title='SIV.AG'/>");
-		$(".AddNext").append("<img src='layout/images/white/add.png' alt='AddNext' title='F&uuml;ge weiteren Men&uuml;punkt hinzu!' width='50' height='50'>");
-        }
-
-        $(function () {
-            	// restore state
-            	if($.cookie("jquery.metro.theme") != null) {
-			$(document.body).attr("theme", $.cookie("jquery.metro.theme"));
-			if($.cookie("jquery.metro.theme") == "dark") {
-				setDefault();
-			} else {
-				$("#theme-roller").append("<span class='theme-box' theme='dark'  title='dark' ></span>");
-				$("span.theme-box").click(theme_Changed);
-				$("#logo-div").append("<img class='logo' src='layout/images/logo_backgroundwhite_bluetext.png' title='SIV.AG'/>");
-				$(".AddNext").append("<img src='layout/images/black/add.png' alt='AddNext' title='F&uuml;ge weiteren Men&uuml;punkt hinzu!' width='50' height='50'>");
-			}
-		} else {
-			setDefault();
-		}
-        });
-    </script>
+		<span id="top"><div id="theme-roller"><span class='theme-box' theme='light'></span></div></span>
 
 		<p class="login_shortname"><a href="logout.jsp">Abmelden</a><p>
 
@@ -128,8 +94,19 @@
                                 </c:forEach>
 				
 				<a href="" class="AddNext">
+                                    <img src='layout/images/white/add.png' alt='AddNext' title='F&uuml;ge weiteren Men&uuml;punkt hinzu!' width='50' height='50'>
 				</a>
 			</section>
 		</div>
+                
+                <div id="taov-footer" style="position: fixed; bottom: 0; left: 0; right: 0; background-color: #004c8a; border-top: 1px solid #82abcc">
+                    <table cellpadding=0 cellspacing=5 border=0>
+                        <tr>
+                            <td style="background-color: #080;padding: 5px">35 ONLINE</td>
+                            <td style="background-color: firebrick;padding: 5px">1 | 0 OFFLINE</td>
+                            <td style="background-color: indigo;padding: 5px">0 | 0 UNREACHABLE</td>
+                        </tr>
+                    </table>
+                </div>
 	</body>
 </html>

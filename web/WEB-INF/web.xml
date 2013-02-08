@@ -7,7 +7,7 @@
     </welcome-file-list>
     <session-config>
         <session-timeout>
-            30
+            120
         </session-timeout>
     </session-config>
     <security-constraint>
