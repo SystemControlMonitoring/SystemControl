@@ -131,32 +131,15 @@ body[theme=light] .login_shortname { color: #004c8a; }
 }
 
 .login-left {
-	width: 28%;
-	float: left;
-	padding: 30px;
-	text-align: justify;
-	vertical-align: top;
-	height: 200px;
+	display: none;
 }
 
 .login-center {
-	width: 28%;
-	float: left;
-	/*border-left: 1px solid #82abcc;*/
-	padding: 30px;
-	text-align: justify;
-	vertical-align: top;
-	height: 200px;
+	display: none;
 }
 
 .login-right {
-	width: 28%;
-	float: left;
-	/*border-left: 1px solid #82abcc;*/
-	padding: 30px;
-	text-align: justify;
-	vertical-align: top;
-	height: 200px;
+	display: none;
 }
 
 #logout-success {

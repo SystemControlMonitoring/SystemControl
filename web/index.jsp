@@ -36,6 +36,9 @@
         <!-- Smartphone -->
         <link rel='stylesheet' media='screen and (max-device-width: 1024px)' href='layout/metro.smart.css' />
         <link rel='stylesheet' media='screen and (max-device-width: 1024px)' href='layout/jquery-ui-1.9.0.custom.smart.css' />
+        <!-- Tablet -->
+        <link rel='stylesheet' media='screen and (min-device-width: 1025px) and (max-device-width: 1280px)' href='layout/metro.1024.css' />
+        <link rel='stylesheet' media='screen and (min-device-width: 1025px) and (max-device-width: 1280px)' href='layout/jquery-ui-1.9.0.custom.css' />
         <!-- Smartphone -->
         <link rel='stylesheet' media='screen and (max-width: 900px) and (max-resolution: 199dpi)' href='layout/metro.1024.css' />
         <link rel='stylesheet' media='screen and (max-width: 900px) and (max-resolution: 199dpi)' href='layout/jquery-ui-1.9.0.custom.css' />
@@ -72,7 +75,7 @@
                                 <a href="#" class="icon">
 					<img src="layout/images/gear_icon.png" alt="games" width="148" height="148">
 				</a>
-				<a href="hosts.html" class="fulltext">
+				<a href="livestatus.jsp" class="fulltext">
 					<span>Hosts</span><br></br>
 					<span class="sub-grid">Eine &Uuml;bersicht &uuml;ber alle eingerichteten Server.</span>
 				</a>
@@ -83,7 +86,7 @@
 				<a href="#" class="search">
 					<img src="layout/images/searchIcon.png" alt="explorer" width="148" height="148">
 				</a>
-                                <sql:query var="starter" dataSource="jdbc/kscdb">
+                                <sql:query var="starter" dataSource="kscdb">
                                     SELECT val1,val2,val3 FROM temp WHERE usr = '<%= request.getRemoteUser() %>' and modl = 'DASHBOARD' and key = 'STARTER'
                                 </sql:query>
                                 <c:forEach var="row" items="${starter.rowsByIndex}">

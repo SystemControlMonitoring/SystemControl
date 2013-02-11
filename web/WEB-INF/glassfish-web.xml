@@ -5,4 +5,8 @@
     <role-name>Protected</role-name>
     <group-name>Domain Users</group-name>
   </security-role-mapping>
+  <resource-ref>
+    <res-ref-name>kscdb</res-ref-name>
+    <jndi-name>jdbc/kscdb</jndi-name>
+  </resource-ref>
 </glassfish-web-app>

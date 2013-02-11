@@ -5,7 +5,7 @@
     Created on : 30.01.2013, 09:33:00
     Author     : sbaresel
 --%>
-<sql:query var="subjects" dataSource="jdbc/kscdb">
+<sql:query var="subjects" dataSource="kscdb">
     SELECT svtyid,svtyln FROM class_servicetypes
 </sql:query>
 
