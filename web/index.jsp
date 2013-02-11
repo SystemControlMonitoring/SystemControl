@@ -17,7 +17,7 @@
 	<title>Startseite - kVASy&reg; System Control</title>
 	<meta name="language" content="it">
 	<meta name="charset" content="utf-8">
-        <meta name="viewport" content="width=device-width" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<script type="text/javascript" src="script/jquery-1.8.2.min.js"></script>
     	<script type="text/javascript" src="script/jquery.metro.js"></script>
     	<script type="text/javascript" src="script/jquery.cookie.js"></script>
@@ -32,13 +32,13 @@
         
         <!-- Handhelds -->
         <link rel='stylesheet' media='handheld' href='layout/metro.smart.css' />
-        <link rel='stylesheet' media='handheld' href='layout/jquery-ui-1.9.0.custom.smart.css' />
+        <link rel='stylesheet' media='handheld' href='layout/jquery-ui-1.9.0.custom.css' />
         <!-- Smartphone -->
-        <link rel='stylesheet' media='screen and (max-device-width: 1024px)' href='layout/metro.smart.css' />
-        <link rel='stylesheet' media='screen and (max-device-width: 1024px)' href='layout/jquery-ui-1.9.0.custom.smart.css' />
-        <!-- Tablet -->
-        <link rel='stylesheet' media='screen and (min-device-width: 1025px) and (max-device-width: 1280px)' href='layout/metro.1024.css' />
-        <link rel='stylesheet' media='screen and (min-device-width: 1025px) and (max-device-width: 1280px)' href='layout/jquery-ui-1.9.0.custom.css' />
+        <link rel='stylesheet' media='screen and (max-device-width: 768px)' href='layout/metro.smart.css' />
+        <link rel='stylesheet' media='screen and (max-device-width: 768px)' href='layout/jquery-ui-1.9.0.custom.css' />
+        <!-- Smartphone -->
+        <link rel='stylesheet' media='screen and (min-device-width: 769px)' href='layout/metro.smart.1024.css' />
+        <link rel='stylesheet' media='screen and (min-device-width: 769px)' href='layout/jquery-ui-1.9.0.custom.css' />
         <!-- Smartphone -->
         <link rel='stylesheet' media='screen and (max-width: 900px) and (max-resolution: 199dpi)' href='layout/metro.1024.css' />
         <link rel='stylesheet' media='screen and (max-width: 900px) and (max-resolution: 199dpi)' href='layout/jquery-ui-1.9.0.custom.css' />
