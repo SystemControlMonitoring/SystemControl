@@ -24,26 +24,23 @@
         <link rel='stylesheet' media='handheld' href='layout/metro.smart.css' />
         <link rel='stylesheet' media='handheld' href='layout/jquery-ui-1.9.0.custom.css' />
         <!-- Smartphone -->
-        <link rel='stylesheet' media='screen and (max-device-width: 768px)' href='layout/metro.smart.css' />
-        <link rel='stylesheet' media='screen and (max-device-width: 768px)' href='layout/jquery-ui-1.9.0.custom.css' />
-        <!-- Smartphone -->
-        <link rel='stylesheet' media='screen and (min-device-width: 769px)' href='layout/metro.smart.1024.css' />
-        <link rel='stylesheet' media='screen and (min-device-width: 769px)' href='layout/jquery-ui-1.9.0.custom.css' />
-        <!-- Smartphone -->
-        <link rel='stylesheet' media='screen and (max-width: 900px) and (max-resolution: 199dpi)' href='layout/metro.1024.css' />
-        <link rel='stylesheet' media='screen and (max-width: 900px) and (max-resolution: 199dpi)' href='layout/jquery-ui-1.9.0.custom.css' />
+        <link rel='stylesheet' media='screen and (max-width: 768px) and (max-device-width: 768px)' href='layout/metro.smart.css' />
+        <link rel='stylesheet' media='screen and (max-width: 768px) and (max-device-width: 768px)' href='layout/jquery-ui-1.9.0.custom.css' />
+        <!-- Tablet -->
+        <link rel='stylesheet' media='screen and (min-width: 769px) and (max-device-width: 1280px)' href='layout/metro.smart.1024.css' />
+        <link rel='stylesheet' media='screen and (min-width: 769px) and (max-device-width: 1280px)' href='layout/jquery-ui-1.9.0.custom.css' />
         <!-- Personal Computer -> 1024x768 -->
-        <link rel='stylesheet' media='screen and (min-width: 901px) and (max-width: 1214px) and (max-resolution: 199dpi)' href='layout/metro.1024.css' />
-        <link rel='stylesheet' media='screen and (min-width: 901px) and (max-width: 1214px) and (max-resolution: 199dpi)' href='layout/jquery-ui-1.9.0.custom.css' />
+        <link rel='stylesheet' media='screen and (max-width: 1214px) and (min-device-width: 1281px)' href='layout/metro.1024.css' />
+        <link rel='stylesheet' media='screen and (max-width: 1214px) and (min-device-width: 1281px)' href='layout/jquery-ui-1.9.0.custom.css' />
         <!-- Personal Computer -> 1280x1024 -->
-        <link rel='stylesheet' media='screen and (min-width: 1215px) and (max-width: 1529px) and (max-resolution: 199dpi)' href='layout/metro.1280.css' />
-        <link rel='stylesheet' media='screen and (min-width: 1215px) and (max-width: 1529px) and (max-resolution: 199dpi)' href='layout/jquery-ui-1.9.0.custom.css' />
+        <link rel='stylesheet' media='screen and (min-width: 1215px) and (max-width: 1529px) and (min-device-width: 1281px)' href='layout/metro.1280.css' />
+        <link rel='stylesheet' media='screen and (min-width: 1215px) and (max-width: 1529px) and (min-device-width: 1281px)' href='layout/jquery-ui-1.9.0.custom.css' />
         <!-- Personal Computer -> 1650x1050 -->
-        <link rel='stylesheet' media='screen and (min-width: 1530px) and (max-width: 1849px) and (max-resolution: 199dpi)' href='layout/metro.css' />
-        <link rel='stylesheet' media='screen and (min-width: 1530px) and (max-width: 1849px) and (max-resolution: 199dpi)' href='layout/jquery-ui-1.9.0.custom.css' />
+        <link rel='stylesheet' media='screen and (min-width: 1530px) and (max-width: 1849px) and (min-device-width: 1281px)' href='layout/metro.css' />
+        <link rel='stylesheet' media='screen and (min-width: 1530px) and (max-width: 1849px) and (min-device-width: 1281px)' href='layout/jquery-ui-1.9.0.custom.css' />
         <!-- Personal Computer -> 1920x1080 -->
-        <link rel='stylesheet' media='screen and (min-width: 1850px) and (max-resolution: 199dpi)' href='layout/metro.1920.css' />
-        <link rel='stylesheet' media='screen and (min-width: 1850px) and (max-resolution: 199dpi)' href='layout/jquery-ui-1.9.0.custom.css' />
+        <link rel='stylesheet' media='screen and (min-width: 1850px) and (min-device-width: 1281px)' href='layout/metro.1920.css' />
+        <link rel='stylesheet' media='screen and (min-width: 1850px) and (min-device-width: 1281px)' href='layout/jquery-ui-1.9.0.custom.css' />
         
         <script>
         $(function() {

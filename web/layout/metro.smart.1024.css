@@ -178,11 +178,15 @@ body[theme=light] .login_shortname { color: #004c8a; }
 }
 
 .login_shortname {
-	display:none;
+	position: fixed;
+	bottom: 10px;
+	right: 20px;
+	font-size: 14px;
+        z-index: 5;
 }
 
 .theme-box {
-	display:none;
+	display: none;
 }
 
 table.MenuSelect {
