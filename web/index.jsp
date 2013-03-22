@@ -23,7 +23,10 @@
     	<script type="text/javascript" src="script/jquery.cookie.js"></script>
 	<script type="text/javascript" src="script/metro.js"></script>
 	<script type="text/javascript" src="script/main.js"></script>	
-
+        <!-- kVASy(R) System Control -->
+        <script type="text/javascript" src="script/kVASySystemControl/kSCbase64.js"></script>
+        <script type="text/javascript" src="script/kVASySystemControl/kSCliveticker.js"></script>
+        
 	<!--[if lt IE 9]>
 		<script src="script/html5.js"></script>
 	<![endif]-->
@@ -52,7 +55,15 @@
         <link rel='stylesheet' media='screen and (min-width: 1850px) and (min-device-width: 1281px)' href='layout/metro.1920.css' />
         <link rel='stylesheet' media='screen and (min-width: 1850px) and (min-device-width: 1281px)' href='layout/jquery-ui-1.9.0.custom.css' />
         
-
+        <script type="text/javascript">
+        $(function() {
+            $(document).ready(function() {
+                SelectLiveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                FillLiveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+            });
+        });
+        </script>
+        
 	</head>
     <body theme="dark">
 
@@ -98,52 +109,8 @@
 				</a>
 			</section>
 		</div>
-
-                <script type="text/javascript">
-        function SelectLiveticker() {
-            $.ajax({
-                url: 'http://172.23.10.249:6565/lda/json/?e=1&m=U2VsZWN0TGl2ZXRpY2tlcg==RpKlFs&u=c2JhcmVzZWw=LKHld3',
-                success: function(json) {
-                    $('#test').html('<div>');
-                    $.each(json, function() {
-                        $('#test').append('<div class="lt_element">');
-                        $('#test').append('<span class="">' + this.DISPLAY_NAME + '</span>');
-                        $('#test').append('<span class="">' + this.TIMESTAMP_ISO + '</span>');
-                        $('#test').append('<span class="">' + this.HOST_NAME + '</span>');
-                        $('#test').append('</div>');
-                    });
-                    setTimeout(SelectLiveticker, 30000);
-                },
-                error: function(jqXhr, textStatus, error) {
-                    alert("ERROR#SelectLiveticker#ERROR: " + textStatus + " MESSAGE: " + error);
-                },
-                dataType: 'json',
-                cache: false
-            });
-        }
-
-        function FillLiveticker() {
-            $.ajax({
-                url: 'http://172.23.10.249:6565/lda/json/?e=1&m=RmlsbExpdmV0aWNrZXI=RpY2Fs&u=c2JhcmVzZWw=LKHld3',
-                success: function() {
-                    setTimeout(FillLiveticker, 30000);
-                },
-                error: function(jqXhr, textStatus, error) {
-                    alert("ERROR#FillLiveticker#ERROR: " + textStatus + " MESSAGE: " + error);
-                },
-                dataType: 'json',
-                cache: false
-            });
-        }
-
-        $(function() {
-            $(document).ready(function() {
-                SelectLiveticker();
-                FillLiveticker();
-            });
-        });
-                </script>
-                <div id="test"></div>
+                
+                <div id="SelectLiveticker"></div>
                 
                 <div id="taov-footer" style="position: fixed; bottom: 0; left: 0; right: 0; background-color: #004c8a; border-top: 1px solid #82abcc">
                     <table cellpadding=0 cellspacing=5 border=0>
