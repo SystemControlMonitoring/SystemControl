@@ -58,8 +58,10 @@
         <script type="text/javascript">
         $(function() {
             $(document).ready(function() {
-                SelectLiveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                /* jQuery Cross Domain support */
+                jQuery.support.cors = true;
                 FillLiveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                SelectLiveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);
             });
         });
         </script>

@@ -9,6 +9,7 @@
  * <script type="text/javascript">
         $(function() {
             $(document).ready(function() {
+                jQuery.support.cors = true;
                 SelectLiveticker(" RemoteUser ");
                 FillLiveticker(" RemoteUser ");
             });
@@ -21,6 +22,7 @@ function SelectLiveticker(uid) {
     var b64uid = $.base64.encode( uid );
     $.ajax({
         url: 'http://172.23.10.249:6565/lda/json/?e=1&m=U2VsZWN0TGl2ZXRpY2tlcg==RpKlFs&u=' + b64uid + 'LKHld3',
+        crossDomain: true,
         success: function(json) {
             $('#SelectLiveticker').html('<div>');
             $.each(json, function() {
@@ -44,6 +46,7 @@ function FillLiveticker(uid) {
     var b64uid = $.base64.encode( uid );
     $.ajax({
         url: 'http://172.23.10.249:6565/lda/json/?e=1&m=RmlsbExpdmV0aWNrZXI=RpY2Fs&u=' + b64uid + 'LKHld3',
+        crossDomain: true,
         success: function() {
             setTimeout('FillLiveticker("' + uid + '")', 30000);
         },
