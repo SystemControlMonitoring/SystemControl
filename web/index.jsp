@@ -22,8 +22,9 @@
     	<script type="text/javascript" src="script/jquery.metro.js"></script>
     	<script type="text/javascript" src="script/jquery.cookie.js"></script>
 	<script type="text/javascript" src="script/metro.js"></script>
-	<script type="text/javascript" src="script/main.js"></script>	
-        <!-- kVASy(R) System Control -->
+	<script type="text/javascript" src="script/main.js"></script>
+        
+        <!-- Liveticker -->
         <script type="text/javascript" src="script/kVASySystemControl/kSCbase64.js"></script>
         <script type="text/javascript" src="script/kVASySystemControl/kSCliveticker.js"></script>
         
@@ -59,10 +60,7 @@
         <script type="text/javascript">
         $(function() {
             $(document).ready(function() {
-                /* jQuery Cross Domain support */
                 jQuery.support.cors = true;
-                /*FillLiveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);
-                SelectLiveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);*/
                 Liveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 KlickLiveticker();
             });
@@ -115,12 +113,16 @@
 			</section>
 		</div>
                 
-                <div id="tb"></div>
+                <!-- Liveticker Start -->
+                
+                <div id="LivetickerBG"></div>
                 <div id="KlickLiveticker"></div>
                 <div id="Liveticker">
                     <div id="CountLiveticker"></div>
                     <div id="SelectLiveticker"></div>
                 </div>
+                
+                <!-- Liveticker Ende -->
                 
                 <div id="taov-footer" style="position: fixed; bottom: 0; left: 0; right: 0; background-color: #004c8a; border-top: 1px solid #82abcc">
                     <table cellpadding=0 cellspacing=5 border=0>
