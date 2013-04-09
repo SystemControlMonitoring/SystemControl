@@ -31,7 +31,8 @@
 		<script src="script/html5.js"></script>
 	<![endif]-->
         
-        
+        <!-- Liveticker -->
+        <link rel='stylesheet' href='layout/kSCliveticker.css' />
         
         <!-- Handhelds -->
         <link rel='stylesheet' media='handheld' href='layout/metro.smart.css' />
@@ -60,8 +61,10 @@
             $(document).ready(function() {
                 /* jQuery Cross Domain support */
                 jQuery.support.cors = true;
-                FillLiveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);
-                SelectLiveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                /*FillLiveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                SelectLiveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);*/
+                Liveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                KlickLiveticker();
             });
         });
         </script>
@@ -112,7 +115,12 @@
 			</section>
 		</div>
                 
-                <div id="SelectLiveticker"></div>
+                <div id="tb"></div>
+                <div id="KlickLiveticker"></div>
+                <div id="Liveticker">
+                    <div id="CountLiveticker"></div>
+                    <div id="SelectLiveticker"></div>
+                </div>
                 
                 <div id="taov-footer" style="position: fixed; bottom: 0; left: 0; right: 0; background-color: #004c8a; border-top: 1px solid #82abcc">
                     <table cellpadding=0 cellspacing=5 border=0>
