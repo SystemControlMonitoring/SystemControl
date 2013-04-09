@@ -118,8 +118,10 @@
                 <div id="LivetickerBG"></div>
                 <div id="KlickLiveticker"></div>
                 <div id="Liveticker">
-                    <div id="CountLiveticker"></div>
-                    <div id="SelectLiveticker"></div>
+                    <div id="SubLiveticker">
+                        <div id="CountLiveticker"></div>
+                        <div id="SelectLiveticker"></div>
+                    </div>
                 </div>
                 
                 <!-- Liveticker Ende -->

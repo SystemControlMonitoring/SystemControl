@@ -22,11 +22,15 @@ function KlickLiveticker() {
     $('#KlickLiveticker').click(function() {
         if ($("#Liveticker").is(":hidden")) {
             $('#LivetickerBG').fadeIn(100);
-            $('#Liveticker').animate({width:'toggle'},350);
+            $('#Liveticker').animate({width:'toggle'},350, function() {
+                $('#SubLiveticker').fadeIn(100);
+            });
             $('#KlickLiveticker').removeClass('KlickLivetickerA').addClass('KlickLivetickerB');
         } else {
-            $('#Liveticker').animate({width:'toggle'},350);
-            $('#LivetickerBG').fadeOut(100);
+            $('#SubLiveticker').fadeOut(100);
+            $('#Liveticker').animate({width:'toggle'},350, function() {
+                $('#LivetickerBG').fadeOut(100);
+            });
             $('#KlickLiveticker').removeClass('KlickLivetickerB').addClass('KlickLivetickerA');
         }
     });
