@@ -24,6 +24,8 @@
 	<script type="text/javascript" src="script/metro.js"></script>
 	<script type="text/javascript" src="script/main.js"></script>
         
+        <!-- KSC Basicfunctions -->
+        <script type="text/javascript" src="script/kVASySystemControl/kSCbasic.js"></script>
         <!-- Liveticker -->
         <script type="text/javascript" src="script/kVASySystemControl/kSCbase64.js"></script>
         <script type="text/javascript" src="script/kVASySystemControl/kSCliveticker.js"></script>
@@ -34,6 +36,7 @@
         
         <!-- Liveticker -->
         <link rel='stylesheet' href='layout/kSCliveticker.css' />
+        <link rel='stylesheet' href='layout/kSCsidebar.css' />
         
         <!-- Handhelds -->
         <link rel='stylesheet' media='handheld' href='layout/metro.smart.css' />
@@ -62,7 +65,8 @@
             $(document).ready(function() {
                 jQuery.support.cors = true;
                 Liveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);
-                KlickLiveticker();
+                KlickFunctionSidebar();
+                KeyFunctionSidebar();
             });
         });
         </script>
@@ -113,16 +117,37 @@
 			</section>
 		</div>
                 
+                <!-- Sidebar Start -->
+                
+                <div id="SidebarSmall">
+                    <div id="LivetickerSidebar"></div>
+                </div>
+                <div id="Sidebar">
+                    <div id="SidebarContent">
+                        <section id="SidebarSearch">
+                            <input type="text" value="Suche">
+                        </section>
+                        <section id="SidebarLiveticker">
+                            
+                        </section>
+                        <section id="SidebarSubmenu">
+                            
+                        </section>
+                    </div>
+                </div>
+                
+                <!-- Sidebar Ende -->
+                
                 <!-- Liveticker Start -->
                 
-                <div id="LivetickerBG"></div>
+                <!--div id="LivetickerBG"></div>
                 <div id="KlickLiveticker"></div>
                 <div id="Liveticker">
                     <div id="SubLiveticker">
                         <div id="CountLiveticker"></div>
                         <div id="SelectLiveticker"></div>
                     </div>
-                </div>
+                </div-->
                 
                 <!-- Liveticker Ende -->
                 

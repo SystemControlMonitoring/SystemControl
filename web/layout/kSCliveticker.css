@@ -28,7 +28,7 @@
 }
 
 #LivetickerBG {
-    height: 370px;
+    height: 400px;
     top: 115px;
     left: 0;
     right: 35px;
@@ -71,7 +71,7 @@
 }
 
 #KlickLivetickerText {
-    margin-top: 205px;
+    margin-top: 400px;
     letter-spacing: 5px;
     -webkit-transform: rotate(-90deg); 
     -moz-transform: rotate(-90deg);
@@ -81,10 +81,15 @@
 }
 
 #ok {
-    font-weight:bold
+    width: 25px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 25px;
 }
 
 #crit {
-    color:#CB6565;
-    font-weight:bold
+    width: 25px;
+    color: #CB6565;
+    font-weight: bold;
+    margin-top: 25px;
 }

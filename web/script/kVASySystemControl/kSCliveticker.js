@@ -18,24 +18,6 @@
  * --------------------------------------------------------------
  */
 
-function KlickLiveticker() {
-    $('#KlickLiveticker').click(function() {
-        if ($("#Liveticker").is(":hidden")) {
-            $('#LivetickerBG').fadeIn(100);
-            $('#Liveticker').animate({width:'toggle'},350, function() {
-                $('#SubLiveticker').fadeIn(100);
-            });
-            $('#KlickLiveticker').removeClass('KlickLivetickerA').addClass('KlickLivetickerB');
-        } else {
-            $('#SubLiveticker').fadeOut(100);
-            $('#Liveticker').animate({width:'toggle'},350, function() {
-                $('#LivetickerBG').fadeOut(100);
-            });
-            $('#KlickLiveticker').removeClass('KlickLivetickerB').addClass('KlickLivetickerA');
-        }
-    });
-}
-
 function Liveticker(uid) {
     var b64uid = $.base64.encode( uid );
     $.ajax({
@@ -60,13 +42,13 @@ function Liveticker(uid) {
                         /* Check Problems */
                         if ( cc == 0 ) {
                             $('#CountLiveticker').html('<span>Keine aktuellen Probleme.</span>');
-                            $('#KlickLiveticker').html('<div id="ok">' + cc + '</div><div id="KlickLivetickerText">LIVETICKER</div>').addClass('KlickLivetickerA');
+                            $('#LivetickerSidebar').html('<div id="ok">' + cc + '</div><div id="KlickLivetickerText">SIDEBAR</div>');
                         } else if ( cc == 1) {
                             $('#CountLiveticker').html('<span>' + cc + ' aktuelles Problem.</span>');
-                            $('#KlickLiveticker').html('<div id="crit">' + cc + '</div><div id="KlickLivetickerText">LIVETICKER</div>').addClass('KlickLivetickerA');
+                            $('#LivetickerSidebar').html('<div id="crit">' + cc + '</div><div id="KlickLivetickerText">SIDEBAR</div>');
                         } else {
                             $('#CountLiveticker').html('<span>' + cc + ' aktuelle Probleme.</span>');
-                            $('#KlickLiveticker').html('<div id="crit">' + cc + '</div><div id="KlickLivetickerText">LIVETICKER</div>').addClass('KlickLivetickerA');
+                            $('#LivetickerSidebar').html('<div id="crit">' + cc + '</div><div id="KlickLivetickerText">SIDEBAR</div>');
                         }
                         /* Reload Function */
                         setTimeout('Liveticker("' + uid + '")', 30000);
