@@ -19,19 +19,26 @@
     position: fixed;
     right: 0;
     top: 0;
-    bottom: 35px;
-    width: 25px;
-    background-color: #82abcc;
+    bottom: 0;
+    width: 10px;
+    background-color: #004279;
     /*border-left: 1px solid #82abcc;*/
     cursor: pointer;
     color: #004279;
+    opacity: 0.7; 
+    -moz-opacity: 0.7; 
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+    filter:alpha(opacity=70);
+    -webkit-opacity: 0.7; 
+    -ms-opacity: 0.7;
+    -o-opacity: 0.7;
 }
 
 #Sidebar {
     position: fixed;
     right: 0;
     top: 0;
-    bottom: 35px;
+    bottom: 0;
     width: 400px;
     background-color: #82abcc;
     display: none;
@@ -43,5 +50,41 @@
 
 #SidebarSearch {
     margin-top: 75px;
-    margin-left: 50px;
+    margin-left: 65px;
+}
+
+/* Bottom Sidebar */
+
+#SidebarBottomSmall {
+    position: fixed;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: 10px;
+    background-color: #004279;
+    /*border-left: 1px solid #82abcc;*/
+    cursor: pointer;
+    color: #004279;
+    opacity: 0.7; 
+    -moz-opacity: 0.7; 
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+    filter:alpha(opacity=70);
+    -webkit-opacity: 0.7; 
+    -ms-opacity: 0.7;
+    -o-opacity: 0.7;
+}
+
+#SidebarBottom {
+    position: fixed;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: 750px;
+    background-color: #004279;
+    display: none;
+    border-top: 1px solid #82abcc;
+}
+
+#SidebarBottomContent {
+    display: none;
 }

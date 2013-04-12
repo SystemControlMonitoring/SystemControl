@@ -42,13 +42,13 @@ function Liveticker(uid) {
                         /* Check Problems */
                         if ( cc == 0 ) {
                             $('#CountLiveticker').html('<span>Keine aktuellen Probleme.</span>');
-                            $('#LivetickerSidebar').html('<div id="ok">' + cc + '</div><div id="KlickLivetickerText">SIDEBAR</div>');
+                            //$('#LivetickerSidebar').html('<div id="ok">' + cc + '</div><div id="KlickLivetickerText">SIDEBAR</div>');
                         } else if ( cc == 1) {
                             $('#CountLiveticker').html('<span>' + cc + ' aktuelles Problem.</span>');
-                            $('#LivetickerSidebar').html('<div id="crit">' + cc + '</div><div id="KlickLivetickerText">SIDEBAR</div>');
+                            //$('#LivetickerSidebar').html('<div id="crit">' + cc + '</div><div id="KlickLivetickerText">SIDEBAR</div>');
                         } else {
                             $('#CountLiveticker').html('<span>' + cc + ' aktuelle Probleme.</span>');
-                            $('#LivetickerSidebar').html('<div id="crit">' + cc + '</div><div id="KlickLivetickerText">SIDEBAR</div>');
+                            //$('#LivetickerSidebar').html('<div id="crit">' + cc + '</div><div id="KlickLivetickerText">SIDEBAR</div>');
                         }
                         /* Reload Function */
                         setTimeout('Liveticker("' + uid + '")', 30000);

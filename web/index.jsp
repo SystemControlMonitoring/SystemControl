@@ -19,6 +19,7 @@
 	<meta name="charset" content="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<script type="text/javascript" src="script/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript" src="script/jquery-ui-1.9.0.custom.min.js"></script>
     	<script type="text/javascript" src="script/jquery.metro.js"></script>
     	<script type="text/javascript" src="script/jquery.cookie.js"></script>
 	<script type="text/javascript" src="script/metro.js"></script>
@@ -29,6 +30,8 @@
         <!-- Liveticker -->
         <script type="text/javascript" src="script/kVASySystemControl/kSCbase64.js"></script>
         <script type="text/javascript" src="script/kVASySystemControl/kSCliveticker.js"></script>
+        <!-- KSC Tactical Overview -->
+        <!-- script type="text/javascript" src="script/kVASySystemControl/kSCbasic.js"></script -->
         
 	<!--[if lt IE 9]>
 		<script src="script/html5.js"></script>
@@ -37,6 +40,7 @@
         <!-- Liveticker -->
         <link rel='stylesheet' href='layout/kSCliveticker.css' />
         <link rel='stylesheet' href='layout/kSCsidebar.css' />
+        <link rel='stylesheet' href='layout/kSCtaov.css' />
         
         <!-- Handhelds -->
         <link rel='stylesheet' media='handheld' href='layout/metro.smart.css' />
@@ -87,7 +91,7 @@
 
                 <div id="center">
 			<section>
-                                <a href="#" class="icon">
+                                <a href="#" class="icon" onclick="Configuration();">
 					<img src="layout/images/gear_icon.png" alt="games" width="148" height="148">
 				</a>
 				<a href="livestatus.jsp" class="fulltext">
@@ -98,10 +102,7 @@
 					<span>Services</span><br></br>
 					<span class="sub-grid">Eine &Uuml;bersicht &uuml;ber alle eingerichteten Services.</span>
 				</a>
-				<a href="#" class="search">
-					<img src="layout/images/searchIcon.png" alt="explorer" width="148" height="148">
-				</a>
-                                <sql:query var="starter" dataSource="kscdb">
+				<sql:query var="starter" dataSource="kscdb">
                                     SELECT val1,val2,val3 FROM temp WHERE usr = '<%= request.getRemoteUser() %>' and modl = 'DASHBOARD' and key = 'STARTER'
                                 </sql:query>
                                 <c:forEach var="row" items="${starter.rowsByIndex}">
@@ -111,12 +112,22 @@
                                     </a>
                                 </c:forEach>
 				
-				<a href="" class="AddNext">
+				<a href="#" class="AddNext" onclick="AddLink();">
                                     <img src='layout/images/white/add.png' alt='AddNext' title='F&uuml;ge weiteren Men&uuml;punkt hinzu!' width='50' height='50'>
 				</a>
 			</section>
 		</div>
                 
+                <!-- Configuration Start -->
+                
+                <div id="Configuration"></div>
+                
+                <!-- Configuration Stop -->
+                <!-- AddLink Start -->
+                
+                <div id="AddLink"></div>
+                
+                <!-- AddLink Stop -->
                 <!-- Sidebar Start -->
                 
                 <div id="SidebarSmall">
@@ -151,14 +162,14 @@
                 
                 <!-- Liveticker Ende -->
                 
-                <div id="taov-footer" style="position: fixed; bottom: 0; left: 0; right: 0; background-color: #004c8a; border-top: 1px solid #82abcc">
-                    <table cellpadding=0 cellspacing=5 border=0>
-                        <tr>
-                            <td style="background-color: #080;padding: 5px">35 ONLINE</td>
-                            <td style="background-color: firebrick;padding: 5px">1 | 0 OFFLINE</td>
-                            <td style="background-color: indigo;padding: 5px">0 | 0 UNREACHABLE</td>
-                        </tr>
-                    </table>
+                <div id="SidebarBottomSmall">
+                    
+                </div>
+                
+                <div id="SidebarBottom">
+                    <div id="SidebarBottomContent">
+                        <p>Sidebar Bottom</p>
+                    </div>
                 </div>
 	</body>
 </html>
