@@ -2,7 +2,7 @@ jQuery(document).ready(function($){
 
 	var drag = location.href.substr(location.href.indexOf('?drag=')+6,2)=='on';
 
-	$('a','#center section').metro( drag )
+	//$('a','#center section').metro( drag )
 
 
 	// dummy links in the main section

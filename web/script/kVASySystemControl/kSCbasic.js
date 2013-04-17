@@ -142,9 +142,10 @@ function Configuration(uid) {
     $('#Configuration').append('<div id="ConfigurationDialog" title="Einstellungen">\n\
         <div id="ConfigurationTabs">\n\
             <ul>\n\
-                <li><a href="#ConfigurationTabs1">Basis-Konfiguration</a></li>\n\
-                <li><a href="#ConfigurationTabs2">System-Konfiguration</a></li>\n\
-                <li><a href="#ConfigurationTabs3">Nutzer-Konfiguration</a></li>\n\
+                <li><a href="#ConfigurationTabs1">Web-Konfiguration</a></li>\n\
+                <li><a href="#ConfigurationTabs2">Core-Konfiguration</a></li>\n\
+                <li><a href="#ConfigurationTabs3">User-Konfiguration</a></li>\n\
+                <li><a href="#ConfigurationTabs4">System-Information</a></li>\n\
             </ul>\n\
             <div id="ConfigurationTabs1">\n\
                 <div id="ConfigurationSection">\n\
@@ -158,6 +159,12 @@ function Configuration(uid) {
             </div>\n\
             <div id="ConfigurationTabs3">\n\
                 <p></p>\n\
+            </div>\n\
+            <div id="ConfigurationTabs4">\n\
+                <div id="ConfigurationSection">\n\
+                    <div id="ConfigurationSectionTitle">Modulversionen</div>\n\
+                    <div id="Modulversionen"></div>\n\
+                </div>\n\
             </div>\n\
        </div>\n\
    </div>');
@@ -175,6 +182,21 @@ function Configuration(uid) {
             $('#ConfigurationTabs').tabs();
             $('#1').button();
             $('#2').button();
+            $.ajax({
+                url: 'http://172.23.10.249:6565/?mv=g',
+                crossDomain: true,
+                success: function(json) {
+                    $('#Modulversionen').append('<table id="TableModulversionen" cellpadding=0 cellspacing=5 border=0></table>');
+                    $.each(json, function(key,value) {
+                        $('table','#Modulversionen').append('<tr><td>' + key + '</td><td>' + value + '</td></tr>');
+                    });
+                },
+                error: function(jqXhr, textStatus, error) {
+                    alert("ERROR#Modulversionen#ERROR: " + textStatus + " MESSAGE: " + error);
+                },
+                dataType: 'json',
+                cache: false
+            });
         },
         buttons: { 
             BEENDEN: function() {
