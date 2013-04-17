@@ -3,8 +3,6 @@
     Created on : 29.01.2013, 10:21:16
     Author     : sbaresel
 --%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="ldap.search" %>
 <!DOCTYPE html>
@@ -41,6 +39,7 @@
         <link rel='stylesheet' href='layout/kSCliveticker.css' />
         <link rel='stylesheet' href='layout/kSCsidebar.css' />
         <link rel='stylesheet' href='layout/kSCtaov.css' />
+        <link rel='stylesheet' href='layout/kSCbasic.css' />
         
         <!-- Handhelds -->
         <link rel='stylesheet' media='handheld' href='layout/metro.smart.css' />
@@ -71,6 +70,7 @@
                 Liveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 KlickFunctionSidebar();
                 KeyFunctionSidebar();
+                DashboardLinks(<% out.println("'" + request.getRemoteUser() + "'"); %>);
             });
         });
         </script>
@@ -91,7 +91,7 @@
 
                 <div id="center">
 			<section>
-                                <a href="#" class="icon" onclick="Configuration();">
+                                <a href="#" class="icon" onclick="Configuration(<% out.println("'" + request.getRemoteUser() + "'"); %>);">
 					<img src="layout/images/gear_icon.png" alt="games" width="148" height="148">
 				</a>
 				<a href="livestatus.jsp" class="fulltext">
@@ -102,16 +102,11 @@
 					<span>Services</span><br></br>
 					<span class="sub-grid">Eine &Uuml;bersicht &uuml;ber alle eingerichteten Services.</span>
 				</a>
-				<sql:query var="starter" dataSource="kscdb">
-                                    SELECT val1,val2,val3 FROM temp WHERE usr = '<%= request.getRemoteUser() %>' and modl = 'DASHBOARD' and key = 'STARTER'
-                                </sql:query>
-                                <c:forEach var="row" items="${starter.rowsByIndex}">
-                                    <a href="<c:out value="${row[2]}" />" class="fulltext">
-					<span><c:out value="${row[0]}" /></span><br></br>
-					<span class="sub-grid"><c:out value="${row[1]}" /></span>
-                                    </a>
-                                </c:forEach>
 				
+                                <!-- DashboardLinks Start -->
+                                <div id="DashboardLinks"></div>
+                                <!-- DashboardLinks Stop -->
+                                
 				<a href="#" class="AddNext" onclick="AddLink();">
                                     <img src='layout/images/white/add.png' alt='AddNext' title='F&uuml;ge weiteren Men&uuml;punkt hinzu!' width='50' height='50'>
 				</a>

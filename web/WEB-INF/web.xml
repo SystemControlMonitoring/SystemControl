@@ -7,7 +7,7 @@
     </welcome-file-list>
     <session-config>
         <session-timeout>
-            120
+            600
         </session-timeout>
     </session-config>
     <security-constraint>
@@ -49,10 +49,4 @@
             <form-error-page>/loginError.jsp</form-error-page>
         </form-login-config>
     </login-config>
-    <resource-ref>
-        <res-ref-name>kscdb</res-ref-name>
-        <res-type>javax.sql.DataSource</res-type>
-        <res-auth>Container</res-auth>
-        <res-sharing-scope>Shareable</res-sharing-scope>
-    </resource-ref>
 </web-app>
