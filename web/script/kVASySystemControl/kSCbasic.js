@@ -164,6 +164,8 @@ function Configuration(uid) {
                 <div id="ConfigurationSection">\n\
                     <div id="ConfigurationSectionTitle">Modulversionen</div>\n\
                     <div id="Modulversionen"></div>\n\
+                    <div id="ConfigurationSectionTitle">Komponenten Status</div>\n\
+                    <div id="Components"></div>\n\
                 </div>\n\
             </div>\n\
        </div>\n\
@@ -188,11 +190,39 @@ function Configuration(uid) {
                 success: function(json) {
                     $('#Modulversionen').append('<table id="TableModulversionen" cellpadding=0 cellspacing=5 border=0></table>');
                     $.each(json, function(key,value) {
-                        $('table','#Modulversionen').append('<tr><td>' + key + '</td><td>' + value + '</td></tr>');
+                        $('table','#Modulversionen').append('<tr><td>' + key + '</td><td> >> </td><td>' + value + '</td></tr>');
                     });
                 },
                 error: function(jqXhr, textStatus, error) {
                     alert("ERROR#Modulversionen#ERROR: " + textStatus + " MESSAGE: " + error);
+                },
+                dataType: 'json',
+                cache: false
+            });
+            $.ajax({
+                url: 'http://172.23.10.249:6565/chkcmp/json/?e=1&m=Q2hlY2tQcm9jZXNzLk76Zh',
+                crossDomain: true,
+                success: function(json) {
+                    $.each(json, function(key,value) {
+                        if ( key == 'ICINGA' ) {
+                            $('#Components').append('<table id="TableIcinga" cellpadding=0 cellspacing=5 border=0><tr><td colspan=2>' + key + ' Backend</td></tr></table>');
+                            $.each(value, function(index, obj) {
+                                var pstat;
+                                if ( obj.PORT_ON == 1) { pstat = "offen"; } else { pstat = "geschlossen"; }
+                                $('table#TableIcinga').append('<tr><td>' + obj.NAME + ' (' + obj.IP + '):</td><td>Aktive ICINGA Prozesse: ' + obj.ICINGA_PRC + ', Aktive XINETD Prozesse: ' + obj.XINETD_PRC + ', Port: ' + obj.PORT_NO + ' ist ' + pstat + '.</td></tr>');
+                            });
+                        } else {
+                            $('#Components').append('<table id="TablePostgre" cellpadding=0 cellspacing=5 border=0><tr><td colspan=2>' + key + ' Backend</td></tr></table>');
+                            $.each(value, function(index, obj) {
+                                var pstat;
+                                if ( obj.PORT_ON == 1) { pstat = "offen"; } else { pstat = "geschlossen"; }
+                                $('table#TablePostgre').append('<tr><td>' + obj.NAME + ' (' + obj.IP + '):</td><td>Aktive Prozesse: ' + obj.POSTGRE_PRC + ', Port: ' + obj.PORT_NO + ' ist ' + pstat + '.</td></tr>');
+                            });
+                        }
+                    });
+                },
+                error: function(jqXhr, textStatus, error) {
+                    alert("ERROR#Components#ERROR: " + textStatus + " MESSAGE: " + error);
                 },
                 dataType: 'json',
                 cache: false
