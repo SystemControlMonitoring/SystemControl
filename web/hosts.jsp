@@ -1,8 +1,9 @@
 <%-- 
-    Document   : index
-    Created on : 29.01.2013, 10:21:16
+    Document   : hosts.jsp
+    Created on : 25.04.2013, 10:54:14
     Author     : sbaresel
 --%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="ldap.search" %>
 <!DOCTYPE html>
@@ -12,7 +13,7 @@
         <meta name="author" content="Steffen Baresel">
 	<meta name="description" content="kVASy(R) System Control.">
 	<meta name="keywords" content="kVASy, System Control, kVASy System Control">
-	<title>Startseite - kVASy&reg; System Control</title>
+	<title>Hosts - kVASy&reg; System Control</title>
 	<meta name="language" content="it">
 	<meta name="charset" content="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,8 +29,8 @@
         <!-- Liveticker -->
         <script type="text/javascript" src="script/kVASySystemControl/kSCbase64.js"></script>
         <script type="text/javascript" src="script/kVASySystemControl/kSCliveticker.js"></script>
-        <!-- KSC Tactical Overview -->
-        <!-- script type="text/javascript" src="script/kVASySystemControl/kSCbasic.js"></script -->
+        <!-- AllHosts -->
+        <script type="text/javascript" src="script/kVASySystemControl/kSChosts.js"></script>
         
 	<!--[if lt IE 9]>
 		<script src="script/html5.js"></script>
@@ -71,7 +72,8 @@
                 Liveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 KlickFunctionSidebar();
                 KeyFunctionSidebar();
-                DashboardLinks(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                AllHosts(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                Base();
             });
         });
         </script>
@@ -90,29 +92,13 @@
 
 		<p class="login_shortname"><a href="logout.jsp">Abmelden</a><p>
 
-                <div id="center">
-			<section>
-                                <a href="#" class="icon" onclick="Configuration(<% out.println("'" + request.getRemoteUser() + "'"); %>);">
-					<img src="layout/images/gear_icon.png" alt="games" width="148" height="148">
-				</a>
-				<a href="hosts.jsp" class="fulltext">
-					<span>Hosts</span><br></br>
-					<span class="sub-grid">Eine &Uuml;bersicht &uuml;ber alle eingerichteten Server.</span>
-				</a>
-				<a href="services.jsp" class="fulltext">
-					<span>Services</span><br></br>
-					<span class="sub-grid">Eine &Uuml;bersicht &uuml;ber alle eingerichteten Services.</span>
-				</a>
-				
-                                <!-- DashboardLinks Start -->
-                                <div id="DashboardLinks"></div>
-                                <!-- DashboardLinks Stop -->
-                                
-				<a href="#" class="AddNext" onclick="AddLink();">
-                                    <img src='layout/images/white/add.png' alt='AddNext' title='F&uuml;ge weiteren Men&uuml;punkt hinzu!' width='50' height='50'>
-				</a>
-			</section>
-		</div>
+                <div id="back-div"></div>
+                    
+                <!-- Hosts Start -->
+                
+                <div id="center"></div>
+                
+                <!-- Hosts Ende -->
                 
                 <!-- Configuration Start -->
                 

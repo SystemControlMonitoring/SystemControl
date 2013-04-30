@@ -11,6 +11,19 @@
  * --------------------------------------------------------------
  */
 
+function Loader() {
+    $('#theme-roller').append('<img id="AjaxLoader" src="layout/images/ajax-loader.gif">');
+}
+
+function Base() {
+    $("#back-div").append("<a class='back-a' href='/kVASySystemControl'><img class='back-img' src='layout/images/white/back.png' title='Zur&uuml;ck'/></a>");
+}
+
+function urlParam(name) {
+    var results = new RegExp('[\\?&amp;]' + name + '=([^&amp;#]*)').exec(window.location.href);
+    if(typeof(results) !== 'undefined' && results != null) { return results[1]; } else { return 0; }
+}
+
 function KeyFunctionSidebar() {
     $('body').keydown(function(e){
         if ((e.keyCode || e.which) == 37) {
@@ -153,6 +166,14 @@ function Configuration(uid) {
                     <button id="1" class="ConfigurationSectionPoint" onclick="LoadBasic(\'' + b64uid + 'Ljd84K\');">Setze Basis Einstellungen</button>\n\
                     <button id="2" class="ConfigurationSectionPoint" onclick="DeleteBasic(\'' + b64uid + 'Ljd84K\');">Zur&uuml;cksetzen auf Standard</button>\n\
                 </div>\n\
+                <div id="ConfigurationSection">\n\
+                    <div id="ConfigurationSectionTitle">Einstellungen</div>\n\
+                    <div class="Config"></div>\n\
+                </div>\n\
+                <div id="ConfigurationSection">\n\
+                    <div id="ConfigurationSectionTitle">Reset</div>\n\
+                    <button id="3" class="ConfigurationSectionPoint" onclick="DeleteBasicConfig(\'' + b64uid + 'Ljd84K\');">Alle Einstellungen zur&uuml;cksetzen</button>\n\
+                </div>\n\
             </div>\n\
             <div id="ConfigurationTabs2">\n\
                 <p></p>\n\
@@ -184,8 +205,9 @@ function Configuration(uid) {
             $('#ConfigurationTabs').tabs();
             $('#1').button();
             $('#2').button();
+            $('#3').button();
             $.ajax({
-                url: 'http://172.23.10.249:6565/?mv=g',
+                url: 'http://172.23.10.249:6560/?mv=g',
                 crossDomain: true,
                 success: function(json) {
                     $('#Modulversionen').append('<table id="TableModulversionen" cellpadding=0 cellspacing=5 border=0></table>');
@@ -200,7 +222,7 @@ function Configuration(uid) {
                 cache: false
             });
             $.ajax({
-                url: 'http://172.23.10.249:6565/chkcmp/json/?e=1&m=Q2hlY2tQcm9jZXNzLk76Zh',
+                url: 'http://172.23.10.249:6560/chkcmp/json/?e=1&m=Q2hlY2tQcm9jZXNzLk76Zh',
                 crossDomain: true,
                 success: function(json) {
                     $.each(json, function(key,value) {
@@ -223,6 +245,26 @@ function Configuration(uid) {
                 },
                 error: function(jqXhr, textStatus, error) {
                     alert("ERROR#Components#ERROR: " + textStatus + " MESSAGE: " + error);
+                },
+                dataType: 'json',
+                cache: false
+            });
+            $.ajax({
+                url: 'http://172.23.10.249:6560/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u=' + b64uid + 'KjHu8s&m2=Q29uZmlnJq0OpP',
+                crossDomain: true,
+                success: function(json) {
+                    $('div.Config').append('<table id="TableConfig" cellpadding=0 cellspacing=5 border=0></table>');
+                    $.each(json, function(key,value) {
+                        if ( value.ACTION == 0 ) {
+                            $('table#TableConfig').append('<tr><td>' + value.DESC + '</td><td></td><td><div id="radio' + value.KEY + '" class="RadioBorder"><input type="radio" id="radio1' + value.KEY + '" name="radio' + value.KEY + '" onclick="AddConfig(\'' + b64uid + 'Ljd84K\',\'Config\',\'' + value.KEY + '\',\'1\',\'' + value.DESC + '\',\'\');" /><label for="radio1' + value.KEY + '">ON</label><input type="radio" id="radio2' + value.KEY + '" name="radio' + value.KEY + '" checked="checked" onclick="AddConfig(\'' + b64uid + 'Ljd84K\',\'Config\',\'' + value.KEY + '\',\'0\',\'' + value.DESC + '\',\'\');" /><label for="radio2' + value.KEY + '">OFF</label></div></td></tr>');
+                        } else {
+                            $('table#TableConfig').append('<tr><td>' + value.DESC + '</td><td></td><td><div id="radio' + value.KEY + '" class="RadioBorder"><input type="radio" id="radio1' + value.KEY + '" name="radio' + value.KEY + '" onclick="AddConfig(\'' + b64uid + 'Ljd84K\',\'Config\',\'' + value.KEY + '\',\'1\',\'' + value.DESC + '\',\'\');" checked="checked" /><label for="radio1' + value.KEY + '">ON</label><input type="radio" id="radio2' + value.KEY + '" name="radio' + value.KEY + '" onclick="AddConfig(\'' + b64uid + 'Ljd84K\',\'Config\',\'' + value.KEY + '\',\'0\',\'' + value.DESC + '\',\'\');" /><label for="radio2' + value.KEY + '">OFF</label></div></td></tr>');
+                        }
+                        $('#radio' + value.KEY ).buttonset();
+                    });
+                },
+                error: function(jqXhr, textStatus, error) {
+                    alert("ERROR#SelectConfig#ERROR: " + textStatus + " MESSAGE: " + error);
                 },
                 dataType: 'json',
                 cache: false
@@ -262,7 +304,7 @@ function AddLink() {
 
 function LoadBasic(uid) {
     $.ajax({
-        url: 'http://172.23.10.249:6565/repo/json/?e=1&m=SW5zZXJ0RGFzaGJvYXJkQWxsKd8Hfg&u=' + uid + '',
+        url: 'http://172.23.10.249:6560/repo/json/?e=1&m=SW5zZXJ0RGFzaGJvYXJkQWxsKd8Hfg&u=' + uid + '',
         crossDomain: true,
         success: DialogSuccess("#1","Die Basiseinstellungen für das Dashboard wurden erfolgreich gesetzt."),
         error: function(jqXhr, textStatus, error) {
@@ -294,12 +336,13 @@ function DialogSuccess(id,message) {
 function DashboardLinks(uid) {
     var b64uid = $.base64.encode( uid );
     $.ajax({
-        url: 'http://172.23.10.249:6565/repo/json/?e=1&m=U2VsZWN0RGFzaGJvYXJkQWxsUhdjK8&u=' + b64uid + 'LKHld3',
+        url: 'http://172.23.10.249:6560/repo/json/?e=1&m=U2VsZWN0RGFzaGJvYXJkQWxsUhdjK8&u=' + b64uid + 'LKHld3',
         crossDomain: true,
         success: function(json) {
             $.each(json, function() {
                 $('#DashboardLinks').append('<a href="' + this.TARGET + '" class="fulltext"><span>' + this.TITLE + '</span><br></br><span class="sub-grid">' + this.DESC + '</span></a>');
             });
+            $('#AjaxLoader').remove();
         },
         error: function(jqXhr, textStatus, error) {
             alert("ERROR#DashboardLinks#ERROR: " + textStatus + " MESSAGE: " + error);
@@ -311,11 +354,42 @@ function DashboardLinks(uid) {
 
 function DeleteBasic(uid) {
     $.ajax({
-        url: 'http://172.23.10.249:6565/repo/json/?e=1&m=RGVsZXRlRGFzaGJvYXJkQWxsJkl8Hd&u=' + uid + '',
+        url: 'http://172.23.10.249:6560/repo/json/?e=1&m=RGVsZXRlRGFzaGJvYXJkQWxsJkl8Hd&u=' + uid + '',
         crossDomain: true,
         success: DialogSuccess("#2","Die Standardeinstellungen für das Dashboard wurden erfolgreich gesetzt."),
         error: function(jqXhr, textStatus, error) {
-            alert("ERROR#LoadBasic#ERROR: " + textStatus + " MESSAGE: " + error);
+            alert("ERROR#DeleteBasic#ERROR: " + textStatus + " MESSAGE: " + error);
+        },
+        dataType: 'json',
+        cache: false
+    });
+}
+
+function DeleteBasicConfig(uid) {
+    $.ajax({
+        url: 'http://172.23.10.249:6560/repo/json/?e=1&m=RGVsZXRlUmVwb0FsbA==Jhdu8d&u=' + uid + '',
+        crossDomain: true,
+        success: DialogSuccess("#3","Alle Einstellungen wurden erfolgreich zur&uuml;ckgesetzt!"),
+        error: function(jqXhr, textStatus, error) {
+            alert("ERROR#DeleteBasicConfig#ERROR: " + textStatus + " MESSAGE: " + error);
+        },
+        dataType: 'json',
+        cache: false
+    });
+}
+
+function AddConfig(uid,mdl,key,val1,val2,val3) {
+    var b64mdl = $.base64.encode( mdl );
+    var b64key = $.base64.encode( key );
+    var b64val1 = $.base64.encode( val1 );
+    var b64val2 = $.base64.encode( val2 );
+    var b64val3 = $.base64.encode( val3 );
+    $.ajax({
+        url: 'http://172.23.10.249:6560/repo/json/?e=1&m=SW5zZXJ0VXBkYXRlQ29uZmlnHkl8Ui&u=' + uid + '&m2=' + b64mdl + 'Jkl8Hd&k=' + b64key + 'Jkl8Hd&v1=' + b64val1 + 'Jkl8Hd&v2=' + b64val2 + 'Jkl8Hd&v3=' + b64val3 + 'Jkl8Hd',
+        crossDomain: true,
+        success: DialogSuccess(".Config","Konfiguration wurde ge&auml;ndert."),
+        error: function(jqXhr, textStatus, error) {
+            alert("ERROR#InsertConfig#ERROR: " + textStatus + " MESSAGE: " + error);
         },
         dataType: 'json',
         cache: false
