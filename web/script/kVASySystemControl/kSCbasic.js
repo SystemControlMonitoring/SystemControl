@@ -15,13 +15,36 @@ function Loader() {
     $('#theme-roller').append('<img id="AjaxLoader" src="layout/images/ajax-loader.gif">');
 }
 
+function SubLoader() {
+    $('#theme-roller').append('<img id="AjaxLoader" src="../layout/images/ajax-loader.gif">');
+}
+
 function Base() {
     $("#back-div").append("<a class='back-a' href='/kVASySystemControl'><img class='back-img' src='layout/images/white/back.png' title='Zur&uuml;ck'/></a>");
+}
+
+function SubBase() {
+    $("#back-div").append("<a class='back-a' onclick=\"history.back ();\"><img class='back-img' src='../layout/images/white/back.png' title='Zur&uuml;ck'/></a>");
 }
 
 function urlParam(name) {
     var results = new RegExp('[\\?&amp;]' + name + '=([^&amp;#]*)').exec(window.location.href);
     if(typeof(results) !== 'undefined' && results != null) { return results[1]; } else { return 0; }
+}
+
+function urlPara(name){
+    name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");  
+    var regexS = "[\\?&]"+name+"=([^&#]*)";
+    var regex = new RegExp( regexS );  
+    var results = regex.exec( window.location.href ); 
+    if( results == null )
+        return "";  
+    else
+        return results[1];
+}
+
+function ChangeTitle() {
+    document.title = $.base64.decode( urlPara('c') ) + '@' + $.base64.decode( urlPara('h') ) + ' - kVASy' + decodeURI('%C2%AE') + ' System Control';
 }
 
 function KeyFunctionSidebar() {

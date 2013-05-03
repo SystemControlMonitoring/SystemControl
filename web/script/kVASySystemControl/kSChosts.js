@@ -25,7 +25,7 @@ function AllHosts(uid) {
                         var shorthostname;
                         if ( dds == "0" ) { shorthostname = this.NAME; } else { var tmp = this.NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
                         if ( shorthostname.length > 13 ) { shorthostname = shorthostname.substr(0,10) + '...'; }
-                        $('section','#center').append('<a href="' + this.URL + '?h=' + $.base64.encode( hostname ) + '" class="fulltext" title="' + hostname + '"><img class="Type" src="' + this.ICON + '"><span>' + shorthostname + '</span><br></br><span class="host-sub-grid">Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '<br>CR: ' + this.SRV_CR + ' | WA: ' + this.SRV_WA + ' | UN: ' + this.SRV_UN + ' | OK: ' + this.SRV_OK + ' | PE: ' + this.SRV_PE + '</span></a>');
+                        $('section','#center').append('<a href="modules/' + this.URL + '?h=' + $.base64.encode( this.NODE ) + '&c=' + $.base64.encode( hostname ) + '" class="fulltext" title="' + hostname + '"><img class="Type" src="' + this.ICON + '"><span>' + shorthostname + '</span><br></br><span class="host-sub-grid">Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '<br>CR: ' + this.SRV_CR + ' | WA: ' + this.SRV_WA + ' | UN: ' + this.SRV_UN + ' | OK: ' + this.SRV_OK + ' | PE: ' + this.SRV_PE + '</span></a>');
                     });
                     $('#AjaxLoader').remove();
                 },
