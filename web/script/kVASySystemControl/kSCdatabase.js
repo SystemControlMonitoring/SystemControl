@@ -3,6 +3,10 @@
  * and open the template in the editor.
  */
 
+function Top() {
+    $('#TopMenu').append('<table cellpadding=0 cellspacing=0 border=0 id="TopMEnuTable"><tr><td><a href="../">Home</a></td><td><span id="TopMenuIcon" class="ui-icon ui-icon-triangle-1-e"></span></td><td><a href="../hosts.jsp">Hosts</a></td><td><span id="TopMenuIcon" class="ui-icon ui-icon-triangle-1-e"></span></td><td>' + $.base64.decode( urlPara('c') ) + '</td></tr></table>');
+}
+
 function SysInfo(uid) {
     var b64uid = $.base64.encode( uid );
     var node = urlPara('h');
@@ -11,7 +15,7 @@ function SysInfo(uid) {
         url: 'http://172.23.10.249:6560/clientdirect/json/?e=1&m=U1lTSU5GTw==Jkd873&h=' + node + 'Hqu8zd&c=' + client + 'Jjd723&u=' + b64uid + 'KjdUE8',
         crossDomain: true,
         success:function(point) {
-            $('section','#center').append('<a href="" class="ticker" title=""><span class="hname"></span><br></br><font class="os"></font><br></br><font class="subcontent" id="cpu"></font><br><font class="subcontent" id="ram"></font><br><font class="subcontent" id="startup"></font></a>');
+            $('section','#center').append('<a href="sysinfo.jsp?h=' + node + '&c=' + client + '&t=' + $.base64.encode( point.TYPE ) + '" class="ticker" title=""><span class="hname"></span><br></br><font class="os"></font><br></br><font class="subcontent" id="cpu"></font><br><font class="subcontent" id="ram"></font><br><font class="subcontent" id="startup"></font></a>');
             $.each(point, function(name,data) {
 		if (name == "HOSTNAME") {
                     $('.hname').append('' + data + '');
@@ -28,7 +32,7 @@ function SysInfo(uid) {
             DbInfo(b64uid);
         },
         error: function(jqXhr, textStatus, error) {
-            alert("ERROR#DelDomainSuffix#ERROR: " + textStatus + " MESSAGE: " + error);
+            alert("ERROR#SYSINFO#ERROR: " + textStatus + " MESSAGE: " + error);
         },
         dataType: 'json',
         cache: false
@@ -62,7 +66,7 @@ function DbInfo(uid) {
             $('#AjaxLoader').remove();
         },
         error: function(jqXhr, textStatus, error) {
-            alert("ERROR#DelDomainSuffix#ERROR: " + textStatus + " MESSAGE: " + error);
+            alert("ERROR#DBINFO#ERROR: " + textStatus + " MESSAGE: " + error);
         },
         dataType: 'json',
         cache: false

@@ -88,12 +88,12 @@ function KeyFunctionSidebar() {
         } else if ((e.keyCode || e.which) == 38) {
             if ($("#SidebarBottom").is(":hidden")) {
                 if ($("#Sidebar").is(":hidden")) {
-                    $('#SidebarBottomSmall').animate({marginBottom: "850px"},350).css('zIndex',25);
+                    $('#SidebarBottomSmall').animate({marginBottom: "870px"},350).css('zIndex',25);
                     $('#SidebarBottom').animate({height:'toggle'},350, function() {
                         $('#SidebarBottomContent').fadeIn(100);
                     }).css('zIndex',25);
                 } else {
-                    $('#SidebarBottomSmall').animate({marginBottom: "850px"},350).css('zIndex',25);
+                    $('#SidebarBottomSmall').animate({marginBottom: "870px"},350).css('zIndex',25);
                     $('#SidebarBottom').animate({height:'toggle'},350, function() {
                         $('#SidebarBottomContent').fadeIn(100);
                     }).css('zIndex',25);
@@ -114,12 +114,12 @@ function KeyFunctionSidebar() {
         } else if ((e.keyCode || e.which) == 40) {
             if ($("#SidebarBottom").is(":hidden")) {
                 if ($("#Sidebar").is(":hidden")) {
-                    $('#SidebarBottomSmall').animate({marginBottom: "850px"},350).css('zIndex',25);
+                    $('#SidebarBottomSmall').animate({marginBottom: "870px"},350).css('zIndex',25);
                     $('#SidebarBottom').animate({height:'toggle'},350, function() {
                         $('#SidebarBottomContent').fadeIn(100);
                     }).css('zIndex',25);
                 } else {
-                    $('#SidebarBottomSmall').animate({marginBottom: "850px"},350).css('zIndex',25);
+                    $('#SidebarBottomSmall').animate({marginBottom: "870px"},350).css('zIndex',25);
                     $('#SidebarBottom').animate({height:'toggle'},350, function() {
                         $('#SidebarBottomContent').fadeIn(100);
                     }).css('zIndex',25);
@@ -156,7 +156,7 @@ function KlickFunctionSidebar() {
     });
     $('#SidebarBottomSmall').click(function() {
         if ($("#SidebarBottom").is(":hidden")) {
-            $('#SidebarBottomSmall').animate({marginBottom: "850px"},350).css('zIndex',25);
+            $('#SidebarBottomSmall').animate({marginBottom: "870px"},350).css('zIndex',25);
             $('#SidebarBottom').animate({height:'toggle'},350, function() {
                 $('#SidebarBottomContent').fadeIn(100);
             }).css('zIndex',25);

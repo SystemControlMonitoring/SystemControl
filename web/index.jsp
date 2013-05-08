@@ -29,7 +29,7 @@
         <script type="text/javascript" src="script/kVASySystemControl/kSCbase64.js"></script>
         <script type="text/javascript" src="script/kVASySystemControl/kSCliveticker.js"></script>
         <!-- KSC Tactical Overview -->
-        <!-- script type="text/javascript" src="script/kVASySystemControl/kSCbasic.js"></script -->
+        <script type="text/javascript" src="script/kVASySystemControl/kSCtaov.js"></script>
         
 	<!--[if lt IE 9]>
 		<script src="script/html5.js"></script>
@@ -72,6 +72,7 @@
                 KlickFunctionSidebar();
                 KeyFunctionSidebar();
                 DashboardLinks(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                SlimTaov(<% out.println("'" + request.getRemoteUser() + "'"); %>);
             });
         });
         </script>
@@ -79,6 +80,8 @@
 	</head>
     <body theme="dark">
 
+        <div id="TopMenu"></div>
+        
         <span id="top">
                 <p class="title"><font class="kvasy">kVASy&reg;</font> System Control</p><div id="logo-div"><img class='logo' src='layout/images/logo_backgroundblue_whitetext.png' title='SIV.AG'/></div>
 		<p class="subtitle">Monitoring quite simple!</p></span>
@@ -159,7 +162,7 @@
                 <!-- Liveticker Ende -->
                 
                 <div id="SidebarBottomSmall">
-                    
+                    <div id="SlimTaov"></div>
                 </div>
                 
                 <div id="SidebarBottom">

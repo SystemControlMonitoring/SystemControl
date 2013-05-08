@@ -6,12 +6,55 @@
         Purpose of the stylesheet follows.
 */
 
-#Taov {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 15px;
-    background-color: #82abcc;
+#SlimTaov {
+    margin-top: -25px;
+    padding: 5px;
+    color: white;
+    font-size: 12px;
 }
 
+#SlimTaov a {
+    color: white;
+}
+
+#SlimTaov table td {
+    padding: 3px;
+}
+
+#SlimTaov table {
+    border-spacing: 4px 0px;
+}
+
+.default {
+    background-color: #004279;
+    border: 2px solid #004c8a;
+}
+
+.ok {
+    background-color: #088A08;
+    border: 2px solid #088A08;
+}
+
+.cr {
+    background-color: #ff3333;
+    border: 2px solid #ff3333;
+}
+
+.un {
+    background-color: #C800C8;
+    border: 2px solid #C800C8;
+}
+
+.wa {
+    background-color: orange;
+    border: 2px solid orange;
+}
+
+.pe {
+    background-color: #C800C8;
+    border: 2px solid #C800C8;
+}
+
+.Notice {
+    color: #82abcc;
+}

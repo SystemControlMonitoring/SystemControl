@@ -31,6 +31,8 @@
         <script type="text/javascript" src="script/kVASySystemControl/kSCliveticker.js"></script>
         <!-- AllHosts -->
         <script type="text/javascript" src="script/kVASySystemControl/kSChosts.js"></script>
+        <!-- KSC Tactical Overview -->
+        <script type="text/javascript" src="script/kVASySystemControl/kSCtaov.js"></script>
         
 	<!--[if lt IE 9]>
 		<script src="script/html5.js"></script>
@@ -69,11 +71,13 @@
             $(document).ready(function() {
                 jQuery.support.cors = true;
                 Loader();
+                Top();
                 Liveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 KlickFunctionSidebar();
                 KeyFunctionSidebar();
                 AllHosts(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 Base();
+                SlimTaov(<% out.println("'" + request.getRemoteUser() + "'"); %>);
             });
         });
         </script>
@@ -81,6 +85,8 @@
 	</head>
     <body theme="dark">
 
+        <div id="TopMenu"></div>
+        
         <span id="top">
                 <p class="title"><font class="kvasy">kVASy&reg;</font> System Control</p><div id="logo-div"><img class='logo' src='layout/images/logo_backgroundblue_whitetext.png' title='SIV.AG'/></div>
 		<p class="subtitle">Monitoring quite simple!</p></span>
@@ -145,7 +151,7 @@
                 <!-- Liveticker Ende -->
                 
                 <div id="SidebarBottomSmall">
-                    
+                    <div id="SlimTaov"></div>
                 </div>
                 
                 <div id="SidebarBottom">

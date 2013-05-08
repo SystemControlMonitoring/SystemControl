@@ -1,6 +1,6 @@
 <%-- 
-    Document   : database
-    Created on : 02.05.2013, 16:15:50
+    Document   : sysinfo
+    Created on : 03.05.2013, 14:56:48
     Author     : sbaresel
 --%>
 
@@ -23,6 +23,21 @@
     	<script type="text/javascript" src="../script/jquery.cookie.js"></script>
 	<script type="text/javascript" src="../script/metro.js"></script>
 	<script type="text/javascript" src="../script/main.js"></script>
+        <script type="text/javascript" src="../script/highcharts.js"></script>
+	<script type="text/javascript" src="../script/prototype-adapter.js"></script>	
+	<script type="text/javascript" src="../script/exporting.js"></script>
+	<script type="text/javascript" src="../script/data.js"></script>
+	<script type="text/javascript" src="../script/highcharts-more.js"></script>
+	<script type="text/javascript" src="../script/grid.locale-de.js"></script>
+	<script type="text/javascript" src="../script/jquery.jqGrid.min.js"></script>
+	<script type="text/javascript" src="../script/jquery.searchFilter.js"></script>
+	<script type="text/javascript" src="../script/jquery.tablednd.js"></script>
+	<script type="text/javascript" src="../script/grid.postext.js"></script>
+	<script type="text/javascript" src="../script/grid.setcolumns.js"></script>
+	<script type="text/javascript" src="../script/jquery.contextmenu.js"></script>
+	<script type="text/javascript" src="../script/grid.addons.js"></script>
+	<script type="text/javascript" src="../script/MetroJs.a.js"></script>
+	<script type="text/javascript" src="../script/timepicker.js"></script>	
         
         <!-- KSC Basicfunctions -->
         <script type="text/javascript" src="../script/kVASySystemControl/kSCbasic.js"></script>
@@ -30,7 +45,7 @@
         <script type="text/javascript" src="../script/kVASySystemControl/kSCbase64.js"></script>
         <script type="text/javascript" src="../script/kVASySystemControl/kSCliveticker.js"></script>
         <!-- KSC Database Modul -->
-        <script type="text/javascript" src="../script/kVASySystemControl/kSCdatabase.js"></script>
+        <script type="text/javascript" src="../script/kVASySystemControl/kSCsysinfo.js"></script>
         
 	<!--[if lt IE 9]>
 		<script src="../script/html5.js"></script>
@@ -41,6 +56,10 @@
         <link rel='stylesheet' href='../layout/kSCsidebar.css' />
         <link rel='stylesheet' href='../layout/kSCtaov.css' />
         <link rel='stylesheet' href='../layout/kSCbasic.css' />
+        <link rel='stylesheet' href='../layout/ui.jqgrid.css' />
+	<link rel='stylesheet' href='../layout/searchFilter.css' />
+	<link rel='stylesheet' href='../layout/ui.multiselect.css' />
+	<link rel='stylesheet' href='../layout/MetroJs.a.css' />
         
         <!-- Handhelds -->
         <link rel='stylesheet' media='handheld' href='../layout/metro.smart.css' />
@@ -76,13 +95,15 @@
                 SubBase();
                 ChangeTitle();
                 SysInfo(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                $("div.metro-pivot").metroPivot();
+                Storage(<% out.println("'" + request.getRemoteUser() + "'"); %>);
             });
         });
         </script>
         
 	</head>
     <body theme="dark">
-
+        
         <div id="TopMenu"></div>
         
         <span id="top">
@@ -97,11 +118,47 @@
 		<p class="login_shortname"><a href="../logout.jsp">Abmelden</a><p>
                     
                 <div id="back-div"></div>
-
+                
+                <div id="ExtSysInfo"></div>
+                
                 <!-- Detail Start -->
                 
-                <div id="center">
-                    <section></section>
+                <div class='metro-pivot'>
+		<div class='pivot-item'><h3>storage</h3>
+			<div class='metro-right-content'>
+				<div id='tdevcont'><table id='devcont'></table><div id='pagerdc'></div></div>
+				<div id='tstorage'><table id='storage'></table><div id='pagersto'></div></div>
+				<div id='tdma'><table id='dma'></table><div id='pagerdma'></div></div>
+			</div>
+		</div>
+		<div class='pivot-item'><h3>performance</h3>
+			<div class='metro-right-content'>
+				<div id='cpu'></div>
+				<div id='io'></div>
+			</div>
+		</div>
+		<div class='pivot-item'><h3>network & memory</h3>
+			<div class='metro-right-content'>
+				<div id='nwio'></div>
+				<div id='memio'></div>
+			</div>
+		</div>
+		<div class='pivot-item'><h3>processes</h3>
+			<div class='metro-right-content'>
+				<div id='tprocesses'><table id='processes'></table><div id='pagerproc'></div></div>
+			</div>
+		</div>
+		<div class='pivot-item'><h3>bios</h3>
+			<div class='metro-right-content'>
+				<div id='tbios'><table id='bios'></table><div id='pagerbios'></div></div>
+				<div id='tonboard'><table id='onboard'></table><div id='pageronb'></div></div>
+			</div>
+		</div>
+		<div class='pivot-item'><h3>log messages</h3>
+			<div class='metro-right-content'>
+				<div id='tlog'><table id='log'></table><div id='pagerlog'></div></div>
+			</div>
+		</div>
                 </div>
                 
                 <!-- Detail Ende -->
@@ -159,5 +216,6 @@
                         <p>Sidebar Bottom</p>
                     </div>
                 </div>
+
 	</body>
 </html>
