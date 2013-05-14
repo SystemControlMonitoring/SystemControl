@@ -46,6 +46,8 @@
         <script type="text/javascript" src="../script/kVASySystemControl/kSCliveticker.js"></script>
         <!-- KSC Database Modul -->
         <script type="text/javascript" src="../script/kVASySystemControl/kSCsysinfo.js"></script>
+        <!-- KSC Tactical Overview -->
+        <script type="text/javascript" src="../script/kVASySystemControl/kSCtaov.js"></script>
         
 	<!--[if lt IE 9]>
 		<script src="../script/html5.js"></script>
@@ -97,6 +99,7 @@
                 SysInfo(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 $("div.metro-pivot").metroPivot();
                 Storage(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                SlimTaov(<% out.println("'" + request.getRemoteUser() + "'"); %>);
             });
         });
         </script>
@@ -208,7 +211,7 @@
                 <!-- Liveticker Ende -->
                 
                 <div id="SidebarBottomSmall">
-                    
+                    <div id="SlimTaov"></div>
                 </div>
                 
                 <div id="SidebarBottom">

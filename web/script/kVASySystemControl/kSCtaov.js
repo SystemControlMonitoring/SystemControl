@@ -51,8 +51,8 @@ function SlimTaov(uid) {
             });
             /* BG Color */
             if (HOST_OK != 0) { ocolor = " ok"; }
-            if (HOST_CR != 0) { ocolor = " cr"; }
-            if (HOST_UN != 0) { ocolor = " un"; }
+            if (HOST_CR != 0) { ccolor = " cr"; }
+            if (HOST_UN != 0) { ucolor = " un"; }
             if (SERVICE_OK != 0) { socolor = " ok"; }
             if (SERVICE_CR != 0) { sccolor = " cr"; }
             if (SERVICE_UN != 0) { sucolor = " un"; }
@@ -69,5 +69,46 @@ function SlimTaov(uid) {
         },
         dataType: 'json',
         cache: false
+    });
+}
+
+function ShowCritical(uid) {
+    var b64uid = $.base64.encode( uid );
+    $('#showcritical').jqGrid({ 
+	url:'http://172.23.10.249:6560/proxy/json/?e=1&m=U2hvd0NyaXRpY2FsHjdz6d&u=' + b64uid + 'U7g7ZZ',
+	datatype: 'json',
+	colNames:[' ', 'Zeitstempel', 'Service Name', 'Host Name', 'Host Status', 'Ausgabe', 'Monitoringnode'],
+	colModel:[
+            {name:'icon', width: 22, align:'center', sortable: false, resizable:true},
+            {name:'ts', width: 125, align:'left', sortable: false, resizable:true},
+            {name:'sn', width: 150, align:'left', sortable: false, resizable:true},
+            {name:'hn', width: 150, align:'left', sortable: false, resizable:true},
+            {name:'hs', width: 100, align:'center', sortable: false, resizable:true},
+            {name:'out', width: 335, align:'left', sortable: false, resizable:true},
+            {name:'mn', width: 140, align:'center', sortable: false, resizable:true},
+	],
+        rowNum:25,
+	rowList:[10,25,40,75],
+	pager: '#pagershowcritical',
+	viewrecords: true,
+	caption: 'Alle Probleme',
+        height: '285',
+        width: '1040',
+	shrinkToFit: false,
+	hidegrid: false,
+	autowidth: true,
+        multiselect: true
+    });
+    $('#showcritical').jqGrid('navGrid','#pagershowcritical',{edit:false,add:false,del:false,search:false});
+    $("#showcritical").jqGrid('navButtonAdd','#pagershowcritical',{
+        caption: "",
+        onClickButton: function() {
+            var gsr = jQuery("#showcritical").jqGrid('getGridParam','selrow');
+            if(gsr){
+                alert("Row selected.");
+            } else {
+                alert("Please select Row");
+            }
+        }
     });
 }

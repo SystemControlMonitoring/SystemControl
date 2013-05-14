@@ -7,7 +7,7 @@
 */
 
 #SlimTaov {
-    margin-top: -25px;
+    margin-top: 0px;
     padding: 5px;
     color: white;
     font-size: 12px;
@@ -55,6 +55,27 @@
     border: 2px solid #C800C8;
 }
 
+.fok {
+    color: #088A08;
+}
+
+.fcr {
+    color: #ff3333;
+}
+
+.fun {
+    color: #C800C8;
+}
+
+.fwa {
+    color: orange;
+}
+
 .Notice {
     color: #82abcc;
+}
+
+#tshowcritical {
+	border: 1px solid #82abcc;
+	width: 1100px;
 }

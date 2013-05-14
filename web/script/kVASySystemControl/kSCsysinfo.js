@@ -34,8 +34,8 @@ function SysInfo(uid) {
             $.each(point, function(name,data) {
 		$('#ExtSysInfoTable').append('<tr><td>'+ name +'</td><td><span id="ExtSysInfoTableIcon" class="ui-icon ui-icon-triangle-1-e"></span></td><td>'+ data +'</td></tr>');
             });
-            setTimeout('SysInfo("' + uid + '")', 10000);
             $('#AjaxLoader').remove();
+            setTimeout('SysInfo("' + uid + '")', 10000);
         },
         error: function(jqXhr, textStatus, error) {
             $('#HostStatusSlim').html('<font class="OFF">OFFLINE</font>');

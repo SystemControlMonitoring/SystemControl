@@ -48,6 +48,7 @@ function ChangeTitle() {
 }
 
 function KeyFunctionSidebar() {
+    $('#SidebarBottomSmall').addClass('opacity');
     $('body').keydown(function(e){
         if ((e.keyCode || e.which) == 37) {
             if ($("#Sidebar").is(":hidden")) {
@@ -92,11 +93,13 @@ function KeyFunctionSidebar() {
                     $('#SidebarBottom').animate({height:'toggle'},350, function() {
                         $('#SidebarBottomContent').fadeIn(100);
                     }).css('zIndex',25);
+                    $('#SidebarBottomSmall').removeClass('opacity');
                 } else {
                     $('#SidebarBottomSmall').animate({marginBottom: "870px"},350).css('zIndex',25);
                     $('#SidebarBottom').animate({height:'toggle'},350, function() {
                         $('#SidebarBottomContent').fadeIn(100);
                     }).css('zIndex',25);
+                    $('#SidebarBottomSmall').removeClass('opacity');
                 }
             } else {
                 if ($("#Sidebar").is(":hidden")) {
@@ -104,11 +107,13 @@ function KeyFunctionSidebar() {
                     $('#SidebarBottom').animate({height:'toggle'},350).css('zIndex',35);
                     $('#SidebarBottomSmall').animate({marginBottom: "0px"},350).css('zIndex',35);
                     $('#SidebarBottomSmall').css('zIndex',2);
+                    $('#SidebarBottomSmall').addClass('opacity');
                 } else {
                     $('#SidebarBottomContent').fadeOut(100);
                     $('#SidebarBottom').animate({height:'toggle'},350).css('zIndex',2);
                     $('#SidebarBottomSmall').animate({marginBottom: "0px"},350).css('zIndex',2);
                     $('#SidebarBottomSmall').css('zIndex',2);
+                    $('#SidebarBottomSmall').addClass('opacity');
                 }
             }
         } else if ((e.keyCode || e.which) == 40) {
@@ -118,11 +123,13 @@ function KeyFunctionSidebar() {
                     $('#SidebarBottom').animate({height:'toggle'},350, function() {
                         $('#SidebarBottomContent').fadeIn(100);
                     }).css('zIndex',25);
+                    $('#SidebarBottomSmall').removeClass('opacity');
                 } else {
                     $('#SidebarBottomSmall').animate({marginBottom: "870px"},350).css('zIndex',25);
                     $('#SidebarBottom').animate({height:'toggle'},350, function() {
                         $('#SidebarBottomContent').fadeIn(100);
                     }).css('zIndex',25);
+                    $('#SidebarBottomSmall').removeClass('opacity');
                 }
             } else {
                 if ($("#Sidebar").is(":hidden")) {
@@ -130,11 +137,13 @@ function KeyFunctionSidebar() {
                     $('#SidebarBottom').animate({height:'toggle'},350).css('zIndex',35);
                     $('#SidebarBottomSmall').animate({marginBottom: "0px"},350).css('zIndex',35);
                     $('#SidebarBottomSmall').css('zIndex',2);
+                    $('#SidebarBottomSmall').addClass('opacity');
                 } else {
                     $('#SidebarBottomContent').fadeOut(100);
                     $('#SidebarBottom').animate({height:'toggle'},350).css('zIndex',2);
                     $('#SidebarBottomSmall').animate({marginBottom: "0px"},350).css('zIndex',2);
                     $('#SidebarBottomSmall').css('zIndex',2);
+                    $('#SidebarBottomSmall').addClass('opacity');
                 }
             }
         }   
@@ -160,10 +169,12 @@ function KlickFunctionSidebar() {
             $('#SidebarBottom').animate({height:'toggle'},350, function() {
                 $('#SidebarBottomContent').fadeIn(100);
             }).css('zIndex',25);
+            $('#SidebarBottomSmall').removeClass('opacity');
         } else {
             $('#SidebarBottomContent').fadeOut(100);
             $('#SidebarBottom').animate({height:'toggle'},350).css('zIndex',2);
             $('#SidebarBottomSmall').animate({marginBottom: "0px"},350).css('zIndex',2);
+            $('#SidebarBottomSmall').addClass('opacity');
         }
     });
 }

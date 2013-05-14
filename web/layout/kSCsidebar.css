@@ -60,18 +60,31 @@
     right: 0;
     left: 0;
     bottom: 0;
-    height: 30px;
+    height: 55px;
     background-color: #004279;
-    /*border-left: 1px solid #82abcc;*/
+    border-top: 1px solid #004c8a;
     cursor: pointer;
     color: #004c8a;
-    /*opacity: 0.9; 
+}
+
+.opacity {
+    opacity: 0.9; 
     -moz-opacity: 0.9; 
     -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
     filter:alpha(opacity=90);
     -webkit-opacity: 0.9; 
     -ms-opacity: 0.9;
-    -o-opacity: 0.9;*/
+    -o-opacity: 0.9;
+}
+
+.opacity:hover {
+    opacity: 1; 
+    -moz-opacity: 1; 
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter:alpha(opacity=100);
+    -webkit-opacity: 1; 
+    -ms-opacity: 1;
+    -o-opacity: 1;
 }
 
 #SidebarBottom {

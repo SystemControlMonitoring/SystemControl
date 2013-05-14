@@ -22,6 +22,14 @@
     	<script type="text/javascript" src="script/jquery.cookie.js"></script>
 	<script type="text/javascript" src="script/metro.js"></script>
 	<script type="text/javascript" src="script/main.js"></script>
+        <script type="text/javascript" src="script/grid.locale-de.js"></script>
+	<script type="text/javascript" src="script/jquery.jqGrid.min.js"></script>
+	<script type="text/javascript" src="script/jquery.searchFilter.js"></script>
+	<script type="text/javascript" src="script/jquery.tablednd.js"></script>
+	<script type="text/javascript" src="script/grid.postext.js"></script>
+	<script type="text/javascript" src="script/grid.setcolumns.js"></script>
+	<script type="text/javascript" src="script/jquery.contextmenu.js"></script>
+	<script type="text/javascript" src="script/grid.addons.js"></script>
         
         <!-- KSC Basicfunctions -->
         <script type="text/javascript" src="script/kVASySystemControl/kSCbasic.js"></script>
@@ -40,6 +48,8 @@
         <link rel='stylesheet' href='layout/kSCsidebar.css' />
         <link rel='stylesheet' href='layout/kSCtaov.css' />
         <link rel='stylesheet' href='layout/kSCbasic.css' />
+        <link rel='stylesheet' href='layout/ui.jqgrid.css' />
+	<link rel='stylesheet' href='layout/searchFilter.css' />
         
         <!-- Handhelds -->
         <link rel='stylesheet' media='handheld' href='layout/metro.smart.css' />
@@ -73,6 +83,7 @@
                 KeyFunctionSidebar();
                 DashboardLinks(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 SlimTaov(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                ShowCritical(<% out.println("'" + request.getRemoteUser() + "'"); %>);
             });
         });
         </script>
@@ -167,7 +178,7 @@
                 
                 <div id="SidebarBottom">
                     <div id="SidebarBottomContent">
-                        <p>Sidebar Bottom</p>
+                        <div id='tshowcritical'><table id='showcritical'></table><div id='pagershowcritical'></div></div>
                     </div>
                 </div>
 	</body>

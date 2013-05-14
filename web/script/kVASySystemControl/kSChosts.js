@@ -4,7 +4,7 @@
  */
 
 function Top() {
-    $('#TopMenu').append('<table cellpadding=0 cellspacing=0 border=0 id="TopMEnuTable"><tr><td><a href=".">Home</a></td><td><span id="TopMenuIcon" class="ui-icon ui-icon-triangle-1-e"></span></td><td>Hosts</td></tr></table>');
+    $('#TopMenu').append('<table cellpadding=0 cellspacing=0 border=0 id="TopMEnuTable"><tr><td><a href=".">Home</a></td><td><span id="TopMenuIcon" class="ui-icon ui-icon-triangle-1-e"></span></td><td>Hosts<span id="hostcount"></span></td></tr></table>');
 }
 
 function AllHosts(uid) {
@@ -23,16 +23,20 @@ function AllHosts(uid) {
                 url: 'http://172.23.10.249:6560/proxy/json/?e=1&m=QWxsSG9zdHM=Uhd739&u=' + b64uid + 'LKHld3',
                 crossDomain: true,
                 success: function(json) {
+                    var hostcount = 0;
                     $('#center').html('<section></section>');
                     $.each(json, function() {
+                        var mnode = this.NODE;
                         $.each(this.HOSTS, function() {
                             var hostname = this.NAME;
                             var shorthostname;
                             if ( dds == "0" ) { shorthostname = this.NAME; } else { var tmp = this.NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
                             if ( shorthostname.length > 13 ) { shorthostname = shorthostname.substr(0,10) + '...'; }
-                            $('section','#center').append('<a href="modules/' + this.URL + '?h=' + $.base64.encode( this.NODE ) + '&c=' + $.base64.encode( hostname ) + '" class="fulltext" title="' + hostname + '"><img class="Type" src="' + this.ICON + '"><span>' + shorthostname + '</span><br></br><span class="host-sub-grid">Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '<br>CR: ' + this.SRV_CR + ' | WA: ' + this.SRV_WA + ' | UN: ' + this.SRV_UN + ' | OK: ' + this.SRV_OK + ' | PE: ' + this.SRV_PE + '</span></a>');
-                        });    
+                            $('section','#center').append('<a href="modules/' + this.URL + '?h=' + $.base64.encode( mnode ) + '&c=' + $.base64.encode( hostname ) + '" class="fulltext" title="' + hostname + '"><img class="Type" src="' + this.ICON + '"><span>' + shorthostname + '</span><br></br><span class="host-sub-grid">Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '<br>CR: ' + this.SRV_CR + ' | WA: ' + this.SRV_WA + ' | UN: ' + this.SRV_UN + ' | OK: ' + this.SRV_OK + ' | PE: ' + this.SRV_PE + '</span></a>');
+                            hostcount++;
+                        });
                     });
+                    $('#hostcount').html(' (' + hostcount + ')')
                     $('#AjaxLoader').remove();
                 },
                 error: function(jqXhr, textStatus, error) {
