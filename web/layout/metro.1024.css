@@ -8,7 +8,7 @@ body {
 	line-height:1;
 	font-family: SansProLight;
 	font-size: 16px;
-	min-width: 900px;
+	min-width: 1020px;
 	/*min-height: 1000px;*/
 }
 
@@ -1030,4 +1030,20 @@ table.ui-datepicker-calendar th {
 	text-align: justify;
 	vertical-align: top;
 	height: 435px;
+}
+
+#DivShowCritical {
+    width:1000px;
+}
+
+#TPie {
+    width: 1000px;
+}
+
+#TPie td:first-child + td + td {
+    width: 0px;
+}
+
+#Comments {
+    display: none;
 }

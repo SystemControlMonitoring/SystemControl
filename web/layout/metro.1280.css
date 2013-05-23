@@ -1048,3 +1048,19 @@ table.ui-datepicker-calendar th {
 	vertical-align: top;
 	height: 435px;
 }
+
+#DivShowCritical {
+    width:1120px;
+}
+
+#TPie {
+    width: 1120px;
+}
+
+#TPie td:first-child + td + td {
+    width: 400px;
+}
+
+#Comments {
+    display: none;
+}

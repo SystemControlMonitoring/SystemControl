@@ -225,7 +225,12 @@ function Configuration(uid) {
             </div>\n\
        </div>\n\
    </div>');
-            
+    
+    $('#ConfigurationTabs').tabs();
+    $('#1').button();
+    $('#2').button();
+    $('#3').button();
+
     /* Dialog open */
     $('#ConfigurationDialog').dialog({
 	autoOpen: true,
@@ -236,10 +241,6 @@ function Configuration(uid) {
 	modal: true,
         open: function() {
             /* Tabbbing of Configurationmenu */
-            $('#ConfigurationTabs').tabs();
-            $('#1').button();
-            $('#2').button();
-            $('#3').button();
             $.ajax({
                 url: 'http://172.23.10.249:6560/?mv=g',
                 crossDomain: true,

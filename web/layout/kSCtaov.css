@@ -79,3 +79,61 @@
 	border: 1px solid #82abcc;
 	width: 1100px;
 }
+
+#HeaderHostPie, #HeaderServicePie {
+    position: absolute;
+    top: 15px;
+    margin-left: 25px;
+    font-size: 24px;
+}
+
+#DivShowCritical {
+    padding: 15px;
+    overflow-x: auto;
+    overflow-y: scroll;
+    height: 470px;
+}
+
+#Comments {
+    height: 290px;
+    overflow-x: auto;
+    overflow-y: scroll;
+    float: left;
+    padding: 15px;
+}
+
+#TPie {
+    height: 200px;
+}
+
+.FontSmallShowCritical {
+    font-size: 12px;
+    color: #82abcc;
+}
+
+.FontBigShowCritical {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.DefFontBigShowCritical {
+    font-size: 12px;
+    font-weight: bold;
+    color: #82abcc;
+}
+
+#ImgShowCritical {
+    margin-bottom: -15px;
+}
+
+.BorderBottom {
+    border-bottom: 1px dotted #82abcc;
+}
+
+#DivShowCritical table td {
+    padding: 3px;
+}
+
+#DivShowCritical table {
+    border-spacing: 4px 0px;
+}
