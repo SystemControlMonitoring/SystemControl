@@ -162,7 +162,7 @@ body[theme=light] .login_shortname { color: #004c8a; }
 
 #logout-success {
     position: absolute;
-    color: #82abcc;
+    color: #ffffff;
     border: 2px solid green;
     top: 230px;
     left: 250px;
