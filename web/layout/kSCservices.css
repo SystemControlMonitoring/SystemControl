@@ -1,29 +1,10 @@
 /* 
-    Document   : kSCtaov
+    Document   : kSCservices
     Created on : 11.04.2013, 16:34:16
     Author     : sbaresel
     Description:
         Purpose of the stylesheet follows.
 */
-
-#SlimTaov {
-    margin-top: 0px;
-    padding: 5px;
-    color: white;
-    font-size: 12px;
-}
-
-#SlimTaov a {
-    color: white;
-}
-
-#SlimTaov table td {
-    padding: 3px;
-}
-
-#SlimTaov table {
-    border-spacing: 4px 0px;
-}
 
 .default {
     background-color: #004279;
@@ -71,6 +52,10 @@
     color: orange;
 }
 
+.taovok:hover {
+    background-color: #004279;
+}
+
 .taovcr {
     background-color: #9c1919;
 }
@@ -102,19 +87,7 @@
     color: #82abcc;
 }
 
-#tshowcritical {
-	border: 1px solid #82abcc;
-	width: 1100px;
-}
-
-#HeaderHostPie, #HeaderServicePie {
-    position: absolute;
-    top: 15px;
-    margin-left: 25px;
-    font-size: 24px;
-}
-
-#HeadDivShowCritical {
+#HeadDivShowServices {
     padding: 10px;
     background-color: #004279;
     border-left: 2px solid #82abcc;
@@ -123,52 +96,24 @@
     font-size: 24px;
 }
 
-#FooterDivShowCritical {
+#FooterDivShowServices {
+    position: absolute;
     padding: 10px;
     background-color: #004279;
     border-left: 2px solid #82abcc;
     border-right: 2px solid #82abcc;
     border-bottom: 2px solid #82abcc;
     font-size: 14px;
+    bottom: 65px;
 }
 
-#DivShowCritical {
+#DivShowServices {
+    position: absolute;
     overflow-x: auto;
     overflow-y: scroll;
-    height: 415px;
-}
-
-#HeadComments {
-    position: absolute;
-    top: 10px;
-    padding: 10px;
-    background-color: #004279;
-    border-left: 2px solid #82abcc;
-    border-right: 2px solid #82abcc;
-    border-top: 2px solid #82abcc;
-    font-size: 24px;
-}
-
-#FooterComments {
-    padding: 10px;
-    background-color: #004279;
-    border-left: 2px solid #82abcc;
-    border-right: 2px solid #82abcc;
-    border-bottom: 2px solid #82abcc;
-    font-size: 14px;
-}
-
-#Comments {
-    position: absolute;
-    top: 55px;
-    height: 230px;
-    overflow-x: auto;
-    overflow-y: scroll;
-    border: 2px solid #82abcc;
-}
-
-#TPie {
-    height: 200px;
+    bottom: 70px;
+    top: 150px;
+    border: 1px solid #82abcc;
 }
 
 .FontSmallShowCritical {
@@ -191,54 +136,57 @@
     border-bottom: 1px solid #82abcc;
 }
 
-#TableShowCritical td:first-child + td + td {
+#TableShowServices td:first-child + td + td {
     border-left: 1px solid #82abcc;
 }
 
 #ImgServiceStatus {
-    margin-bottom: -15px;
+    margin-bottom: -5px;
 }
 
-#DivShowCritical {
-    border: 1px solid #82abcc;
-}
-
-#DivShowCritical table {
+#DivShowServices table {
     width: 100%;
     border: 1px solid #82abcc;
     font-size: 14px;
 }
 
-#DivShowCritical table tr:first-child td:first-child {
+#DivShowServices table td:first-child {
     width: 30px;
     text-align: center;
 }
 
-#DivShowCritical table tr:first-child td:first-child + td {
+#DivShowServices table td:first-child + td {
     width: 300px;
-    color: #82abcc;
 }
 
-#DivShowCritical table tr:first-child td:first-child + td + td {
+#DivShowServices table td:first-child + td + td {
     border-left: 2px solid #82abcc;
     padding: 3px;
 }
 
-#DivShowCritical table tr:first-child td:last-child {
-    width: 250px;
-    text-align: right;
+#DivShowServices table td:first-child + td + td + td {
+    padding: 3px;
+    width: 200px;
     color: #82abcc;
-    padding: 3px;
+    font-size: 12px;
 }
 
-#DivShowCritical table tr:last-child td:first-child {
-    width: 300px;
-    text-align: left;
-    font-style: italic;
+#HostIcon {
+    width: 40px;
 }
 
-#DivShowCritical table tr:last-child td:last-child {
-    text-align: left;
-    border-left: 2px solid #82abcc;
-    padding: 3px;
+#HostText {
+    position: absolute;
+    margin-left: 30px;
+    margin-top: 7px;
+}
+
+#HostText b {
+    font-size: 20px;
+}
+
+#HostStatusIcon {
+    position: absolute;
+    margin-top: 12px;
+    margin-left: 10px;
 }

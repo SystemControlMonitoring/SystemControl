@@ -23,6 +23,21 @@
     	<script type="text/javascript" src="../script/jquery.cookie.js"></script>
 	<script type="text/javascript" src="../script/metro.js"></script>
 	<script type="text/javascript" src="../script/main.js"></script>
+        <script type="text/javascript" src="../script/highcharts.js"></script>
+	<script type="text/javascript" src="../script/prototype-adapter.js"></script>	
+	<script type="text/javascript" src="../script/exporting.js"></script>
+	<script type="text/javascript" src="../script/data.js"></script>
+	<script type="text/javascript" src="../script/highcharts-more.js"></script>
+	<script type="text/javascript" src="../script/grid.locale-de.js"></script>
+	<script type="text/javascript" src="../script/jquery.jqGrid.min.js"></script>
+	<script type="text/javascript" src="../script/jquery.searchFilter.js"></script>
+	<script type="text/javascript" src="../script/jquery.tablednd.js"></script>
+	<script type="text/javascript" src="../script/grid.postext.js"></script>
+	<script type="text/javascript" src="../script/grid.setcolumns.js"></script>
+	<script type="text/javascript" src="../script/jquery.contextmenu.js"></script>
+	<script type="text/javascript" src="../script/grid.addons.js"></script>
+	<script type="text/javascript" src="../script/MetroJs.a.js"></script>
+	<script type="text/javascript" src="../script/timepicker.js"></script>
         
         <!-- KSC Basicfunctions -->
         <script type="text/javascript" src="../script/kVASySystemControl/kSCbasic.js"></script>
@@ -79,6 +94,7 @@
                 ChangeTitle();
                 SysInfo(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 SlimTaov(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                ModShowCritical(<% out.println("'" + request.getRemoteUser() + "'"); %>);
             });
         });
         </script>
@@ -159,7 +175,33 @@
                 
                 <div id="SidebarBottom">
                     <div id="SidebarBottomContent">
-                        <p>Sidebar Bottom</p>
+                        <table id="TPie" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td>
+                                    <div id="HeaderHostPie">Host Status &Uuml;bersicht</div>
+                                    <div id="HostPie"></div>
+                                </td>
+                                <td>
+                                    <div id="HostPer"></div>
+                                </td>
+                                <td>
+                                    <div id="HeadComments">Letzte Kommentare</div>
+                                    <div id="Comments"></div>
+                                    <div id="FooterComments">22 Kommentare</div>
+                                </td>
+                                <td>
+                                    <div id="HeaderServicePie">Service Status &Uuml;bersicht</div>
+                                    <div id='ServicePie'></div>
+                                </td>
+                                <td>
+                                    <div id='ServicePer'></div>
+                                </td>
+                            </tr>
+                        </table>
+                        <br>
+                        <div id="HeadDivShowCritical">Aktuelle Probleme</div>
+                        <div id="DivShowCritical"></div>
+                        <div id="FooterDivShowCritical"></div>
                     </div>
                 </div>
 	</body>

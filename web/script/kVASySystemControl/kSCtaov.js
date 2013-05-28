@@ -146,48 +146,6 @@ function SlimTaov(uid) {
     });
 }
 
-function ShowCritical2(uid) {
-    var b64uid = $.base64.encode( uid );
-    $('#showcritical').jqGrid({ 
-	url:'http://172.23.10.249:6560/proxy/json/?e=1&m=U2hvd0NyaXRpY2FsHjdz6d&u=' + b64uid + 'U7g7ZZ',
-	datatype: 'json',
-	colNames:[' ', 'Zeitstempel', 'Service Name', 'Host Name', 'Host Status', 'Ausgabe', 'Monitoringnode'],
-	colModel:[
-            {name:'icon', width: 22, align:'center', sortable: false, resizable:true},
-            {name:'ts', width: 125, align:'left', sortable: false, resizable:true},
-            {name:'sn', width: 150, align:'left', sortable: false, resizable:true},
-            {name:'hn', width: 150, align:'left', sortable: false, resizable:true},
-            {name:'hs', width: 100, align:'center', sortable: false, resizable:true},
-            {name:'out', width: 335, align:'left', sortable: false, resizable:true},
-            {name:'mn', width: 140, align:'center', sortable: false, resizable:true},
-	],
-        rowNum:25,
-	rowList:[25,40,75,100],
-	pager: '#pagershowcritical',
-	viewrecords: true,
-	caption: 'Alle Probleme',
-        height: '425',
-        width: '1040',
-	shrinkToFit: false,
-	hidegrid: false,
-	autowidth: true,
-        multiselect: true
-    });
-    $('#showcritical').jqGrid('navGrid','#pagershowcritical',{edit:false,add:false,del:false,search:false});
-    $("#showcritical").jqGrid('navButtonAdd','#pagershowcritical',{
-        caption: "",
-        onClickButton: function() {
-            var gsr = jQuery("#showcritical").jqGrid('getGridParam','selrow');
-            if(gsr){
-                alert("Row selected.");
-            } else {
-                alert("Please select Row");
-            }
-        }
-    });
-}
-
-
 function ShowCritical(uid) {
     var b64uid = $.base64.encode( uid );
     $.ajax({
@@ -205,20 +163,66 @@ function ShowCritical(uid) {
                 crossDomain: true,
                 success: function(json) {
                     var srvcount = 0;
-                    $('#DivShowCritical').html('<table id="TableShowCritical"></table>');
-                    $.each(json, function() {
-                        var mnode = this.NODE;
-                        $.each(this.SERVICES, function() {
-                            var hostname = this.HOST_NAME;
-                            var shorthostname;
-                            if ( dds == "0" ) { shorthostname = this.HOST_NAME; } else { var tmp = this.HOST_NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
-                            //if ( shorthostname.length > 13 ) { shorthostname = shorthostname.substr(0,10) + '...'; }
-                            $('table','#DivShowCritical').append('<tr><td><table cellpadding=0 cellspacing=0 border=0><tr valign="middle"><td rowspan=2 width=30 align="center" class="BorderBottom"><img id="ImgShowCritical" src="' + this.SERVICE_STATUS + '"></img></td><td><span class="DefFontBigShowCritical">' + shorthostname + '</span></td><td>' + this.HOST_STATUS + '</td><td width="250"><span class="FontSmallShowCritical">Service zuletzt gepr&uuml;ft ' + this.TIMESTAMP + '</span></td></tr><tr><td width="350" class="BorderBottom">Servicename: ' + this.SERVICE_NAME + '</td><td colspan=2 class="BorderBottom">' + this.OUTPUT + '</td></tr></table></td></tr>');
-                            srvcount++;
-                        });
+                    $('#DivShowCritical').html('<div id="SubDivShowCritical"></div>');
+                    $.each(json, function() {                        
+                        var hostname = this.HOST_NAME;
+                        var shorthostname;
+                        var cssclass;
+                        if ( dds == "0" ) { shorthostname = this.HOST_NAME; } else { var tmp = this.HOST_NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
+                        //if ( shorthostname.length > 13 ) { shorthostname = shorthostname.substr(0,10) + '...'; }
+                        if (this.SERVICE_STATUS == "1") { cssclass = "taovwa"; } else if (this.SERVICE_STATUS == "2") { cssclass = "taovcr"; } else { cssclass = "taovun"; }
+                        $('#SubDivShowCritical').append('<table class="' + cssclass + '" cellpadding=0 cellspacing=0><tr><td rowspan=2><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><b>' + shorthostname + '</b> <i>auf ' + this.NODE + '</i></td><td>' + this.HOST_STATUS + '</td><td>Zuletzt gepr&uuml;ft ' + this.TIMESTAMP + '</td></tr><tr><td>Servicename: ' + this.SERVICE_NAME + '</td><td colspan=2>' + this.OUTPUT + '</td></tr></table>');
+                        srvcount++;
                     });
-                    $('table','#DivShowCritical').append('<tr height=10></tr>');
+                    $('#FooterDivShowCritical').html('' + srvcount + ' Probleme');
+                    setTimeout('ShowCritical("' + uid + '")', 30000);
+                },
+                error: function(jqXhr, textStatus, error) {
+                    alert("ERROR#AllHosts#ERROR: " + textStatus + " MESSAGE: " + error);
+                },
+                dataType: 'json',
+                cache: false
+            }); 
+        },
+        error: function(jqXhr, textStatus, error) {
+            alert("ERROR#DelDomainSuffix#ERROR: " + textStatus + " MESSAGE: " + error);
+        },
+        dataType: 'json',
+        cache: false
+    });
+}
+
+function ModShowCritical(uid) {
+    var b64uid = $.base64.encode( uid );
+    $.ajax({
+        url: 'http://172.23.10.249:6560/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u=' + b64uid + 'Lkjdu7&m2=Q29uZmlnJq0OpP',
+        crossDomain: true,
+        success: function(json) {
+            var dds;
+            $.each(json, function(key,value) {
+                if ( value.KEY == "DeleteDomainSuffix") {
+                    dds = value.ACTION;
+                }
+            });
+            $.ajax({
+                url: 'http://172.23.10.249:6560/proxy/json/?e=1&m=U2hvd0NyaXRpY2FsHjdz6d&u=' + b64uid + 'LKHld3',
+                crossDomain: true,
+                success: function(json) {
+                    var srvcount = 0;
+                    $('#DivShowCritical').html('<div id="SubDivShowCritical"></div>');
+                    $.each(json, function() {                        
+                        var hostname = this.HOST_NAME;
+                        var shorthostname;
+                        var cssclass;
+                        if ( dds == "0" ) { shorthostname = this.HOST_NAME; } else { var tmp = this.HOST_NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
+                        //if ( shorthostname.length > 13 ) { shorthostname = shorthostname.substr(0,10) + '...'; }
+                        if (this.SERVICE_STATUS == "1") { cssclass = "taovwa"; } else if (this.SERVICE_STATUS == "2") { cssclass = "taovcr"; } else { cssclass = "taovun"; }
+                        $('#SubDivShowCritical').append('<table class="' + cssclass + '" cellpadding=0 cellspacing=0><tr><td rowspan=2><img id="ImgServiceStatus" src="../' + this.SERVICE_STATUS_ICON + '"></img></td><td><b>' + shorthostname + '</b> <i>auf ' + this.NODE + '</i></td><td>' + this.HOST_STATUS + '</td><td>Zuletzt gepr&uuml;ft ' + this.TIMESTAMP + '</td></tr><tr><td>Servicename: ' + this.SERVICE_NAME + '</td><td colspan=2>' + this.OUTPUT + '</td></tr></table>');
+                        srvcount++;
+                    });
+                    $('#FooterDivShowCritical').html('' + srvcount + ' Probleme');
                     $('#AjaxLoader').remove();
+                    setTimeout('ModShowCritical("' + uid + '")', 30000);
                 },
                 error: function(jqXhr, textStatus, error) {
                     alert("ERROR#AllHosts#ERROR: " + textStatus + " MESSAGE: " + error);

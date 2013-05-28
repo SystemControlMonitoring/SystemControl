@@ -174,8 +174,33 @@
                 
                 <div id="SidebarBottom">
                     <div id="SidebarBottomContent">
-                        <table id="TPie" cellpadding="0" cellspacing="0" border="0"><tr><td><div id="HeaderHostPie">Host Status &Uuml;bersicht</div><div id="HostPie"></div></td><td><div id='HostPer'></div></td><td><span id="Comments">bla<br>bla<br>bla<br>bla<br>bla<br>bla<br>bla<br>bla<br>bla<br>bla<br>bla<br>bla<br>bla<br>bla<br>bla<br>bla<br>bla<br>bla<br>bla<br>bla<br>bla<br>bla<br>bla<br>bla<br>bla<br>bla<br>bla</span></td><td><div id="HeaderServicePie">Service Status &Uuml;bersicht</div><div id='ServicePie'></div></td><td><div id='ServicePer'></div></td></tr></table><br>
+                        <table id="TPie" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td>
+                                    <div id="HeaderHostPie">Host Status &Uuml;bersicht</div>
+                                    <div id="HostPie"></div>
+                                </td>
+                                <td>
+                                    <div id="HostPer"></div>
+                                </td>
+                                <td>
+                                    <div id="HeadComments">Letzte Kommentare</div>
+                                    <div id="Comments"></div>
+                                    <div id="FooterComments">22 Kommentare</div>
+                                </td>
+                                <td>
+                                    <div id="HeaderServicePie">Service Status &Uuml;bersicht</div>
+                                    <div id='ServicePie'></div>
+                                </td>
+                                <td>
+                                    <div id='ServicePer'></div>
+                                </td>
+                            </tr>
+                        </table>
+                        <br>
+                        <div id="HeadDivShowCritical">Aktuelle Probleme</div>
                         <div id="DivShowCritical"></div>
+                        <div id="FooterDivShowCritical"></div>
                     </div>
                 </div>
 	</body>

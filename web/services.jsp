@@ -23,6 +23,19 @@
     	<script type="text/javascript" src="script/jquery.cookie.js"></script>
 	<script type="text/javascript" src="script/metro.js"></script>
 	<script type="text/javascript" src="script/main.js"></script>
+        <script type="text/javascript" src="script/highcharts.js"></script>
+	<script type="text/javascript" src="script/prototype-adapter.js"></script>	
+	<script type="text/javascript" src="script/exporting.js"></script>
+	<script type="text/javascript" src="script/data.js"></script>
+	<script type="text/javascript" src="script/highcharts-more.js"></script>
+        <script type="text/javascript" src="script/grid.locale-de.js"></script>
+	<script type="text/javascript" src="script/jquery.jqGrid.min.js"></script>
+	<script type="text/javascript" src="script/jquery.searchFilter.js"></script>
+	<script type="text/javascript" src="script/jquery.tablednd.js"></script>
+	<script type="text/javascript" src="script/grid.postext.js"></script>
+	<script type="text/javascript" src="script/grid.setcolumns.js"></script>
+	<script type="text/javascript" src="script/jquery.contextmenu.js"></script>
+	<script type="text/javascript" src="script/grid.addons.js"></script>
         
         <!-- KSC Basicfunctions -->
         <script type="text/javascript" src="script/kVASySystemControl/kSCbasic.js"></script>
@@ -30,17 +43,23 @@
         <script type="text/javascript" src="script/kVASySystemControl/kSCbase64.js"></script>
         <script type="text/javascript" src="script/kVASySystemControl/kSCliveticker.js"></script>
         <!-- KSC Tactical Overview -->
-        <!-- script type="text/javascript" src="script/kVASySystemControl/kSCbasic.js"></script -->
+        <script type="text/javascript" src="script/kVASySystemControl/kSCtaov.js"></script>
+        <!-- KSC Services -->
+        <script type="text/javascript" src="script/kVASySystemControl/kSCservices.js"></script>
         
 	<!--[if lt IE 9]>
 		<script src="script/html5.js"></script>
 	<![endif]-->
         
         <!-- Liveticker -->
+        <!-- Liveticker -->
         <link rel='stylesheet' href='layout/kSCliveticker.css' />
         <link rel='stylesheet' href='layout/kSCsidebar.css' />
         <link rel='stylesheet' href='layout/kSCtaov.css' />
+        <link rel='stylesheet' href='layout/kSCservices.css' />
         <link rel='stylesheet' href='layout/kSCbasic.css' />
+        <link rel='stylesheet' href='layout/ui.jqgrid.css' />
+	<link rel='stylesheet' href='layout/searchFilter.css' /> 
         
         <!-- Handhelds -->
         <link rel='stylesheet' media='handheld' href='layout/metro.smart.css' />
@@ -68,10 +87,15 @@
         $(function() {
             $(document).ready(function() {
                 jQuery.support.cors = true;
+                Loader();
+                Top();
                 Liveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 KlickFunctionSidebar();
                 KeyFunctionSidebar();
-                DashboardLinks(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                Base();
+                SlimTaov(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                ShowCritical(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                AllServices(<% out.println("'" + request.getRemoteUser() + "'"); %>);
             });
         });
         </script>
@@ -79,6 +103,8 @@
 	</head>
     <body theme="dark">
 
+        <div id="TopMenu"></div>
+        
         <span id="top">
                 <p class="title"><font class="kvasy">kVASy&reg;</font> System Control</p><div id="logo-div"><img class='logo' src='layout/images/logo_backgroundblue_whitetext.png' title='SIV.AG'/></div>
 		<p class="subtitle">Monitoring quite simple!</p></span>
@@ -90,9 +116,17 @@
 
 		<p class="login_shortname"><a href="logout.jsp">Abmelden</a><p>
 
-                <!-- Detail Start -->
+                <div id="back-div"></div>
+                    
+                <!-- Services Start -->
                 
-                <!-- Detail Ende -->
+                <div id="center">
+                    <section>
+                        <div id="DivShowServices"></div>
+                    </section>
+                </div>
+                
+                <!-- Services Ende -->
                 
                 <!-- Configuration Start -->
                 
@@ -139,12 +173,38 @@
                 <!-- Liveticker Ende -->
                 
                 <div id="SidebarBottomSmall">
-                    
+                    <div id="SlimTaov"></div>
                 </div>
                 
                 <div id="SidebarBottom">
                     <div id="SidebarBottomContent">
-                        <p>Sidebar Bottom</p>
+                        <table id="TPie" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td>
+                                    <div id="HeaderHostPie">Host Status &Uuml;bersicht</div>
+                                    <div id="HostPie"></div>
+                                </td>
+                                <td>
+                                    <div id="HostPer"></div>
+                                </td>
+                                <td>
+                                    <div id="HeadComments">Letzte Kommentare</div>
+                                    <div id="Comments"></div>
+                                    <div id="FooterComments">22 Kommentare</div>
+                                </td>
+                                <td>
+                                    <div id="HeaderServicePie">Service Status &Uuml;bersicht</div>
+                                    <div id='ServicePie'></div>
+                                </td>
+                                <td>
+                                    <div id='ServicePer'></div>
+                                </td>
+                            </tr>
+                        </table>
+                        <br>
+                        <div id="HeadDivShowCritical">Aktuelle Probleme</div>
+                        <div id="DivShowCritical"></div>
+                        <div id="FooterDivShowCritical"></div>
                     </div>
                 </div>
 	</body>
