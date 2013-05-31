@@ -88,13 +88,14 @@
                 SubLoader();
                 Top();
                 Liveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);
-                KlickFunctionSidebar();
-                KeyFunctionSidebar();
+                KlickFunctionSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                KeyFunctionSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 SubBase();
                 ChangeTitle();
                 SysInfo(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 SlimTaov(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 ModShowCritical(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                SubStyleSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
             });
         });
         </script>
@@ -142,15 +143,10 @@
                 </div>
                 <div id="Sidebar">
                     <div id="SidebarContent">
-                        <section id="SidebarSearch">
-                            <input type="text" value="Suche">
-                        </section>
-                        <section id="SidebarLiveticker">
-                            
-                        </section>
-                        <section id="SidebarSubmenu">
-                            
-                        </section>
+                        <section id="SidebarSearch"></section>
+                        <section id="SidebarSearchFilter"></section>
+                        <section id="SidebarLiveticker"></section>
+                        <section id="SidebarSubmenu"></section>
                     </div>
                 </div>
                 
@@ -190,7 +186,7 @@
                                     <div id="FooterComments">22 Kommentare</div>
                                 </td>
                                 <td>
-                                    <div id="HeaderServicePie">Service Status &Uuml;bersicht</div>
+                                    <div id="HeaderServicePie">Service Status &Uuml;bersicht (ONLINE Hosts)</div>
                                     <div id='ServicePie'></div>
                                 </td>
                                 <td>

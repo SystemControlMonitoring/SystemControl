@@ -44,7 +44,7 @@ body[theme=light] .login_shortname { color: #004c8a; }
 
 #login-error {
     position: absolute;
-    color: #ff3333;
+    color: #ffffff;
     border: 2px solid #ff3333;
     top: 230px;
     left: 50px;

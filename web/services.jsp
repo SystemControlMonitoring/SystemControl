@@ -90,12 +90,13 @@
                 Loader();
                 Top();
                 Liveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);
-                KlickFunctionSidebar();
-                KeyFunctionSidebar();
+                KlickFunctionSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                KeyFunctionSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 Base();
                 SlimTaov(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 ShowCritical(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 AllServices(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                StyleSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
             });
         });
         </script>
@@ -114,7 +115,7 @@
 
 		<span id="top"><div id="theme-roller"><span class='theme-box' theme='light'></span></div></span>
 
-		<p class="login_shortname"><a href="logout.jsp">Abmelden</a><p>
+		<p class="login_shortname"><a style="cursor: pointer" onclick="Reload(<% out.println("'" + request.getRemoteUser() + "'"); %>); ">Reload</a> | <a href="logout.jsp">Abmelden</a><p>
 
                 <div id="back-div"></div>
                     
@@ -145,15 +146,10 @@
                 </div>
                 <div id="Sidebar">
                     <div id="SidebarContent">
-                        <section id="SidebarSearch">
-                            <input type="text" value="Suche">
-                        </section>
-                        <section id="SidebarLiveticker">
-                            
-                        </section>
-                        <section id="SidebarSubmenu">
-                            
-                        </section>
+                        <section id="SidebarSearch"></section>
+                        <section id="SidebarSearchFilter"></section>
+                        <section id="SidebarLiveticker"></section>
+                        <section id="SidebarSubmenu"></section>
                     </div>
                 </div>
                 
@@ -193,7 +189,7 @@
                                     <div id="FooterComments">22 Kommentare</div>
                                 </td>
                                 <td>
-                                    <div id="HeaderServicePie">Service Status &Uuml;bersicht</div>
+                                    <div id="HeaderServicePie">Service Status &Uuml;bersicht (ONLINE Hosts)</div>
                                     <div id='ServicePie'></div>
                                 </td>
                                 <td>

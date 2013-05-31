@@ -7,6 +7,11 @@ function Top() {
     $('#TopMenu').append('<table cellpadding=0 cellspacing=0 border=0 id="TopMEnuTable"><tr><td><a href=".">Home</a></td><td><span id="TopMenuIcon" class="ui-icon ui-icon-triangle-1-e"></span></td><td>Hosts<span id="hostcount"></span></td></tr></table>');
 }
 
+function Reload(uid) {
+    $('#theme-roller').append('<img id="AjaxLoader" src="layout/images/ajax-loader.gif">');
+    AllHosts(uid);
+}
+
 function AllHosts(uid) {
     var b64uid = $.base64.encode( uid );
     $.ajax({

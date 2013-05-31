@@ -84,11 +84,12 @@
                 jQuery.support.cors = true;
                 Loader();
                 Liveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);
-                KlickFunctionSidebar();
-                KeyFunctionSidebar();
+                KlickFunctionSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                KeyFunctionSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 DashboardLinks(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 SlimTaov(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 ShowCritical(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                StyleSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
             });
         });
         </script>
@@ -122,6 +123,10 @@
 					<span>Services</span><br></br>
 					<span class="sub-grid">Eine &Uuml;bersicht &uuml;ber alle eingerichteten Services.</span>
 				</a>
+                                <a href="hostgroups.jsp" class="fulltext">
+					<span>Hostgruppen</span><br></br>
+					<span class="sub-grid">Eine &Uuml;bersicht &uuml;ber alle eingerichteten Hostgruppen.</span>
+				</a>
 				
                                 <!-- DashboardLinks Start -->
                                 <div id="DashboardLinks"></div>
@@ -150,15 +155,10 @@
                 </div>
                 <div id="Sidebar">
                     <div id="SidebarContent">
-                        <section id="SidebarSearch">
-                            <input type="text" value="Suche">
-                        </section>
-                        <section id="SidebarLiveticker">
-                            
-                        </section>
-                        <section id="SidebarSubmenu">
-                            
-                        </section>
+                        <section id="SidebarSearch"></section>
+                        <section id="SidebarSearchFilter"></section>
+                        <section id="SidebarLiveticker"></section>
+                        <section id="SidebarSubmenu"></section>
                     </div>
                 </div>
                 
@@ -198,7 +198,7 @@
                                     <div id="FooterComments">22 Kommentare</div>
                                 </td>
                                 <td>
-                                    <div id="HeaderServicePie">Service Status &Uuml;bersicht</div>
+                                    <div id="HeaderServicePie">Service Status &Uuml;bersicht (ONLINE Hosts)</div>
                                     <div id='ServicePie'></div>
                                 </td>
                                 <td>

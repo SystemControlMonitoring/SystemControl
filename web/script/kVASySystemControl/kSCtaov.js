@@ -28,7 +28,7 @@ function SlimTaov(uid) {
         url: 'http://172.23.10.249:6560/proxy/json/?e=1&m=U2xpbVRhb3Y=Hkd83k&u=' + b64uid + 'LKHld3',
         crossDomain: true,
         success: function(json) {
-            var cnodet; var cnode = 0; var ocolor = " default"; var ccolor = " default"; var ucolor = " default"; var socolor = " default"; var sccolor = " default"; var sucolor = " default"; var swcolor = " default"; var spcolor = " default";var HOST_OK = 0; var HOST_CR = 0; var HOST_CR_NA = 0; var HOST_CR_A = 0; var HOST_UN = 0; var HOST_UN_NA = 0; var HOST_UN_A = 0; var SERVICE_OK = 0; var SERVICE_WA = 0; var SERVICE_WA_NA = 0; var SERVICE_WA_A = 0; var SERVICE_WA_NA_OFF = 0; var SERVICE_CR = 0; var SERVICE_CR_NA = 0; var SERVICE_CR_A = 0; var SERVICE_CR_NA_OFF = 0; var SERVICE_UN = 0; var SERVICE_UN_NA = 0; var SERVICE_UN_A = 0; var SERVICE_UN_NA_OFF = 0; var SERVICE_PE = 0;
+            var cnodet; var cnode = 0; var ocolor = " default"; var ccolor = " default"; var ucolor = " default"; var socolor = " default"; var sccolor = " default"; var sucolor = " default"; var swcolor = " default"; var spcolor = " default";var HOST_OK = 0; var HOST_CR = 0; var HOST_CR_NA = 0; var HOST_CR_A = 0; var HOST_UN = 0; var HOST_UN_NA = 0; var HOST_UN_A = 0; var SERVICE_OK_ALL = 0; var SERVICE_OK = 0; var SERVICE_WA_ALL = 0; var SERVICE_WA = 0; var SERVICE_WA_NA = 0; var SERVICE_WA_A = 0; var SERVICE_WA_NA_OFF = 0; var SERVICE_CR_ALL = 0; var SERVICE_CR = 0; var SERVICE_CR_NA = 0; var SERVICE_CR_A = 0; var SERVICE_CR_NA_OFF = 0; var SERVICE_UN_ALL = 0; var SERVICE_UN = 0; var SERVICE_UN_NA = 0; var SERVICE_UN_A = 0; var SERVICE_UN_NA_OFF = 0; var SERVICE_PE = 0;
             $('#SlimTaov').html('<div id="Nodes"></div>');
             $.each(json, function() {
                 HOST_OK = parseInt(this.HOST.OK.COUNT, 10) + HOST_OK; 
@@ -38,19 +38,28 @@ function SlimTaov(uid) {
                 HOST_UN = parseInt(this.HOST.UNREACHABLE.COUNT, 10) + HOST_UN; 
                 HOST_UN_NA = parseInt(this.HOST.UNREACHABLE.NACK, 10) + HOST_UN_NA; 
                 HOST_UN_A = parseInt(this.HOST.UNREACHABLE.ACK, 10) + HOST_UN_A; 
+                
+                SERVICE_OK_ALL = parseInt(this.SERVICE.OK.COUNT_ALL, 10) + SERVICE_OK_ALL;
                 SERVICE_OK = parseInt(this.SERVICE.OK.COUNT_ON, 10) + SERVICE_OK; 
+                
+                SERVICE_WA_ALL = parseInt(this.SERVICE.WARNING.COUNT_ALL, 10) + SERVICE_WA_ALL;
                 SERVICE_WA = parseInt(this.SERVICE.WARNING.COUNT_ON, 10) + SERVICE_WA; 
                 SERVICE_WA_NA = parseInt(this.SERVICE.WARNING.NACK_ON, 10) + SERVICE_WA_NA; 
                 SERVICE_WA_A = parseInt(this.SERVICE.WARNING.ACK_ON, 10) + SERVICE_WA_A; 
                 SERVICE_WA_NA_OFF = parseInt(this.SERVICE.WARNING.NACK_OFF, 10) + SERVICE_WA_NA_OFF; 
+                
+                SERVICE_CR_ALL = parseInt(this.SERVICE.CRITICAL.COUNT_ALL, 10) + SERVICE_CR_ALL;
                 SERVICE_CR = parseInt(this.SERVICE.CRITICAL.COUNT_ON, 10) + SERVICE_CR; 
                 SERVICE_CR_NA = parseInt(this.SERVICE.CRITICAL.NACK_ON, 10) + SERVICE_CR_NA; 
                 SERVICE_CR_A = parseInt(this.SERVICE.CRITICAL.ACK_ON, 10) + SERVICE_CR_A; 
                 SERVICE_CR_NA_OFF = parseInt(this.SERVICE.CRITICAL.NACK_OFF, 10) + SERVICE_CR_NA_OFF; 
+                
+                SERVICE_UN_ALL = parseInt(this.SERVICE.UNKNOWN.COUNT_ALL, 10) + SERVICE_UN_ALL;
                 SERVICE_UN = parseInt(this.SERVICE.UNKNOWN.COUNT_ON, 10) + SERVICE_UN; 
                 SERVICE_UN_NA = parseInt(this.SERVICE.UNKNOWN.NACK_ON, 10) + SERVICE_UN_NA; 
                 SERVICE_UN_A = parseInt(this.SERVICE.UNKNOWN.ACK_ON, 10) + SERVICE_UN_A; 
                 SERVICE_UN_NA_OFF = parseInt(this.SERVICE.UNKNOWN.NACK_OFF, 10) + SERVICE_UN_NA_OFF; 
+                
                 SERVICE_PE = parseInt(this.SERVICE.PENDING.COUNT_ON, 10) + SERVICE_PE;
                 cnode++;
             });
@@ -66,7 +75,7 @@ function SlimTaov(uid) {
             if (cnode == 1) { cnodet = "1 Monitoringnode"; } else { cnodet = cnode + " Monitoringnodes"; }
             
             $('#Nodes').append('<span style="float: left;"><table cellpadding=0 cellspacing=0 border=0><tr><td colspan=3><span style="float: left;">Hosts</span><span style="float: left; margin-top: -1px;" class="ui-icon ui-icon-triangle-1-s"></span><span class="Notice" style="float: right;">' + cnodet + '</span></td></tr><tr valign=middle><td class="' + ocolor + '"><b><a href="/monitoring.chtml?view=3&status=0">' + HOST_OK + '</a></b> Ok</td><td class="' + ccolor + '"><b><a href="/monitoring.chtml?view=3&status=6">' + HOST_CR_NA + '</a></b> | <b><a href="/monitoring.chtml?view=3&status=7">' + HOST_CR_A + '</a></b> Kritisch</td><td class="' + ucolor + '"><b><a href="/monitoring.chtml?view=3&status=8">' + HOST_UN_NA + '</a></b> | <b><a href="/monitoring.chtml?view=3&status=9">' + HOST_UN_A + '</a></b> Nicht Erreichbar</td></tr></table></span>');
-            $('#Nodes').append('<span style="float: left;"><table cellpadding=0 cellspacing=0 border=0><tr><td colspan=3><span style="float: left;">Services</span><span style="float: left; margin-top: -1px;" class="ui-icon ui-icon-triangle-1-s"></span></td></tr><tr valign=middle><td class="' + socolor + '"><b><a href="/monitoring.chtml?view=3&status=0">' + SERVICE_OK + '</a></b> Ok</td><td class="' + swcolor + '"><b><a href="/monitoring.chtml?view=3&status=6">' + SERVICE_WA_NA + '</a></b> | <b><a href="/monitoring.chtml?view=3&status=7">' + SERVICE_WA_A + '</a></b> | <b><a href="/monitoring.chtml?view=3&status=6">' + SERVICE_WA_NA_OFF + '</a></b> Warnung</td><td class="' + sccolor + '"><b><a href="/monitoring.chtml?view=3&status=6">' + SERVICE_CR_NA + '</a></b> | <b><a href="/monitoring.chtml?view=3&status=7">' + SERVICE_CR_A + '</a></b> | <b><a href="/monitoring.chtml?view=3&status=6">' + SERVICE_CR_NA_OFF + '</a></b> Kritisch</td><td class="' + sucolor + '"><b><a href="/monitoring.chtml?view=3&status=8">' + SERVICE_UN_NA + '</a></b> | <b><a href="/monitoring.chtml?view=3&status=9">' + SERVICE_UN_A + '</a></b> | <b><a href="/monitoring.chtml?view=3&status=8">' + SERVICE_UN_NA_OFF + '</a></b> Unbekannt</td><td class="' + spcolor + '"><b><a href="/monitoring.chtml?view=3&status=0">' + SERVICE_PE + '</a></b> Ausstehend</td></tr></table></span>');
+            $('#Nodes').append('<span style="float: left;"><table cellpadding=0 cellspacing=0 border=0><tr><td colspan=3><span style="float: left;">Services</span><span style="float: left; margin-top: -1px;" class="ui-icon ui-icon-triangle-1-s"></span></td></tr><tr valign=middle><td class="default" title="Gesamt Ok.">' + SERVICE_OK_ALL + '</td><td class="' + socolor + '" title="Auf ONLINE Hosts."><b><a href="/monitoring.chtml?view=3&status=0">' + SERVICE_OK + '</a></b> Ok</td><td class="default" title="Gesamt Warnung.">' + SERVICE_WA_ALL + '</td><td class="' + swcolor + '"><b><a href="/monitoring.chtml?view=3&status=6">' + SERVICE_WA_NA + '</a></b> | <b><a href="/monitoring.chtml?view=3&status=7">' + SERVICE_WA_A + '</a></b> | <b><a href="/monitoring.chtml?view=3&status=6">' + SERVICE_WA_NA_OFF + '</a></b> Warnung</td><td class="default" title="Gesamt Kritisch.">' + SERVICE_CR_ALL + '</td><td class="' + sccolor + '"><b><a href="/monitoring.chtml?view=3&status=6">' + SERVICE_CR_NA + '</a></b> | <b><a href="/monitoring.chtml?view=3&status=7">' + SERVICE_CR_A + '</a></b> | <b><a href="/monitoring.chtml?view=3&status=6">' + SERVICE_CR_NA_OFF + '</a></b> Kritisch</td><td class="default" title="Gesamt Unbekannt.">' + SERVICE_UN_ALL + '</td><td class="' + sucolor + '"><b><a href="/monitoring.chtml?view=3&status=8">' + SERVICE_UN_NA + '</a></b> | <b><a href="/monitoring.chtml?view=3&status=9">' + SERVICE_UN_A + '</a></b> | <b><a href="/monitoring.chtml?view=3&status=8">' + SERVICE_UN_NA_OFF + '</a></b> Unbekannt</td><td class="' + spcolor + '"><b><a href="/monitoring.chtml?view=3&status=0">' + SERVICE_PE + '</a></b> Ausstehend</td></tr></table></span>');
             
             /*
              * Hosts
@@ -101,9 +110,9 @@ function SlimTaov(uid) {
              */
             
             var sok = SERVICE_OK;
-            var swa = SERVICE_WA - SERVICE_WA_NA_OFF;
-            var scr = SERVICE_CR - SERVICE_CR_NA_OFF;
-            var sun = SERVICE_UN - SERVICE_UN_NA_OFF;
+            var swa = SERVICE_WA;
+            var scr = SERVICE_CR;
+            var sun = SERVICE_UN;
             var sge = sok + swa + scr + sun;
             
             ShowServicePie();
@@ -116,23 +125,27 @@ function SlimTaov(uid) {
             
             chartserviceper.addSeries({
                 name: "WA",
-                data: [ (((SERVICE_WA - SERVICE_WA_NA_OFF)*100)/sge) ]
+                //data: [ (((SERVICE_WA - SERVICE_WA_NA_OFF)*100)/sge) ]
+                data: [ (((SERVICE_WA)*100)/sge) ]
             });
             
             chartserviceper.addSeries({
                 name: "CR",
-                data: [ (((SERVICE_CR - SERVICE_CR_NA_OFF)*100)/sge) ]
+                //data: [ (((SERVICE_CR - SERVICE_CR_NA_OFF)*100)/sge) ]
+                data: [ (((SERVICE_CR)*100)/sge) ]
             });
             
             chartserviceper.addSeries({
                 name: "UN",
-                data: [ (((SERVICE_UN - SERVICE_UN_NA_OFF)*100)/sge) ]
+                //data: [ (((SERVICE_UN - SERVICE_UN_NA_OFF)*100)/sge) ]
+                data: [ (((SERVICE_UN)*100)/sge) ]
             });
 
             servicepie.addSeries({
                type: "pie",
                name: "",
-               data: [ ['Ok',SERVICE_OK], ['Warnung',(SERVICE_WA - SERVICE_WA_NA_OFF)], ['Kritisch',(SERVICE_CR - SERVICE_CR_NA_OFF)], ['Unbekannt',(SERVICE_UN - SERVICE_UN_NA_OFF)] ]
+               //data: [ ['Ok',SERVICE_OK], ['Warnung',(SERVICE_WA - SERVICE_WA_NA_OFF)], ['Kritisch',(SERVICE_CR - SERVICE_CR_NA_OFF)], ['Unbekannt',(SERVICE_UN - SERVICE_UN_NA_OFF)] ]
+               data: [ ['Ok',SERVICE_OK], ['Warnung',(SERVICE_WA)], ['Kritisch',(SERVICE_CR)], ['Unbekannt',(SERVICE_UN)] ]
             });
             
             
@@ -221,7 +234,6 @@ function ModShowCritical(uid) {
                         srvcount++;
                     });
                     $('#FooterDivShowCritical').html('' + srvcount + ' Probleme');
-                    $('#AjaxLoader').remove();
                     setTimeout('ModShowCritical("' + uid + '")', 30000);
                 },
                 error: function(jqXhr, textStatus, error) {
@@ -287,7 +299,7 @@ function ShowServicePie() {
                     fontFamily: 'SansProLight',
                     fontSize: '14px',
                     connectorWidth: 0,
-                    distance: -15,
+                    distance: -13,
                     formatter: function() {
 			// display only if larger than 1
                         return this.y > 0 ? ''+ this.y +''  : null;

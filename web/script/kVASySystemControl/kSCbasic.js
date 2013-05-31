@@ -49,114 +49,17 @@ function ChangeTitle() {
 
 function KeyFunctionSidebar() {
     $('#SidebarBottomSmall').addClass('opacity');
-    $('body').keydown(function(e){
-        if ((e.keyCode || e.which) == 37) {
-            if ($("#Sidebar").is(":hidden")) {
-                $('#SidebarSmall').animate({marginRight: "400px"},350).css('zIndex',30);
-                $('#Sidebar').animate({width:'toggle'},350, function() {
-                    $('#SidebarContent').fadeIn(100);
-                }).css('zIndex',30);
-            } else {
-                if ($("#SidebarBottom").is(":hidden")) {
-                    $('#SidebarContent').fadeOut(100);
-                    $('#Sidebar').animate({width:'toggle'},350).css('zIndex',3);
-                    $('#SidebarSmall').animate({marginRight: "0px"},350).css('zIndex',3);
-                } else {
-                    $('#SidebarContent').fadeOut(100);
-                    $('#Sidebar').animate({width:'toggle'},350).css('zIndex',30);
-                    $('#SidebarSmall').animate({marginRight: "0px"},350).css('zIndex',30);
-                    $('#SidebarSmall').css('zIndex',3);
-                }
-            }
-        } else if ((e.keyCode || e.which) == 39) {
-            if ($("#Sidebar").is(":hidden")) {
-                $('#SidebarSmall').animate({marginRight: "400px"},350).css('zIndex',30);
-                $('#Sidebar').animate({width:'toggle'},350, function() {
-                    $('#SidebarContent').fadeIn(100);
-                }).css('zIndex',30);
-            } else {
-                if ($("#SidebarBottom").is(":hidden")) {
-                    $('#SidebarContent').fadeOut(100);
-                    $('#Sidebar').animate({width:'toggle'},350).css('zIndex',3);
-                    $('#SidebarSmall').animate({marginRight: "0px"},350).css('zIndex',3);
-                } else {
-                    $('#SidebarContent').fadeOut(100);
-                    $('#Sidebar').animate({width:'toggle'},350).css('zIndex',30);
-                    $('#SidebarSmall').animate({marginRight: "0px"},350).css('zIndex',30);
-                    $('#SidebarSmall').css('zIndex',3);
-                }
-            }
-        } else if ((e.keyCode || e.which) == 38) {
-            if ($("#SidebarBottom").is(":hidden")) {
-                if ($("#Sidebar").is(":hidden")) {
-                    $('#SidebarBottomSmall').animate({marginBottom: "870px"},350).css('zIndex',25);
-                    $('#SidebarBottom').animate({height:'toggle'},350, function() {
-                        $('#SidebarBottomContent').fadeIn(100);
-                    }).css('zIndex',25);
-                    $('#SidebarBottomSmall').removeClass('opacity');
-                } else {
-                    $('#SidebarBottomSmall').animate({marginBottom: "870px"},350).css('zIndex',25);
-                    $('#SidebarBottom').animate({height:'toggle'},350, function() {
-                        $('#SidebarBottomContent').fadeIn(100);
-                    }).css('zIndex',25);
-                    $('#SidebarBottomSmall').removeClass('opacity');
-                }
-            } else {
-                if ($("#Sidebar").is(":hidden")) {
-                    $('#SidebarBottomContent').fadeOut(100);
-                    $('#SidebarBottom').animate({height:'toggle'},350).css('zIndex',35);
-                    $('#SidebarBottomSmall').animate({marginBottom: "0px"},350).css('zIndex',35);
-                    $('#SidebarBottomSmall').css('zIndex',2);
-                    $('#SidebarBottomSmall').addClass('opacity');
-                } else {
-                    $('#SidebarBottomContent').fadeOut(100);
-                    $('#SidebarBottom').animate({height:'toggle'},350).css('zIndex',2);
-                    $('#SidebarBottomSmall').animate({marginBottom: "0px"},350).css('zIndex',2);
-                    $('#SidebarBottomSmall').css('zIndex',2);
-                    $('#SidebarBottomSmall').addClass('opacity');
-                }
-            }
-        } else if ((e.keyCode || e.which) == 40) {
-            if ($("#SidebarBottom").is(":hidden")) {
-                if ($("#Sidebar").is(":hidden")) {
-                    $('#SidebarBottomSmall').animate({marginBottom: "870px"},350).css('zIndex',25);
-                    $('#SidebarBottom').animate({height:'toggle'},350, function() {
-                        $('#SidebarBottomContent').fadeIn(100);
-                    }).css('zIndex',25);
-                    $('#SidebarBottomSmall').removeClass('opacity');
-                } else {
-                    $('#SidebarBottomSmall').animate({marginBottom: "870px"},350).css('zIndex',25);
-                    $('#SidebarBottom').animate({height:'toggle'},350, function() {
-                        $('#SidebarBottomContent').fadeIn(100);
-                    }).css('zIndex',25);
-                    $('#SidebarBottomSmall').removeClass('opacity');
-                }
-            } else {
-                if ($("#Sidebar").is(":hidden")) {
-                    $('#SidebarBottomContent').fadeOut(100);
-                    $('#SidebarBottom').animate({height:'toggle'},350).css('zIndex',35);
-                    $('#SidebarBottomSmall').animate({marginBottom: "0px"},350).css('zIndex',35);
-                    $('#SidebarBottomSmall').css('zIndex',2);
-                    $('#SidebarBottomSmall').addClass('opacity');
-                } else {
-                    $('#SidebarBottomContent').fadeOut(100);
-                    $('#SidebarBottom').animate({height:'toggle'},350).css('zIndex',2);
-                    $('#SidebarBottomSmall').animate({marginBottom: "0px"},350).css('zIndex',2);
-                    $('#SidebarBottomSmall').css('zIndex',2);
-                    $('#SidebarBottomSmall').addClass('opacity');
-                }
-            }
-        }   
-    });
 }
 
-function KlickFunctionSidebar() {
+function KlickFunctionSidebar(uid) {
+    var b64uid = $.base64.encode( uid );
     $('#SidebarSmall').click(function() {
         if ($("#Sidebar").is(":hidden")) {
             $('#SidebarSmall').animate({marginRight: "400px"},350).css('zIndex',30);
             $('#Sidebar').animate({width:'toggle'},350, function() {
                 $('#SidebarContent').fadeIn(100);
             }).css('zIndex',30);
+            SearchHosts( b64uid + 'Jhdu8K');
         } else {
             $('#SidebarContent').fadeOut(100);
             $('#Sidebar').animate({width:'toggle'},350).css('zIndex',3);
@@ -179,8 +82,146 @@ function KlickFunctionSidebar() {
     });
 }
 
-function StyleSidebar() {
-    /**/
+function StyleSidebar(uid) {
+    var b64uid = $.base64.encode( uid );
+    $('#SidebarSearch').append('<div id="Title">Suchen</div><div id="SubTitle">Nichts ausgew&auml;hlt!</div><form method="GET"><input id="SearchInput" type="text" onclick="DeleteVal();"></form>');
+    $('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFHost" onclick="SearchHosts(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="layout/images/server.png"><span>Hosts</span></div>');
+    $('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFService" onclick="SearchServices(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="layout/images/services.png"><span>Services</span></div>');
+    $('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFDatabase" onclick="SearchDatabases(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="layout/images/database.png"><span>Datenbanken</span></div>');
+    $('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFHostgroup" onclick="SearchHostgroups(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="layout/images/layers.png"><span>Hostgruppen</span></div>');
+}
+
+function SubStyleSidebar(uid) {
+    var b64uid = $.base64.encode( uid );
+    $('#SidebarSearch').append('<div id="Title">Suchen</div><div id="SubTitle">Nichts ausgew&auml;hlt!</div><form method="GET"><input id="SearchInput" type="text" onclick="DeleteVal();"></form>');
+    $('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFHost" onclick="SearchHosts(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="../layout/images/server.png"><span>Hosts</span></div>');
+    $('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFService" onclick="SearchServices(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="../layout/images/services.png"><span>Services</span></div>');
+    $('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFDatabase" onclick="SearchDatabases(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="../layout/images/database.png"><span>Datenbanken</span></div>');
+    $('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFHostgroup" onclick="SearchHostgroups(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="../layout/images/layers.png"><span>Hostgruppen</span></div>');
+}
+
+function DeleteVal() {
+    $('input#SearchInput').val('');
+}
+
+function SearchHosts(uid) {
+    $('#SubTitle').html('.. nach Hosts');
+    $('input#SearchInput').val('Hostname');
+    $('#SFService').removeClass('BgBlue');
+    $('#SFHost').addClass('BgBlue');
+    $('#SFDatabase').removeClass('BgBlue');
+    $('#SFHostgroup').removeClass('BgBlue');
+    $('#SearchInput').autocomplete({
+        source: function( request, response ) {
+            $.ajax({
+                url: 'http://172.23.10.249:6560/proxy/json/?e=1&m=TGlzdEhvc3RzHj86Hz&u=' + uid,
+                dataType: 'json',
+                cache: false,
+                data: {                    
+                    searchstring: request.term
+                },
+                success: function( data ) {
+                    response( $.map( data.hosts, function( item ) {
+                        return {
+                            label: item.NAME + ' (' + item.CUST_VAL + ') auf ' + item.NODE,
+                            value: item.NAME
+                        }
+                    }));
+                }
+            });
+        },
+        minLength: 1
+    });
+}
+
+function SearchServices(uid) {
+    $('#SubTitle').html('.. nach Services');
+    $('input#SearchInput').val('Servicename');
+    $('#SFHost').removeClass('BgBlue');
+    $('#SFService').addClass('BgBlue');
+    $('#SFHostgroup').removeClass('BgBlue');
+    $('#SFDatabase').removeClass('BgBlue');
+    $('#SearchInput').autocomplete({
+        source: function( request, response ) {
+            $.ajax({
+                url: 'http://172.23.10.249:6560/proxy/json/?e=1&m=TGlzdFNlcnZpY2VzHj86Hz&u=' + uid,
+                dataType: 'json',
+                cache: false,
+                data: {                    
+                    searchstring: request.term
+                },
+                success: function( data ) {
+                    response( $.map( data.services, function( item ) {
+                        return {
+                            label: item.HOST +  ' (' + item.NODE + ') - ' + item.NAME,
+                            value: item.NAME
+                        }
+                    }));
+                }
+            });
+        },
+        minLength: 1
+    });
+}
+
+function SearchDatabases(uid) {
+    $('#SubTitle').html('.. nach Datenbanken');
+    $('input#SearchInput').val('SID');
+    $('#SFHost').removeClass('BgBlue');
+    $('#SFService').removeClass('BgBlue');
+    $('#SFHostgroup').removeClass('BgBlue');
+    $('#SFDatabase').addClass('BgBlue');
+    $('#SearchInput').autocomplete({
+        source: function( request, response ) {
+            $.ajax({
+                url: 'http://172.23.10.249:6560/proxy/json/?e=1&m=TGlzdERhdGFiYXNlcw==Hj86Hz&u=' + uid,
+                dataType: 'json',
+                cache: false,
+                data: {                    
+                    searchstring: request.term
+                },
+                success: function( data ) {
+                    response( $.map( data.databases, function( item ) {
+                        return {
+                            label: item.HOST +  ' (' + item.NODE + ') - ' + item.NAME,
+                            value: item.NAME
+                        }
+                    }));
+                }
+            });
+        },
+        minLength: 1
+    });
+}
+
+function SearchHostgroups(uid) {
+    $('#SubTitle').html('.. nach Hostgruppen');
+    $('input#SearchInput').val('Name');
+    $('#SFHost').removeClass('BgBlue');
+    $('#SFService').removeClass('BgBlue');
+    $('#SFDatabase').removeClass('BgBlue');
+    $('#SFHostgroup').addClass('BgBlue');
+    $('#SearchInput').autocomplete({
+        source: function( request, response ) {
+            $.ajax({
+                url: 'http://172.23.10.249:6560/proxy/json/?e=1&m=TGlzdEhvc3Rncm91cHM=Hj86Hz&u=' + uid,
+                dataType: 'json',
+                cache: false,
+                data: {                    
+                    searchstring: request.term
+                },
+                success: function( data ) {
+                    response( $.map( data.databases, function( item ) {
+                        return {
+                            label: item.HOST +  ' (' + item.NODE + ') - ' + item.NAME,
+                            value: item.NAME
+                        }
+                    }));
+                }
+            });
+        },
+        minLength: 1
+    });
 }
 
 function Configuration(uid) {
