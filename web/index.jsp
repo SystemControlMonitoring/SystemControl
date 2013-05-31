@@ -82,6 +82,7 @@
         $(function() {
             $(document).ready(function() {
                 jQuery.support.cors = true;
+                GetBackend();
                 Loader();
                 Liveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 KlickFunctionSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);

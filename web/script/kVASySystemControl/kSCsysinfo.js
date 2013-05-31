@@ -26,7 +26,7 @@ function SysInfo(uid) {
     var node = urlPara('h');
     var client = urlPara('c');
     $.ajax({
-        url: 'http://172.23.10.249:6560/clientdirect/json/?e=1&m=U1lTSU5GTw==Jkd873&h=' + node + 'Hqu8zd&c=' + client + 'Jjd723&u=' + b64uid + 'KjdUE8',
+        url: 'http://' + Backend + '/clientdirect/json/?e=1&m=U1lTSU5GTw==Jkd873&h=' + node + 'Hqu8zd&c=' + client + 'Jjd723&u=' + b64uid + 'KjdUE8',
         crossDomain: true,
         success: function(point) {
             $('#HostStatusSlim').html('<font class="ON">ONLINE</font>');
@@ -60,7 +60,7 @@ function Storage(uid) {
     // OS Independent
     
     $('#bios').jqGrid({ 
-	url:'http://172.23.10.249:6560/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=QklPUw==JhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
+	url:'http://' + Backend + '/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=QklPUw==JhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
 	datatype: 'json',
 	colNames:['Caption', 'ReleaseDate', 'SerialNumber', 'SMBIOSBIOSVersion', 'Status', 'Version'],
 	colModel:[
@@ -87,7 +87,7 @@ function Storage(uid) {
     $('#bios').jqGrid('navGrid','#pagerbios',{edit:false,add:false,del:false,search:false});
 
     $('#onboard').jqGrid({ 
-	url:'http://172.23.10.249:6560/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=T05CT0FSRA==JhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
+	url:'http://' + Backend + '/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=T05CT0FSRA==JhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
 	datatype: 'json',
 	colNames:[ 'Description', 'DeviceType', 'Enabled'],
 	colModel:[ 
@@ -119,7 +119,7 @@ function Storage(uid) {
     ChartWinIo(node,client,b64uid);
 
     $('#storage').jqGrid({ 
-	url:'http://172.23.10.249:6560/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=RlM=JhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
+	url:'http://' + Backend + '/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=RlM=JhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
 	datatype: 'json',
 	colNames:['Typ', 'Name', 'Gr&ouml;&szlig;e (GB)', 'Nutzung (GB)', 'Frei (GB)', 'Beschreibung', 'Serial Nr.'],
 	colModel:[ 
@@ -145,7 +145,7 @@ function Storage(uid) {
     $('#storage').jqGrid('navGrid','#pagersto',{edit:false,add:false,del:false,search:false});
 
     $('#devcont').jqGrid({ 
-	url:'http://172.23.10.249:6560/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=REVWQ09OVA==JhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
+	url:'http://' + Backend + '/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=REVWQ09OVA==JhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
 	datatype: 'json',
 	colNames:['Beschreibung', 'Hersteller', 'Protokoll', 'Status', 'Status Information'],
 	colModel:[ 
@@ -169,7 +169,7 @@ function Storage(uid) {
     $('#devcont').jqGrid('navGrid','#pagerdc',{edit:false,add:false,del:false,search:false});	
     
     $('#dma').jqGrid({ 
-	url:'http://172.23.10.249:6560/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=RE1BJhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
+	url:'http://' + Backend + '/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=RE1BJhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
 	datatype: 'json',
 	colNames:['Kanal', 'Status'],
 	colModel:[ 
@@ -190,7 +190,7 @@ function Storage(uid) {
     $('#dma').jqGrid('navGrid','#pagerdma',{edit:false,add:false,del:false,search:false});
     
     $('#processes').jqGrid({ 
-	url:'http://172.23.10.249:6560/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=UFJPQ0VTU0VTLKH0OI&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
+	url:'http://' + Backend + '/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=UFJPQ0VTU0VTLKH0OI&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
 	datatype: 'json',
 	colNames:['Progress', 'Command Line', 'Date', 'Handle', 'Name', 'PFU', 'PPId', 'PId', 'ROC', 'TC', 'VS', 'WSS'],
 	colModel:[
@@ -222,7 +222,7 @@ function Storage(uid) {
     $('#processes').jqGrid('navGrid','#pagerproc',{edit:false,add:false,del:false,search:false});
     
     $('#log').jqGrid({ 
-	url:'http://172.23.10.249:6560/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=TE9HJhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
+	url:'http://' + Backend + '/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=TE9HJhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
 	datatype: 'json',
 	colNames:['Event Typ', 'Logfile', 'Meldung', 'Quelle', 'Erstellt', 'Nutzer'],
 	colModel:[
@@ -253,7 +253,7 @@ function Storage(uid) {
     ChartLinuxIo(node,client,b64uid);
 
     $('#storage').jqGrid({ 
-	url:'http://172.23.10.249:6560/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=RlM=JhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
+	url:'http://' + Backend + '/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=RlM=JhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
 	datatype: 'json',
         colNames:['Typ', 'Device', 'Gr&ouml;&szlig;e', 'Nutzung', 'Frei', 'Mount Point'],
 	colModel:[ 
@@ -278,7 +278,7 @@ function Storage(uid) {
     $('#storage').jqGrid('navGrid','#pagersto',{edit:false,add:false,del:false,search:false});
  
     $('#devcont').jqGrid({ 
-	url:'http://172.23.10.249:6560/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=REVWQ09OVA==JhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
+	url:'http://' + Backend + '/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=REVWQ09OVA==JhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
 	datatype: 'json',
 	colNames:['Beschreibung', 'Hersteller', 'Protokoll', 'Status'],
 	colModel:[ 
@@ -301,7 +301,7 @@ function Storage(uid) {
     $('#devcont').jqGrid('navGrid','#pagerdc',{edit:false,add:false,del:false,search:false});	
     
     $('#dma').jqGrid({ 
-	url:'http://172.23.10.249:6560/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=RE1BJhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
+	url:'http://' + Backend + '/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=RE1BJhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
 	datatype: 'json',
 	colNames:['Kanal', 'Gr&ouml;&szlig;e'],
 	colModel:[ 
@@ -322,7 +322,7 @@ function Storage(uid) {
     $('#dma').jqGrid('navGrid','#pagerdma',{edit:false,add:false,del:false,search:false});
     
     $('#processes').jqGrid({ 
-	url:'http://172.23.10.249:6560/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=UFJPQ0VTU0VTLKH0OI&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
+	url:'http://' + Backend + '/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=UFJPQ0VTU0VTLKH0OI&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
 	datatype: 'json',
 	colNames:['User', 'PId', 'CPU%', 'MEM%', 'VSZ', 'RSS', 'TTY', 'STAT', 'Start Datum', 'Start Zeit', 'Command Line'],
 	colModel:[
@@ -353,7 +353,7 @@ function Storage(uid) {
     $('#processes').jqGrid('navGrid','#pagerproc',{edit:false,add:false,del:false,search:false});
     
     $('#log').jqGrid({ 
-	url:'http://172.23.10.249:6560/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=TE9HJhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
+	url:'http://' + Backend + '/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=TE9HJhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
 	datatype: 'json',
 	colNames:['Typ','Meldung'],
 	colModel:[
@@ -383,7 +383,7 @@ function Storage(uid) {
 
 function requestLinuxCpu(node,client,b64uid) {
     $.ajax({
-        url: 'http://172.23.10.249:6560/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=Q1BVJhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
+        url: 'http://' + Backend + '/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=Q1BVJhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
         success: function(point) {
             var ts = (new Date()).getTime();
 		
@@ -421,7 +421,7 @@ function requestLinuxCpu(node,client,b64uid) {
 
 function requestWinCpu(node,client,b64uid) {
     $.ajax({
-        url: 'http://172.23.10.249:6560/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=Q1BVJhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
+        url: 'http://' + Backend + '/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=Q1BVJhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
         success: function(point) {
             var ts = (new Date()).getTime();
             
@@ -459,7 +459,7 @@ function requestWinCpu(node,client,b64uid) {
 
 function requestLinuxIo(node,client,b64uid) {
     $.ajax({
-        url: 'http://172.23.10.249:6560/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=SU8=JhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
+        url: 'http://' + Backend + '/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=SU8=JhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
         success: function(point) {
             var ts = (new Date()).getTime();
 		
@@ -492,7 +492,7 @@ function requestLinuxIo(node,client,b64uid) {
 
 function requestWinIo(node,client,b64uid) {
     $.ajax({
-        url: 'http://172.23.10.249:6560/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=SU8=JhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
+        url: 'http://' + Backend + '/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=SU8=JhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
         success: function(point) {
             var ts = (new Date()).getTime();
 	
@@ -530,7 +530,7 @@ function requestWinIo(node,client,b64uid) {
 
 function requestNwIo(node,client,b64uid) {
     $.ajax({
-        url: 'http://172.23.10.249:6560/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=TldJTw==JhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
+        url: 'http://' + Backend + '/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=TldJTw==JhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
 	success: function(point) {
             var ts = (new Date()).getTime();
 	
@@ -553,7 +553,7 @@ function requestNwIo(node,client,b64uid) {
 	
 function requestMemIo(node,client,b64uid) {
     $.ajax({
-        url: 'http://172.23.10.249:6560/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=TUVNSU8=JhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
+        url: 'http://' + Backend + '/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=TUVNSU8=JhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
 	success: function(point) {
             var ts = (new Date()).getTime();
 		

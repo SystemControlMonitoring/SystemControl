@@ -11,6 +11,36 @@
  * --------------------------------------------------------------
  */
 
+var Backend;
+
+function GetBackend() {
+    $.ajax({
+        url: 'backend.jsp',
+        dataType: 'json',
+        cache: false,
+        async: false,
+        success: function(json) {
+            $.each(json, function(key,value) {
+                Backend = value;
+            });
+        }
+    });
+}
+
+function SubGetBackend() {
+    $.ajax({
+        url: '../backend.jsp',
+        dataType: 'json',
+        cache: false,
+        async: false,
+        success: function(json) {
+            $.each(json, function(key,value) {
+                alert(value);
+            });
+        }
+    });
+}
+
 function Loader() {
     $('#theme-roller').append('<img id="AjaxLoader" src="layout/images/ajax-loader.gif">');
 }
@@ -114,7 +144,7 @@ function SearchHosts(uid) {
     $('#SearchInput').autocomplete({
         source: function( request, response ) {
             $.ajax({
-                url: 'http://172.23.10.249:6560/proxy/json/?e=1&m=TGlzdEhvc3RzHj86Hz&u=' + uid,
+                url: 'http://' + Backend + '/proxy/json/?e=1&m=TGlzdEhvc3RzHj86Hz&u=' + uid,
                 dataType: 'json',
                 cache: false,
                 data: {                    
@@ -144,7 +174,7 @@ function SearchServices(uid) {
     $('#SearchInput').autocomplete({
         source: function( request, response ) {
             $.ajax({
-                url: 'http://172.23.10.249:6560/proxy/json/?e=1&m=TGlzdFNlcnZpY2VzHj86Hz&u=' + uid,
+                url: 'http://' + Backend + '/proxy/json/?e=1&m=TGlzdFNlcnZpY2VzHj86Hz&u=' + uid,
                 dataType: 'json',
                 cache: false,
                 data: {                    
@@ -174,7 +204,7 @@ function SearchDatabases(uid) {
     $('#SearchInput').autocomplete({
         source: function( request, response ) {
             $.ajax({
-                url: 'http://172.23.10.249:6560/proxy/json/?e=1&m=TGlzdERhdGFiYXNlcw==Hj86Hz&u=' + uid,
+                url: 'http://' + Backend + '/proxy/json/?e=1&m=TGlzdERhdGFiYXNlcw==Hj86Hz&u=' + uid,
                 dataType: 'json',
                 cache: false,
                 data: {                    
@@ -204,7 +234,7 @@ function SearchHostgroups(uid) {
     $('#SearchInput').autocomplete({
         source: function( request, response ) {
             $.ajax({
-                url: 'http://172.23.10.249:6560/proxy/json/?e=1&m=TGlzdEhvc3Rncm91cHM=Hj86Hz&u=' + uid,
+                url: 'http://' + Backend + '/proxy/json/?e=1&m=TGlzdEhvc3Rncm91cHM=Hj86Hz&u=' + uid,
                 dataType: 'json',
                 cache: false,
                 data: {                    
@@ -283,7 +313,7 @@ function Configuration(uid) {
         open: function() {
             /* Tabbbing of Configurationmenu */
             $.ajax({
-                url: 'http://172.23.10.249:6560/?mv=g',
+                url: 'http://' + Backend + '/?mv=g',
                 crossDomain: true,
                 success: function(json) {
                     $('#Modulversionen').append('<table id="TableModulversionen" cellpadding=0 cellspacing=5 border=0></table>');
@@ -298,7 +328,7 @@ function Configuration(uid) {
                 cache: false
             });
             $.ajax({
-                url: 'http://172.23.10.249:6560/chkcmp/json/?e=1&m=Q2hlY2tQcm9jZXNzLk76Zh',
+                url: 'http://' + Backend + '/chkcmp/json/?e=1&m=Q2hlY2tQcm9jZXNzLk76Zh',
                 crossDomain: true,
                 success: function(json) {
                     $.each(json, function(key,value) {
@@ -326,7 +356,7 @@ function Configuration(uid) {
                 cache: false
             });
             $.ajax({
-                url: 'http://172.23.10.249:6560/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u=' + b64uid + 'KjHu8s&m2=Q29uZmlnJq0OpP',
+                url: 'http://' + Backend + '/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u=' + b64uid + 'KjHu8s&m2=Q29uZmlnJq0OpP',
                 crossDomain: true,
                 success: function(json) {
                     $('div.Config').append('<table id="TableConfig" cellpadding=0 cellspacing=5 border=0></table>');
@@ -380,7 +410,7 @@ function AddLink() {
 
 function LoadBasic(uid) {
     $.ajax({
-        url: 'http://172.23.10.249:6560/repo/json/?e=1&m=SW5zZXJ0RGFzaGJvYXJkQWxsKd8Hfg&u=' + uid + '',
+        url: 'http://' + Backend + '/repo/json/?e=1&m=SW5zZXJ0RGFzaGJvYXJkQWxsKd8Hfg&u=' + uid + '',
         crossDomain: true,
         success: DialogSuccess("#1","Die Basiseinstellungen für das Dashboard wurden erfolgreich gesetzt."),
         error: function(jqXhr, textStatus, error) {
@@ -412,7 +442,7 @@ function DialogSuccess(id,message) {
 function DashboardLinks(uid) {
     var b64uid = $.base64.encode( uid );
     $.ajax({
-        url: 'http://172.23.10.249:6560/repo/json/?e=1&m=U2VsZWN0RGFzaGJvYXJkQWxsUhdjK8&u=' + b64uid + 'LKHld3',
+        url: 'http://' + Backend + '/repo/json/?e=1&m=U2VsZWN0RGFzaGJvYXJkQWxsUhdjK8&u=' + b64uid + 'LKHld3',
         crossDomain: true,
         success: function(json) {
             $.each(json, function() {
@@ -430,7 +460,7 @@ function DashboardLinks(uid) {
 
 function DeleteBasic(uid) {
     $.ajax({
-        url: 'http://172.23.10.249:6560/repo/json/?e=1&m=RGVsZXRlRGFzaGJvYXJkQWxsJkl8Hd&u=' + uid + '',
+        url: 'http://' + Backend + '/repo/json/?e=1&m=RGVsZXRlRGFzaGJvYXJkQWxsJkl8Hd&u=' + uid + '',
         crossDomain: true,
         success: DialogSuccess("#2","Die Standardeinstellungen für das Dashboard wurden erfolgreich gesetzt."),
         error: function(jqXhr, textStatus, error) {
@@ -443,7 +473,7 @@ function DeleteBasic(uid) {
 
 function DeleteBasicConfig(uid) {
     $.ajax({
-        url: 'http://172.23.10.249:6560/repo/json/?e=1&m=RGVsZXRlUmVwb0FsbA==Jhdu8d&u=' + uid + '',
+        url: 'http://' + Backend + '/repo/json/?e=1&m=RGVsZXRlUmVwb0FsbA==Jhdu8d&u=' + uid + '',
         crossDomain: true,
         success: DialogSuccess("#3","Alle Einstellungen wurden erfolgreich zur&uuml;ckgesetzt!"),
         error: function(jqXhr, textStatus, error) {
@@ -461,7 +491,7 @@ function AddConfig(uid,mdl,key,val1,val2,val3) {
     var b64val2 = $.base64.encode( val2 );
     var b64val3 = $.base64.encode( val3 );
     $.ajax({
-        url: 'http://172.23.10.249:6560/repo/json/?e=1&m=SW5zZXJ0VXBkYXRlQ29uZmlnHkl8Ui&u=' + uid + '&m2=' + b64mdl + 'Jkl8Hd&k=' + b64key + 'Jkl8Hd&v1=' + b64val1 + 'Jkl8Hd&v2=' + b64val2 + 'Jkl8Hd&v3=' + b64val3 + 'Jkl8Hd',
+        url: 'http://' + Backend + '/repo/json/?e=1&m=SW5zZXJ0VXBkYXRlQ29uZmlnHkl8Ui&u=' + uid + '&m2=' + b64mdl + 'Jkl8Hd&k=' + b64key + 'Jkl8Hd&v1=' + b64val1 + 'Jkl8Hd&v2=' + b64val2 + 'Jkl8Hd&v3=' + b64val3 + 'Jkl8Hd',
         crossDomain: true,
         success: DialogSuccess(".Config","Konfiguration wurde ge&auml;ndert."),
         error: function(jqXhr, textStatus, error) {

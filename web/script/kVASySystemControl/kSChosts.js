@@ -15,7 +15,7 @@ function Reload(uid) {
 function AllHosts(uid) {
     var b64uid = $.base64.encode( uid );
     $.ajax({
-        url: 'http://172.23.10.249:6560/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u=' + b64uid + 'Lkjdu7&m2=Q29uZmlnJq0OpP',
+        url: 'http://' + Backend + '/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u=' + b64uid + 'Lkjdu7&m2=Q29uZmlnJq0OpP',
         crossDomain: true,
         success: function(json) {
             var dds;
@@ -25,7 +25,7 @@ function AllHosts(uid) {
                 }
             });
             $.ajax({
-                url: 'http://172.23.10.249:6560/proxy/json/?e=1&m=QWxsSG9zdHM=Uhd739&u=' + b64uid + 'LKHld3',
+                url: 'http://' + Backend + '/proxy/json/?e=1&m=QWxsSG9zdHM=Uhd739&u=' + b64uid + 'LKHld3',
                 crossDomain: true,
                 success: function(json) {
                     var hostcount = 0;

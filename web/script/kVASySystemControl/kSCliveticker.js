@@ -21,11 +21,11 @@
 function Liveticker(uid) {
     var b64uid = $.base64.encode( uid );
     $.ajax({
-        url: 'http://172.23.10.249:6560/proxy/json/?e=1&m=RmlsbExpdmV0aWNrZXI=RpY2Fs&u=' + b64uid + 'LKHld3',
+        url: 'http://' + Backend + '/proxy/json/?e=1&m=RmlsbExpdmV0aWNrZXI=RpY2Fs&u=' + b64uid + 'LKHld3',
         crossDomain: true,
         success: function() {
                 $.ajax({
-                    url: 'http://172.23.10.249:6560/proxy/json/?e=1&m=U2VsZWN0TGl2ZXRpY2tlcg==RpKlFs&u=' + b64uid + 'LKHld3',
+                    url: 'http://' + Backend + '/proxy/json/?e=1&m=U2VsZWN0TGl2ZXRpY2tlcg==RpKlFs&u=' + b64uid + 'LKHld3',
                     crossDomain: true,
                     success: function(json) {
                         var cc=0;

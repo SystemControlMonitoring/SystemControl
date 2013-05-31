@@ -25,7 +25,7 @@ var hostpie;
 function SlimTaov(uid) {
     var b64uid = $.base64.encode( uid );
     $.ajax({
-        url: 'http://172.23.10.249:6560/proxy/json/?e=1&m=U2xpbVRhb3Y=Hkd83k&u=' + b64uid + 'LKHld3',
+        url: 'http://' + Backend + '/proxy/json/?e=1&m=U2xpbVRhb3Y=Hkd83k&u=' + b64uid + 'LKHld3',
         crossDomain: true,
         success: function(json) {
             var cnodet; var cnode = 0; var ocolor = " default"; var ccolor = " default"; var ucolor = " default"; var socolor = " default"; var sccolor = " default"; var sucolor = " default"; var swcolor = " default"; var spcolor = " default";var HOST_OK = 0; var HOST_CR = 0; var HOST_CR_NA = 0; var HOST_CR_A = 0; var HOST_UN = 0; var HOST_UN_NA = 0; var HOST_UN_A = 0; var SERVICE_OK_ALL = 0; var SERVICE_OK = 0; var SERVICE_WA_ALL = 0; var SERVICE_WA = 0; var SERVICE_WA_NA = 0; var SERVICE_WA_A = 0; var SERVICE_WA_NA_OFF = 0; var SERVICE_CR_ALL = 0; var SERVICE_CR = 0; var SERVICE_CR_NA = 0; var SERVICE_CR_A = 0; var SERVICE_CR_NA_OFF = 0; var SERVICE_UN_ALL = 0; var SERVICE_UN = 0; var SERVICE_UN_NA = 0; var SERVICE_UN_A = 0; var SERVICE_UN_NA_OFF = 0; var SERVICE_PE = 0;
@@ -162,7 +162,7 @@ function SlimTaov(uid) {
 function ShowCritical(uid) {
     var b64uid = $.base64.encode( uid );
     $.ajax({
-        url: 'http://172.23.10.249:6560/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u=' + b64uid + 'Lkjdu7&m2=Q29uZmlnJq0OpP',
+        url: 'http://' + Backend + '/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u=' + b64uid + 'Lkjdu7&m2=Q29uZmlnJq0OpP',
         crossDomain: true,
         success: function(json) {
             var dds;
@@ -172,7 +172,7 @@ function ShowCritical(uid) {
                 }
             });
             $.ajax({
-                url: 'http://172.23.10.249:6560/proxy/json/?e=1&m=U2hvd0NyaXRpY2FsHjdz6d&u=' + b64uid + 'LKHld3',
+                url: 'http://' + Backend + '/proxy/json/?e=1&m=U2hvd0NyaXRpY2FsHjdz6d&u=' + b64uid + 'LKHld3',
                 crossDomain: true,
                 success: function(json) {
                     var srvcount = 0;
@@ -208,7 +208,7 @@ function ShowCritical(uid) {
 function ModShowCritical(uid) {
     var b64uid = $.base64.encode( uid );
     $.ajax({
-        url: 'http://172.23.10.249:6560/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u=' + b64uid + 'Lkjdu7&m2=Q29uZmlnJq0OpP',
+        url: 'http://' + Backend + '/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u=' + b64uid + 'Lkjdu7&m2=Q29uZmlnJq0OpP',
         crossDomain: true,
         success: function(json) {
             var dds;
@@ -218,7 +218,7 @@ function ModShowCritical(uid) {
                 }
             });
             $.ajax({
-                url: 'http://172.23.10.249:6560/proxy/json/?e=1&m=U2hvd0NyaXRpY2FsHjdz6d&u=' + b64uid + 'LKHld3',
+                url: 'http://' + Backend + '/proxy/json/?e=1&m=U2hvd0NyaXRpY2FsHjdz6d&u=' + b64uid + 'LKHld3',
                 crossDomain: true,
                 success: function(json) {
                     var srvcount = 0;

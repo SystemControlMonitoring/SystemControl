@@ -87,6 +87,7 @@
         $(function() {
             $(document).ready(function() {
                 jQuery.support.cors = true;
+                GetBackend();
                 Loader();
                 Top();
                 Liveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);

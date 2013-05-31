@@ -28,13 +28,13 @@ public class search {
     props.load(in);
     in.close();
     
-    String HOST = props.getProperty("HOST");
-    String PORT = props.getProperty("PORT");
-    String USERNAME = props.getProperty("USERNAME");
-    String PASSWORD = props.getProperty("PASSWORD");
-    String BASEDN = props.getProperty("BASEDN");
-    String ATTRIBUTE = props.getProperty("ATTRIBUTE");
-    String OU = props.getProperty("OU");
+    String HOST = props.getProperty("LDAP.HOST");
+    String PORT = props.getProperty("LDAP.PORT");
+    String USERNAME = props.getProperty("LDAP.USERNAME");
+    String PASSWORD = props.getProperty("LDAP.PASSWORD");
+    String BASEDN = props.getProperty("LDAP.BASEDN");
+    String ATTRIBUTE = props.getProperty("LDAP.ATTRIBUTE");
+    String OU = props.getProperty("LDAP.OU");
     
     @SuppressWarnings("UseOfObsoleteCollectionType")
     Hashtable env = new Hashtable();
@@ -65,5 +65,17 @@ public class search {
     }
     dctx.close();
     return("OK");
+  }
+  
+  public static String getBackend() throws Exception {
+    Properties props = new Properties();
+    BufferedInputStream in = new BufferedInputStream(new FileInputStream("E:\\kVASy5Jars\\nb_ldap.properties"));
+    props.load(in);
+    in.close();
+    
+    String IP = props.getProperty("BACKEND.IP");
+    String PORT = props.getProperty("BACKEND.PORT");
+    
+    return(IP + ":" + PORT);
   }
 }

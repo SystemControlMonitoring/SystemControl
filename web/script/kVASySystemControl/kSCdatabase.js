@@ -12,7 +12,7 @@ function SysInfo(uid) {
     var node = urlPara('h');
     var client = urlPara('c');
     $.ajax({
-        url: 'http://172.23.10.249:6560/clientdirect/json/?e=1&m=U1lTSU5GTw==Jkd873&h=' + node + 'Hqu8zd&c=' + client + 'Jjd723&u=' + b64uid + 'KjdUE8',
+        url: 'http://' + Backend + '/clientdirect/json/?e=1&m=U1lTSU5GTw==Jkd873&h=' + node + 'Hqu8zd&c=' + client + 'Jjd723&u=' + b64uid + 'KjdUE8',
         crossDomain: true,
         success:function(point) {
             $('section','#center').append('<a href="sysinfo.jsp?h=' + node + '&c=' + client + '&t=' + $.base64.encode( point.TYPE ) + '" class="ticker" title=""><span class="hname"></span><br></br><font class="os"></font><br></br><font class="subcontent" id="cpu"></font><br><font class="subcontent" id="ram"></font><br><font class="subcontent" id="startup"></font></a>');
@@ -45,7 +45,7 @@ function DbInfo(uid) {
     var node = urlPara('h');
     var client = urlPara('c');
     $.ajax({
-        url: 'http://172.23.10.249:6560/clientdirect/json/?e=1&m=REJJTkZPJkd873&h=' + node + 'Hqu8zd&c=' + client + 'Jjd723&u=' + b64uid + 'KjdUE8',
+        url: 'http://' + Backend + '/clientdirect/json/?e=1&m=REJJTkZPJkd873&h=' + node + 'Hqu8zd&c=' + client + 'Jjd723&u=' + b64uid + 'KjdUE8',
         crossDomain: true,
         success:function(json) {     
             var i=0;
