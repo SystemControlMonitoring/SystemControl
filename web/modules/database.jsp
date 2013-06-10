@@ -58,6 +58,7 @@
         <link rel='stylesheet' href='../layout/kSCsidebar.css' />
         <link rel='stylesheet' href='../layout/kSCtaov.css' />
         <link rel='stylesheet' href='../layout/kSCbasic.css' />
+        <link rel='stylesheet' href='../layout/kSCdatabase.css' />
         
         <!-- Handhelds -->
         <link rel='stylesheet' media='handheld' href='../layout/metro.smart.css' />
@@ -88,11 +89,13 @@
                 SubGetBackend();
                 SubLoader();
                 Top();
-                Liveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                SubLiveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 KlickFunctionSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 KeyFunctionSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 SubBase();
                 ChangeTitle();
+                HostInformations(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                SrvInfo(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 SysInfo(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 SlimTaov(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 ModShowCritical(<% out.println("'" + request.getRemoteUser() + "'"); %>);
@@ -113,7 +116,7 @@
 
 		<% out.println( "<span id='top'><p class='login_username'>" + search.getDisplayName(request.getRemoteUser()) + "</p></span>" ); %>
 
-		<span id="top"><div id="theme-roller"><span class='theme-box' theme='light'></span></div></span>
+		<span id="top"><div id="ShortMenu"><img id="ListHosts" style='opacity: 0.5;-moz-opacity: 0.5;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";filter:alpha(opacity=50);-webkit-opacity: 0.5; -ms-opacity: 0.5;-o-opacity: 0.5;' class="Border2px004279" src="../layout/images/list.png" title="Listen Ansicht"/><img id="GridHosts" class="Border2px004279" style='opacity: 0.5;-moz-opacity: 0.5;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";filter:alpha(opacity=50);-webkit-opacity: 0.5; -ms-opacity: 0.5;-o-opacity: 0.5;' src="../layout/images/grid.png" title="Tabs Ansicht" /><img onclick="Reload(<% out.println("'" + request.getRemoteUser() + "'"); %>); " src="../layout/images/update.png" title="Neu laden"/></div></span>
 
 		<p class="login_shortname"><a href="../logout.jsp">Abmelden</a><p>
                     
@@ -121,8 +124,14 @@
 
                 <!-- Detail Start -->
                 
-                <div id="center">
+                <div id="SubCenter">
                     <section></section>
+                </div>
+                
+                <div id="HostInformations">
+                    <div id="HostStatus"></div>
+                    <div id="HostSummary"></div>
+                    <div id="HostServices"></div>
                 </div>
                 
                 <!-- Detail Ende -->
@@ -155,14 +164,7 @@
                 
                 <!-- Liveticker Start -->
                 
-                <!--div id="LivetickerBG"></div>
-                <div id="KlickLiveticker"></div>
-                <div id="Liveticker">
-                    <div id="SubLiveticker">
-                        <div id="CountLiveticker"></div>
-                        <div id="SelectLiveticker"></div>
-                    </div>
-                </div-->
+                <div id="Liveticker"></div> 
                 
                 <!-- Liveticker Ende -->
                 

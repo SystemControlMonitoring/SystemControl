@@ -98,6 +98,11 @@
     cursor: pointer;
 }
 
+.taovok:hover {
+    background-color: #004279;
+    cursor: pointer;
+}
+
 .Notice {
     color: #82abcc;
 }

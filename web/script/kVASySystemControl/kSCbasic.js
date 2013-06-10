@@ -35,18 +35,18 @@ function SubGetBackend() {
         async: false,
         success: function(json) {
             $.each(json, function(key,value) {
-                alert(value);
+                Backend = value;
             });
         }
     });
 }
 
 function Loader() {
-    $('#theme-roller').append('<img id="AjaxLoader" src="layout/images/ajax-loader.gif">');
+    $('#TopMenu').append('<img id="AjaxLoader" src="layout/images/ajax-loader.gif">');
 }
 
 function SubLoader() {
-    $('#theme-roller').append('<img id="AjaxLoader" src="../layout/images/ajax-loader.gif">');
+    $('#TopMenu').append('<img id="AjaxLoader" src="../layout/images/ajax-loader.gif">');
 }
 
 function Base() {
@@ -114,7 +114,7 @@ function KlickFunctionSidebar(uid) {
 
 function StyleSidebar(uid) {
     var b64uid = $.base64.encode( uid );
-    $('#SidebarSearch').append('<div id="Title">Suchen</div><div id="SubTitle">Nichts ausgew&auml;hlt!</div><form method="GET"><input id="SearchInput" type="text" onclick="DeleteVal();"></form>');
+    $('#SidebarSearch').append('<div id="Title">Suchen</div><div id="SubTitle">Nichts ausgew&auml;hlt!</div><form id="SearchForm" method="GET"><input id="SearchInput" name="searchstring" type="text" onclick="DeleteVal();"><img onclick="FormSubmit();" id="SearchImgInput" src="layout/images/search.png" /></form>');
     $('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFHost" onclick="SearchHosts(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="layout/images/server.png"><span>Hosts</span></div>');
     $('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFService" onclick="SearchServices(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="layout/images/services.png"><span>Services</span></div>');
     $('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFDatabase" onclick="SearchDatabases(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="layout/images/database.png"><span>Datenbanken</span></div>');
@@ -123,7 +123,7 @@ function StyleSidebar(uid) {
 
 function SubStyleSidebar(uid) {
     var b64uid = $.base64.encode( uid );
-    $('#SidebarSearch').append('<div id="Title">Suchen</div><div id="SubTitle">Nichts ausgew&auml;hlt!</div><form method="GET"><input id="SearchInput" type="text" onclick="DeleteVal();"></form>');
+    $('#SidebarSearch').append('<div id="Title">Suchen</div><div id="SubTitle">Nichts ausgew&auml;hlt!</div><form id="SearchForm" method="GET"><input id="SearchInput" name="searchstring" type="text" onclick="DeleteVal();"><img onclick="FormSubmit();" id="SearchImgInput" src="../layout/images/search.png" /></form>');
     $('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFHost" onclick="SearchHosts(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="../layout/images/server.png"><span>Hosts</span></div>');
     $('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFService" onclick="SearchServices(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="../layout/images/services.png"><span>Services</span></div>');
     $('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFDatabase" onclick="SearchDatabases(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="../layout/images/database.png"><span>Datenbanken</span></div>');
@@ -134,7 +134,12 @@ function DeleteVal() {
     $('input#SearchInput').val('');
 }
 
+function FormSubmit() {
+    $('form#SearchForm').submit();
+}
+
 function SearchHosts(uid) {
+    $('form#SearchForm').attr('action', 'services1.jsp');
     $('#SubTitle').html('.. nach Hosts');
     $('input#SearchInput').val('Hostname');
     $('#SFService').removeClass('BgBlue');
@@ -165,6 +170,7 @@ function SearchHosts(uid) {
 }
 
 function SearchServices(uid) {
+    $('form#SearchForm').attr('action', 'services2.jsp');
     $('#SubTitle').html('.. nach Services');
     $('input#SearchInput').val('Servicename');
     $('#SFHost').removeClass('BgBlue');
@@ -195,6 +201,7 @@ function SearchServices(uid) {
 }
 
 function SearchDatabases(uid) {
+    $('form#SearchForm').attr('action', 'services3.jsp');
     $('#SubTitle').html('.. nach Datenbanken');
     $('input#SearchInput').val('SID');
     $('#SFHost').removeClass('BgBlue');
@@ -225,6 +232,7 @@ function SearchDatabases(uid) {
 }
 
 function SearchHostgroups(uid) {
+    $('form#SearchForm').attr('action', 'services4.jsp');
     $('#SubTitle').html('.. nach Hostgruppen');
     $('input#SearchInput').val('Name');
     $('#SFHost').removeClass('BgBlue');
@@ -262,7 +270,7 @@ function Configuration(uid) {
             <ul>\n\
                 <li><a href="#ConfigurationTabs1">Web-Konfiguration</a></li>\n\
                 <li><a href="#ConfigurationTabs2">Core-Konfiguration</a></li>\n\
-                <li><a href="#ConfigurationTabs3">User-Konfiguration</a></li>\n\
+                <li><a href="#ConfigurationTabs3">Proxy-Konfiguration</a></li>\n\
                 <li><a href="#ConfigurationTabs4">System-Information</a></li>\n\
             </ul>\n\
             <div id="ConfigurationTabs1">\n\

@@ -36,6 +36,7 @@
 	<script type="text/javascript" src="script/grid.setcolumns.js"></script>
 	<script type="text/javascript" src="script/jquery.contextmenu.js"></script>
 	<script type="text/javascript" src="script/grid.addons.js"></script>
+        <script type="text/javascript" src="script/jquery.selectmenu.js"></script>
         
         <!-- KSC Basicfunctions -->
         <script type="text/javascript" src="script/kVASySystemControl/kSCbasic.js"></script>
@@ -114,20 +115,19 @@
 
 		<% out.println( "<span id='top'><p class='login_username'>" + search.getDisplayName(request.getRemoteUser()) + "</p></span>" ); %>
 
-		<span id="top"><div id="theme-roller"><span class='theme-box' theme='light'></span></div></span>
+		<span id="top"><div id="ShortMenu"><img id="ListHosts" class="Border2px004279" onclick="ListAllServices(<% out.println("'" + request.getRemoteUser() + "'"); %>); " src="layout/images/list.png" title="Listen Ansicht"/><img id="GridHosts" class="Border2px004279" onclick="GridAllServices(<% out.println("'" + request.getRemoteUser() + "'"); %>); " src="layout/images/grid.png" title="Tabs Ansicht" /><img onclick="Reload(<% out.println("'" + request.getRemoteUser() + "'"); %>); " src="layout/images/update.png" title="Neu laden"/></div></span>
 
-		<p class="login_shortname"><a style="cursor: pointer" onclick="Reload(<% out.println("'" + request.getRemoteUser() + "'"); %>); ">Reload</a> | <a href="logout.jsp">Abmelden</a><p>
+		<p class="login_shortname"><a href="logout.jsp">Abmelden</a><p>
 
                 <div id="back-div"></div>
                     
                 <!-- Services Start -->
                 
-                <div id="center">
-                    <section>
-                        <div id="DivShowServices"></div>
-                    </section>
-                </div>
-                
+                <form id="SearchService" method="GET" action="services.jsp">
+                    <div id="center"></div>
+                    <div id="SrvCenter"></div>
+                </form>
+                    
                 <!-- Services Ende -->
                 
                 <!-- Configuration Start -->
@@ -158,14 +158,7 @@
                 
                 <!-- Liveticker Start -->
                 
-                <!--div id="LivetickerBG"></div>
-                <div id="KlickLiveticker"></div>
-                <div id="Liveticker">
-                    <div id="SubLiveticker">
-                        <div id="CountLiveticker"></div>
-                        <div id="SelectLiveticker"></div>
-                    </div>
-                </div-->
+                <div id="Liveticker"></div> 
                 
                 <!-- Liveticker Ende -->
                 

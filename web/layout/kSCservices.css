@@ -6,6 +6,17 @@
         Purpose of the stylesheet follows.
 */
 
+#SrvCenter {
+	padding: 45px;
+	overflow: hidden;
+}
+
+#NoContent {
+    margin-left: 15px;
+    margin-top: 15px;
+    font-size: 12px;
+}
+
 .default {
     background-color: #004279;
     border: 2px solid #004c8a;
@@ -50,37 +61,6 @@
 
 .fwa {
     color: orange;
-}
-
-.taovok:hover {
-    background-color: #004279;
-}
-
-.taovcr {
-    background-color: #9c1919;
-}
-
-.taovun {
-    background-color: #6c006c;
-}
-
-.taovwa {
-    background-color: #004c8a;
-}
-
-.taovcr:hover {
-    background-color: #8b1616;
-    cursor: pointer;
-}
-
-.taovun:hover {
-    background-color: #490049;
-    cursor: pointer;
-}
-
-.taovwa:hover {
-    background-color: #004279;
-    cursor: pointer;
 }
 
 .Notice {
@@ -193,4 +173,168 @@
 
 #SubDivShowServices {
     margin-top: -2px;
+}
+
+#ServiceLst table {
+    margin-left: -32px;
+}
+
+#ServiceLst table:first-child {
+    margin-top: -15px;
+}
+
+#ServiceLst table:last-child {
+    margin-bottom: -14px;
+}
+
+#ListDivShowServices {
+    position: absolute;
+    overflow-x: auto;
+    overflow-y: scroll;
+    bottom: 105px;
+    top: 210px;
+    border-left: 2px solid #82abcc;
+    border-top: 1px solid #82abcc;
+    border-bottom: 1px solid #82abcc;
+    background-color: #004c8a;
+}
+
+#ServiceLstTable {
+    width: 100%;
+    border-spacing:0;
+    border-collapse:collapse;
+    margin-bottom: 5px;
+    margin-top: 3px;
+}
+
+#ServiceLstTable i {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+#ServiceLstTable td {
+    padding: 3px;
+}
+
+#ServiceLstTable tr:first-child td:first-child {
+    width: 40px;
+    border-bottom: none;
+}
+
+#ServiceLstTable tr:first-child td:first-child img {
+    width: 32px;
+    margin-bottom: -23px;
+    margin-left: 4px;
+}
+
+#ServiceLstTable tr:first-child td:first-child + td {
+    width: 200px;
+    font-size: 16px;
+    font-weight: bold;
+    border-left: none;
+    border-bottom: none;
+}
+
+#ServiceLstTable tr:first-child td:first-child + td + td {
+    width: 225px;
+    border-bottom: 1px solid #82abcc;
+    border-left: 1px solid #82abcc;
+    font-size: 12px;
+}
+
+#ServiceLstTable tr:first-child td:last-child {
+    width: 180px;
+    color: #82abcc;
+    font-size: 12px;
+    border-bottom: 1px solid #82abcc;
+}
+
+#ServiceLstTable tr:first-child td:first-child + td + td, #ServiceLstTable tr:first-child td:first-child + td + td + td, #ServiceLstTable tr:first-child td:first-child + td + td + td + td, #ServiceLstTable tr:first-child td:first-child + td + td + td + td + td {
+    border-top: 1px solid #82abcc;
+}
+
+#ServiceLstTable tr:first-child td:first-child + td + td + td, #ServiceLstTable tr:first-child td:first-child + td + td + td + td {
+    border-left: 1px solid #82abcc;
+    font-size: 12px;
+    border-bottom: 1px solid #82abcc;
+}
+
+#ServiceLstTable tr:first-child td:first-child + td + td + td {
+    width: 15px;
+}
+
+#ServiceLstTable tr:first-child td:first-child + td + td + td img {
+    margin-bottom: -3px;
+}
+
+#ServiceLstTable tr:first-child + tr td:first-child {
+    border-left: none;
+    border-bottom: none;
+}
+
+#ServiceLstTable tr:first-child + tr td:first-child + td, #ServiceLstTable tr:first-child + tr td:first-child + td + td, #ServiceLstTable tr:first-child + tr td:first-child + td + td + td, #ServiceLstTable td:first-child + td + td + td, #ServiceLstTable td:first-child + td + td, #ServiceLstTable td:first-child + td {
+    border-left: 1px solid #82abcc;
+    font-size: 12px;
+    border-bottom: 1px solid #82abcc;
+}
+
+#ServiceLstTable tr:first-child + tr td:last-child, #ServiceLstTable td:last-child {
+    width: 180px;
+    color: #82abcc;
+    font-size: 12px;
+    border-bottom: 1px solid #82abcc;
+}
+
+#ServiceLstTable tr td:first-child, #ServiceLstTable tr:hover td:first-child, #ServiceLstTable tr:first-child:hover td:first-child + td, #ServiceLstTable tr:first-child td:first-child + td {
+    background-color: #004c8a;
+}
+
+/**/
+
+#HeadDivTableServicesListView {
+    position: absolute;
+    top: 175px;
+    padding: 9px;
+    border-top: 2px solid #82abcc;
+    border-left: 2px solid #82abcc;
+    border-right: 2px solid #82abcc;
+    cursor: default;
+    background-color: #004c8a;
+}
+
+#HeadDivTableServicesListView span:first-child {
+    margin-left: 50px;
+}
+
+#HeadDivTableServicesListView span:first-child + span {
+    margin-left: 175px;
+}
+
+#HeadDivTableServicesListView span:first-child + span + span {
+    margin-left: 175px;
+}
+
+/*
+*
+* Select
+*
+*/
+
+#ServiceListSelect {
+    position: absolute;
+    top: 135px;
+    left: 45px;
+    width: 450px;
+    height: 31px;
+    border: 2px solid #82abcc;
+    color: white;
+}
+
+#ServiceListSelect:hover {
+    position: absolute;
+    top: 135px;
+    left: 45px;
+    width: 450px;
+    height: 31px;
+    border: 2px solid #82abcc;
 }

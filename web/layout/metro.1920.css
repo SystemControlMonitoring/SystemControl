@@ -165,7 +165,7 @@ body[theme=light] .login_shortname { color: #004c8a; }
     color: #ffffff;
     border: 2px solid green;
     top: 230px;
-    left: 250px;
+    left: 175px;
     padding: 10px;
     font-size: 16px;
     z-index: 5;
@@ -185,37 +185,12 @@ body[theme=light] .login_shortname { color: #004c8a; }
 	position: absolute;
 	left: 261px;
 	top: 95px;
+        cursor: default;
 }
 
 .subcontent {
 	color: #82abcc;
 	font-size: 14px;
-}
-
-.login_username {
-	position: absolute;
-	top: 50px;
-	right: 100px;
-	font-size: 20px;
-}
-
-.login_shortname {
-	position: absolute;
-	top: 72px;
-	right: 100px;
-	font-size: 14px;
-}
-
-.theme-box {
-	position: absolute;
-	right: 45px;
-	top: 43px;
-	display:inline-block;
-	width:45px;
-	height:45px;
-	margin:3px;
-	cursor:pointer;
-	vertical-align:middle;
 }
 
 table.MenuSelect {
@@ -361,199 +336,6 @@ html {
 	#overflow-x:scroll;
 	-webkit-text-size-adjust: 100%;
 	-ms-text-size-adjust: 100%;
-}
-
-#center, .metro-pivot{
-	padding: 45px;
-	overflow: hidden;
-}
-
-#center a:focus {
-	outline:0
-}
-
-#center section{
-	width:1765px;
-	display:inline-block;
-	margin-right:100px;
-}
-
-#center a{
-	display:block;
-	float:left;
-	margin:4px;
-	height:100px;
-	width:260px;
-	padding:25px;
-	z-index:0;
-	color:#fff;
-	font-size:18px;
-	text-decoration:none;
-}
-
-#center a span{
-	font-size:36px;
-	letter-spacing:-3px;
-}
-
-#center a span.sub-grid {
-    font-size: 16px;
-    letter-spacing: 0px;
-}
-
-#center a img{
-	display:inline;
-	margin:-25px 0 0 -25px;
-}
-
-body[theme=dark] #center a.normal { background: #004c8a; border:1px solid #82abcc; font-size:16px; }
-body[theme=dark] #center a.numbers { background: #004c8a; border:1px solid #82abcc; font-size:16px; }
-body[theme=dark] #center a.fulltext { background: #004c8a; border:1px solid #82abcc; font-size:16px; }
-body[theme=dark] #center a.preview { background: #004c8a; border:1px solid #82abcc; font-size:16px; }
-body[theme=dark] #center a.twitter { background: #004c8a; border:1px solid #82abcc; font-size:16px; }
-body[theme=dark] #center a.stats { background: #004c8a; border:1px solid #82abcc; font-size:16px; }
-body[theme=dark] #center a.ticker { background: #004c8a; border:1px solid #82abcc; font-size:16px; }
-body[theme=dark] #center a.icon { background: #004c8a; border:1px solid #82abcc; font-size:16px; }
-body[theme=dark] #center a.search { background: #004c8a; border:1px solid #82abcc; font-size:16px; }
-body[theme=dark] #center a.big { background: #004c8a; border:1px solid #82abcc; font-size:16px; }
-body[theme=dark] #center a.AddNext { opacity: 0.1; filter: alpha(opacity=10); -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=10)"; -moz-opacity: 0.1; -khtml-opacity: 0.1;}
-
-body[theme=light] #center a.normal { background: #004279; border:1px solid #004c8a; font-size:16px; }
-body[theme=light] #center a.numbers { background: #004279; border:1px solid #004c8a; font-size:16px; }
-body[theme=light] #center a.fulltext { background: #004279; border:1px solid #004c8a; font-size:16px; }
-body[theme=light] #center a.preview { background: #004279; border:1px solid #004c8a; font-size:16px; }
-body[theme=light] #center a.twitter { background: #004279; border:1px solid #004c8a; font-size:16px; }
-body[theme=light] #center a.stats { background: #004279; border:1px solid #004c8a; font-size:16px; }
-body[theme=light] #center a.ticker { background: #004279; border:1px solid #004c8a; font-size:16px; }
-body[theme=light] #center a.icon { background: #004279; border:1px solid #004c8a; font-size:16px; }
-body[theme=light] #center a.search { background: #004279; border:1px solid #004c8a; font-size:16px; }
-body[theme=light] #center a.big { background: #004279; border:1px solid #004c8a; font-size:16px; }
-body[theme=light] #center a.AddNext { opacity: 0.1; filter: alpha(opacity=10); -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=10)"; -moz-opacity: 0.1; -khtml-opacity: 0.1;}
-
-body[theme=dark] #center a.normal:hover { background: #82abcc; border:1px solid #82abcc; font-size:16px; }
-body[theme=dark] #center a.numbers:hover { background: #82abcc; border:1px solid #82abcc; font-size:16px; }
-body[theme=dark] #center a.fulltext:hover { background: #82abcc; border:1px solid #82abcc; font-size:16px; }
-body[theme=dark] #center a.preview:hover { background: #82abcc; border:1px solid #82abcc; font-size:16px; }
-body[theme=dark] #center a.twitter:hover { background: #82abcc; border:1px solid #82abcc; font-size:16px; }
-body[theme=dark] #center a.stats:hover { background: #82abcc; border:1px solid #82abcc; font-size:16px; }
-body[theme=dark] #center a.ticker:hover { background: #82abcc; border:1px solid #82abcc; font-size:16px; }
-body[theme=dark] #center a.icon:hover { background: #82abcc; border:1px solid #82abcc; font-size:16px; }
-body[theme=dark] #center a.search:hover { background: #82abcc; border:1px solid #82abcc; font-size:16px; }
-body[theme=dark] #center a.big:hover {  }
-body[theme=dark] #center a.AddNext:hover { opacity: 1.0; filter: alpha(opacity=100); -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; -moz-opacity: 1.0; -khtml-opacity: 1.0; }
-
-body[theme=light] #center a.normal:hover { background: #004c8a; border:1px solid #004c8a; font-size:16px; }
-body[theme=light] #center a.numbers:hover { background: #004c8a; border:1px solid #004c8a; font-size:16px; }
-body[theme=light] #center a.fulltext:hover { background: #004c8a; border:1px solid #004c8a; font-size:16px; }
-body[theme=light] #center a.preview:hover { background: #004c8a; border:1px solid #004c8a; font-size:16px; }
-body[theme=light] #center a.twitter:hover { background: #004c8a; border:1px solid #004c8a; font-size:16px; }
-body[theme=light] #center a.stats:hover { background: #004c8a; border:1px solid #004c8a; font-size:16px; }
-body[theme=light] #center a.ticker:hover { background: #004c8a; border:1px solid #004c8a; font-size:16px; }
-body[theme=light] #center a.icon:hover { background: #004c8a; border:1px solid #004c8a; font-size:16px; }
-body[theme=light] #center a.search:hover { background: #004c8a; border:1px solid #004c8a; font-size:16px; }
-body[theme=light] #center a.big:hover {  }
-body[theme=light] #center a.AddNext:hover { opacity: 1.0; filter: alpha(opacity=100); -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; -moz-opacity: 1.0; -khtml-opacity: 1.0; }
-
-body[theme=dark] #center a.normal:hover>span { color: #004c8a; }
-body[theme=dark] #center a.numbers:hover>span { color: #004c8a; }
-body[theme=dark] #center a.fulltext:hover>span { color: #004c8a; }
-body[theme=dark] #center a.preview:hover>span { color: #004c8a; }
-body[theme=dark] #center a.twitter:hover>span { color: #004c8a; }
-body[theme=dark] #center a.stats:hover>span { color: #004c8a; }
-body[theme=dark] #center a.ticker:hover>span { color: #004c8a; }
-body[theme=dark] #center a.icon:hover>span { color: #004c8a; }
-body[theme=dark] #center a.search:hover>span { color: #004c8a; }
-body[theme=dark] #center a.big:hover>span {  }
-body[theme=dark] #center a.ticker:hover>.subcontent { color: #004c8a; }
-
-body[theme=light] #center a.normal:hover>span { color: #fff; }
-body[theme=light] #center a.numbers:hover>span { color: #fff; }
-body[theme=light] #center a.fulltext:hover>span { color: #fff; }
-body[theme=light] #center a.preview:hover>span { color: #fff; }
-body[theme=light] #center a.twitter:hover>span { color: #fff; }
-body[theme=light] #center a.stats:hover>span { color: #fff; }
-body[theme=light] #center a.ticker:hover>span { color: #fff; }
-body[theme=light] #center a.icon:hover>span { color: #fff; }
-body[theme=light] #center a.search:hover>span { color: #fff; }
-body[theme=light] #center a.big:hover>span {  }
-
-#center a.icon, #center a.search, #center a.AddNext{
-	width:100px;
-}
-
-#center a.AddNext>img {
-	margin-top: 25px;
-	margin-left: 22px;
-}
-
-#center a.preview{
-	font-size:30px;
-}
-
-#center a.preview img{
-	display:block;
-	margin-bottom:5px
-}
-
-#center a.twitter{
-	font-size:14px;
-	text-shadow:1px 1px 2px ##652d9a;
-	padding-top:15px;
-	padding-left:15px;
-	height: 110px;
-	width: 260px;
-}
-
-#center a.twitter>span {
-	font-size:20px;
-}
-
-#center a.twitter>i {
-	font-size:.9em;
-	font-style:italic;
-}
-
-#center a.twitter>img {
-	float:left;
-	margin:0 5px 0 0;
-}
-
-#center a.images {
-	padding:0;
-	width:302px;
-	height:152px;
-}
-
-#center a.stats {
-	width: 580px;
-	height: 260px;
-}
-
-#center a.ticker {
-	#width: 420px;
-	width: 260px;
-	height: 260px;
-}
-
-#center a.big {
-	width: 1060px;
-	height: 360px;
-}
-
-#center a.big .small-text {
-	letter-spacing: 0px;
-	font-size: 20px;
-	font-weight: bold;
-}
-
-center#ad-container {
-	padding-top:5px;
-	border-top:solid 1px #eee;
-	position:fixed;
-	bottom:0;
-	left:0;
-	width:100%;
-	background:white;
 }
 
 .rightside {
@@ -1052,19 +834,51 @@ table.ui-datepicker-calendar th {
 	height: 435px;
 }
 
+#center section, #center a.prebig, #center a.big {
+    width:1765px;
+}
+
+#SubCenter section {
+    width: 640px;
+}
+
+#HostInformations, #HostSrvList {
+    width: 1100px;
+}
+
+#SubCenter {
+    margin-left: 1110px;
+}
+
+#HostInformations {
+    left: 25px;
+}
+
+#HeadHostSrvList, #FooterHostSrvList {
+    width: 1080px;
+}
+
+#HostSummary {
+    width: 750px;
+}
+
 #DivShowCritical, #TPie {
     width: 1795px;
 }
 
-#DivShowServices {
+#DivShowServices, #DivTableHostsListView, #ListDivShowServices {
     width: 1763px;
 }
 
-#HeadDivShowCritical, #FooterDivShowCritical {
+#ServiceLst table {
+    width: 1745px;
+}
+
+#HeadDivShowCritical, #FooterDivShowCritica {
     width: 1773px;
 }
 
-#HeadDivShowServices, #FooterDivShowServices {
+#HeadDivShowServices, #FooterDivShowServices, #HeadDivTableHostsListView, #FooterDivTableHostsListView, #HeadDivTableServicesListView {
     width: 1743px;
 }
 
