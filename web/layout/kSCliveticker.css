@@ -5,6 +5,18 @@
     Description:
         Purpose of the stylesheet follows.
 */
+#SubLiveticker {
+    display: none;
+    background-color: #004279;
+    width: 90px;
+    border: 1px solid #82abcc;
+    z-index: 5;
+    position: absolute;
+    top: 23px;
+    right: 0;
+    -webkit-box-shadow: 0px 0px 6px 1px #002b4e;
+    box-shadow: 0px 0px 6px 1px #002b4e; 
+}
 
 #Liveticker {
     position: absolute;
@@ -12,14 +24,21 @@
     right: 48px;
     height: 1px;
     text-align: right;
-    z-index: 2;
+    z-index: 5;
 }
 
 #LtHeader {
-    font-size: 12px;
+    font-size: 13px;
     color: #82abcc;
     margin-bottom: 5px;
     margin-right: 0px;
+    width: 90px;
+    border: 1px solid #004279;
+    text-align: center;
+}
+
+#LtHeader:hover {
+    cursor: pointer;
 }
 
 #LtFooter {
@@ -118,5 +137,5 @@
 }
 
 #LtText {
-    cursor: default;
+    padding: 5px;
 }

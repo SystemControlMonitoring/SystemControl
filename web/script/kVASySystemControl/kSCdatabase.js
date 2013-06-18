@@ -56,7 +56,7 @@ function DbInfo(uid) {
         success:function(json) {     
             var i=0;
             $.each(json, function() {
-                $('section','#SubCenter').append('<a href="" class="ticker" title=""><span class="dbname' + i + '"></span><br></br><font class="dbversion' + i + '"></font><br></br><font class="subcontent" id="dbarchiver' + i + '"></font><br><font class="subcontent" id="dbstat' + i + '"></font><br><font class="subcontent" id="dbblocked' + i + '"></font><br><font class="subcontent" id="dbstartup' + i + '"></font><br><font class="subcontent" id="dbdbstatus' + i + '"></font><br><font class="subcontent" id="dbactive_status' + i + '"></font><br><font class="subcontent" id="dblogins' + i + '"></font><br><font class="subcontent" id="dbrole' + i + '"></font><br></a>');
+                $('section','#SubCenter').append('<a href="http://172.23.13.123:6555/console/?module=DB&db=ORCL2" class="ticker" title=""><span class="dbname' + i + '"></span><br></br><font class="dbversion' + i + '"></font><br></br><font class="subcontent" id="dbarchiver' + i + '"></font><br><font class="subcontent" id="dbstat' + i + '"></font><br><font class="subcontent" id="dbblocked' + i + '"></font><br><font class="subcontent" id="dbstartup' + i + '"></font><br><font class="subcontent" id="dbdbstatus' + i + '"></font><br><font class="subcontent" id="dbactive_status' + i + '"></font><br><font class="subcontent" id="dblogins' + i + '"></font><br><font class="subcontent" id="dbrole' + i + '"></font><br></a>');
                 $('.dbname' + i).append('DB: ' + this.DBNAME);
                 $('.dbversion' + i).append(this.VERSION);
                 $('#dbarchiver' + i).append('Archiver: ' + this.ARCHIVER);

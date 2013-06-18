@@ -67,6 +67,26 @@
     color: #82abcc;
 }
 
+.hcr {
+    background-color: #9c1919;
+}
+
+.hun {
+    background-color: #6c006c;
+}
+
+.hwa {
+    background-color: orange;
+}
+
+.hok {
+    background-color: #088A08;
+}
+
+.hpe {
+    background-color: grey;
+}
+
 #HeadDivShowServices {
     padding: 10px;
     background-color: #004279;
@@ -187,7 +207,7 @@
     margin-bottom: -14px;
 }
 
-#ListDivShowServices {
+#DivTableHostsListView {
     position: absolute;
     overflow-x: hidden;
     overflow-y: auto;
@@ -203,104 +223,83 @@
     /*margin-top: 10px;*/
 }
 
-#ServiceLstTable {
+#DivTableHostsListView table {
     width: 99%;
     border-spacing:0;
     border-collapse:collapse;
     margin-bottom: 5px;
     margin-top: 3px;
+    font-size: 12px;
     table-layout: fixed;
 }
 
-#ServiceLstTable i {
-    font-size: 12px;
-    font-weight: normal;
+#DivTableHostsListView table tr {
+    vertical-align: middle;
 }
 
-#ServiceLstTable td {
-    padding: 3px;
-}
-
-#ServiceLstTable td:last-child {
-    border-right: 1px solid #82abcc;
-}
-
-#ServiceLstTable tr:first-child td:first-child {
-    width: 40px;
-    border-bottom: none;
-}
-
-#ServiceLstTable tr:first-child td:first-child img {
+#DivTableHostsListView table tr:first-child td:first-child img {
     width: 32px;
     margin-bottom: -23px;
     margin-left: 4px;
 }
 
-#ServiceLstTable tr:first-child td:first-child + td {
+#DivTableHostsListView table tr:first-child td:first-child {
+    width: 50px;
+    text-align: center;
+    background-color: #004279;
+    border-top: 1px solid #004279;
+    border-bottom: 1px solid #004279;
+}
+
+#DivTableHostsListView table tr:first-child td:first-child + td {
     width: 200px;
     font-size: 16px;
     font-weight: bold;
-    border-left: none;
-    border-bottom: none;
-}
-
-#ServiceLstTable tr:first-child td:first-child + td + td {
-    width: 225px;
-    border-bottom: 1px solid #82abcc;
-    border-left: 1px solid #82abcc;
-    font-size: 12px;
-}
-
-#ServiceLstTable tr:first-child td:last-child {
-    width: 180px;
-    color: #82abcc;
-    font-size: 12px;
-    border-bottom: 1px solid #82abcc;
-}
-
-#ServiceLstTable tr:first-child td:first-child + td + td, #ServiceLstTable tr:first-child td:first-child + td + td + td, #ServiceLstTable tr:first-child td:first-child + td + td + td + td, #ServiceLstTable tr:first-child td:first-child + td + td + td + td + td {
-    border-top: 1px solid #82abcc;
-}
-
-#ServiceLstTable tr:first-child td:first-child + td + td + td, #ServiceLstTable tr:first-child td:first-child + td + td + td + td {
-    border-left: 1px solid #82abcc;
-    font-size: 12px;
-    border-bottom: 1px solid #82abcc;
-}
-
-#ServiceLstTable tr:first-child td:first-child + td + td + td {
-    width: 15px;
-}
-
-#ServiceLstTable tr:first-child td:first-child + td + td + td img {
-    margin-bottom: -3px;
-}
-
-#ServiceLstTable tr:first-child + tr td:first-child {
-    border-left: none;
-    border-bottom: none;
-}
-
-#ServiceLstTable tr:first-child + tr td:first-child + td, #ServiceLstTable tr:first-child + tr td:first-child + td + td, #ServiceLstTable tr:first-child + tr td:first-child + td + td + td, #ServiceLstTable td:first-child + td + td + td, #ServiceLstTable td:first-child + td + td, #ServiceLstTable td:first-child + td {
-    border-left: 1px solid #82abcc;
-    font-size: 12px;
-    border-bottom: 1px solid #82abcc;
-}
-
-#ServiceLstTable tr:first-child + tr td:last-child, #ServiceLstTable td:last-child {
-    width: 180px;
-    color: #82abcc;
-    font-size: 12px;
-    border-bottom: 1px solid #82abcc;
-}
-
-#ServiceLstTable tr td:first-child, #ServiceLstTable tr:hover td:first-child, #ServiceLstTable tr:first-child:hover td:first-child + td, #ServiceLstTable tr:first-child td:first-child + td {
+    padding: 5px;
     background-color: #004279;
+    border-top: 1px solid #004279;
+}
+
+#DivTableHostsListView table tr:first-child + tr td:first-child {
+    padding: 5px;
+    background-color: #004279;
+    border-bottom: 1px solid #004279;
+}
+
+#DivTableHostsListView table tr:first-child td:first-child + td + td {
+    width: 100px;
+    border-left: 1px solid #82abcc;
+    border-top: 1px solid #82abcc;
+    border-bottom: 1px solid #82abcc;
+    padding: 5px;
+}
+
+#DivTableHostsListView table tr:first-child td:first-child + td + td + td, #DivTableHostsListView table tr:first-child td:first-child + td + td + td + td, #DivTableHostsListView table tr:first-child td:first-child + td + td + td + td + td, #DivTableHostsListView table tr:first-child td:first-child + td + td + td + td + td + td, #DivTableHostsListView table tr:first-child td:first-child + td + td + td + td + td + td + td {
+    width: 25px;
+    text-align: center;
+    border-left: 1px solid #82abcc;
+    border-top: 1px solid #82abcc;
+    border-bottom: 1px solid #82abcc;
+}
+
+#DivTableHostsListView table tr:first-child td:first-child + td + td + td + td + td + td + td + td {
+    border-left: 1px solid #82abcc;
+    border-top: 1px solid #82abcc;
+    border-bottom: 1px solid #82abcc;
+    padding-left: 5px;
+}
+
+#DivTableHostsListView table tr:first-child td:first-child + td + td + td + td + td + td + td + td + td {
+    width: 180px;
+    color: #82abcc;
+    border-top: 1px solid #82abcc;
+    border-bottom: 1px solid #82abcc;
+    border-right: 1px solid #82abcc;
 }
 
 /**/
 
-#HeadDivTableServicesListView {
+#HeadDivTableHostsListView {
     position: absolute;
     top: 55px;
     padding: 9px;
@@ -310,16 +309,28 @@
     color: #82abcc;
 }
 
-#HeadDivTableServicesListView span:first-child {
-    margin-left: 70px;
+#HeadDivTableHostsListView span:first-child {
+    margin-left: 95px;
 }
 
-#HeadDivTableServicesListView span:first-child + span {
-    margin-left: 190px;
+#HeadDivTableHostsListView span:first-child + span {
+    margin-left: 140px;
 }
 
-#HeadDivTableServicesListView span:first-child + span + span {
-    margin-left: 175px;
+#HeadDivTableHostsListView span:first-child + span + span {
+    margin-left: 48px;
+}
+
+#HeadDivTableHostsListView span:first-child + span + span + span {
+    margin-left: 12px;
+}
+
+#HeadDivTableHostsListView span:first-child + span + span + span + span, #HeadDivTableHostsListView span:first-child + span + span + span + span + span, #HeadDivTableHostsListView span:first-child + span + span + span + span + span + span, #HeadDivTableHostsListView span:first-child + span + span + span + span + span + span + span {
+    margin-left: 12px;
+}
+
+#HeadDivTableHostsListView span:first-child + span + span + span + span + span + span + span + span {
+    margin-left: 50px;
 }
 
 /*
@@ -328,7 +339,7 @@
 *
 */
 
-#ServiceListSelect {
+#HostsListSelect {
     position: absolute;
     top: 10px;
     left: 25px;
@@ -338,7 +349,7 @@
     border: 2px solid #82abcc;
 }
 
-#ServiceListSearch {
+#HostsListSearch {
     position: absolute;
     top: 12px;
     left: 525px;
@@ -347,7 +358,7 @@
     cursor: pointer;
 }
 
-#ServicePane {
+#HostsPane {
     position: absolute;
     width: 100%;
     height: 80px;
@@ -390,7 +401,7 @@
     top: 185px;
     bottom: 55px;
     /*height: 500px;*/
-    left: 252px;
+    left: 260px;
 
 }
 
@@ -401,7 +412,7 @@
     top: 185px;
     bottom: 55px;
     /*height: 500px;*/
-    left: 484px;
+    left: 371px;
 
 }
 
@@ -412,44 +423,45 @@
     top: 185px;
     bottom: 55px;
     /*height: 500px;*/
-    left: 506px;
+    left: 397px;
 }
 
-#center a.service img:first-child {
-    width: 30px;
-    margin-left: 10px;
-    margin-top: 10px;
+#VLFour {
+    position: fixed;
+    width: 1px;
+    background-color: #82abcc;
+    top: 185px;
+    bottom: 55px;
+    /*height: 500px;*/
+    left: 423px;
 }
 
-#center a.service img:last-child {
-    position: absolute;
-    width: 15px;
-    margin-left: 33px;
-    margin-top: -38px;
+#VLFive {
+    position: fixed;
+    width: 1px;
+    background-color: #82abcc;
+    top: 185px;
+    bottom: 55px;
+    /*height: 500px;*/
+    left: 449px;
 }
 
-#SrvTitleGrid {
-    position: absolute;
-    font-size: 14px;
-    font-weight: bold;
-    margin-left: 50px;
-    margin-top: -25px;
+#VLSix {
+    position: fixed;
+    width: 1px;
+    background-color: #82abcc;
+    top: 185px;
+    bottom: 55px;
+    /*height: 500px;*/
+    left: 475px;
 }
 
-#SrvHostNameGrid {
-    position: absolute;
-    font-size: 12px;
-    margin-left: 50px;
-    margin-top: -10px;
-    color: #82abcc;
-}
-
-#center a.service:hover>div#SrvHostNameGrid {
-    color: #004c8a;
-}
-
-#SrvOutputGrid {
-    font-size: 12px;
-    margin-left: 10px;
-    margin-top: 10px;
+#VLSeven {
+    position: fixed;
+    width: 1px;
+    background-color: #82abcc;
+    top: 185px;
+    bottom: 55px;
+    /*height: 500px;*/
+    left: 501px;
 }

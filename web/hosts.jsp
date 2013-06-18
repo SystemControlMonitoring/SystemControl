@@ -36,6 +36,8 @@
 	<script type="text/javascript" src="script/grid.setcolumns.js"></script>
 	<script type="text/javascript" src="script/jquery.contextmenu.js"></script>
 	<script type="text/javascript" src="script/grid.addons.js"></script>
+        <script type="text/javascript" src="script/jquery.selectmenu.js"></script>
+        <script type="text/javascript" src="script/jquery.shortcuts.min.js"></script>
         
         <!-- KSC Basicfunctions -->
         <script type="text/javascript" src="script/kVASySystemControl/kSCbasic.js"></script>
@@ -56,6 +58,7 @@
         <link rel='stylesheet' href='layout/kSCsidebar.css' />
         <link rel='stylesheet' href='layout/kSCtaov.css' />
         <link rel='stylesheet' href='layout/kSCbasic.css' />
+        <link rel='stylesheet' href='layout/kSChosts.css' />
         <link rel='stylesheet' href='layout/ui.jqgrid.css' />
 	<link rel='stylesheet' href='layout/searchFilter.css' />        
         
@@ -120,8 +123,10 @@
                     
                 <!-- Hosts Start -->
                 
-                <div id="center"></div>
-                <div id="ListCenter"></div>
+                <form id="SearchService" method="GET" action="hosts.jsp">
+                    <div id="center"></div>
+                    <div id="ListCenter"></div>
+                </form>
                 
                 <!-- Hosts Ende -->
                 

@@ -40,7 +40,7 @@ function Liveticker(uid) {
                         success: function(json) {
                             var cc=0;
                             /* Format Output */
-                            $('#Liveticker').html('<div id="SubLiveticker"><div id="LtHeader"></div></div>');
+                            $('#Liveticker').html('<div id="LtHeader"></div><div id="SubLiveticker"></div>');
                             $.each(json, function() {
                                 var count = cc;
                                 if (count < "16") {
@@ -64,11 +64,18 @@ function Liveticker(uid) {
                                 }
                                 cc++;
                             });
-                            $('#LtHeader').append('<div id="LtText">' + cc + ' Meldungen</div>');
+                            if (cc > "0") {
+                                $('#LtHeader').append('<div id="LtText" style="background-color: #9c1919; color: #ffffff;">' + cc + ' Meldungen</div>');
+                            } else {
+                                $('#LtHeader').append('<div id="LtText" style="background-color: #088A08; color: #ffffff;">' + cc + ' Meldungen</div>');
+                                $('#SubLiveticker').remove();
+                            }
+                            
                             if (cc > "16") {
                                 $('#SubLiveticker').append('<div id="LtFooter"><a href="#">.. weitere</a></div>');
                             }
                             /* Reload Function */
+                            KlickFunctionLt();
                             setTimeout('Liveticker("' + uid + '")', 30000);
                         },
                         error: function(jqXhr, textStatus, error) {
@@ -144,6 +151,7 @@ function SubLiveticker(uid) {
                                 $('#SubLiveticker').append('<div id="LtFooter"><a href="#">.. weitere</a></div>');
                             }
                             /* Reload Function */
+                            KlickFunctionLt();
                             setTimeout('SubLiveticker("' + uid + '")', 30000);
                         },
                         error: function(jqXhr, textStatus, error) {
@@ -166,4 +174,14 @@ function SubLiveticker(uid) {
         dataType: 'json',
         cache: false
     }); 
+}
+
+function KlickFunctionLt() {
+    $('#LtHeader').click(function() {
+        if ($("#SubLiveticker").is(":hidden")) {
+            $("#SubLiveticker").show();
+        } else {
+            $("#SubLiveticker").hide();
+        }
+    });
 }

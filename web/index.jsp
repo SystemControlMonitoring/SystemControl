@@ -35,6 +35,7 @@
 	<script type="text/javascript" src="script/grid.setcolumns.js"></script>
 	<script type="text/javascript" src="script/jquery.contextmenu.js"></script>
 	<script type="text/javascript" src="script/grid.addons.js"></script>
+        <script type="text/javascript" src="script/jquery.shortcuts.min.js"></script>
         
         <!-- KSC Basicfunctions -->
         <script type="text/javascript" src="script/kVASySystemControl/kSCbasic.js"></script>
@@ -124,10 +125,10 @@
 					<span>Services</span><br></br>
 					<span class="sub-grid">Eine &Uuml;bersicht &uuml;ber alle eingerichteten Services.</span>
 				</a>
-                                <a href="hostgroups.jsp" class="fulltext">
+                                <!--a href="hostgroups.jsp" class="fulltext">
 					<span>Hostgruppen</span><br></br>
 					<span class="sub-grid">Eine &Uuml;bersicht &uuml;ber alle eingerichteten Hostgruppen.</span>
-				</a>
+				</a-->
 				
                                 <!-- DashboardLinks Start -->
                                 <div id="DashboardLinks"></div>

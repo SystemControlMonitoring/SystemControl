@@ -36,6 +36,7 @@
 	<script type="text/javascript" src="script/grid.setcolumns.js"></script>
 	<script type="text/javascript" src="script/jquery.contextmenu.js"></script>
 	<script type="text/javascript" src="script/grid.addons.js"></script>
+        <script type="text/javascript" src="script/jquery.shortcuts.min.js"></script>
         
         <!-- KSC Basicfunctions -->
         <script type="text/javascript" src="script/kVASySystemControl/kSCbasic.js"></script>

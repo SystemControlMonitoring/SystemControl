@@ -79,8 +79,8 @@ body[theme=light] .login_shortname { color: #004c8a; }
     top: 200px;
     padding: 100px;
     /*width: 450px;*/
-    /*border-top: 1px solid #82abcc;*/
-    /*border-bottom: 1px solid #82abcc;*/
+    border-top: 1px solid #82abcc;
+    border-bottom: 1px solid #82abcc;
     /*border-right: 1px solid #82abcc;*/
 }
 
@@ -866,7 +866,7 @@ table.ui-datepicker-calendar th {
     width: 1795px;
 }
 
-#DivShowServices, #DivTableHostsListView, #ListDivShowServices {
+#DivShowServices {
     width: 1763px;
 }
 

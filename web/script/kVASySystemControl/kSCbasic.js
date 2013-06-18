@@ -77,8 +77,43 @@ function ChangeTitle() {
     document.title = $.base64.decode( urlPara('c') ) + '@' + $.base64.decode( urlPara('h') ) + ' - kVASy' + decodeURI('%C2%AE') + ' System Control';
 }
 
-function KeyFunctionSidebar() {
-    $('#SidebarBottomSmall').addClass('opacity');
+function KeyFunctionSidebar(uid) {
+    var b64uid = $.base64.encode( uid );
+    $.Shortcuts.add({
+        type: 'down',
+        mask: 's',
+        handler: function() {
+            if ($("#Sidebar").is(":hidden")) {
+                $('#SidebarSmall').animate({marginRight: "400px"},350).css('zIndex',30);
+                $('#Sidebar').animate({width:'toggle'},350, function() {
+                    $('#SidebarContent').fadeIn(100);
+                }).css('zIndex',30);
+                SearchHosts( b64uid + 'Jhdu8K');
+            } else {
+                $('#SidebarContent').fadeOut(100);
+                $('#Sidebar').animate({width:'toggle'},350).css('zIndex',30);
+                $('#SidebarSmall').animate({marginRight: "0px"},350).css('zIndex',30);
+            }
+        }
+    }).start();
+    $.Shortcuts.add({
+        type: 'down',
+        mask: 'b',
+        handler: function() {
+            if ($("#SidebarBottom").is(":hidden")) {
+                $('#SidebarBottomSmall').animate({marginBottom: "870px"},350).css('zIndex',25);
+                $('#SidebarBottom').animate({height:'toggle'},350, function() {
+                    $('#SidebarBottomContent').fadeIn(100);
+                }).css('zIndex',25);
+                $('#SidebarBottomSmall').removeClass('opacity');
+            } else {
+                $('#SidebarBottomContent').fadeOut(100);
+                $('#SidebarBottom').animate({height:'toggle'},350).css('zIndex',10);
+                $('#SidebarBottomSmall').animate({marginBottom: "0px"},350).css('zIndex',10);
+                $('#SidebarBottomSmall').addClass('opacity');
+            }
+        }
+    }).start();
 }
 
 function KlickFunctionSidebar(uid) {
@@ -92,11 +127,11 @@ function KlickFunctionSidebar(uid) {
             SearchHosts( b64uid + 'Jhdu8K');
         } else {
             $('#SidebarContent').fadeOut(100);
-            $('#Sidebar').animate({width:'toggle'},350).css('zIndex',3);
-            $('#SidebarSmall').animate({marginRight: "0px"},350).css('zIndex',3);
+            $('#Sidebar').animate({width:'toggle'},350).css('zIndex',10);
+            $('#SidebarSmall').animate({marginRight: "0px"},350).css('zIndex',10);
         }
     });
-    $('#SidebarBottomSmall').click(function() {
+    $('#SidebarBottomSmall').dblclick(function() {
         if ($("#SidebarBottom").is(":hidden")) {
             $('#SidebarBottomSmall').animate({marginBottom: "870px"},350).css('zIndex',25);
             $('#SidebarBottom').animate({height:'toggle'},350, function() {
@@ -105,8 +140,8 @@ function KlickFunctionSidebar(uid) {
             $('#SidebarBottomSmall').removeClass('opacity');
         } else {
             $('#SidebarBottomContent').fadeOut(100);
-            $('#SidebarBottom').animate({height:'toggle'},350).css('zIndex',2);
-            $('#SidebarBottomSmall').animate({marginBottom: "0px"},350).css('zIndex',2);
+            $('#SidebarBottom').animate({height:'toggle'},350).css('zIndex',10);
+            $('#SidebarBottomSmall').animate({marginBottom: "0px"},350).css('zIndex',10);
             $('#SidebarBottomSmall').addClass('opacity');
         }
     });
@@ -139,7 +174,7 @@ function FormSubmit() {
 }
 
 function SearchHosts(uid) {
-    $('form#SearchForm').attr('action', 'services1.jsp');
+    $('form#SearchForm').attr('action', 'hosts.jsp');
     $('#SubTitle').html('.. nach Hosts');
     $('input#SearchInput').val('Hostname');
     $('#SFService').removeClass('BgBlue');
@@ -170,7 +205,7 @@ function SearchHosts(uid) {
 }
 
 function SearchServices(uid) {
-    $('form#SearchForm').attr('action', 'services2.jsp');
+    $('form#SearchForm').attr('action', 'services.jsp');
     $('#SubTitle').html('.. nach Services');
     $('input#SearchInput').val('Servicename');
     $('#SFHost').removeClass('BgBlue');
@@ -252,6 +287,68 @@ function SearchHostgroups(uid) {
                     response( $.map( data.databases, function( item ) {
                         return {
                             label: item.HOST +  ' (' + item.NODE + ') - ' + item.NAME,
+                            value: item.NAME
+                        }
+                    }));
+                }
+            });
+        },
+        minLength: 1
+    });
+}
+
+function SearchServicesSearch(uid,content) {
+    $('form#SearchForm').attr('action', 'services.jsp');
+    $('#SubTitle').html('.. nach Services');
+    $('input#SearchInput').val(content);
+    $('#SFHost').removeClass('BgBlue');
+    $('#SFService').addClass('BgBlue');
+    $('#SFHostgroup').removeClass('BgBlue');
+    $('#SFDatabase').removeClass('BgBlue');
+    $('#SearchInput').autocomplete({
+        source: function( request, response ) {
+            $.ajax({
+                url: 'http://' + Backend + '/proxy/json/?e=1&m=TGlzdFNlcnZpY2VzHj86Hz&u=' + uid,
+                dataType: 'json',
+                cache: false,
+                data: {                    
+                    searchstring: request.term
+                },
+                success: function( data ) {
+                    response( $.map( data.services, function( item ) {
+                        return {
+                            label: item.HOST +  ' (' + item.NODE + ') - ' + item.NAME,
+                            value: item.NAME
+                        }
+                    }));
+                }
+            });
+        },
+        minLength: 1
+    });
+}
+
+function SearchHostsSearch(uid,content) {
+    $('form#SearchForm').attr('action', 'hosts.jsp');
+    $('#SubTitle').html('.. nach Hosts');
+    $('input#SearchInput').val(content);
+    $('#SFService').removeClass('BgBlue');
+    $('#SFHost').addClass('BgBlue');
+    $('#SFDatabase').removeClass('BgBlue');
+    $('#SFHostgroup').removeClass('BgBlue');
+    $('#SearchInput').autocomplete({
+        source: function( request, response ) {
+            $.ajax({
+                url: 'http://' + Backend + '/proxy/json/?e=1&m=TGlzdEhvc3RzHj86Hz&u=' + uid,
+                dataType: 'json',
+                cache: false,
+                data: {                    
+                    searchstring: request.term
+                },
+                success: function( data ) {
+                    response( $.map( data.hosts, function( item ) {
+                        return {
+                            label: item.NAME + ' (' + item.CUST_VAL + ') auf ' + item.NODE,
                             value: item.NAME
                         }
                     }));
@@ -508,4 +605,27 @@ function AddConfig(uid,mdl,key,val1,val2,val3) {
         dataType: 'json',
         cache: false
     });
+}
+
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
+
+function PrintTS() {
+    var currentTime = new Date()
+    var hours = currentTime.getHours()
+    var minutes = currentTime.getMinutes()
+    var seconds = currentTime.getSeconds()
+    if (minutes < 10){
+        minutes = "0" + minutes
+    }
+    if (seconds < 10){
+        seconds = "0" + seconds
+    }
+    return(hours + ":" + minutes + ":" + seconds)
 }

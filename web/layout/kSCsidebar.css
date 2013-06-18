@@ -6,6 +6,8 @@
         Purpose of the stylesheet follows.
 */
 
+
+
 #Sidebar input[type=text] {
     background-color: #82abcc;
     padding: 7px;
@@ -19,24 +21,11 @@
 #SidebarSmall {
     position: fixed;
     right: 0;
-    top: 0;
-    bottom: 0;
+    top: 25px;
+    height: 80px;
     width: 30px;
-    background-color: #004279;
-    /*border-left: 1px solid #82abcc;*/
     cursor: pointer;
-    color: #004279;
-    opacity: 0.1; 
-    -moz-opacity: 0.1; 
-    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
-    filter:alpha(opacity=10);
-    -webkit-opacity: 0.1; 
-    -ms-opacity: 0.1;
-    -o-opacity: 0.1;
-}
-
-#SidebarSmall:hover {
-    border-left: 1px solid #82abcc;
+    z-index: 10;
 }
 
 #Sidebar {
@@ -48,6 +37,7 @@
     background-color: #82abcc;
     display: none;
     border-left: 2px solid #004279;
+    z-index: 30;
 }
 
 #SidebarContent {
@@ -98,10 +88,11 @@
     background-color: #004279;
     cursor: pointer;
     color: #004c8a;
+    /*border-top: 1px solid #004c8a;*/
 }
 
 #SidebarBottomSmall:hover {
-    border-top: 1px solid #004c8a;
+    /*border-top: 1px solid #004c8a;*/
 }
     
 .opacity {
