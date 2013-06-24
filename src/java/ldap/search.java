@@ -25,6 +25,7 @@ public class search {
   public static String getDisplayName(String queryname) throws Exception {
     Properties props = new Properties();
     BufferedInputStream in = new BufferedInputStream(new FileInputStream("E:\\kVASy5Jars\\nb_ldap.properties"));
+    //BufferedInputStream in = new BufferedInputStream(new FileInputStream("/kSCproxy/CFG/web.properties"));
     props.load(in);
     in.close();
     
@@ -70,6 +71,7 @@ public class search {
   public static String getBackend() throws Exception {
     Properties props = new Properties();
     BufferedInputStream in = new BufferedInputStream(new FileInputStream("E:\\kVASy5Jars\\nb_ldap.properties"));
+    //BufferedInputStream in = new BufferedInputStream(new FileInputStream("/kSCproxy/CFG/web.properties"));
     props.load(in);
     in.close();
     

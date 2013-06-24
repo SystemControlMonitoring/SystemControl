@@ -1,17 +1,3 @@
-@font-face {
-    font-family: SansProLight;
-    src: url(SourceSansPro-Regular.ttf) format("truetype");
-}
-
-body {
-	color:#000;
-	line-height:1;
-	font-family: SansProLight;
-	font-size: 16px;
-	min-width: 1020px;
-	/*min-height: 1000px;*/
-}
-
 /* Theming */
 
 body[theme=dark] { background: #004279; color: #fff; }

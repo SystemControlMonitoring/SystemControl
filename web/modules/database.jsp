@@ -55,24 +55,15 @@
 	<![endif]-->
         
         <!-- Liveticker -->
+        <link rel='stylesheet' href='../layout/kSCbasic.css' />
         <link rel='stylesheet' href='../layout/kSCliveticker.css' />
         <link rel='stylesheet' href='../layout/kSCsidebar.css' />
         <link rel='stylesheet' href='../layout/kSCtaov.css' />
-        <link rel='stylesheet' href='../layout/kSCbasic.css' />
         <link rel='stylesheet' href='../layout/kSCdatabase.css' />
         
-        <!-- Handhelds -->
-        <link rel='stylesheet' media='handheld' href='../layout/metro.smart.css' />
-        <link rel='stylesheet' media='handheld' href='../layout/jquery-ui-1.9.0.custom.css' />
-        <!-- Smartphone -->
-        <link rel='stylesheet' media='screen and (max-width: 768px) and (max-device-width: 768px)' href='../layout/metro.smart.css' />
-        <link rel='stylesheet' media='screen and (max-width: 768px) and (max-device-width: 768px)' href='../layout/jquery-ui-1.9.0.custom.css' />
-        <!-- Tablet -->
-        <link rel='stylesheet' media='screen and (min-width: 769px) and (max-device-width: 1280px)' href='../layout/metro.smart.1024.css' />
-        <link rel='stylesheet' media='screen and (min-width: 769px) and (max-device-width: 1280px)' href='../layout/jquery-ui-1.9.0.custom.css' />
         <!-- Personal Computer -> 1024x768 -->
-        <link rel='stylesheet' media='screen and (max-width: 1214px) and (min-device-width: 1281px)' href='../layout/metro.1024.css' />
-        <link rel='stylesheet' media='screen and (max-width: 1214px) and (min-device-width: 1281px)' href='../layout/jquery-ui-1.9.0.custom.css' />
+        <link rel='stylesheet' media='screen and (max-width: 1214px)' href='../layout/metro.1024.css' />
+        <link rel='stylesheet' media='screen and (max-width: 1214px)' href='../layout/jquery-ui-1.9.0.custom.css' />
         <!-- Personal Computer -> 1280x1024 -->
         <link rel='stylesheet' media='screen and (min-width: 1215px) and (max-width: 1529px) and (min-device-width: 1281px)' href='../layout/metro.1280.css' />
         <link rel='stylesheet' media='screen and (min-width: 1215px) and (max-width: 1529px) and (min-device-width: 1281px)' href='../layout/jquery-ui-1.9.0.custom.css' />

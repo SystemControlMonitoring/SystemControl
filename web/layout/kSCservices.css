@@ -6,6 +6,15 @@
         Purpose of the stylesheet follows.
 */
 
+#center {
+    border-top: 1px solid #004c8a;
+    border-bottom: 1px solid #004c8a;
+}
+
+/*
+ * Weiteres
+ */
+
 #SrvCenter {
 	/*padding: 45px;*/
 	/*overflow: hidden;*/
@@ -352,14 +361,14 @@
     width: 100%;
     height: 80px;
     border-bottom: 1px solid #82abcc;
-    border-top: 1px solid #82abcc;
+    /*border-top: 1px solid #82abcc;*/
     top: 128px;
     left: 0px;
     /*-moz-box-shadow: 0 -2px 11px 2px #000;
     -webkit-box-shadow: 0 -2px 11px 2px #000;
     box-shadow: 0 -2px 11px 2px #000;*/
     z-index: 1;
-    background-color: #004c8a;
+    /*background-color: #004c8a;*/
 }
 
 #AutoReload {
@@ -370,6 +379,7 @@
     cursor: default;
     width: 225px;
     z-index: 5;
+    display: none;
 }
 
 #AutoReloadStat {
@@ -452,4 +462,25 @@
     font-size: 12px;
     margin-left: 10px;
     margin-top: 10px;
+}
+
+#ServiceGridSelect {
+    position: absolute;
+    left: 49px;
+    top: 135px;
+    width: 450px;
+    height: 31px;
+    color: white;
+    border: 1px solid #82abcc;
+    background-color: #004c8a;
+    z-index: 5;
+}
+
+#ShowGridSearchBar {
+    position: absolute;
+    top: 137px;
+    left: 525px;
+    height: 31px;
+    color: white;    
+    cursor: pointer;
 }

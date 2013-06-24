@@ -37,9 +37,6 @@ function SysInfo(uid) {
             });
             DbInfo(b64uid);
         },
-        error: function(jqXhr, textStatus, error) {
-            alert("ERROR#SYSINFO#ERROR: " + textStatus + " MESSAGE: " + error);
-        },
         dataType: 'json',
         cache: false
     });
@@ -71,9 +68,6 @@ function DbInfo(uid) {
             });
             $('#AjaxLoader').remove();
         },
-        error: function(jqXhr, textStatus, error) {
-            alert("ERROR#DBINFO#ERROR: " + textStatus + " MESSAGE: " + error);
-        },
         dataType: 'json',
         cache: false
     });
@@ -101,9 +95,6 @@ function SrvInfo(uid) {
                 i++;
             });
             $('#FooterHostSrvList').html(i + ' Services');
-        },
-        error: function(jqXhr, textStatus, error) {
-            alert("ERROR#SRVINFO#ERROR: " + textStatus + " MESSAGE: " + error);
         },
         dataType: 'json',
         cache: false
@@ -146,9 +137,6 @@ function HostInformations(uid) {
             
             $('#DivHostStatus').append('<div id="HostSumServices"><table cellpadding=0 cellspacing=0 border=0><tr><td colspan=3><span style="float: left;">Services</span><span style="float: left; margin-top: -1px;" class="ui-icon ui-icon-triangle-1-s"></span></td></tr><tr valign=middle><td class="' + socolor + '"><b><a href="/monitoring.chtml?view=3&status=0">' + json.SRV_OK + '</a></b> Ok</td><td class="' + swcolor + '"><b><a href="/monitoring.chtml?view=3&status=6">' + json.SRV_WA + '</a></b> Warnung</td><td class="' + sccolor + '"><b><a href="/monitoring.chtml?view=3&status=6">' + json.SRV_CR + '</a></b> Kritisch</td><td class="' + sucolor + '"><b><a href="/monitoring.chtml?view=3&status=8">' + json.SRV_UN + '</a></b> Unbekannt</td><td class="' + spcolor + '"><b><a href="/monitoring.chtml?view=3&status=0">' + json.SRV_PE + '</a></b> Ausstehend</td></tr></table></div>');
             
-        },
-        error: function(jqXhr, textStatus, error) {
-            alert("ERROR#SRVINFO#ERROR: " + textStatus + " MESSAGE: " + error);
         },
         dataType: 'json',
         cache: false

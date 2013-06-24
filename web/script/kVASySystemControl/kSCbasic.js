@@ -81,23 +81,6 @@ function KeyFunctionSidebar(uid) {
     var b64uid = $.base64.encode( uid );
     $.Shortcuts.add({
         type: 'down',
-        mask: 's',
-        handler: function() {
-            if ($("#Sidebar").is(":hidden")) {
-                $('#SidebarSmall').animate({marginRight: "400px"},350).css('zIndex',30);
-                $('#Sidebar').animate({width:'toggle'},350, function() {
-                    $('#SidebarContent').fadeIn(100);
-                }).css('zIndex',30);
-                SearchHosts( b64uid + 'Jhdu8K');
-            } else {
-                $('#SidebarContent').fadeOut(100);
-                $('#Sidebar').animate({width:'toggle'},350).css('zIndex',30);
-                $('#SidebarSmall').animate({marginRight: "0px"},350).css('zIndex',30);
-            }
-        }
-    }).start();
-    $.Shortcuts.add({
-        type: 'down',
         mask: 'b',
         handler: function() {
             if ($("#SidebarBottom").is(":hidden")) {
@@ -127,8 +110,8 @@ function KlickFunctionSidebar(uid) {
             SearchHosts( b64uid + 'Jhdu8K');
         } else {
             $('#SidebarContent').fadeOut(100);
-            $('#Sidebar').animate({width:'toggle'},350).css('zIndex',10);
-            $('#SidebarSmall').animate({marginRight: "0px"},350).css('zIndex',10);
+            $('#Sidebar').animate({width:'toggle'},350).css('zIndex',30);
+            $('#SidebarSmall').animate({marginRight: "0px"},350).css('zIndex',30);
         }
     });
     $('#SidebarBottomSmall').dblclick(function() {
@@ -236,7 +219,7 @@ function SearchServices(uid) {
 }
 
 function SearchDatabases(uid) {
-    $('form#SearchForm').attr('action', 'services3.jsp');
+    $('form#SearchForm').attr('action', 'db.jsp');
     $('#SubTitle').html('.. nach Datenbanken');
     $('input#SearchInput').val('SID');
     $('#SFHost').removeClass('BgBlue');
@@ -359,6 +342,37 @@ function SearchHostsSearch(uid,content) {
     });
 }
 
+function SearchDatabasesSearch(uid,content) {
+    $('form#SearchForm').attr('action', 'db.jsp');
+    $('#SubTitle').html('.. nach Datenbanken');
+    $('input#SearchInput').val(content);
+    $('#SFHost').removeClass('BgBlue');
+    $('#SFService').removeClass('BgBlue');
+    $('#SFHostgroup').removeClass('BgBlue');
+    $('#SFDatabase').addClass('BgBlue');
+    $('#SearchInput').autocomplete({
+        source: function( request, response ) {
+            $.ajax({
+                url: 'http://' + Backend + '/proxy/json/?e=1&m=TGlzdERhdGFiYXNlcw==Hj86Hz&u=' + uid,
+                dataType: 'json',
+                cache: false,
+                data: {                    
+                    searchstring: request.term
+                },
+                success: function( data ) {
+                    response( $.map( data.databases, function( item ) {
+                        return {
+                            label: item.HOST +  ' (' + item.NODE + ') - ' + item.NAME,
+                            value: item.NAME
+                        }
+                    }));
+                }
+            });
+        },
+        minLength: 1
+    });
+}
+
 function Configuration(uid) {
     var b64uid = $.base64.encode( uid );
     /* Dialog format start */
@@ -366,8 +380,8 @@ function Configuration(uid) {
         <div id="ConfigurationTabs">\n\
             <ul>\n\
                 <li><a href="#ConfigurationTabs1">Web-Konfiguration</a></li>\n\
-                <li><a href="#ConfigurationTabs2">Core-Konfiguration</a></li>\n\
-                <li><a href="#ConfigurationTabs3">Proxy-Konfiguration</a></li>\n\
+                <li><a href="#ConfigurationTabs2">Proxy-Konfiguration</a></li>\n\
+                <li><a href="#ConfigurationTabs3">Core-Konfiguration</a></li>\n\
                 <li><a href="#ConfigurationTabs4">System-Information</a></li>\n\
             </ul>\n\
             <div id="ConfigurationTabs1">\n\
@@ -426,9 +440,6 @@ function Configuration(uid) {
                         $('table','#Modulversionen').append('<tr><td>' + key + '</td><td> >> </td><td>' + value + '</td></tr>');
                     });
                 },
-                error: function(jqXhr, textStatus, error) {
-                    alert("ERROR#Modulversionen#ERROR: " + textStatus + " MESSAGE: " + error);
-                },
                 dataType: 'json',
                 cache: false
             });
@@ -454,9 +465,6 @@ function Configuration(uid) {
                         }
                     });
                 },
-                error: function(jqXhr, textStatus, error) {
-                    alert("ERROR#Components#ERROR: " + textStatus + " MESSAGE: " + error);
-                },
                 dataType: 'json',
                 cache: false
             });
@@ -473,9 +481,6 @@ function Configuration(uid) {
                         }
                         $('#radio' + value.KEY ).buttonset();
                     });
-                },
-                error: function(jqXhr, textStatus, error) {
-                    alert("ERROR#SelectConfig#ERROR: " + textStatus + " MESSAGE: " + error);
                 },
                 dataType: 'json',
                 cache: false
@@ -518,9 +523,6 @@ function LoadBasic(uid) {
         url: 'http://' + Backend + '/repo/json/?e=1&m=SW5zZXJ0RGFzaGJvYXJkQWxsKd8Hfg&u=' + uid + '',
         crossDomain: true,
         success: DialogSuccess("#1","Die Basiseinstellungen für das Dashboard wurden erfolgreich gesetzt."),
-        error: function(jqXhr, textStatus, error) {
-            alert("ERROR#LoadBasic#ERROR: " + textStatus + " MESSAGE: " + error);
-        },
         dataType: 'json',
         cache: false
     });
@@ -551,12 +553,9 @@ function DashboardLinks(uid) {
         crossDomain: true,
         success: function(json) {
             $.each(json, function() {
-                $('#DashboardLinks').append('<a href="' + this.TARGET + '" class="fulltext"><span>' + this.TITLE + '</span><br></br><span class="sub-grid">' + this.DESC + '</span></a>');
+                $('#DashboardLinks').append('<a href="' + this.TARGET + '" class="twitter"><span>' + this.TITLE + '</span><br></br><span class="sub-grid">' + this.DESC + '</span></a>');
             });
             $('#AjaxLoader').remove();
-        },
-        error: function(jqXhr, textStatus, error) {
-            alert("ERROR#DashboardLinks#ERROR: " + textStatus + " MESSAGE: " + error);
         },
         dataType: 'json',
         cache: false
@@ -568,9 +567,6 @@ function DeleteBasic(uid) {
         url: 'http://' + Backend + '/repo/json/?e=1&m=RGVsZXRlRGFzaGJvYXJkQWxsJkl8Hd&u=' + uid + '',
         crossDomain: true,
         success: DialogSuccess("#2","Die Standardeinstellungen für das Dashboard wurden erfolgreich gesetzt."),
-        error: function(jqXhr, textStatus, error) {
-            alert("ERROR#DeleteBasic#ERROR: " + textStatus + " MESSAGE: " + error);
-        },
         dataType: 'json',
         cache: false
     });
@@ -581,9 +577,6 @@ function DeleteBasicConfig(uid) {
         url: 'http://' + Backend + '/repo/json/?e=1&m=RGVsZXRlUmVwb0FsbA==Jhdu8d&u=' + uid + '',
         crossDomain: true,
         success: DialogSuccess("#3","Alle Einstellungen wurden erfolgreich zur&uuml;ckgesetzt!"),
-        error: function(jqXhr, textStatus, error) {
-            alert("ERROR#DeleteBasicConfig#ERROR: " + textStatus + " MESSAGE: " + error);
-        },
         dataType: 'json',
         cache: false
     });
@@ -599,9 +592,6 @@ function AddConfig(uid,mdl,key,val1,val2,val3) {
         url: 'http://' + Backend + '/repo/json/?e=1&m=SW5zZXJ0VXBkYXRlQ29uZmlnHkl8Ui&u=' + uid + '&m2=' + b64mdl + 'Jkl8Hd&k=' + b64key + 'Jkl8Hd&v1=' + b64val1 + 'Jkl8Hd&v2=' + b64val2 + 'Jkl8Hd&v3=' + b64val3 + 'Jkl8Hd',
         crossDomain: true,
         success: DialogSuccess(".Config","Konfiguration wurde ge&auml;ndert."),
-        error: function(jqXhr, textStatus, error) {
-            alert("ERROR#InsertConfig#ERROR: " + textStatus + " MESSAGE: " + error);
-        },
         dataType: 'json',
         cache: false
     });

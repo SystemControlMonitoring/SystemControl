@@ -39,6 +39,8 @@
         
         <!-- KSC Basicfunctions -->
         <script type="text/javascript" src="script/kVASySystemControl/kSCbasic.js"></script>
+        <!-- index -->
+        <script type="text/javascript" src="script/kVASySystemControl/kSCindex.js"></script>
         <!-- Liveticker -->
         <script type="text/javascript" src="script/kVASySystemControl/kSCbase64.js"></script>
         <script type="text/javascript" src="script/kVASySystemControl/kSCliveticker.js"></script>
@@ -50,25 +52,17 @@
 	<![endif]-->
         
         <!-- Liveticker -->
+        <link rel='stylesheet' href='layout/kSCbasic.css' />
         <link rel='stylesheet' href='layout/kSCliveticker.css' />
         <link rel='stylesheet' href='layout/kSCsidebar.css' />
         <link rel='stylesheet' href='layout/kSCtaov.css' />
-        <link rel='stylesheet' href='layout/kSCbasic.css' />
         <link rel='stylesheet' href='layout/ui.jqgrid.css' />
 	<link rel='stylesheet' href='layout/searchFilter.css' />
         
-        <!-- Handhelds -->
-        <link rel='stylesheet' media='handheld' href='layout/metro.smart.css' />
-        <link rel='stylesheet' media='handheld' href='layout/jquery-ui-1.9.0.custom.css' />
-        <!-- Smartphone -->
-        <link rel='stylesheet' media='screen and (max-width: 768px) and (max-device-width: 768px)' href='layout/metro.smart.css' />
-        <link rel='stylesheet' media='screen and (max-width: 768px) and (max-device-width: 768px)' href='layout/jquery-ui-1.9.0.custom.css' />
-        <!-- Tablet -->
-        <link rel='stylesheet' media='screen and (min-width: 769px) and (max-device-width: 1280px)' href='layout/metro.smart.1024.css' />
-        <link rel='stylesheet' media='screen and (min-width: 769px) and (max-device-width: 1280px)' href='layout/jquery-ui-1.9.0.custom.css' />
+        
         <!-- Personal Computer -> 1024x768 -->
-        <link rel='stylesheet' media='screen and (max-width: 1214px) and (min-device-width: 1281px)' href='layout/metro.1024.css' />
-        <link rel='stylesheet' media='screen and (max-width: 1214px) and (min-device-width: 1281px)' href='layout/jquery-ui-1.9.0.custom.css' />
+        <link rel='stylesheet' media='screen and (max-width: 1214px)' href='layout/metro.1024.css' />
+        <link rel='stylesheet' media='screen and (max-width: 1214px)' href='layout/jquery-ui-1.9.0.custom.css' />
         <!-- Personal Computer -> 1280x1024 -->
         <link rel='stylesheet' media='screen and (min-width: 1215px) and (max-width: 1529px) and (min-device-width: 1281px)' href='layout/metro.1280.css' />
         <link rel='stylesheet' media='screen and (min-width: 1215px) and (max-width: 1529px) and (min-device-width: 1281px)' href='layout/jquery-ui-1.9.0.custom.css' />
@@ -88,6 +82,7 @@
                 Liveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 KlickFunctionSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 KeyFunctionSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                KeyFunctionSidebar2(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 DashboardLinks(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 SlimTaov(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 ShowCritical(<% out.println("'" + request.getRemoteUser() + "'"); %>);
@@ -117,15 +112,15 @@
                                 <a href="#" class="icon" onclick="Configuration(<% out.println("'" + request.getRemoteUser() + "'"); %>);">
 					<img src="layout/images/gear_icon.png" alt="games" width="148" height="148">
 				</a>
-				<a href="hosts.jsp" class="fulltext">
+				<a href="hosts.jsp" class="twitter">
 					<span>Hosts</span><br></br>
 					<span class="sub-grid">Eine &Uuml;bersicht &uuml;ber alle eingerichteten Server.</span>
 				</a>
-				<a href="services.jsp" class="fulltext">
+				<a href="services.jsp" class="twitter">
 					<span>Services</span><br></br>
 					<span class="sub-grid">Eine &Uuml;bersicht &uuml;ber alle eingerichteten Services.</span>
 				</a>
-                                <!--a href="hostgroups.jsp" class="fulltext">
+                                <!--a href="hostgroups.jsp" class="">
 					<span>Hostgruppen</span><br></br>
 					<span class="sub-grid">Eine &Uuml;bersicht &uuml;ber alle eingerichteten Hostgruppen.</span>
 				</a-->

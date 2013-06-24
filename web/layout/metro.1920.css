@@ -1,17 +1,3 @@
-@font-face {
-    font-family: SansProLight;
-    src: url(SourceSansPro-Regular.ttf) format("truetype");
-}
-
-body {
-	color:#000;
-	line-height:1;
-	font-family: SansProLight;
-	font-size: 16px;
-	min-width: 1810px;
-	/*min-height: 1000px;*/
-}
-
 /* Theming */
 
 body[theme=dark] { background: #004279; color: #fff; }
@@ -874,7 +860,7 @@ table.ui-datepicker-calendar th {
     width: 1745px;
 }
 
-#HeadDivShowCritical, #FooterDivShowCritica {
+#HeadDivShowCritical, #FooterDivShowCritical {
     width: 1773px;
 }
 

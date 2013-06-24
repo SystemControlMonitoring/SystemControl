@@ -39,7 +39,6 @@ function SysInfo(uid) {
         },
         error: function(jqXhr, textStatus, error) {
             $('#HostStatusSlim').html('<font class="OFF">OFFLINE</font>');
-            alert("ERROR#SysInfo#ERROR: " + textStatus + " MESSAGE: " + error);
         },
         dataType: 'json',
         cache: false

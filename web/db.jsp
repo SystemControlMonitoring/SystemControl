@@ -1,11 +1,12 @@
 <%-- 
-    Document   : services.jsp
-    Created on : 25.04.2013, 10:54:14
+    Document   : db.jsp
+    Created on : 20.06.2013, 12:42:05
     Author     : sbaresel
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="ldap.search" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,7 +14,7 @@
         <meta name="author" content="Steffen Baresel">
 	<meta name="description" content="kVASy(R) System Control.">
 	<meta name="keywords" content="kVASy, System Control, kVASy System Control">
-	<title>Services - kVASy&reg; System Control</title>
+	<title>Datenbanken - kVASy&reg; System Control</title>
 	<meta name="language" content="it">
 	<meta name="charset" content="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -44,10 +45,10 @@
         <!-- Liveticker -->
         <script type="text/javascript" src="script/kVASySystemControl/kSCbase64.js"></script>
         <script type="text/javascript" src="script/kVASySystemControl/kSCliveticker.js"></script>
+        <!-- AllDatabases -->
+        <script type="text/javascript" src="script/kVASySystemControl/kSCdb.js"></script>
         <!-- KSC Tactical Overview -->
         <script type="text/javascript" src="script/kVASySystemControl/kSCtaov.js"></script>
-        <!-- KSC Services -->
-        <script type="text/javascript" src="script/kVASySystemControl/kSCservices.js"></script>
         
 	<!--[if lt IE 9]>
 		<script src="script/html5.js"></script>
@@ -58,9 +59,9 @@
         <link rel='stylesheet' href='layout/kSCliveticker.css' />
         <link rel='stylesheet' href='layout/kSCsidebar.css' />
         <link rel='stylesheet' href='layout/kSCtaov.css' />
-        <link rel='stylesheet' href='layout/kSCservices.css' />
+        <link rel='stylesheet' href='layout/kSCdb.css' />
         <link rel='stylesheet' href='layout/ui.jqgrid.css' />
-	<link rel='stylesheet' href='layout/searchFilter.css' /> 
+	<link rel='stylesheet' href='layout/searchFilter.css' />        
         
         <!-- Personal Computer -> 1024x768 -->
         <link rel='stylesheet' media='screen and (max-width: 1214px)' href='layout/metro.1024.css' />
@@ -85,10 +86,10 @@
                 Liveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 KlickFunctionSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 KeyFunctionSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                AllDBs(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 Base();
                 SlimTaov(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 ShowCritical(<% out.println("'" + request.getRemoteUser() + "'"); %>);
-                AllServices(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 StyleSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
             });
         });
@@ -106,21 +107,21 @@
 
 		<% out.println( "<span id='top'><p class='login_username'>" + search.getDisplayName(request.getRemoteUser()) + "</p></span>" ); %>
 
-		<span id="top"><div id="ShortMenu"><img id="ListHosts" class="Border2px004279" onclick="ListAllServices(<% out.println("'" + request.getRemoteUser() + "'"); %>); " src="layout/images/list.png" title="Listen Ansicht"/><img id="GridHosts" class="Border2px004279" onclick="GridAllServices(<% out.println("'" + request.getRemoteUser() + "'"); %>); " src="layout/images/grid.png" title="Tabs Ansicht" /><img onclick="Reload(<% out.println("'" + request.getRemoteUser() + "'"); %>); " src="layout/images/update.png" title="Neu laden"/></div></span>
-
+                <span id="top"><div id="ShortMenu"><img id="ListHosts" class="Border2px004279" onclick="ListAllDBs(<% out.println("'" + request.getRemoteUser() + "'"); %>); " src="layout/images/list.png" title="Listen Ansicht"/><img id="GridHosts" class="Border2px004279" onclick="GridAllDBs(<% out.println("'" + request.getRemoteUser() + "'"); %>); " src="layout/images/grid.png" title="Tabs Ansicht" /><img onclick="Reload(<% out.println("'" + request.getRemoteUser() + "'"); %>); " src="layout/images/update.png" title="Neu laden"/></div></span>
+                
 		<p class="login_shortname"><a href="logout.jsp">Abmelden</a><p>
 
                 <div id="back-div"></div>
                     
-                <!-- Services Start -->
+                <!-- DBs Start -->
                 
-                <form id="SearchService" method="GET" action="services.jsp">
+                <form id="SearchService" method="GET" action="db.jsp">
                     <div id="ServiceGridSelect"></div>
                     <div id="center"></div>
-                    <div id="SrvCenter"></div>
+                    <div id="ListCenter"></div>
                 </form>
-                    
-                <!-- Services Ende -->
+                
+                <!-- DBs Ende -->
                 
                 <!-- Configuration Start -->
                 
@@ -145,6 +146,8 @@
                         <section id="SidebarSubmenu"></section>
                     </div>
                 </div>
+                
+                
                 
                 <!-- Sidebar Ende -->
                 

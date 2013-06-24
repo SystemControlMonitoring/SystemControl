@@ -78,22 +78,13 @@ function Liveticker(uid) {
                             KlickFunctionLt();
                             setTimeout('Liveticker("' + uid + '")', 30000);
                         },
-                        error: function(jqXhr, textStatus, error) {
-                            alert("ERROR#SelectLiveticker#ERROR: " + textStatus + " MESSAGE: " + error);
-                        },
                         dataType: 'json',
                         cache: false
                     });
                 },
-                error: function(jqXhr, textStatus, error) {
-                    alert("ERROR#FillLiveticker#ERROR: " + textStatus + " MESSAGE: " + error);
-                },
                 dataType: 'json',
                 cache: false
             });
-        },
-        error: function(jqXhr, textStatus, error) {
-            alert("ERROR#DelDomainSuffix#ERROR: " + textStatus + " MESSAGE: " + error);
         },
         dataType: 'json',
         cache: false
@@ -154,22 +145,13 @@ function SubLiveticker(uid) {
                             KlickFunctionLt();
                             setTimeout('SubLiveticker("' + uid + '")', 30000);
                         },
-                        error: function(jqXhr, textStatus, error) {
-                            alert("ERROR#SelectLiveticker#ERROR: " + textStatus + " MESSAGE: " + error);
-                        },
                         dataType: 'json',
                         cache: false
                     });
                 },
-                error: function(jqXhr, textStatus, error) {
-                    alert("ERROR#FillLiveticker#ERROR: " + textStatus + " MESSAGE: " + error);
-                },
                 dataType: 'json',
                 cache: false
             });
-        },
-        error: function(jqXhr, textStatus, error) {
-            alert("ERROR#DelDomainSuffix#ERROR: " + textStatus + " MESSAGE: " + error);
         },
         dataType: 'json',
         cache: false
