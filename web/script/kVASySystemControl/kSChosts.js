@@ -121,10 +121,10 @@ function GridAllHosts(uid) {
 
 function GridHosts(uid) {
     var b64uid = $.base64.encode( uid );
-    $('img#ListHosts').removeClass('Border2px82abcc');
-    $('img#ListHosts').addClass('Border2px004279');
-    $('img#GridHosts').removeClass('Border2px004279');
-    $('img#GridHosts').addClass('Border2px82abcc');
+    $('span.UserList').removeClass('Fontffffff');
+    $('span.UserList').addClass('Font82abcc');
+    $('span.UserGrid').removeClass('Font82abcc');
+    $('span.UserGrid').addClass('Fontffffff');
     $('#AutoReload').css('display', 'block');
     $('#ShowGridSearchBar').remove();
     $.ajax({
@@ -228,10 +228,10 @@ function ShowSelectSearch() {
 
 function GridSpecialHosts(uid,state) {
     var b64uid = $.base64.encode( uid );
-    $('img#ListHosts').removeClass('Border2px82abcc');
-    $('img#ListHosts').addClass('Border2px004279');
-    $('img#GridHosts').removeClass('Border2px004279');
-    $('img#GridHosts').addClass('Border2px82abcc');
+    $('span.UserList').removeClass('Fontffffff');
+    $('span.UserList').addClass('Font82abcc');
+    $('span.UserGrid').removeClass('Font82abcc');
+    $('span.UserGrid').addClass('Fontffffff');
     $('#AutoReload').css('display', 'block');
     $('#ShowGridSearchBar').remove();
     $.ajax({
@@ -282,10 +282,10 @@ function GridSpecialHosts(uid,state) {
 function GridSearchHosts(uid,searchstring) {
     var b64uid = $.base64.encode( uid );
     var b64searchstring = $.base64.encode( searchstring );
-    $('img#ListHosts').removeClass('Border2px82abcc');
-    $('img#ListHosts').addClass('Border2px004279');
-    $('img#GridHosts').removeClass('Border2px004279');
-    $('img#GridHosts').addClass('Border2px82abcc');
+    $('span.UserList').removeClass('Fontffffff');
+    $('span.UserList').addClass('Font82abcc');
+    $('span.UserGrid').removeClass('Font82abcc');
+    $('span.UserGrid').addClass('Fontffffff');
     $('#AutoReload').css('display', 'block');
     $('#ShowGridSearchBar').remove();
     $.ajax({
@@ -360,10 +360,10 @@ function ListAllHosts(uid) {
 
 function ListHosts(uid) {
     var b64uid = $.base64.encode( uid );
-    $('img#GridHosts').removeClass('Border2px82abcc');
-    $('img#GridHosts').addClass('Border2px004279');
-    $('img#ListHosts').removeClass('Border2px004279');
-    $('img#ListHosts').addClass('Border2px82abcc');
+    $('span.UserList').addClass('Fontffffff');
+    $('span.UserList').removeClass('Font82abcc');
+    $('span.UserGrid').addClass('Font82abcc');
+    $('span.UserGrid').removeClass('Fontffffff');
     $('#AutoReload').css('display', 'block');
     $('#ShowGridSearchBar').remove();
     $.ajax({
@@ -447,10 +447,10 @@ function UpdateModView(uid,val1) {
 
 function ListSpecialHosts(uid,state) {
     var b64uid = $.base64.encode( uid );
-    $('img#GridHosts').removeClass('Border2px82abcc');
-    $('img#GridHosts').addClass('Border2px004279');
-    $('img#ListHosts').removeClass('Border2px004279');
-    $('img#ListHosts').addClass('Border2px82abcc');
+    $('span.UserList').addClass('Fontffffff');
+    $('span.UserList').removeClass('Font82abcc');
+    $('span.UserGrid').addClass('Font82abcc');
+    $('span.UserGrid').removeClass('Fontffffff');
     $('#AutoReload').css('display', 'block');
     $('#ShowGridSearchBar').remove();
     $.ajax({
@@ -525,10 +525,10 @@ function ListSpecialHosts(uid,state) {
 function ListSearchHosts(uid,searchstring) {
     var b64uid = $.base64.encode( uid );
     var b64searchstring = $.base64.encode( searchstring );
-    $('img#GridHosts').removeClass('Border2px82abcc');
-    $('img#GridHosts').addClass('Border2px004279');
-    $('img#ListHosts').removeClass('Border2px004279');
-    $('img#ListHosts').addClass('Border2px82abcc');
+    $('span.UserList').addClass('Fontffffff');
+    $('span.UserList').removeClass('Font82abcc');
+    $('span.UserGrid').addClass('Font82abcc');
+    $('span.UserGrid').removeClass('Fontffffff');
     $('#AutoReload').css('display', 'block');
     $('#ShowGridSearchBar').remove();
     $.ajax({

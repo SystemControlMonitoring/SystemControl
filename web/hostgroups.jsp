@@ -101,14 +101,11 @@
                 <p class="title"><font class="kvasy">kVASy&reg;</font> System Control</p><div id="logo-div"><img class='logo' src='layout/images/logo_backgroundblue_whitetext.png' title='SIV.AG'/></div>
 		<p class="subtitle">Monitoring quite simple!</p></span>
 
+		<div id="UserMenu"><table cellpadding=0 cellspacing=0 border=0><tr><td><span class="UserDesc" style="float: left;">User</span><span style="float: left; margin-top: -1px;" class="ui-icon ui-icon-triangle-1-s"></span></td><td width="10"></td><td colspan=3><span class="UserDesc" style="float: left;">Session</span><span style="float: left; margin-top: -1px;" class="ui-icon ui-icon-triangle-1-s"></span></td></tr><tr valign=middle><td><% out.println( "<p class='login_username'>" + search.getDisplayName(request.getRemoteUser()) + "</p>" ); %></td><td width="10"></td><td><p class="login_shortname"><a href="logout.jsp">Abmelden</a><p></td></tr></table><div id="Liveticker"></div></div>
 
-		<% out.println( "<span id='top'><p class='login_username'>" + search.getDisplayName(request.getRemoteUser()) + "</p></span>" ); %>
+                <div id="UserView"><table cellpadding=0 cellspacing=0 border=0><tr><td><span class="UserDesc" style="float: left;">View</span><span style="float: left; margin-top: -1px;" class="ui-icon ui-icon-triangle-1-s"></span></td></tr><tr><td><span class="UserReload" onclick="Reload(<% out.println("'" + request.getRemoteUser() + "'"); %>); ">Reload</span></td></tr></table></div>
 
-		<span id="top"><div id="theme-roller"><span class='theme-box' theme='light'></span></div></span>
-
-		<p class="login_shortname"><a style="cursor: pointer" onclick="Reload(<% out.println("'" + request.getRemoteUser() + "'"); %>); ">Reload</a> | <a href="logout.jsp">Abmelden</a><p>
-
-                <div id="back-div"></div>
+		<div id="back-div"></div>
                     
                 <!-- Hosts Start -->
                 

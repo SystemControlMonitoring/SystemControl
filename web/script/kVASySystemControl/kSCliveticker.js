@@ -40,7 +40,7 @@ function Liveticker(uid) {
                         success: function(json) {
                             var cc=0;
                             /* Format Output */
-                            $('#Liveticker').html('<div id="LtHeader"></div><div id="SubLiveticker"></div>');
+                            $('#Liveticker').html('<table cellpadding=0 cellspacing=0 border=0><tr><td colspan=3><span class="LtDesc" style="float: left;">Liveticker</span><span style="float: left; margin-top: -1px;" class="ui-icon ui-icon-triangle-1-s"></span></td></tr><tr valign=middle><td><div id="LtHeader"></div></td></tr></table><div id="SubLiveticker"></div>');
                             $.each(json, function() {
                                 var count = cc;
                                 if (count < "16") {
@@ -65,9 +65,9 @@ function Liveticker(uid) {
                                 cc++;
                             });
                             if (cc > "0") {
-                                $('#LtHeader').append('<div id="LtText" style="background-color: #9c1919; color: #ffffff;">' + cc + ' Meldungen</div>');
+                                $('#LtHeader').append('<font style="color: red;">' + cc + '</font> Meldungen');
                             } else {
-                                $('#LtHeader').append('<div id="LtText" style="background-color: #088A08; color: #ffffff;">' + cc + ' Meldungen</div>');
+                                $('#LtHeader').append('<font style="color: #fff;">' + cc + '</font> Meldungen');
                                 $('#SubLiveticker').remove();
                             }
                             
@@ -113,7 +113,7 @@ function SubLiveticker(uid) {
                         success: function(json) {
                             var cc=0;
                             /* Format Output */
-                            $('#Liveticker').html('<div id="SubLiveticker"><div id="LtHeader"></div></div>');
+                            $('#Liveticker').html('<table cellpadding=0 cellspacing=0 border=0><tr><td colspan=3><span class="LtDesc" style="float: left;">Liveticker</span><span style="float: left; margin-top: -1px;" class="ui-icon ui-icon-triangle-1-s"></span></td></tr><tr valign=middle><td><div id="LtHeader"></div></td></tr></table><div id="SubLiveticker"></div>');
                             $.each(json, function() {
                                 var count = cc;
                                 if (count < "16") {
@@ -137,13 +137,19 @@ function SubLiveticker(uid) {
                                 }
                                 cc++;
                             });
-                            $('#LtHeader').append('<div id="LtText">' + cc + ' Meldungen</div>');
+                            if (cc > "0") {
+                                $('#LtHeader').append('<font style="color: red;">' + cc + '</font> Meldungen');
+                            } else {
+                                $('#LtHeader').append('<font style="color: #fff;">' + cc + '</font> Meldungen');
+                                $('#SubLiveticker').remove();
+                            }
+                            
                             if (cc > "16") {
                                 $('#SubLiveticker').append('<div id="LtFooter"><a href="#">.. weitere</a></div>');
                             }
                             /* Reload Function */
                             KlickFunctionLt();
-                            setTimeout('SubLiveticker("' + uid + '")', 30000);
+                            setTimeout('Liveticker("' + uid + '")', 30000);
                         },
                         dataType: 'json',
                         cache: false

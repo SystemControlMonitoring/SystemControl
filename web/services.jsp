@@ -104,11 +104,9 @@
 		<p class="subtitle">Monitoring quite simple!</p></span>
 
 
-		<% out.println( "<span id='top'><p class='login_username'>" + search.getDisplayName(request.getRemoteUser()) + "</p></span>" ); %>
+		<div id="UserMenu"><table cellpadding=0 cellspacing=0 border=0><tr><td><span class="UserDesc" style="float: left;">User</span><span style="float: left; margin-top: -1px;" class="ui-icon ui-icon-triangle-1-s"></span></td><td width="10"></td><td colspan=3><span class="UserDesc" style="float: left;">Session</span><span style="float: left; margin-top: -1px;" class="ui-icon ui-icon-triangle-1-s"></span></td></tr><tr valign=middle><td><% out.println( "<p class='login_username'>" + search.getDisplayName(request.getRemoteUser()) + "</p>" ); %></td><td width="10"></td><td><p class="login_shortname"><a href="logout.jsp">Abmelden</a><p></td></tr></table><div id="Liveticker"></div></div>
 
-		<span id="top"><div id="ShortMenu"><img id="ListHosts" class="Border2px004279" onclick="ListAllServices(<% out.println("'" + request.getRemoteUser() + "'"); %>); " src="layout/images/list.png" title="Listen Ansicht"/><img id="GridHosts" class="Border2px004279" onclick="GridAllServices(<% out.println("'" + request.getRemoteUser() + "'"); %>); " src="layout/images/grid.png" title="Tabs Ansicht" /><img onclick="Reload(<% out.println("'" + request.getRemoteUser() + "'"); %>); " src="layout/images/update.png" title="Neu laden"/></div></span>
-
-		<p class="login_shortname"><a href="logout.jsp">Abmelden</a><p>
+                <div id="UserView"><table cellpadding=0 cellspacing=0 border=0><tr><td><span class="UserDesc" style="float: left;">View</span><span style="float: left; margin-top: -1px;" class="ui-icon ui-icon-triangle-1-s"></span></td></tr><tr><td><span class="UserList" onclick="ListAllServices(<% out.println("'" + request.getRemoteUser() + "'"); %>); ">Liste</span> <span class="UserGrid" onclick="GridAllServices(<% out.println("'" + request.getRemoteUser() + "'"); %>); ">Grid</span> <span class="UserReload" onclick="Reload(<% out.println("'" + request.getRemoteUser() + "'"); %>); ">Reload</span></td></tr></table></div>
 
                 <div id="back-div"></div>
                     
@@ -147,12 +145,6 @@
                 </div>
                 
                 <!-- Sidebar Ende -->
-                
-                <!-- Liveticker Start -->
-                
-                <div id="Liveticker"></div> 
-                
-                <!-- Liveticker Ende -->
                 
                 <div id="SidebarBottomSmall">
                     <div id="SlimTaov"></div>

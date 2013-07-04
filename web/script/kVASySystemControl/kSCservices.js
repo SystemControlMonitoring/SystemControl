@@ -120,10 +120,10 @@ function GridAllServices(uid) {
 
 function GridServices(uid) {
     var b64uid = $.base64.encode( uid );
-    $('img#ListHosts').removeClass('Border2px82abcc');
-    $('img#ListHosts').addClass('Border2px004279');
-    $('img#GridHosts').removeClass('Border2px004279');
-    $('img#GridHosts').addClass('Border2px82abcc');
+    $('span.UserList').removeClass('Fontffffff');
+    $('span.UserList').addClass('Font82abcc');
+    $('span.UserGrid').removeClass('Font82abcc');
+    $('span.UserGrid').addClass('Fontffffff');
     $('#AutoReload').css('display', 'block');
     $('#ShowGridSearchBar').remove();
     $.ajax({
@@ -250,10 +250,10 @@ function ShowSelectSearch() {
 
 function GridSpecialServices(uid,state) {
     var b64uid = $.base64.encode( uid );
-    $('img#ListHosts').removeClass('Border2px82abcc');
-    $('img#ListHosts').addClass('Border2px004279');
-    $('img#GridHosts').removeClass('Border2px004279');
-    $('img#GridHosts').addClass('Border2px82abcc');
+    $('span.UserList').removeClass('Fontffffff');
+    $('span.UserList').addClass('Font82abcc');
+    $('span.UserGrid').removeClass('Font82abcc');
+    $('span.UserGrid').addClass('Fontffffff');
     $('#AutoReload').css('display', 'block');
     $('#ShowGridSearchBar').remove();
     $.ajax({
@@ -313,10 +313,10 @@ function GridSpecialServices(uid,state) {
 function GridSearchServices(uid,searchstring) {
     var b64uid = $.base64.encode( uid );
     var b64searchstring = $.base64.encode( searchstring );
-    $('img#ListHosts').removeClass('Border2px82abcc');
-    $('img#ListHosts').addClass('Border2px004279');
-    $('img#GridHosts').removeClass('Border2px004279');
-    $('img#GridHosts').addClass('Border2px82abcc');
+    $('span.UserList').removeClass('Fontffffff');
+    $('span.UserList').addClass('Font82abcc');
+    $('span.UserGrid').removeClass('Font82abcc');
+    $('span.UserGrid').addClass('Fontffffff');
     $('#AutoReload').css('display', 'block');
     $('#ShowGridSearchBar').remove();
     $.ajax({
@@ -400,10 +400,10 @@ function ListAllServices(uid) {
 
 function ListServices(uid) {
     var b64uid = $.base64.encode( uid );
-    $('img#GridHosts').removeClass('Border2px82abcc');
-    $('img#GridHosts').addClass('Border2px004279');
-    $('img#ListHosts').removeClass('Border2px004279');
-    $('img#ListHosts').addClass('Border2px82abcc');
+    $('span.UserList').addClass('Fontffffff');
+    $('span.UserList').removeClass('Font82abcc');
+    $('span.UserGrid').addClass('Font82abcc');
+    $('span.UserGrid').removeClass('Fontffffff');
     $('#AutoReload').css('display', 'block');
     $('#ShowGridSearchBar').remove();
     $.ajax({
@@ -496,10 +496,10 @@ function UpdateModView(uid,val1) {
 
 function ListSpecialServices(uid,state) {
     var b64uid = $.base64.encode( uid );
-    $('img#GridHosts').removeClass('Border2px82abcc');
-    $('img#GridHosts').addClass('Border2px004279');
-    $('img#ListHosts').removeClass('Border2px004279');
-    $('img#ListHosts').addClass('Border2px82abcc');
+    $('span.UserList').addClass('Fontffffff');
+    $('span.UserList').removeClass('Font82abcc');
+    $('span.UserGrid').addClass('Font82abcc');
+    $('span.UserGrid').removeClass('Fontffffff');
     $('#AutoReload').css('display', 'block');
     $('#ShowGridSearchBar').remove();
     //$('#SrvCenter').html('');
@@ -586,10 +586,10 @@ function ListSpecialServices(uid,state) {
 function ListSearchServices(uid,searchstring) {
     var b64uid = $.base64.encode( uid );
     var b64searchstring = $.base64.encode( searchstring );
-    $('img#GridHosts').removeClass('Border2px82abcc');
-    $('img#GridHosts').addClass('Border2px004279');
-    $('img#ListHosts').removeClass('Border2px004279');
-    $('img#ListHosts').addClass('Border2px82abcc');
+    $('span.UserList').addClass('Fontffffff');
+    $('span.UserList').removeClass('Font82abcc');
+    $('span.UserGrid').addClass('Font82abcc');
+    $('span.UserGrid').removeClass('Fontffffff');
     $('#AutoReload').css('display', 'block');
     $('#ShowGridSearchBar').remove();
     //$('#SrvCenter').html('');

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : sysinfo
-    Created on : 03.05.2013, 14:56:48
+    Document   : oracle_database
+    Created on : 27.06.2013, 08:32:33
     Author     : sbaresel
 --%>
 
@@ -46,7 +46,7 @@
         <script type="text/javascript" src="../script/kVASySystemControl/kSCbase64.js"></script>
         <script type="text/javascript" src="../script/kVASySystemControl/kSCliveticker.js"></script>
         <!-- KSC Database Modul -->
-        <script type="text/javascript" src="../script/kVASySystemControl/kSCsysinfo.js"></script>
+        <script type="text/javascript" src="../script/kVASySystemControl/kSCoracle_database.js"></script>
         <!-- KSC Tactical Overview -->
         <script type="text/javascript" src="../script/kVASySystemControl/kSCtaov.js"></script>
         
@@ -89,7 +89,7 @@
                 KeyFunctionSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 SubBase();
                 ChangeTitle();
-                SysInfo(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                DbInfo(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 $("div.metro-pivot").metroPivot();
                 Storage(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 SlimTaov(<% out.println("'" + request.getRemoteUser() + "'"); %>);
@@ -117,41 +117,71 @@
                 <!-- Detail Start -->
                 
                 <div class='metro-pivot'>
-		<div class='pivot-item'><h3>storage</h3>
+                    <div class='pivot-item'><h3>storage</h3>
 			<div class='metro-right-content'>
-				<div id='tdevcont'><table id='devcont'></table><div id='pagerdc'></div></div>
-				<div id='tstorage'><table id='storage'></table><div id='pagersto'></div></div>
-				<div id='tdma'><table id='dma'></table><div id='pagerdma'></div></div>
+				<div id='tlist2'><table id='list2'></table><div id='pager2'></div></div><br></br>
+				<div id='tlist3'><table id='list3'></table><div id='pager3'></div></div>
 			</div>
-		</div>
-		<div class='pivot-item'><h3>performance</h3>
+                    </div>
+                    <div class='pivot-item'><h3>performance</h3>
 			<div class='metro-right-content'>
 				<div id='cpu'></div>
-				<div id='io'></div>
+				<div id='sysstat'></div>
 			</div>
-		</div>
-		<div class='pivot-item'><h3>network & memory</h3>
+                    </div>
+                    <div class='pivot-item'><h3>waits</h3>
 			<div class='metro-right-content'>
-				<div id='nwio'></div>
-				<div id='memio'></div>
+				<div id='waitevents'></div>
 			</div>
-		</div>
-		<div class='pivot-item'><h3>processes</h3>
+                    </div>
+                    <div class='pivot-item'><h3>log</h3>
 			<div class='metro-right-content'>
-				<div id='tprocesses'><table id='processes'></table><div id='pagerproc'></div></div>
+				<div id='tlist4'><table id='list4'></table><div id='pager4'></div></div>
 			</div>
-		</div>
-		<div class='pivot-item'><h3>bios</h3>
+                    </div>
+                    <div class='pivot-item'><h3>sql</h3>
 			<div class='metro-right-content'>
-				<div id='tbios'><table id='bios'></table><div id='pagerbios'></div></div>
-				<div id='tonboard'><table id='onboard'></table><div id='pageronb'></div></div>
+				<div id='tlist5'><table id='list5'></table><div id='pager5'></div></div>
 			</div>
-		</div>
-		<div class='pivot-item'><h3>log messages</h3>
+                    </div>
+                    <div class='pivot-item'><h3>sessions</h3>
 			<div class='metro-right-content'>
-				<div id='tlog'><table id='log'></table><div id='pagerlog'></div></div>
+				<div id='tlist6'><table id='list6'></table><div id='pager6'></div></div>
 			</div>
-		</div>
+                    </div>
+                    <div class='pivot-item'><h3>info</h3>
+			<div class='metro-right-content'>
+				<div id='tlist7'><table id='list7'></table><div id='pager7'></div></div>
+				<div id='tlist8'><table id='list8'></table><div id='pager8'></div></div>
+				<div id='sga'></div>
+			</div>
+                    </div>
+                    <div class='pivot-item'><h3>user</h3>
+			<div class='metro-right-content'>
+				<div id='tlist9'><table id='list9'></table><div id='pager9'></div></div>
+			</div>
+                    </div>
+                    <div class='pivot-item'><h3>objects</h3>
+			<div class='metro-right-content'>
+				<div id='tlist10'><table id='list10'></table><div id='pager10'></div></div>
+				<div id='tlist11'><table id='list11'></table><div id='pager11'></div></div>
+				<div id='tlist12'><table id='list12'></table><div id='pager12'></div></div>
+				<div id='tlist13'><table id='list13'></table><div id='pager13'></div></div>
+			</div>
+                    </div>
+                    <div class='pivot-item'><h3>rman</h3>
+			<div class='metro-right-content'>
+				<div id='tlist14'><table id='list14'></table><div id='pager14'></div></div>
+				<div id='tlist15'><table id='list15'></table><div id='pager15'></div></div>
+				<div id='tlist16'><table id='list16'></table><div id='pager16'></div></div>
+			</div>
+                    </div>
+                    <div class='pivot-item'><h3>flra</h3>
+			<div class='metro-right-content'>
+				<div id='tlist17'><table id='list17'></table><div id='pager17'></div></div>
+				<div id='tlist18'><table id='list18'></table><div id='pager18'></div></div>
+			</div>
+                    </div>
                 </div>
                 
                 <!-- Detail Ende -->

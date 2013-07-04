@@ -121,10 +121,10 @@ function GridAllDBs(uid) {
 
 function GridDBs(uid) {
     var b64uid = $.base64.encode( uid );
-    $('img#ListHosts').removeClass('Border2px82abcc');
-    $('img#ListHosts').addClass('Border2px004279');
-    $('img#GridHosts').removeClass('Border2px004279');
-    $('img#GridHosts').addClass('Border2px82abcc');
+    $('span.UserList').removeClass('Fontffffff');
+    $('span.UserList').addClass('Font82abcc');
+    $('span.UserGrid').removeClass('Font82abcc');
+    $('span.UserGrid').addClass('Fontffffff');
     $('#AutoReload').css('display', 'block');
     $('#ShowGridSearchBar').remove();
     $.ajax({
@@ -180,6 +180,7 @@ function ShowSelect(state) {
             <option value="' + $.base64.encode("ao") + 'KdhU7Z">Datenbanken ONLINE</option>\n\
             <option value="' + $.base64.encode("ap") + 'KdhU7Z">Datenbanken OFFLINE</option>\n\
             <option value="' + $.base64.encode("apoh") + 'KdhU7Z">Datenbanken OFFLINE auf ONLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("apaoh") + 'KdhU7Z">Datenbanken OFFLINE, bearbeitet auf ONLINE Hosts</option>\n\
             <option value="' + $.base64.encode("apnaoh") + 'KdhU7Z">Datenbanken OFFLINE, nicht bearbeitet auf ONLINE Hosts</option>\n\
             <option value="' + $.base64.encode("apdh") + 'KdhU7Z">Datenbanken OFFLINE auf OFFLINE Hosts</option>\n\
         </select>');
@@ -195,6 +196,7 @@ function ShowSelectSearch() {
             <option value="' + $.base64.encode("ao") + 'KdhU7Z">Datenbanken ONLINE</option>\n\
             <option value="' + $.base64.encode("ap") + 'KdhU7Z">Datenbanken OFFLINE</option>\n\
             <option value="' + $.base64.encode("apoh") + 'KdhU7Z">Datenbanken OFFLINE auf ONLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("apaoh") + 'KdhU7Z">Datenbanken OFFLINE, bearbeitet auf ONLINE Hosts</option>\n\
             <option value="' + $.base64.encode("apnaoh") + 'KdhU7Z">Datenbanken OFFLINE, nicht bearbeitet auf ONLINE Hosts</option>\n\
             <option value="' + $.base64.encode("apdh") + 'KdhU7Z">Datenbanken OFFLINE auf OFFLINE Hosts</option>\n\
         </select>');
@@ -203,10 +205,10 @@ function ShowSelectSearch() {
 
 function GridSpecialDBs(uid,state) {
     var b64uid = $.base64.encode( uid );
-    $('img#ListHosts').removeClass('Border2px82abcc');
-    $('img#ListHosts').addClass('Border2px004279');
-    $('img#GridHosts').removeClass('Border2px004279');
-    $('img#GridHosts').addClass('Border2px82abcc');
+    $('span.UserList').removeClass('Fontffffff');
+    $('span.UserList').addClass('Font82abcc');
+    $('span.UserGrid').removeClass('Font82abcc');
+    $('span.UserGrid').addClass('Fontffffff');
     $('#AutoReload').css('display', 'block');
     $('#ShowGridSearchBar').remove();
     $.ajax({
@@ -258,10 +260,10 @@ function GridSpecialDBs(uid,state) {
 function GridSearchDBs(uid,searchstring) {
     var b64uid = $.base64.encode( uid );
     var b64searchstring = $.base64.encode( searchstring );
-    $('img#ListHosts').removeClass('Border2px82abcc');
-    $('img#ListHosts').addClass('Border2px004279');
-    $('img#GridHosts').removeClass('Border2px004279');
-    $('img#GridHosts').addClass('Border2px82abcc');
+    $('span.UserList').removeClass('Fontffffff');
+    $('span.UserList').addClass('Font82abcc');
+    $('span.UserGrid').removeClass('Font82abcc');
+    $('span.UserGrid').addClass('Fontffffff');
     $('#AutoReload').css('display', 'block');
     $('#ShowGridSearchBar').remove();
     $.ajax({
@@ -337,10 +339,10 @@ function ListAllDBs(uid) {
 
 function ListDBs(uid) {
     var b64uid = $.base64.encode( uid );
-    $('img#GridHosts').removeClass('Border2px82abcc');
-    $('img#GridHosts').addClass('Border2px004279');
-    $('img#ListHosts').removeClass('Border2px004279');
-    $('img#ListHosts').addClass('Border2px82abcc');
+    $('span.UserList').addClass('Fontffffff');
+    $('span.UserList').removeClass('Font82abcc');
+    $('span.UserGrid').addClass('Font82abcc');
+    $('span.UserGrid').removeClass('Fontffffff');
     $('#AutoReload').css('display', 'block');
     $('#ShowGridSearchBar').remove();
     $.ajax({
@@ -427,10 +429,10 @@ function UpdateModView(uid,val1) {
 
 function ListSpecialDBs(uid,state) {
     var b64uid = $.base64.encode( uid );
-    $('img#GridHosts').removeClass('Border2px82abcc');
-    $('img#GridHosts').addClass('Border2px004279');
-    $('img#ListHosts').removeClass('Border2px004279');
-    $('img#ListHosts').addClass('Border2px82abcc');
+    $('span.UserList').addClass('Fontffffff');
+    $('span.UserList').removeClass('Font82abcc');
+    $('span.UserGrid').addClass('Font82abcc');
+    $('span.UserGrid').removeClass('Fontffffff');
     $('#AutoReload').css('display', 'block');
     $('#ShowGridSearchBar').remove();
     $.ajax({
@@ -507,10 +509,10 @@ function ListSpecialDBs(uid,state) {
 function ListSearchDBs(uid,searchstring) {
     var b64uid = $.base64.encode( uid );
     var b64searchstring = $.base64.encode( searchstring );
-    $('img#GridHosts').removeClass('Border2px82abcc');
-    $('img#GridHosts').addClass('Border2px004279');
-    $('img#ListHosts').removeClass('Border2px004279');
-    $('img#ListHosts').addClass('Border2px82abcc');
+    $('span.UserList').addClass('Fontffffff');
+    $('span.UserList').removeClass('Font82abcc');
+    $('span.UserGrid').addClass('Font82abcc');
+    $('span.UserGrid').removeClass('Fontffffff');
     $('#AutoReload').css('display', 'block');
     $('#ShowGridSearchBar').remove();
     $.ajax({

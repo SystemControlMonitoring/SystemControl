@@ -50,7 +50,7 @@ function SubLoader() {
 }
 
 function Base() {
-    $("#back-div").append("<a class='back-a' href='/kVASySystemControl'><img class='back-img' src='layout/images/white/back.png' title='Zur&uuml;ck'/></a>");
+    $("#back-div").append("<a class='back-a' href='./'><img class='back-img' src='layout/images/white/back.png' title='Zur&uuml;ck'/></a>");
 }
 
 function SubBase() {
@@ -88,12 +88,10 @@ function KeyFunctionSidebar(uid) {
                 $('#SidebarBottom').animate({height:'toggle'},350, function() {
                     $('#SidebarBottomContent').fadeIn(100);
                 }).css('zIndex',25);
-                $('#SidebarBottomSmall').removeClass('opacity');
             } else {
                 $('#SidebarBottomContent').fadeOut(100);
                 $('#SidebarBottom').animate({height:'toggle'},350).css('zIndex',10);
                 $('#SidebarBottomSmall').animate({marginBottom: "0px"},350).css('zIndex',10);
-                $('#SidebarBottomSmall').addClass('opacity');
             }
         }
     }).start();
@@ -120,12 +118,10 @@ function KlickFunctionSidebar(uid) {
             $('#SidebarBottom').animate({height:'toggle'},350, function() {
                 $('#SidebarBottomContent').fadeIn(100);
             }).css('zIndex',25);
-            $('#SidebarBottomSmall').removeClass('opacity');
         } else {
             $('#SidebarBottomContent').fadeOut(100);
             $('#SidebarBottom').animate({height:'toggle'},350).css('zIndex',10);
             $('#SidebarBottomSmall').animate({marginBottom: "0px"},350).css('zIndex',10);
-            $('#SidebarBottomSmall').addClass('opacity');
         }
     });
 }

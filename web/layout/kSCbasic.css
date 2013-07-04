@@ -20,12 +20,57 @@ body {
     min-height: 855px;*/
 }
 
+.login_username {
+    font-size: 20px;
+}
+
+.login_shortname {
+    font-size: 14px;
+}
+
+.UserDesc, .LtDesc {
+    font-size: 12px;
+    color: #fff;
+}
+
+#UserMenu {
+    position: absolute;
+    top: 55px;
+    right: 25px;
+    width: 400px;
+    border: 0px solid #82abcc;
+}
+
+#UserMenu table {
+    float: left;
+}
+
+#UserMenu table td {
+    padding-left: 5px;
+}
+
+#UserMenu table td:first-child {
+    width: 150px;
+}
+
+#UserView {
+    position: absolute;
+    top: 56px;
+    right: 445px;
+}
+
+#UserView table tr:last-child td {
+    font-size: 14px;
+    color: #82abcc;
+    padding-top: 4px;
+}
+
 #ShortMenu {
     position: absolute;
-    top: 44px;
+    top: 42px;
     right: 25px;
     padding: 3px;
-    border-left: 2px solid #82abcc;
+    border: 2px solid #82abcc;
     z-index: 5;
 }
 
@@ -40,8 +85,8 @@ body {
 }
 
 #ShortMenu img {
-    width: 32px;
-    padding: 3px;
+    width: 26px;
+    padding: 6px;
 }
 
 #ShortMenu img + img +img {
@@ -49,31 +94,28 @@ body {
 }
 
 #ShortMenu img:hover {
-    border: 2px solid #ffffff;
+    cursor: pointer;
+    opacity: 0.7;
+    -moz-opacity: 0.7;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+    filter:alpha(opacity=70);
+    -webkit-opacity: 0.7;
+    -ms-opacity: 0.7;
+    -o-opacity: 0.7;
+}
+
+.UserReload {
     cursor: pointer;
 }
 
-.Border2px82abcc {
-    border: 2px solid #82abcc;
+.Font82abcc {
+    color: #82abcc;
+    cursor: pointer;
 }
 
-.Border2px004279 {
-    border: 2px solid #004279;
-}
-
-.login_username {
-	position: absolute;
-	top: 50px;
-	right: 166px;
-	font-size: 20px;
-}
-
-.login_shortname {
-	position: absolute;
-	top: 72px;
-	right: 166px;
-	font-size: 14px;
-        z-index: 10;
+.Fontffffff {
+    color: #fff;
+    cursor: pointer;
 }
 
 .theme-box {
