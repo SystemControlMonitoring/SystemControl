@@ -81,7 +81,7 @@ function SrvInfo(uid) {
     $.ajax({
         url: 'http://' + Backend + '/clientdirect/json/?e=1&m=U2VydmljZUhvc3RMaXN0KhdU8Z&h=' + node + 'Hqu8zd&c=' + client + 'Jjd723&u=' + b64uid + 'KjdUE8',
         crossDomain: true,
-        success:function(json) {     
+        success: function(json) {     
             var i=0;
             $('#HostServices').html('<div id="HeadHostSrvList"><span>Service Name</span><span>Output</span></div><div id="HostSrvList"></div>');
             $.each(json, function() {

@@ -212,6 +212,10 @@
     /*margin-top: 10px;*/
 }
 
+#ListDivShowServices a {
+    color: #fff;
+}
+
 #ServiceLstTable {
     width: 99%;
     border-spacing:0;

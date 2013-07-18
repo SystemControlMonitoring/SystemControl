@@ -151,7 +151,7 @@ function GridDBs(uid) {
                             if ( shorthostname.length > 25 ) { shorthostname = shorthostname.substr(0,22) + '...'; }
                             if ( this.NAME.length > 25 ) { this.NAME = this.NAME.substr(0,22) + '...'; }
                             if ( this.OUTPUT.length > 38 ) { this.OUTPUT = this.OUTPUT.substr(0,35) + '...'; }
-                            $('section','#center').append('<a href="" class="service" title=""><img class="SrvImgGrid" src="' + hicon + '" /><div id="SrvImgStateGrid"><img src="' + this.SERVICE_STATE_ICON + '" /></div><div id="SrvTitleGrid">' + this.NAME + '</div><div id="SrvHostNameGrid">' + shorthostname + ' <i>auf ' + mnode + '</i></div><div id="SrvOutputGrid">' + this.OUTPUT + '</div></a>');
+                            $('section','#center').append('<a href="./modules/oracle_database.jsp?h=' + $.base64.encode( mnode ) + '&c=' + $.base64.encode( this.HOST ) + '&db=' + $.base64.encode( this.NAME ) + '" class="service" title=""><img class="SrvImgGrid" src="' + hicon + '" /><div id="SrvImgStateGrid"><img src="' + this.SERVICE_STATE_ICON + '" /></div><div id="SrvTitleGrid">' + this.NAME + '</div><div id="SrvHostNameGrid">' + shorthostname + ' <i>auf ' + mnode + '</i></div><div id="SrvOutputGrid">' + this.OUTPUT + '</div></a>');
                             servicecount++;
                         });
                     });
@@ -235,7 +235,7 @@ function GridSpecialDBs(uid,state) {
                             if ( shorthostname.length > 25 ) { shorthostname = shorthostname.substr(0,22) + '...'; }
                             if ( this.NAME.length > 25 ) { this.NAME = this.NAME.substr(0,22) + '...'; }
                             if ( this.OUTPUT.length > 38 ) { this.OUTPUT = this.OUTPUT.substr(0,35) + '...'; }
-                            $('section','#center').append('<a href="" class="service" title=""><img class="SrvImgGrid" src="' + hicon + '" /><div id="SrvImgStateGrid"><img src="' + this.SERVICE_STATE_ICON + '" /></div><div id="SrvTitleGrid">' + this.NAME + '</div><div id="SrvHostNameGrid">' + shorthostname + ' <i>auf ' + mnode + '</i></div><div id="SrvOutputGrid">' + this.OUTPUT + '</div></a>');
+                            $('section','#center').append('<a href="./modules/oracle_database.jsp?h=' + $.base64.encode( mnode ) + '&c=' + $.base64.encode( this.HOST ) + '&db=' + $.base64.encode( this.NAME ) + '" class="service" title=""><img class="SrvImgGrid" src="' + hicon + '" /><div id="SrvImgStateGrid"><img src="' + this.SERVICE_STATE_ICON + '" /></div><div id="SrvTitleGrid">' + this.NAME + '</div><div id="SrvHostNameGrid">' + shorthostname + ' <i>auf ' + mnode + '</i></div><div id="SrvOutputGrid">' + this.OUTPUT + '</div></a>');
                             servicecount++;
                         });
                     });
@@ -291,7 +291,7 @@ function GridSearchDBs(uid,searchstring) {
                             if ( shorthostname.length > 25 ) { shorthostname = shorthostname.substr(0,22) + '...'; }
                             if ( this.NAME.length > 25 ) { this.NAME = this.NAME.substr(0,22) + '...'; }
                             if ( this.OUTPUT.length > 38 ) { this.OUTPUT = this.OUTPUT.substr(0,35) + '...'; }
-                            $('section','#center').append('<a href="" class="service" title=""><img class="SrvImgGrid" src="' + hicon + '" /><div id="SrvImgStateGrid"><img src="' + this.SERVICE_STATE_ICON + '" /></div><div id="SrvTitleGrid">' + this.NAME + '</div><div id="SrvHostNameGrid">' + shorthostname + ' <i>auf ' + mnode + '</i></div><div id="SrvOutputGrid">' + this.OUTPUT + '</div></a>');
+                            $('section','#center').append('<a href="./modules/oracle_database.jsp?h=' + $.base64.encode( mnode ) + '&c=' + $.base64.encode( this.HOST ) + '&db=' + $.base64.encode( this.NAME ) + '" class="service" title=""><img class="SrvImgGrid" src="' + hicon + '" /><div id="SrvImgStateGrid"><img src="' + this.SERVICE_STATE_ICON + '" /></div><div id="SrvTitleGrid">' + this.NAME + '</div><div id="SrvHostNameGrid">' + shorthostname + ' <i>auf ' + mnode + '</i></div><div id="SrvOutputGrid">' + this.OUTPUT + '</div></a>');
                             servicecount++;
                         });
                     });
@@ -364,7 +364,7 @@ function ListDBs(uid) {
                         var mnode = this.NODE;
                         $.each(this.DATABASES, function() {
                             var hosticon = this.ICON;
-                            $('#ListDivShowServices').append('<table id="ServiceLstTable" class="' + servicecount + 'Services"></table>');
+                            $('#ListDivShowServices').append('<a href="./modules/oracle_database.jsp?h=' + $.base64.encode( mnode ) + '&c=' + $.base64.encode( this.HOST ) + '&db=' + $.base64.encode( this.NAME ) + '"><table id="ServiceLstTable" class="' + servicecount + 'Services"></table></a>');
                             var shorthostname;
                             var srvcount = 0;
                             var cssclass;
@@ -454,7 +454,7 @@ function ListSpecialDBs(uid,state) {
                         var mnode = this.NODE;
                         $.each(this.DBSTATSEL, function() {
                             var hosticon = this.ICON;
-                            $('#ListDivShowServices').append('<table id="ServiceLstTable" class="' + servicecount + 'Services"></table>');
+                            $('#ListDivShowServices').append('<a href="./modules/oracle_database.jsp?h=' + $.base64.encode( mnode ) + '&c=' + $.base64.encode( this.HOST ) + '&db=' + $.base64.encode( this.NAME ) + '"><table id="ServiceLstTable" class="' + servicecount + 'Services"></table></a>');
                             var shorthostname;
                             var srvcount = 0;
                             var cssclass;
@@ -535,7 +535,7 @@ function ListSearchDBs(uid,searchstring) {
                         var mnode = this.NODE;
                         $.each(this.DBSEARCH, function() {
                             var hosticon = this.ICON;
-                            $('#ListDivShowServices').append('<table id="ServiceLstTable" class="' + servicecount + 'Services"></table>');
+                            $('#ListDivShowServices').append('<a href="./modules/oracle_database.jsp?h=' + $.base64.encode( mnode ) + '&c=' + $.base64.encode( this.HOST ) + '&db=' + $.base64.encode( this.NAME ) + '"><table id="ServiceLstTable" class="' + servicecount + 'Services"></table></a>');
                             var shorthostname;
                             var srvcount = 0;
                             var cssclass;
