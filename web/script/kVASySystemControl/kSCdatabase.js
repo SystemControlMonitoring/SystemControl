@@ -2,15 +2,52 @@
  * kSCdatabase.js
  */
 
-function Top() {
+function Top(uid) {
+    var b64uid = $.base64.encode( uid );
     $('#TopMenu').append('<table cellpadding=0 cellspacing=0 border=0 id="TopMEnuTable"><tr><td><a href="../">Home</a></td><td><span id="TopMenuIcon" class="ui-icon ui-icon-triangle-1-e"></span></td><td><a href="../hosts.jsp">Hosts</a></td><td><span id="TopMenuIcon" class="ui-icon ui-icon-triangle-1-e"></span></td><td>' + $.base64.decode( urlPara('c') ) + '</td></tr></table>');
+    
+    $.Shortcuts.add({
+        type: 'down',
+        mask: 's',
+        handler: function() {
+            if ($("#Sidebar").is(":hidden")) {
+                $('#SidebarSmall').animate({marginRight: "400px"},350).css('zIndex',30);
+                $('#Sidebar').animate({width:'toggle'},350, function() {
+                    $('#SidebarContent').fadeIn(100);
+                }).css('zIndex',30);
+                SearchHosts( b64uid + 'Jhdu8K');
+            } else {
+                $('#SidebarContent').fadeOut(100);
+                $('#Sidebar').animate({width:'toggle'},350).css('zIndex',30);
+                $('#SidebarSmall').animate({marginRight: "0px"},350).css('zIndex',30);
+            }
+        }
+    }).start();
+    
+    /**
+     * Administration
+     **/
+    
+    $('#SidebarSubmenu').append('<div id="OracleDBA"><div id="AdminTitle">Administration</div><div id="AdminDivs"></div>\n\
+    <div id="AdminButtons">\n\
+        <button id="ra_button" style="margin-left: 2px; margin-top: 15px;">Reports Archiv</button>\n\
+        <button id="dv_button" style="margin-left: 2px; margin-top: 15px;">Diagnose Verzeichnis</button>\n\
+    </div>\n\
+    </div>');
+    
+    $('#ra_button').button().css('border','1px solid #004279').click(function() {
+	window.open('/reports/', '_blank');
+    });
+    $('#dv_button').button().css('border','1px solid #004279').click(function() {
+	window.open('/diag/', '_blank');
+    });
 }
 
 function Reload(uid) {
     $('#theme-roller').append('<img id="AjaxLoader" src="../layout/images/ajax-loader.gif">');
     SysInfo(uid);
     SrvInfo(uid);
-    HostInformations(uid);
+    HostInformations(uid);bb
 }
 
 function SysInfo(uid) {

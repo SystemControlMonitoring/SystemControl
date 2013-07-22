@@ -7,15 +7,11 @@
 */
 #SubLiveticker {
     display: none;
-    background-color: #004279;
     width: 90px;
-    border: 1px solid #82abcc;
     z-index: 5;
     position: absolute;
-    top: 23px;
-    right: 0;
-    -webkit-box-shadow: 0px 0px 6px 1px #002b4e;
-    box-shadow: 0px 0px 6px 1px #002b4e; 
+    top: 38px;
+    right: 65px;
 }
 
 #Liveticker {
@@ -55,8 +51,8 @@
 
 #LtImg img {
     margin-top: 3px;
+    margin-left: 48px;
     width: 40px;
-    border-right: 2px solid #004279;
     opacity: 0.4; 
     -moz-opacity: 0.4; 
     -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
@@ -68,7 +64,6 @@
 
 #LtImg img:hover {
     cursor: pointer;
-    border-right: 2px solid #82abcc;
     opacity: 1; 
     -moz-opacity: 1; 
     -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
@@ -101,8 +96,6 @@
     height: 40px;
     background-color: #004c8a;
     border: 2px solid #82abcc;
-    -webkit-box-shadow: 0px 0px 6px 1px #002b4e;
-    box-shadow: 0px 0px 6px 1px #002b4e; 
 }
 
 #LtContent table {

@@ -149,7 +149,7 @@ function SubLiveticker(uid) {
                             }
                             /* Reload Function */
                             KlickFunctionLt();
-                            setTimeout('Liveticker("' + uid + '")', 30000);
+                            setTimeout('SubLiveticker("' + uid + '")', 30000);
                         },
                         dataType: 'json',
                         cache: false

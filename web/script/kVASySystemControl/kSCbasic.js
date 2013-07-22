@@ -132,7 +132,7 @@ function StyleSidebar(uid) {
     $('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFHost" onclick="SearchHosts(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="layout/images/server.png"><span>Hosts</span></div>');
     $('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFService" onclick="SearchServices(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="layout/images/services.png"><span>Services</span></div>');
     $('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFDatabase" onclick="SearchDatabases(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="layout/images/database.png"><span>Datenbanken</span></div>');
-    $('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFHostgroup" onclick="SearchHostgroups(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="layout/images/layers.png"><span>Hostgruppen</span></div>');
+    //$('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFHostgroup" onclick="SearchHostgroups(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="layout/images/layers.png"><span>Hostgruppen</span></div>');
 }
 
 function SubStyleSidebar(uid) {
@@ -141,7 +141,7 @@ function SubStyleSidebar(uid) {
     $('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFHost" onclick="SearchHosts(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="../layout/images/server.png"><span>Hosts</span></div>');
     $('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFService" onclick="SearchServices(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="../layout/images/services.png"><span>Services</span></div>');
     $('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFDatabase" onclick="SearchDatabases(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="../layout/images/database.png"><span>Datenbanken</span></div>');
-    $('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFHostgroup" onclick="SearchHostgroups(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="../layout/images/layers.png"><span>Hostgruppen</span></div>');
+    //$('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFHostgroup" onclick="SearchHostgroups(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="../layout/images/layers.png"><span>Hostgruppen</span></div>');
 }
 
 function DeleteVal() {

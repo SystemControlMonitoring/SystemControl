@@ -7,7 +7,8 @@ var chartsysstat;
 var chartwaitevents;
 var chartsga;
 
-function Top() {
+function Top(uid) {
+    var b64uid = $.base64.encode( uid );
     $('#TopMenu').append('<div><span style="float: left;"><table cellpadding=0 cellspacing=0 border=0 id="TopMenuTable"><tr><td><a href="../">Home</a></td><td><span id="TopMenuIcon" class="ui-icon ui-icon-triangle-1-e"></span></td><td><a href="../hosts.jsp">Hosts</a></td><td><span id="TopMenuIcon" class="ui-icon ui-icon-triangle-1-e"></span></td><td><a class="Onclick" onclick="history.back ();">' + $.base64.decode( urlPara('c') ) + '</a></td><td><span id="TopMenuIcon" class="ui-icon ui-icon-triangle-1-e"></span></td><td>' + $.base64.decode( db ) + '</td></tr></table></span><span id="TopMenuIconGear" class="ui-icon ui-icon-info" style="float: left;" title="Weitere Datenbank Informationen."></span><span id="HostStatusSlim" style="float: left;"></span></div>');
     $('#TopMenuIconGear').click( function() {
             if ($("#ExtSysInfo").is(":hidden")) {
@@ -17,6 +18,123 @@ function Top() {
             }
         }
     );
+        
+    $.Shortcuts.add({
+        type: 'down',
+        mask: 's',
+        handler: function() {
+            if ($("#Sidebar").is(":hidden")) {
+                $('#SidebarSmall').animate({marginRight: "400px"},350).css('zIndex',30);
+                $('#Sidebar').animate({width:'toggle'},350, function() {
+                    $('#SidebarContent').fadeIn(100);
+                }).css('zIndex',30);
+                SearchDatabases( b64uid + 'Jhdu8K');
+            } else {
+                $('#SidebarContent').fadeOut(100);
+                $('#Sidebar').animate({width:'toggle'},350).css('zIndex',30);
+                $('#SidebarSmall').animate({marginRight: "0px"},350).css('zIndex',30);
+            }
+        }
+    }).start();
+    
+    /**
+     * Administration
+     **/
+    
+    $('#SidebarSubmenu').append('<div id="OracleDBA"><div id="AdminTitle">Administration</div><div id="AdminDivs">\n\
+    <div id="ioc" title="I/O Kalibrierung der Datenbank - 1 von 2">\n\
+	<p>\n\
+		Sie f&uuml;hren die I/O Kalibrierung der Datenbank durch.<br>Dieser Vorgang kann einige Minuten in Anspruch nehmen.\n\
+	</p>\n\
+    </div>\n\
+    <div id="redoswitch" title="Redo Log Switch - 1 von 2">\n\
+	<p>\n\
+		Sie f&uuml;hren eine Redo Logfile Switch in der Datenbank durch.\n\
+	</p>\n\
+    </div>\n\
+    <div id="ash" title="ASH Report der Datenbank - 1 von 2">\n\
+	<p>W&auml;hlen Sie ein Datum aus.</p><br>\n\
+	<table cellpadding=0 cellspacing=0 border=0>\n\
+		<tr><td style="padding:5px;">Start:</td><td style="padding:5px;"><input type="text" style="color: white; width:200px; border: 1px dotted #82abcc; background-color: #004279;" id="datestart1"></td></tr>\n\
+		<tr><td style="padding:5px;">Ende:</td><td style="padding:5px;"><input type="text" style="color: white; width:200px; border: 1px dotted #82abcc; background-color: #004279;" id="dateend1"></td></tr>\n\
+	</table>\n\
+    </div>\n\
+    <div id="awr" title="AWR Report der Datenbank - 1 von 2">\n\
+	<p>W&auml;hlen Sie ein Datum aus.</p><br>\n\
+	<table cellpadding=0 cellspacing=0 border=0>\n\
+		<tr><td style="padding:5px;">Start:</td><td style="padding:5px;"><input type="text" style="color: white; width:200px; border: 1px dotted #82abcc; background-color: #004279;" id="datestart2"></td></tr>\n\
+		<tr><td style="padding:5px;">Ende:</td><td style="padding:5px;"><input type="text" style="color: white; width:200px; border: 1px dotted #82abcc; background-color: #004279;" id="dateend2"></td></tr>\n\
+	</table>\n\
+    </div>\n\
+    <div id="addm" title="ADDM Report der Datenbank - 1 von 2">\n\
+	<p>W&auml;hlen Sie ein Datum aus.</p><br>\n\
+	<table cellpadding=0 cellspacing=0 border=0>\n\
+		<tr><td style="padding:5px;">Start:</td><td style="padding:5px;"><input type="text" style="color: white; width:200px; border: 1px dotted #82abcc; background-color: #004279;" id="datestart3"></td></tr>\n\
+		<tr><td style="padding:5px;">Ende:</td><td style="padding:5px;"><input type="text" style="color: white; width:200px; border: 1px dotted #82abcc; background-color: #004279;" id="dateend3"></td></tr>\n\
+	</table>\n\
+    </div>\n\
+    </div>\n\
+    <div id="AdminButtons">\n\
+        <button id="ioc_button" style="margin-left: 2px; margin-top: 15px;">I/O Kalibrierung</button>\n\
+        <button id="redoswitch_button" style="margin-left: 2px; margin-top: 15px;">Redo Log Switch</button><br>\n\
+        <button id="ash_button" style="margin-left: 2px; margin-top: 5px;">ASH<br>Report</button>\n\
+        <button id="awr_button" style="margin-left: 2px; margin-top: 5px;">AWR<br>Report</button>\n\
+        <button id="addm_button" style="margin-left: 2px; margin-top: 5px;">ADDM<br>Report</button><br>\n\
+        <button id="ra_button" style="margin-left: 2px; margin-top: 15px;">Reports Archiv</button>\n\
+        <button id="dv_button" style="margin-left: 2px; margin-top: 15px;">Diagnose Verzeichnis</button>\n\
+    </div>\n\
+    </div>');
+    //$('#SidebarSubmenu').append('<div class="DivSearchFilter" id="SFHostgroup" onclick="SearchHostgroups(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="../layout/images/layers.png"><span>Hostgruppen</span></div>');
+    
+    /**
+    * Date Time Picker
+    **/
+
+    $.datepicker.regional['de'] = {
+	closeText: 'Schlie&szlig;en',
+	prevText: 'Zur&uuml;ck',
+	nextText: 'Weiter',
+	currentText: 'Jetzt',
+	monthNames: ['Januar','Februar','M&auml;rz','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'],
+	monthNamesShort: ['Jan','Feb','M&auml;r','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'],
+	dayNames: ['Sonntag','Montag','Diensag','Mittwoch','Donnerstag','Freitag','Samstag'],
+	dayNamesShort: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+	dayNamesMin: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+	weekHeader: 'Wo',
+	dateFormat: 'yy-mm-dd',
+	firstDay: 1,
+	isRTL: false,
+	showMonthAfterYear: false,
+	yearSuffix: ''
+    };
+    $.datepicker.setDefaults($.datepicker.regional['de']);
+
+    $.timepicker.regional['de'] = {
+	timeOnlyTitle: 'Uhrzeit ausw&auml;hlen',
+	timeText: 'Zeit',
+	hourText: 'Stunde',
+	minuteText: 'Minute',
+	secondText: 'Sekunde',
+	currentText: 'Jetzt',
+	timeFormat: 'HH:mm:ss',
+	closeText: 'Ausw&auml;hlen',
+	ampm: false
+    };
+    $.timepicker.setDefaults($.timepicker.regional['de']);
+
+    $('#datestart1').datetimepicker();
+    $('#datestart2').datetimepicker();
+    $('#dateend1').datetimepicker();
+    $('#dateend2').datetimepicker();
+    $('#datestart3').datetimepicker();
+    $('#dateend3').datetimepicker();
+
+    $('#ra_button').button().css('border','1px solid #004279').click(function() {
+	window.open('/reports/', '_blank');
+    });
+    $('#dv_button').button().css('border','1px solid #004279').click(function() {
+	window.open('/diag/', '_blank');
+    });
 }
 
 function DbInfo(uid) {
@@ -606,7 +724,6 @@ function requestDatasysstat(b64uid) {
 
 function requestDatasga(b64uid) {
     $.ajax({
-        url: '/api/OracleDB.cpl?module=SGA&db=ORCL2',
         url: 'http://' + Backend + '/jqgridc/json/?e=1&m=T3JhY2xlREI=Jkd873&cm=U0dBJhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&db=' + db + 'Klu8Uz&u=' + b64uid + 'U7g7ZZ',
         success: function(point) {
             $.each(point, function(series_name,series_data) {
@@ -1406,5 +1523,298 @@ function ChartSGA(b64uid) {
                 }
             }
         }
+    });
+}
+
+/*
+ * Reports
+ */
+
+function IOCALIBRATE(uid) {
+    var b64uid = $.base64.encode( uid );
+    $('#ioc').dialog({
+    	autoOpen: false,
+    	height: 150,
+	width: 400,
+	draggable: false,
+	resizable: false,
+    	modal: true,
+    	buttons: {
+            Start: function() {
+		$( 'body' ).append('<img id="ajax-loader" title="I/O Kalibrierung der Datenbank" src="../layout/images/ajax-loader.gif"><div id="ajax-loader-div">I/O Kalibrierung der Datenbank</div>');
+                $(this).dialog('close');
+		$.ajax({
+                    url: 'http://' + Backend + '/clientdirect/json/?e=1&m=T3JhY2xlREJBZG1pbg==KhdU8Z&h=' + node + 'Hjd876&c=' + client + 'Jjd723&db=' + db + 'Klu8Uz&u=' + b64uid + 'U7g7ZZ&cm=SU9DQUxJQlJBVEU=IZK88i&date_start=1&date_end=1',
+                    timeout: 3600000,
+                    success: function() {
+                        $('#ajax-loader').remove();
+			$('#ajax-loader-div').remove();
+			$.ajax({
+                            url: 'http://' + Backend + '/clientdirect/json/?e=1&m=T3JhY2xlREJBZG1pbg==KhdU8Z&h=' + node + 'Hjd876&c=' + client + 'Jjd723&db=' + db + 'Klu8Uz&u=' + b64uid + 'U7g7ZZ&cm=R0VUSU9WQUxVRVM=IZK88i&date_start=1&date_end=1',
+                            success: function(point) {
+				var MBPS = point.MBPS;
+				var IOPS = point.IOPS;
+				var LAT = point.LAT;				
+				$( 'body' ).append('<div id="success" title="I/O Kalibrierung der Datenbank - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px 50px 0;"></span>I/O Kalibrierung der Datenbank wurde <b>erfolgreich</b> durchgef&uuml;hrt.</p><br><p>Mit folgendem Ergebnis:</p><br><table id="success_table" width=150 height=25 cellpadding=0 cellspacing=0 border=0 style="margin-left: 35px;"><tr><td style="border-bottom: 1px dotted #82abcc;">MBPS:</td><td style="border-bottom: 1px dotted #82abcc;">' + MBPS + '</td></tr><tr><td style="border-bottom: 1px dotted #82abcc;">IOPS:</td><td style="border-bottom: 1px dotted #82abcc;">' + IOPS + '</td></tr><tr><td style="border-bottom: 1px dotted #82abcc;">LAT:</td><td style="border-bottom: 1px dotted #82abcc;">' + LAT + '</td></tr></table></div>');
+				$( '#success' ).dialog({
+                                    autoOpen: true,
+                                    height: 250,
+                                    width: 400,
+                                    draggable: false,
+                                    resizable: false,
+                                    modal: true,
+                                    buttons: { 
+					OK: function() { 
+                                            $( this ).dialog( 'close' );
+                                            $('#success').remove();
+					}
+                                    }
+				});
+                            },
+                            dataType: 'json',
+                            cache: false
+			});
+                    },
+                    error: function() {
+                        $('#ajax-loader').remove();
+                        $('#ajax-loader-div').remove();
+			alert('FEHLER BEI AUSF&Uuml;HRUNG: I/O Kalibrierung der Datenbank');
+                    },
+                    dataType: 'json',
+                    cache: false
+		});
+            },
+            Abbrechen: function() {
+    		$(this).dialog('close');
+            }
+    	}
+    });
+    $('#ioc_button').button().css('border','1px solid #004279').click(function() {
+    	$('#ioc').dialog('open');
+    });
+}
+	
+function REDOSWITCH(uid) {	
+    var b64uid = $.base64.encode( uid );
+    $('#redoswitch').dialog({
+    	autoOpen: false,
+    	height: 150,
+	width: 400,
+	draggable: false,
+	resizable: false,
+    	modal: true,
+    	buttons: {
+            Start: function() {
+		$( 'body' ).append('<img id="ajax-loader" title="Redo Log Switch" src="../layout/images/ajax-loader.gif"><div id="ajax-loader-div">Redo Log Switch</div>');
+		$(this).dialog('close');
+		$.ajax({
+                    url: 'http://' + Backend + '/clientdirect/json/?e=1&m=T3JhY2xlREJBZG1pbg==KhdU8Z&h=' + node + 'Hjd876&c=' + client + 'Jjd723&db=' + db + 'Klu8Uz&u=' + b64uid + 'U7g7ZZ&cm=U1dJVENITE9HRklMRQ==IZK88i&date_start=1&date_end=1',
+                    timeout: 3600000,
+                    success: function() {
+                        $('#ajax-loader').remove();
+			$('#ajax-loader-div').remove();
+			$( 'body' ).append('<div id="success" title="Redo Log Switch - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>Redo Log Switch wurde <b>erfolgreich</b> durchgef&uuml;hrt.</p>');
+			$( '#success' ).dialog({
+                            autoOpen: true,
+                            height: 150,
+                            width: 400,
+                            draggable: false,
+                            resizable: false,
+                            modal: true,
+                            buttons: { 
+				OK: function() { 
+                                    $( this ).dialog( 'close' );
+                                    $('#success').remove();
+				}
+                            }
+			});
+                    },
+                    error: function() {
+			$('#ajax-loader').remove();
+			$('#ajax-loader-div').remove();
+			alert('FEHLER BEI AUSF&Uuml;HRUNG: Redo Log Switch');
+                    },
+                    dataType: 'json',
+                    cache: false
+		});
+            },
+            Abbrechen: function() {
+    		$(this).dialog('close');
+            }
+    	}
+    });
+    $('#redoswitch_button').button().css('border','1px solid #004279').click(function() {
+    	$('#redoswitch').dialog('open');
+    });
+}
+	
+function ASH(uid) {
+    var b64uid = $.base64.encode( uid );
+    $('#ash').dialog({
+    	autoOpen: false,
+    	height: 210,
+	width: 400,
+	draggable: false,
+	resizable: false,
+    	modal: true,
+    	buttons: {
+            Start: function() {
+		var date_start = $('#datestart1').attr('value');
+		var date_end = $('#dateend1').attr('value');
+		$( 'body' ).append('<img id="ajax-loader" title="ASH Report der Datenbank" src="../layout/images/ajax-loader.gif"><div id="ajax-loader-div">ASH Report der Datenbank</div>');
+		$(this).dialog('close');
+		$.ajax({
+                    url: 'http://' + Backend + '/clientdirect/json/?e=1&m=T3JhY2xlREJBZG1pbg==KhdU8Z&h=' + node + 'Hjd876&c=' + client + 'Jjd723&db=' + db + 'Klu8Uz&u=' + b64uid + 'U7g7ZZ&cm=QVNIIZK88i&date_start=' + date_start + '&date_end=' + date_end,
+                    timeout: 3600000,
+                    success: function(point) {
+			$('#ajax-loader').remove();
+			$('#ajax-loader-div').remove();
+			$( 'body' ).append('<div id="success" title="ASH Report der Datenbank - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>ASH Report der Datenbank wurde <b>erfolgreich</b> durchgef&uuml;hrt.</p><br><p>Im Filesystem des Clients zu finden unter:</p><br><p><b>' + point.FILE + '</b></p><br><p>Der Report wird im Anschluss im Browser ge&ouml;ffnet.</p>');
+			$( '#success' ).dialog({
+                            autoOpen: true,
+                            height: 250,
+                            width: 400,
+                            draggable: false,
+                            resizable: false,
+                            modal: true,
+                            buttons: { 
+				OK: function() { 
+                                    $( this ).dialog( 'close' );
+                                    $('#success').remove();
+                                    window.open(point.URL, '_blank');
+				}
+                            }
+			});
+                    },
+                    error: function() {
+			$('#ajax-loader').remove();
+			$('#ajax-loader-div').remove();
+			alert('FEHLER BEI AUSF&Uuml;HRUNG: ASH Report der Datenbank');
+                    },
+                    dataType: 'json',
+                    cache: false
+		});
+            },
+            Abbrechen: function() {
+                $(this).dialog('close');
+            }
+    	}
+    });
+    $('#ash_button').button().css('border','1px solid #004279').click(function() {
+    	$('#ash').dialog('open');
+    });
+}
+	
+function AWR(uid) {
+    var b64uid = $.base64.encode( uid );
+    $('#awr').dialog({
+    	autoOpen: false,
+    	height: 210,
+	width: 400,
+	draggable: false,
+	resizable: false,
+    	modal: true,
+    	buttons: {
+            Start: function() {
+                var date_start = $('#datestart2').attr('value');
+            	var date_end = $('#dateend2').attr('value');
+		$( 'body' ).append('<img id="ajax-loader" title="AWR Report der Datenbank" src="../layout/images/ajax-loader.gif"><div id="ajax-loader-div">AWR Report der Datenbank</div>');
+		$(this).dialog('close');
+		$.ajax({
+                    url: 'http://' + Backend + '/clientdirect/json/?e=1&m=T3JhY2xlREJBZG1pbg==KhdU8Z&h=' + node + 'Hjd876&c=' + client + 'Jjd723&db=' + db + 'Klu8Uz&u=' + b64uid + 'U7g7ZZ&cm=QVdSIZK88i&date_start=' + date_start + '&date_end=' + date_end,
+                    timeout: 3600000,
+                    success: function(point) {
+                        $('#ajax-loader').remove();
+			$('#ajax-loader-div').remove();
+			$( 'body' ).append('<div id="success" title="AWR Report der Datenbank - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>AWR Report der Datenbank wurde <b>erfolgreich</b> durchgef&uuml;hrt.</p><br><p>Im Filesystem des Clients zu finden unter:</p><br><p><b>' + point.FILE + '</b></p><br><p>Der Report wird im Anschluss im Browser ge&ouml;ffnet.</p>');
+			$( '#success' ).dialog({
+                            autoOpen: true,
+                            height: 250,
+                            width: 400,
+                            draggable: false,
+                            resizable: false,
+                            modal: true,
+                            buttons: { 
+                            	OK: function() { 
+                                    $( this ).dialog( 'close' );
+                                    $('#success').remove();
+                                    window.open(point.URL, '_blank');
+				}
+                            }
+			});
+                    },
+                    error: function() {
+			$('#ajax-loader').remove();
+			$('#ajax-loader-div').remove();
+			alert('FEHLER BEI AUSF&Uuml;HRUNG: AWR Report der Datenbank');
+                    },
+                    dataType: 'json',
+                    cache: false
+		});
+            },
+            Abbrechen: function() {
+                $(this).dialog('close');
+            }
+    	}
+    });
+    $('#awr_button').button().css('border','1px solid #004279').click(function() {
+    	$('#awr').dialog('open');
+    });
+}
+	
+function ADDM(uid) {
+    var b64uid = $.base64.encode( uid );
+    $('#addm').dialog({
+    	autoOpen: false,
+    	height: 210,
+        width: 400,
+	draggable: false,
+	resizable: false,
+    	modal: true,
+    	buttons: {
+            Start: function() {
+		var date_start = $('#datestart3').attr('value');
+		var date_end = $('#dateend3').attr('value');
+		$( 'body' ).append('<img id="ajax-loader" title="ADDM Report der Datenbank" src="../layout/images/ajax-loader.gif"><div id="ajax-loader-div">ADDM Report der Datenbank</div>');
+		$(this).dialog('close');
+		$.ajax({
+                    url: 'http://' + Backend + '/clientdirect/json/?e=1&m=T3JhY2xlREJBZG1pbg==KhdU8Z&h=' + node + 'Hjd876&c=' + client + 'Jjd723&db=' + db + 'Klu8Uz&u=' + b64uid + 'U7g7ZZ&cm=QURETQ==IZK88i&date_start=' + date_start + '&date_end=' + date_end,
+                    timeout: 3600000,
+                    success: function(point) {
+			$('#ajax-loader').remove();
+			$('#ajax-loader-div').remove();
+			$( 'body' ).append('<div id="success" title="ADDM Report der Datenbank - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>ADDM Report der Datenbank wurde <b>erfolgreich</b> durchgef&uuml;hrt.</p><br><p>Im Filesystem des Clients zu finden unter:</p><br><p><b>' + point.FILE + '</b></p><br><p>Der Report wird im Anschluss im Browser ge&ouml;ffnet.</p>');
+			$( '#success' ).dialog({
+                            autoOpen: true,
+                            height: 250,
+                            width: 400,
+                            draggable: false,
+                            resizable: false,
+                            modal: true,
+                            buttons: { 
+                                OK: function() { 
+                                    $( this ).dialog( 'close' );
+                                    $('#success').remove();
+                                    window.open(point.URL, '_blank');
+				}
+                            }
+			});
+                    },
+                    error: function() {
+                        $('#ajax-loader').remove();
+			$('#ajax-loader-div').remove();
+			alert('FEHLER BEI AUSF&Uuml;HRUNG: ADDM Report der Datenbank');
+                    },
+                    dataType: 'json',
+                    cache: false
+                });
+            },
+            Abbrechen: function() {
+    		$(this).dialog('close');
+            }
+    	}
+    });
+    $('#addm_button').button().css('border','1px solid #004279').click(function() {
+    	$('#addm').dialog('open');
     });
 }

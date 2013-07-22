@@ -725,18 +725,8 @@ body[theme=light] .backglb { background-color: #004279; }
 	border: 1px solid #82abcc;
 }
 
-#ajax-loader {
-	position: absolute;
-	top: 59px;
-	left: 500px;
-}
-
 #ajax-loader-div {
-	position: absolute;
-	top: 70px;
-	left: 540px;
-	color: #82abcc;
-	font-size: 14px;
+	display: none;
 }
 
 #ui-datepicker-div {

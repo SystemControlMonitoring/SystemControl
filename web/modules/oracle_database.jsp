@@ -63,6 +63,7 @@
 	<link rel='stylesheet' href='../layout/searchFilter.css' />
 	<link rel='stylesheet' href='../layout/ui.multiselect.css' />
 	<link rel='stylesheet' href='../layout/MetroJs.a.css' />
+        <link rel='stylesheet' href='../layout/kSCoracle_database.css' />
         
         <!-- Personal Computer -> 1024x768 -->
         <link rel='stylesheet' media='screen and (max-width: 1214px)' href='../layout/metro.1024.css' />
@@ -83,7 +84,7 @@
                 jQuery.support.cors = true;
                 SubGetBackend();
                 SubLoader();
-                Top();
+                Top(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 SubLiveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 KlickFunctionSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 KeyFunctionSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
@@ -95,6 +96,11 @@
                 SlimTaov(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 ModShowCritical(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 SubStyleSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                REDOSWITCH(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                IOCALIBRATE(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                ASH(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                AWR(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                ADDM(<% out.println("'" + request.getRemoteUser() + "'"); %>);
             });
         });
         </script>

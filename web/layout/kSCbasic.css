@@ -130,7 +130,7 @@ body {
 	vertical-align:middle;
 }
 
-#AjaxLoader {
+#ajax-loader, #AjaxLoader {
     position: absolute;
     top: 57px;
     left: 640px;

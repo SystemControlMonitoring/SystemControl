@@ -413,3 +413,22 @@ img#HostTypeIcon {
     top: 0px;
     font-size: 16px;
 }
+
+/*
+ * Admin Menu
+ */ 
+
+#SidebarSubmenu {
+    position: absolute;
+    padding: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    height: 275px;
+}
+
+#AdminTitle {
+    font-size: 32px;
+    letter-spacing:-2px;
+    margin-left: 35px;
+}
