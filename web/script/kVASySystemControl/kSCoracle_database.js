@@ -130,10 +130,10 @@ function Top(uid) {
     $('#dateend3').datetimepicker();
 
     $('#ra_button').button().css('border','1px solid #004279').click(function() {
-	window.open('/reports/', '_blank');
+	window.open('http://' + $.base64.decode( urlPara('c') ) + ':6555/reports/', '_blank');
     });
     $('#dv_button').button().css('border','1px solid #004279').click(function() {
-	window.open('/diag/', '_blank');
+	window.open('http://' + $.base64.decode( urlPara('c') ) + ':6555/diag/', '_blank');
     });
 }
 

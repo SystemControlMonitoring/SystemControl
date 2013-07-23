@@ -9,7 +9,8 @@ var chartio;
 var chartnwio;
 var chartmemio;
 
-function Top() {
+function Top(uid) {
+    var b64uid = $.base64.encode( uid );
     $('#TopMenu').append('<div><span style="float: left;"><table cellpadding=0 cellspacing=0 border=0 id="TopMenuTable"><tr><td><a href="../">Home</a></td><td><span id="TopMenuIcon" class="ui-icon ui-icon-triangle-1-e"></span></td><td><a href="../hosts.jsp">Hosts</a></td><td><span id="TopMenuIcon" class="ui-icon ui-icon-triangle-1-e"></span></td><td><a class="Onclick" onclick="history.back ();">' + $.base64.decode( urlPara('c') ) + '</a></td><td><span id="TopMenuIcon" class="ui-icon ui-icon-triangle-1-e"></span></td><td>System Information</td></tr></table></span><span id="TopMenuIconGear" class="ui-icon ui-icon-info" style="float: left;" title="Weitere Host Informationen."></span><span id="HostStatusSlim" style="float: left;"></span></div>');
     $('#TopMenuIconGear').click( function() {
             if ($("#ExtSysInfo").is(":hidden")) {
@@ -19,6 +20,45 @@ function Top() {
             }
         }
     );
+        
+    $.Shortcuts.add({
+        type: 'down',
+        mask: 's',
+        handler: function() {
+            if ($("#Sidebar").is(":hidden")) {
+                $('#SidebarSmall').animate({marginRight: "400px"},350).css('zIndex',30);
+                $('#Sidebar').animate({width:'toggle'},350, function() {
+                    $('#SidebarContent').fadeIn(100);
+                }).css('zIndex',30);
+                SearchHosts( b64uid + 'Jhdu8K');
+            } else {
+                $('#SidebarContent').fadeOut(100);
+                $('#Sidebar').animate({width:'toggle'},350).css('zIndex',30);
+                $('#SidebarSmall').animate({marginRight: "0px"},350).css('zIndex',30);
+            }
+        }
+    }).start();
+
+    /**
+     * Administration
+     **/
+    
+    $('#SidebarSubmenu').append('<div id="OracleDBA"><div id="AdminTitle">Administration</div>\n\
+        <div id="AdminDivs"></div>\n\
+        <div id="AdminButtons">\n\
+            <span id="LogfileButtons"></span><br>\n\
+            <button id="ra_button" style="margin-left: 2px; margin-top: 15px;">Reports Archiv</button>\n\
+            <button id="dv_button" style="margin-left: 2px; margin-top: 15px;">Diagnose Verzeichnis</button>\n\
+        </div>\n\
+    </div>');
+
+
+    $('#ra_button').button().css('border','1px solid #004279').click(function() {
+	window.open('http://' + $.base64.decode( urlPara('c') ) + ':6555/reports/', '_blank');
+    });
+    $('#dv_button').button().css('border','1px solid #004279').click(function() {
+	window.open('http://' + $.base64.decode( urlPara('c') ) + ':6555/diag/', '_blank');
+    });
 }
 
 function SysInfo(uid) {
@@ -39,6 +79,77 @@ function SysInfo(uid) {
         },
         error: function(jqXhr, textStatus, error) {
             $('#HostStatusSlim').html('<font class="OFF">OFFLINE</font>');
+        },
+        dataType: 'json',
+        cache: false
+    });
+}
+
+function LogfilesDiv(uid) {
+    var b64uid = $.base64.encode( uid );
+    var node = urlPara('h');
+    var client = urlPara('c');
+    $.ajax({
+        url: 'http://' + Backend + '/clientdirect/json/?e=1&m=TG9nQWRtaW4=KhdU8Z&h=' + node + 'Hjd876&c=' + client + 'Jjd723&log=1&u=' + b64uid + 'U7g7ZZ&cm=TE9HRklMRVM=IZK88i',
+	success: function(point) {
+            $('#AdminDivs').html('<span id="ButtonListTextDiv"></span>');
+            $('#LogfileButtons').html('<span id="ButtonListDiv"></span>');
+            $.each(point, function() {
+                var shortname = this.SC;
+		var longname = this.DESC;
+		$('#ButtonListTextDiv').append('<div id="' + shortname + '_dial" title="L&ouml;schen des Logfiles: ' + longname + ' - 1 von 2"><p>Sie f&uuml;hren das L&ouml;schen des Logfiles: ' + longname + ' durch.</p></div>');
+		$('#ButtonListDiv').append('<button id="' + shortname + '_button" style="margin-left: 2px; margin-top: 5px;">' + longname + '</button>');
+		$('#' + shortname + '_dial').dialog({
+                    autoOpen: false,
+                    height: 150,
+                    width: 400,
+                    draggable: false,
+                    resizable: false,
+                    modal: true,
+                    buttons: {
+			OK: function() {
+                            $('body').append('<img id="ajax-loader" title="L&ouml;schen des Logfiles: ' + longname + '" wird ausgef&uuml;hrt." src="../layout/images/ajax-loader.gif" /><div id="ajax-loader-div">L&ouml;schen des Logfiles: ' + longname + '</div>');
+                            $(this).dialog('close');
+                            $.ajax({
+                                url: 'http://' + Backend + '/clientdirect/json/?e=1&m=TG9nQWRtaW4=KhdU8Z&h=' + node + 'Hjd876&c=' + client + 'Jjd723&log=' + longname + '&u=' + b64uid + 'U7g7ZZ&cm=REVMT0c=IZK88i',
+				timeout: 3600000,
+                                success: function() {
+                                    $('#ajax-loader').remove();
+                                    $('#ajax-loader-div').remove();
+                                    $( 'body' ).append('<div id="success" title="L&ouml;schen des Logfiles: ' + longname + '" - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>Das L&ouml;schen des Logfiles ' + longname + ' wurde <b>erfolgreich</b> durchgef&uuml;hrt.</p>');
+                                    $( '#success' ).dialog({
+                                        autoOpen: true,
+                                        height: 150,
+                                        width: 400,
+                                        draggable: false,
+                                        resizable: false,
+                                        modal: true,
+                                        buttons: { 
+                                            OK: function() { 
+                                                $( this ).dialog( 'close' );
+                                                $('#success').remove();
+                                            }
+                                        }
+                                    });
+                                },
+                                error: function() {
+                                    $('#ajax-loader').remove();
+                                    $('#ajax-loader-div').remove();
+                                    alert('FEHLER BEI AUSF&Uuml;HRUNG: L&ouml;schen des Logfiles: ' + longname );
+                                },
+                                dataType: 'json',
+                                cache: false
+                            });
+                        },
+                        Abbrechen: function() {
+                            $(this).dialog('close');
+                        }
+                    }
+                });
+                $('#' + shortname + '_button').button().css('border','1px solid #004279').click(function() {
+                    $('#' + shortname + '_dial').dialog('open');
+                });
+            });
         },
         dataType: 'json',
         cache: false
@@ -357,7 +468,7 @@ function Storage(uid) {
 	colNames:['Typ','Meldung'],
 	colModel:[
             {name:'typ', width: 50, align:'left', sortable: false, resizable:true},
-            {name:'mes', width: 975, align:'left', sortable: false, resizable:true}
+            {name:'mes', width: 1022, align:'left', sortable: false, resizable:true}
 	],
 	rowNum:24,
 	rowList:[18,24,30,40,50],
