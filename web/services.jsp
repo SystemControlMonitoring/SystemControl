@@ -37,6 +37,7 @@
 	<script type="text/javascript" src="script/jquery.contextmenu.js"></script>
 	<script type="text/javascript" src="script/grid.addons.js"></script>
         <script type="text/javascript" src="script/jquery.selectmenu.js"></script>
+        <script type="text/javascript" src="script/timepicker.js"></script>
         <script type="text/javascript" src="script/jquery.shortcuts.min.js"></script>
         
         <!-- KSC Basicfunctions -->

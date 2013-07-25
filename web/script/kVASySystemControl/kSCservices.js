@@ -61,6 +61,696 @@ function Top(uid) {
             Reload(uid);
         }
     }).start();
+    
+    /**
+     * Administration
+     **/
+    
+    $('#SidebarSubmenu').append('<div id="OracleDBA"><div id="AdminTitle">Check Kommandos</div>\n\
+        <div id="AdminDivs">\n\
+            <div id="DivReCheck" title="Erneutes Ausf&uuml;hren von Service Checks - 1 von 2">\n\
+                <h3>Es betrifft folgende konfigurierte Checks:</h3>\n\
+                <div id="DivReCheckObjects"></div>\n\
+            </div>\n\
+            <div id="DivAcknldge" title="Bearbeiten des Service Problems - 1 von 2">\n\
+                <h3>Bitte tragen Sie die zus&auml;tzlichen Informationen ein!</h3>\n\
+                <div id="Author">\n\
+                    <font>Author:</font>\n\
+                    <input type="text" name="author" id="auth1" value="' + uid + '" readonly />\n\
+                </div>\n\
+                <div id="Comment">\n\
+                    <font>Kommentar:</font>\n\
+                    <textarea name="comment" id="comm1"></textarea>\n\
+                </div>\n\
+                <!--h3>Soll der Eintrag per Mail an den Kunden verschickt werden? (Mail1,Mail2,Mailn)</h3>\n\
+                <div id="Senden">\n\
+                    <input name="mailingto" type="checkbox" id="send" value="1" onclick="EnableInput(\'#mailaddr\');" />\n\
+                    <input name="mailaddr" id="mailaddr" type="text" value=""/>\n\
+                </div>\n\
+                <h3>Soll der Eintrag f&uuml;r die Servicereports in die Datenbank geschrieben werden?</h3>\n\
+                <div id="Insertto">\n\
+                    <input name="insertto" type="checkbox" id="insertto1" value="1" onclick="EnableInput(\'#insertto2\');" />\n\
+                    <span id="insertto2">Ja!</font>\n\
+                </div-->\n\
+                <h3>Es betrifft folgende konfigurierte Checks:</h3>\n\
+                <div id="DivAcknldgeObjects"></div>\n\
+            </div>\n\
+            <div id="DivComment" title="Kommentieren des Service Problems - 1 von 2">\n\
+                <h3>Bitte tragen Sie die zus&auml;tzlichen Informationen ein!</h3>\n\
+                <div id="CAuthor">\n\
+                    <font>Author:</font>\n\
+                    <input type="text" name="author" id="Cauth" value="' + uid + '" readonly />\n\
+                </div>\n\
+                <div id="CComment">\n\
+                    <font>Kommentar:</font>\n\
+                    <textarea name="comment" id="Ccomm"></textarea>\n\
+                </div>\n\
+                <!--h3>Soll der Eintrag per Mail an den Kunden verschickt werden? (Mail1,Mail2,Mailn)</h3>\n\
+                <div id="CSenden">\n\
+                    <input name="mailingto" type="checkbox" id="Csend" value="1" onclick="EnableInput(\'#Cmailaddr\');" />\n\
+                    <input name="mailaddr" id="Cmailaddr" type="text" value=""/>\n\
+                </div>\n\
+                <h3>Soll der Eintrag f&uuml;r die Servicereports in die Datenbank geschrieben werden?</h3>\n\
+                <div id="CInsertto">\n\
+                    <input name="insertto" type="checkbox" id="Cinsertto1" value="1" onclick="EnableInput(\'#Cinsertto2\');" />\n\
+                    <span id="Cinsertto2">Ja!</font>\n\
+                </div-->\n\
+                <h3>Es betrifft folgende konfigurierte Checks:</h3>\n\
+                <div id="DivCommentObjects"></div>\n\
+            </div>\n\\n\
+            <div id="DivDowntime" title="Downtime eines Service definieren - 1 von 2">\n\
+                <h3>Bitte tragen Sie die zus&auml;tzlichen Informationen ein!</h3>\n\
+                <div id="DAuthor">\n\
+                    <font>Author:</font>\n\
+                    <input type="text" name="author" id="Dauth" value="' + uid + '" readonly />\n\
+                </div>\n\
+                <div id="DComment">\n\
+                    <font>Kommentar:</font>\n\
+                    <textarea name="comment" id="Dcomm"></textarea>\n\
+                </div>\n\
+                <div id="DStart">\n\
+                    <font>Beginn:</font>\n\
+                    <input type="text" name="start" id="Dstartts" />\n\
+                </div>\n\
+                <div id="DEnd">\n\
+                    <font>Ende:</font>\n\
+                    <input type="text" name="end" id="Dendts" />\n\
+                </div>\n\
+                <!--h3>Soll der Eintrag per Mail an den Kunden verschickt werden? (Mail1,Mail2,Mailn)</h3>\n\
+                <div id="DSenden">\n\
+                    <input name="mailingto" type="checkbox" id="Dsend" value="1" onclick="EnableInput(\'#Dmailaddr\');" />\n\
+                    <input name="mailaddr" id="Dmailaddr" type="text" value=""/>\n\
+                </div>\n\
+                <h3>Soll der Eintrag f&uuml;r die Servicereports in die Datenbank geschrieben werden?</h3>\n\
+                <div id="DInsertto">\n\
+                    <input name="insertto" type="checkbox" id="Dinsertto1" value="1" onclick="EnableInput(\'#Dinsertto2\');" />\n\
+                    <span id="Dinsertto2">Ja!</font>\n\
+                </div-->\n\
+                <h3>Es betrifft folgende konfigurierte Checks:</h3>\n\
+                <div id="DivDowntimeObjects"></div>\n\
+            </div>\n\
+            <div id="DivNotify" title="Benachrichtigung der Service Checks deaktivieren - 1 von 2">\n\
+                <h3>Es betrifft folgende konfigurierte Checks:</h3>\n\
+                <div id="DivNotifyObjects"></div>\n\
+            </div>\n\
+            <div id="DivEnNotify" title="Benachrichtigung der Service Checks aktivieren - 1 von 2">\n\
+                <h3>Es betrifft folgende konfigurierte Checks:</h3>\n\
+                <div id="DivEnNotifyObjects"></div>\n\
+            </div>\n\
+            <div id="DivRemAck" title="Service Problem wieder freigeben - 1 von 2">\n\
+                <h3>Es betrifft folgende konfigurierte Checks:</h3>\n\
+                <div id="DivRemAckObjects"></div>\n\
+            </div>\n\
+            <div id="DivRemDwntm" title="Downtime eines Service l&ouml;schen - 1 von 2">\n\
+                <h3>Es betrifft folgende konfigurierte Checks:</h3>\n\
+                <div id="DivRemDwntmObjects"></div>\n\
+            </div>\n\
+        </div>\n\
+        <div id="AdminButtons">\n\
+            <span id="LogfileButtons"></span><br>\n\
+            <button id="rc_button" style="margin-left: 2px; margin-top: 10px;">Re-Check</button>\n\
+            <button id="ba_button" style="margin-left: 2px; margin-top: 10px;" title="Problem bearbeiten.">Pr. Bearbeiten</button>\n\
+            <button id="fr_button" style="margin-left: 2px; margin-top: 10px;" title="Problem freigeben.">Pr. Freigeben</button>\n\
+            <button id="ko_button" style="margin-left: 2px; margin-top: 10px;">Kommentieren</button>\n\
+            <button id="dd_button" style="margin-left: 2px; margin-top: 10px;" title="Downtime l&ouml;schen.">Downtime -</button>\n\
+            <button id="do_button" style="margin-left: 2px; margin-top: 10px;" title="Downtime festlegen.">Downtime +</button>\n\
+            <button id="ny_button" style="margin-left: 2px; margin-top: 10px;" title="Benachrichtigungen deaktivieren.">Ben. -</button>\n\
+            <button id="ne_button" style="margin-left: 2px; margin-top: 10px;" title="Benachrichtigungen aktivieren.">Ben. +</button>\n\
+        </div>\n\
+    </div>');
+
+    /**
+    * Date Time Picker
+    **/
+
+    $.datepicker.regional['de'] = {
+	closeText: 'Schlie&szlig;en',
+	prevText: 'Zur&uuml;ck',
+	nextText: 'Weiter',
+	currentText: 'Jetzt',
+	monthNames: ['Januar','Februar','M&auml;rz','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'],
+	monthNamesShort: ['Jan','Feb','M&auml;r','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'],
+	dayNames: ['Sonntag','Montag','Diensag','Mittwoch','Donnerstag','Freitag','Samstag'],
+	dayNamesShort: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+	dayNamesMin: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+	weekHeader: 'Wo',
+	dateFormat: 'yy-mm-dd',
+	firstDay: 1,
+	isRTL: false,
+	showMonthAfterYear: false,
+	yearSuffix: ''
+    };
+    $.datepicker.setDefaults($.datepicker.regional['de']);
+
+    $.timepicker.regional['de'] = {
+	timeOnlyTitle: 'Uhrzeit ausw&auml;hlen',
+	timeText: 'Zeit',
+	hourText: 'Stunde',
+	minuteText: 'Minute',
+	secondText: 'Sekunde',
+	currentText: 'Jetzt',
+	timeFormat: 'HH:mm:ss',
+	closeText: 'Ausw&auml;hlen',
+	ampm: false
+    };
+    $.timepicker.setDefaults($.timepicker.regional['de']);
+    
+    $('#Dstartts').datetimepicker();
+    $('#Dendts').datetimepicker();
+
+    $('#rc_button').button().css('border','1px solid #004279').click(function() {
+        var u = "";
+        var array = $('form#SearchService').serializeArray();
+        $('#DivReCheckObjects').html('<table id="DivReCheckTable"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th></tr></thead></table>');
+        $.each(array, function() {
+            if (this.name == "s") { /**/ } else { 
+                u += this.name + "@" + this.value + ";";
+                $('#DivReCheckTable').append('<tr><td>' + this.name + '</td><td>' + this.value + '</td></tr>');
+            }
+        });
+        $('#DivReCheck').dialog({
+            autoOpen: true,
+            height: 300,
+            width: 750,
+            draggable: false,
+            resizable: false,
+            modal: true,
+            buttons: {
+                Ausführen: function() {
+                    $( 'body' ).append('<img id="ajax-loader" title="Erneutes Ausf&uuml;hren von Service Checks" src="layout/images/ajax-loader.gif"><div id="ajax-loader-div">Erneutes Ausf&uuml;hren von Service Checks</div>');
+                    $(this).dialog('close');
+                    $.ajax({
+                        url: 'http://' + Backend + '/commands/json/?e=1&m=UmVDaGVjaw==KlU76T&c=' + $.base64.encode( u ) + 'KjHu8U&u=' + b64uid + 'U7g7ZZ',
+                        timeout: 3600000,
+                        success: function(point) {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            $( 'body' ).append('<div id="success" title="Erneutes Ausf&uuml;hren von Service Checks - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>Service Checks wurden <b>erfolgreich</b> ausgeführt.</p><br><table id="DivReCheckTablePost"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th><th>Timestamp</th></tr></thead></table>');
+                            $.each(point, function() {
+                                $('#DivReCheckTablePost').append('<tr><td>' + this.HOST_NAME + '@' + this.NODE + '</td><td>' + this.SERVICE_NAME + '</td><td>' + this.TS + '</td></tr>');
+                            });
+                            $( '#success' ).dialog({
+                                autoOpen: true,
+                                height: 300,
+                                width: 750,
+                                draggable: false,
+                                resizable: false,
+                                modal: true,
+                                buttons: { 
+                                    OK: function() { 
+                                        $( this ).dialog( 'close' );
+                                        $('#success').remove();
+                                        $('#DivReCheckObjects').html('');
+                                    }
+                                }
+                            });
+                        },
+                        error: function() {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            alert('FEHLER BEI AUSFÜHRUNG: Erneutes Ausführen von Service Checks');
+                            $('#DivReCheckObjects').html('');
+                        },
+                        dataType: 'json',
+                        cache: false
+                    });
+                },
+                Abbrechen: function() {
+                    $(this).dialog('close');
+                    $('#DivReCheckObjects').html('');
+                }
+            }
+        });
+    });
+    
+    $('#ba_button').button().css('border','1px solid #004279').click(function() {
+        var u = "";
+        var array = $('form#SearchService').serializeArray();
+        $('#DivAcknldgeObjects').html('<table id="DivReCheckTable"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th></tr></thead></table>');
+        $.each(array, function() {
+            if (this.name == "s") { /**/ } else { 
+                u += this.name + "@" + this.value + ";";
+                $('#DivReCheckTable').append('<tr><td>' + this.name + '</td><td>' + this.value + '</td></tr>');
+            }
+        });
+        $('#DivAcknldge').dialog({
+            autoOpen: true,
+            height: 700,
+            width: 750,
+            draggable: false,
+            resizable: false,
+            modal: true,
+            buttons: {
+                Ausführen: function() {
+                    var author = $('#auth1').attr('value');
+                    var comment = $('#comm1').attr('value');
+                    $( 'body' ).append('<img id="ajax-loader" title="Bearbeiten des Service Problems" src="layout/images/ajax-loader.gif"><div id="ajax-loader-div">Bearbeiten des Service Problems</div>');
+                    $(this).dialog('close');
+                    $.ajax({
+                        url: 'http://' + Backend + '/commands/json/?e=1&m=QWNrU3ZjKlU76T&c=' + $.base64.encode( u ) + 'KjHu8U&u=' + b64uid + 'U7g7ZZ&ar=' + $.base64.encode( author ) + 'U7g7ZZ&cm=' + $.base64.encode( comment ) + 'U7g7ZZ',
+                        timeout: 3600000,
+                        success: function(point) {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            $( 'body' ).append('<div id="success" title="Bearbeiten des Service Problems - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>Service Probleme wurden <b>erfolgreich</b> bearbeitet.</p><br><table id="DivReCheckTablePost"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th><th>Timestamp</th></tr></thead></table>');
+                            $.each(point, function() {
+                                $('#DivReCheckTablePost').append('<tr><td>' + this.HOST_NAME + '@' + this.NODE + '</td><td>' + this.SERVICE_NAME + '</td><td>' + this.TS + '</td></tr>');
+                            });
+                            $( '#success' ).dialog({
+                                autoOpen: true,
+                                height: 300,
+                                width: 750,
+                                draggable: false,
+                                resizable: false,
+                                modal: true,
+                                buttons: { 
+                                    OK: function() { 
+                                        $( this ).dialog( 'close' );
+                                        $('#success').remove();
+                                        $('#DivAcknldgeObjects').html('');
+                                    }
+                                }
+                            });
+                        },
+                        error: function() {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            alert('FEHLER BEI AUSFÜHRUNG: Bearbeiten des Service Problems');
+                            $('#DivAcknldgeObjects').html('');
+                        },
+                        dataType: 'json',
+                        cache: false
+                    });
+                },
+                Abbrechen: function() {
+                    $(this).dialog('close');
+                    $('#DivAcknldgeObjects').html('');
+                }
+            }
+        });
+    });
+
+    $('#fr_button').button().css('border','1px solid #004279').click(function() {
+        var u = "";
+        var array = $('form#SearchService').serializeArray();
+        $('#DivRemAckObjects').html('<table id="DivReCheckTable"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th></tr></thead></table>');
+        $.each(array, function() {
+            if (this.name == "s") { /**/ } else { 
+                u += this.name + "@" + this.value + ";";
+                $('#DivReCheckTable').append('<tr><td>' + this.name + '</td><td>' + this.value + '</td></tr>');
+            }
+        });
+        $('#DivRemAck').dialog({
+            autoOpen: true,
+            height: 300,
+            width: 750,
+            draggable: false,
+            resizable: false,
+            modal: true,
+            buttons: {
+                Ausführen: function() {
+                    var author = $('#auth1').attr('value');
+                    var comment = $('#comm1').attr('value');
+                    $( 'body' ).append('<img id="ajax-loader" title="Service Problem wieder freigeben" src="layout/images/ajax-loader.gif"><div id="ajax-loader-div">Service Problem wieder freigeben</div>');
+                    $(this).dialog('close');
+                    $.ajax({
+                        url: 'http://' + Backend + '/commands/json/?e=1&m=UmVtQWNrU3ZjKlU76T&c=' + $.base64.encode( u ) + 'KjHu8U&u=' + b64uid + 'U7g7ZZ',
+                        timeout: 3600000,
+                        success: function(point) {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            $( 'body' ).append('<div id="success" title="Service Problem wieder freigeben - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>Service Probleme wurden <b>erfolgreich</b> freigegeben.</p><br><table id="DivReCheckTablePost"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th><th>Timestamp</th></tr></thead></table>');
+                            $.each(point, function() {
+                                $('#DivReCheckTablePost').append('<tr><td>' + this.HOST_NAME + '@' + this.NODE + '</td><td>' + this.SERVICE_NAME + '</td><td>' + this.TS + '</td></tr>');
+                            });
+                            $( '#success' ).dialog({
+                                autoOpen: true,
+                                height: 300,
+                                width: 750,
+                                draggable: false,
+                                resizable: false,
+                                modal: true,
+                                buttons: { 
+                                    OK: function() { 
+                                        $( this ).dialog( 'close' );
+                                        $('#success').remove();
+                                        $('#DivRemAckObjects').html('');
+                                    }
+                                }
+                            });
+                        },
+                        error: function() {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            alert('FEHLER BEI AUSFÜHRUNG: Service Problem wieder freigeben.');
+                            $('#DivRemAckObjects').html('');
+                        },
+                        dataType: 'json',
+                        cache: false
+                    });
+                },
+                Abbrechen: function() {
+                    $(this).dialog('close');
+                    $('#DivRemAckObjects').html('');
+                }
+            }
+        });
+    });
+
+    $('#ko_button').button().css('border','1px solid #004279').click(function() {
+        var u = "";
+        var array = $('form#SearchService').serializeArray();
+        $('#DivCommentObjects').html('<table id="DivReCheckTable"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th></tr></thead></table>');
+        $.each(array, function() {
+            if (this.name == "s") { /**/ } else { 
+                u += this.name + "@" + this.value + ";";
+                $('#DivReCheckTable').append('<tr><td>' + this.name + '</td><td>' + this.value + '</td></tr>');
+            }
+        });
+        $('#DivComment').dialog({
+            autoOpen: true,
+            height: 700,
+            width: 750,
+            draggable: false,
+            resizable: false,
+            modal: true,
+            buttons: {
+                Ausführen: function() {
+                    var author = $('#Cauth').attr('value');
+                    var comment = $('#Ccomm').attr('value');
+                    $( 'body' ).append('<img id="ajax-loader" title="Kommentieren des Service" src="layout/images/ajax-loader.gif"><div id="ajax-loader-div">Kommentieren des Service</div>');
+                    $(this).dialog('close');
+                    $.ajax({
+                        url: 'http://' + Backend + '/commands/json/?e=1&m=Q29tU3ZjKlU76T&c=' + $.base64.encode( u ) + 'KjHu8U&u=' + b64uid + 'U7g7ZZ&ar=' + $.base64.encode( author ) + 'U7g7ZZ&cm=' + $.base64.encode( comment ) + 'U7g7ZZ',
+                        timeout: 3600000,
+                        success: function(point) {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            $( 'body' ).append('<div id="success" title="Kommentieren des Service - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>Services wurden <b>erfolgreich</b> kommentiert.</p><br><table id="DivReCheckTablePost"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th><th>Timestamp</th></tr></thead></table>');
+                            $.each(point, function() {
+                                $('#DivReCheckTablePost').append('<tr><td>' + this.HOST_NAME + '@' + this.NODE + '</td><td>' + this.SERVICE_NAME + '</td><td>' + this.TS + '</td></tr>');
+                            });
+                            $( '#success' ).dialog({
+                                autoOpen: true,
+                                height: 500,
+                                width: 750,
+                                draggable: false,
+                                resizable: false,
+                                modal: true,
+                                buttons: { 
+                                    OK: function() { 
+                                        $( this ).dialog( 'close' );
+                                        $('#success').remove();
+                                        $('#DivCommentObjects').html('');
+                                    }
+                                }
+                            });
+                        },
+                        error: function() {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            alert('FEHLER BEI AUSFÜHRUNG: Kommentieren des Service.');
+                            $('#DivCommentObjects').html('');
+                        },
+                        dataType: 'json',
+                        cache: false
+                    });
+                },
+                Abbrechen: function() {
+                    $(this).dialog('close');
+                    $('#DivCommentObjects').html('');
+                }
+            }
+        });
+    });
+    
+    $('#do_button').button().css('border','1px solid #004279').click(function() {
+        var u = "";
+        var array = $('form#SearchService').serializeArray();
+        $('#DivDowntimeObjects').html('<table id="DivReCheckTable"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th></tr></thead></table>');
+        $.each(array, function() {
+            if (this.name == "s") { /**/ } else { 
+                u += this.name + "@" + this.value + ";";
+                $('#DivReCheckTable').append('<tr><td>' + this.name + '</td><td>' + this.value + '</td></tr>');
+            }
+        });
+        $('#DivDowntime').dialog({
+            autoOpen: true,
+            height: 700,
+            width: 750,
+            draggable: false,
+            resizable: false,
+            modal: true,
+            buttons: {
+                Ausführen: function() {
+                    var author = $('#Dauth').attr('value');
+                    var comment = $('#Dcomm').attr('value');
+                    var datestart = $('#Dstartts').attr('value');
+                    var dateend = $('#Dendts').attr('value');
+                    $( 'body' ).append('<img id="ajax-loader" title="Downtime eines Service definieren" src="layout/images/ajax-loader.gif"><div id="ajax-loader-div">Downtime eines Service definieren</div>');
+                    $(this).dialog('close');
+                    $.ajax({
+                        url: 'http://' + Backend + '/commands/json/?e=1&m=RHdudG1TdmM=KlU76T&c=' + $.base64.encode( u ) + 'KjHu8U&u=' + b64uid + 'U7g7ZZ&ar=' + $.base64.encode( author ) + 'U7g7ZZ&cm=' + $.base64.encode( comment ) + 'U7g7ZZ&ds=' + datestart + '&de=' + dateend,
+                        timeout: 3600000,
+                        success: function(point) {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            $( 'body' ).append('<div id="success" title="Downtime eines Service definieren - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>Downtime der Services wurden <b>erfolgreich</b> definiert.</p><br><table id="DivReCheckTablePost"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th><th>Timestamp</th></tr></thead></table>');
+                            $.each(point, function() {
+                                $('#DivReCheckTablePost').append('<tr><td>' + this.HOST_NAME + '@' + this.NODE + '</td><td>' + this.SERVICE_NAME + '</td><td>' + this.TS + '</td></tr>');
+                            });
+                            $( '#success' ).dialog({
+                                autoOpen: true,
+                                height: 500,
+                                width: 750,
+                                draggable: false,
+                                resizable: false,
+                                modal: true,
+                                buttons: { 
+                                    OK: function() { 
+                                        $( this ).dialog( 'close' );
+                                        $('#success').remove();
+                                        $('#DivDowntimeObjects').html('');
+                                    }
+                                }
+                            });
+                        },
+                        error: function() {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            alert('FEHLER BEI AUSFÜHRUNG: Kommentieren des Service.');
+                            $('#DivDowntimeObjects').html('');
+                        },
+                        dataType: 'json',
+                        cache: false
+                    });
+                },
+                Abbrechen: function() {
+                    $(this).dialog('close');
+                    $('#DivDowntimeObjects').html('');
+                }
+            }
+        });	
+    });
+
+    $('#dd_button').button().css('border','1px solid #004279').click(function() {
+        var u = "";
+        var array = $('form#SearchService').serializeArray();
+        $('#DivRemDwntmObjects').html('<table id="DivReCheckTable"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th></tr></thead></table>');
+        $.each(array, function() {
+            if (this.name == "s") { /**/ } else { 
+                u += this.name + "@" + this.value + ";";
+                $('#DivReCheckTable').append('<tr><td>' + this.name + '</td><td>' + this.value + '</td></tr>');
+            }
+        });
+        $('#DivRemDwntm').dialog({
+            autoOpen: true,
+            height: 300,
+            width: 750,
+            draggable: false,
+            resizable: false,
+            modal: true,
+            buttons: {
+                Ausführen: function() {
+                    var author = $('#Dauth').attr('value');
+                    var comment = $('#Dcomm').attr('value');
+                    var datestart = $('#Dstartts').attr('value');
+                    var dateend = $('#Dendts').attr('value');
+                    $( 'body' ).append('<img id="ajax-loader" title="Downtime eines Service l&ouml;schen" src="layout/images/ajax-loader.gif"><div id="ajax-loader-div">Downtime eines Service l&ouml;schen</div>');
+                    $(this).dialog('close');
+                    $.ajax({
+                        url: 'http://' + Backend + '/commands/json/?e=1&m=UmVtRHdudG1TdmM=KlU76T&c=' + $.base64.encode( u ) + 'KjHu8U&u=' + b64uid + 'U7g7ZZ',
+                        timeout: 3600000,
+                        success: function(point) {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            $( 'body' ).append('<div id="success" title="Downtime eines Service l&ouml;schen - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>Downtime der Services wurden <b>erfolgreich</b> gel&ouml;scht.</p><br><table id="DivReCheckTablePost"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th><th>Timestamp</th></tr></thead></table>');
+                            $.each(point, function() {
+                                $('#DivReCheckTablePost').append('<tr><td>' + this.HOST_NAME + '@' + this.NODE + '</td><td>' + this.SERVICE_NAME + '</td><td>' + this.TS + '</td></tr>');
+                            });
+                            $( '#success' ).dialog({
+                                autoOpen: true,
+                                height: 300,
+                                width: 750,
+                                draggable: false,
+                                resizable: false,
+                                modal: true,
+                                buttons: { 
+                                    OK: function() { 
+                                        $( this ).dialog( 'close' );
+                                        $('#success').remove();
+                                        $('#DivRemDwntmObjects').html('');
+                                    }
+                                }
+                            });
+                        },
+                        error: function() {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            alert('FEHLER BEI AUSFÜHRUNG: Downtime eines Service l&ouml;schen.');
+                            $('#DivRemDwntmObjects').html('');
+                        },
+                        dataType: 'json',
+                        cache: false
+                    });
+                },
+                Abbrechen: function() {
+                    $(this).dialog('close');
+                    $('#DivRemDwntmObjects').html('');
+                }
+            }
+        });	
+    });
+
+    $('#ny_button').button().css('border','1px solid #004279').click(function() {
+        var u = "";
+        var array = $('form#SearchService').serializeArray();
+        $('#DivNotifyObjects').html('<table id="DivReCheckTable"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th></tr></thead></table>');
+        $.each(array, function() {
+            if (this.name == "s") { /**/ } else { 
+                u += this.name + "@" + this.value + ";";
+                $('#DivReCheckTable').append('<tr><td>' + this.name + '</td><td>' + this.value + '</td></tr>');
+            }
+        });
+        $('#DivNotify').dialog({
+            autoOpen: true,
+            height: 300,
+            width: 750,
+            draggable: false,
+            resizable: false,
+            modal: true,
+            buttons: {
+                Ausführen: function() {
+                    $( 'body' ).append('<img id="ajax-loader" title="Benachrichtigung der Service Checks deaktivieren" src="layout/images/ajax-loader.gif"><div id="ajax-loader-div">Benachrichtigung der Service Checks deaktivieren</div>');
+                    $(this).dialog('close');
+                    $.ajax({
+                        url: 'http://' + Backend + '/commands/json/?e=1&m=RGVhY05vdFN2Yw==KlU76T&c=' + $.base64.encode( u ) + 'KjHu8U&u=' + b64uid + 'U7g7ZZ',
+                        timeout: 3600000,
+                        success: function(point) {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            $( 'body' ).append('<div id="success" title="Benachrichtigung der Service Checks deaktivieren - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>Benachrichtgungen der Service Checks wurden <b>erfolgreich</b> deaktiviert.</p><br><table id="DivReCheckTablePost"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th><th>Timestamp</th></tr></thead></table>');
+                            $.each(point, function() {
+                                $('#DivReCheckTablePost').append('<tr><td>' + this.HOST_NAME + '@' + this.NODE + '</td><td>' + this.SERVICE_NAME + '</td><td>' + this.TS + '</td></tr>');
+                            });
+                            $( '#success' ).dialog({
+                                autoOpen: true,
+                                height: 300,
+                                width: 750,
+                                draggable: false,
+                                resizable: false,
+                                modal: true,
+                                buttons: { 
+                                    OK: function() { 
+                                        $( this ).dialog( 'close' );
+                                        $('#success').remove();
+                                        $('#DivNotifyObjects').html('');
+                                    }
+                                }
+                            });
+                        },
+                        error: function() {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            alert('FEHLER BEI AUSFÜHRUNG: Erneutes Ausführen von Service Checks');
+                            $('#DivNotifyObjects').html('');
+                        },
+                        dataType: 'json',
+                        cache: false
+                    });
+                },
+                Abbrechen: function() {
+                    $(this).dialog('close');
+                    $('#DivNotifyObjects').html('');
+                }
+            }
+        });	
+    });
+
+    $('#ne_button').button().css('border','1px solid #004279').click(function() {
+        var u = "";
+        var array = $('form#SearchService').serializeArray();
+        $('#DivEnNotifyObjects').html('<table id="DivReCheckTable"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th></tr></thead></table>');
+        $.each(array, function() {
+            if (this.name == "s") { /**/ } else { 
+                u += this.name + "@" + this.value + ";";
+                $('#DivReCheckTable').append('<tr><td>' + this.name + '</td><td>' + this.value + '</td></tr>');
+            }
+        });
+        $('#DivEnNotify').dialog({
+            autoOpen: true,
+            height: 300,
+            width: 750,
+            draggable: false,
+            resizable: false,
+            modal: true,
+            buttons: {
+                Ausführen: function() {
+                    $( 'body' ).append('<img id="ajax-loader" title="Benachrichtigung der Service Checks aktivieren" src="layout/images/ajax-loader.gif"><div id="ajax-loader-div">Benachrichtigung der Service Checks aktivieren</div>');
+                    $(this).dialog('close');
+                    $.ajax({
+                        url: 'http://' + Backend + '/commands/json/?e=1&m=QWNOb3RTdmM=KlU76T&c=' + $.base64.encode( u ) + 'KjHu8U&u=' + b64uid + 'U7g7ZZ',
+                        timeout: 3600000,
+                        success: function(point) {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            $( 'body' ).append('<div id="success" title="Benachrichtigung der Service Checks aktivieren - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>Benachrichtgungen der Service Checks wurden <b>erfolgreich</b> aktiviert.</p><br><table id="DivReCheckTablePost"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th><th>Timestamp</th></tr></thead></table>');
+                            $.each(point, function() {
+                                $('#DivReCheckTablePost').append('<tr><td>' + this.HOST_NAME + '@' + this.NODE + '</td><td>' + this.SERVICE_NAME + '</td><td>' + this.TS + '</td></tr>');
+                            });
+                            $( '#success' ).dialog({
+                                autoOpen: true,
+                                height: 300,
+                                width: 750,
+                                draggable: false,
+                                resizable: false,
+                                modal: true,
+                                buttons: { 
+                                    OK: function() { 
+                                        $( this ).dialog( 'close' );
+                                        $('#success').remove();
+                                        $('#DivEnNotifyObjects').html('');
+                                    }
+                                }
+                            });
+                        },
+                        error: function() {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            alert('FEHLER BEI AUSFÜHRUNG: Benachrichtigung der Service Checks aktivieren');
+                            $('#DivEnNotifyObjects').html('');
+                        },
+                        dataType: 'json',
+                        cache: false
+                    });
+                },
+                Abbrechen: function() {
+                    $(this).dialog('close');
+                    $('#DivEnNotifyObjects').html('');
+                }
+            }
+        });	
+    });
 }
 
 function Reload(uid) {
@@ -319,6 +1009,7 @@ function GridSearchServices(uid,searchstring) {
     $('span.UserGrid').addClass('Fontffffff');
     $('#AutoReload').css('display', 'block');
     $('#ShowGridSearchBar').remove();
+    $('body').append('<div id="ShowGridSearchBar" style="margin-top: 7px; margin-left: 7px;"></div>');
     $.ajax({
         url: 'http://' + Backend + '/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u=' + b64uid + 'Lkjdu7&m2=Q29uZmlnJq0OpP',
         crossDomain: true,
@@ -335,7 +1026,7 @@ function GridSearchServices(uid,searchstring) {
                 success: function(json) {
                     var hostcount = 0;
                     var servicecount = 0;
-                    $('body').append('<div id="ShowGridSearchBar" style="margin-top: 7px; margin-left: 7px;"><font size=2 color=#82abcc>Gesucht nach:</font>  ' + searchstring + '</div>');
+                    $('#ShowGridSearchBar').html('<font size=2 color=#82abcc>Gesucht nach:</font>  ' + searchstring + '');
                     $.each(json, function() {
                         var mnode = this.NODE;
                         $.each(this.SRVSEARCH, function() {
@@ -386,7 +1077,7 @@ function ListAllServices(uid) {
     $('#ServiceGridSelect').html('');
     $('#theme-roller').append('<img id="AjaxLoader" src="layout/images/ajax-loader.gif">');
     $('#SrvCenter').html('<div id="ServicePane"><div id="ServiceListSearch"></div><div id="HeadDivTableServicesListView"><span>Host Name</span><span>Service Name</span><span>Output</span></div></div><div id="ListDivShowServices"></div>');
-    $('#ServicePane').append('<div id="VLOne"></div><div id="VLTwo"></div><div id="VLThree"></div>');
+    $('#ServicePane').append('<div id="CheckBoxAll"><input type="checkbox" id="CheckAllCheckboxes" onclick="CheckAll(\'' + uid + '\');"/></div><div id="VLOne"></div><div id="VLTwo"></div><div id="VLThree"></div><div id="VLFour"></div>');
     if (state.length > 0) {
         ListSpecialServices(uid,state);
     } else {
@@ -425,7 +1116,7 @@ function ListServices(uid) {
                     $.each(json, function() {
                         var mnode = this.NODE;
                         $.each(this.HFI, function() {
-                            //var hostname = this.NAME;
+                            var hostname = this.NAME;
                             var hoststatus = this.STATUS;
                             var hosticon = this.ICON;
                             var shorthostname;
@@ -445,11 +1136,11 @@ function ListServices(uid) {
                                     cssclass = "taovok"; 
                                 }
                                 if (srvcount == 0) {
-                                    $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td rowspan=2><img src="' + hosticon + '" /></td><td>' + shorthostname + '</td><td>' + this.SERVICE_NAME + '</td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
+                                    $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td rowspan=2><img src="' + hosticon + '" /></td><td>' + shorthostname + '</td><td>' + this.SERVICE_NAME + '</td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
                                 } else if (srvcount == 1) {
-                                    $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td><i>auf ' + mnode + '</i></td><td>' + this.SERVICE_NAME + '</td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
+                                    $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td><i>auf ' + mnode + '</i></td><td>' + this.SERVICE_NAME + '</td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
                                 } else {
-                                    $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td colspan=2></td><td>' + this.SERVICE_NAME + '</td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
+                                    $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td colspan=2></td><td>' + this.SERVICE_NAME + '</td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
                                 }
                                 servicecount++;
                                 srvcount++;
@@ -523,7 +1214,7 @@ function ListSpecialServices(uid,state) {
                     $.each(json, function() {
                         var mnode = this.NODE;
                         $.each(this.SRVSTATSEL, function() {
-                            //var hostname = this.NAME;
+                            var hostname = this.NAME;
                             var hoststatus = this.STATUS;
                             var hosticon = this.ICON;
                             var shorthostname;
@@ -544,11 +1235,11 @@ function ListSpecialServices(uid,state) {
                                         cssclass = "taovok"; 
                                     }
                                     if (srvcount == 0) {
-                                        $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td rowspan=2><img style="width:20px; margin-bottom: -5px;margin-left: 13px;" src="' + hosticon + '" /></td><td>' + shorthostname + ' <i>(' + mnode + ')</i></td><td>' + this.SERVICE_NAME + '</td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
+                                        $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td rowspan=2><img style="width:20px; margin-bottom: -5px;margin-left: 13px;" src="' + hosticon + '" /></td><td>' + shorthostname + ' <i>(' + mnode + ')</i></td><td>' + this.SERVICE_NAME + '</td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
                                     } else if (srvcount == 1) {
-                                        $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td></td><td>' + this.SERVICE_NAME + '</td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
+                                        $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td></td><td>' + this.SERVICE_NAME + '</td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
                                     } else {
-                                        $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td colspan=2></td><td>' + this.SERVICE_NAME + '</td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
+                                        $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td colspan=2></td><td>' + this.SERVICE_NAME + '</td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
                                     }
                                     servicecount++;
                                     srvcount++;
@@ -592,7 +1283,7 @@ function ListSearchServices(uid,searchstring) {
     $('span.UserGrid').removeClass('Fontffffff');
     $('#AutoReload').css('display', 'block');
     $('#ShowGridSearchBar').remove();
-    //$('#SrvCenter').html('');
+    $('body').append('<div id="ShowGridSearchBar" style="margin-top: 7px; margin-left: 7px;"></div>');
     $('#center').html('');
     $.ajax({
         url: 'http://' + Backend + '/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u=' + b64uid + 'Lkjdu7&m2=Q29uZmlnJq0OpP',
@@ -613,11 +1304,11 @@ function ListSearchServices(uid,searchstring) {
                     $.each(json, function() {
                         var mnode = this.NODE;
                         $.each(this.SRVSEARCH, function() {
-                            //var hostname = this.NAME;
+                            var hostname = this.NAME;
                             var hoststatus = this.STATUS;
                             var hosticon = this.ICON;
                             var shorthostname;
-                            $('body').append('<div id="ShowGridSearchBar" style="margin-top: 7px; margin-left: 7px;"><font size=2 color=#82abcc>Gesucht nach:</font>  ' + searchstring + '</div>');
+                            $('#ShowGridSearchBar').html('<font size=2 color=#82abcc>Gesucht nach:</font>  ' + searchstring + '');
                             if ( dds == "0" ) { shorthostname = this.NAME; } else { var tmp = this.NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
                             //if ( shorthostname.length > 13 ) { shorthostname = shorthostname.substr(0,10) + '...'; }
                             if (this.SERVICELIST.length > 0) {
@@ -635,11 +1326,11 @@ function ListSearchServices(uid,searchstring) {
                                         cssclass = "taovok"; 
                                     }
                                     if (srvcount == 0) {
-                                        $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td rowspan=2><img style="width:20px; margin-bottom: -5px;margin-left: 13px;" src="' + hosticon + '" /></td><td>' + shorthostname + ' <i>(' + mnode + ')</i></td><td>' + this.SERVICE_NAME + '</td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
+                                        $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td rowspan=2><img style="width:20px; margin-bottom: -5px;margin-left: 13px;" src="' + hosticon + '" /></td><td>' + shorthostname + ' <i>(' + mnode + ')</i></td><td>' + this.SERVICE_NAME + '</td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
                                     } else if (srvcount == 1) {
-                                        $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td></td><td>' + this.SERVICE_NAME + '</td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
+                                        $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td></td><td>' + this.SERVICE_NAME + '</td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
                                     } else {
-                                        $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td colspan=2></td><td>' + this.SERVICE_NAME + '</td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
+                                        $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td colspan=2></td><td>' + this.SERVICE_NAME + '</td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
                                     }
                                     servicecount++;
                                     srvcount++;
@@ -692,4 +1383,31 @@ function KlickFunctionSidebarService(uid,searchstring) {
             $('#SidebarSmall').animate({marginRight: "0px"},350).css('zIndex',30);
         }
     });
+}
+
+function CheckAll(uid) {
+    var b64uid = $.base64.encode( uid );
+    if($('#CheckAllCheckboxes').is(':checked')) {
+        $('form#SearchService').find(':checkbox').attr('checked', 'checked');
+        if ($("#Sidebar").is(":hidden")) {
+            $('#SidebarSmall').animate({marginRight: "400px"},350).css('zIndex',30);
+            $('#Sidebar').animate({width:'toggle'},350, function() {
+                $('#SidebarContent').fadeIn(100);
+            }).css('zIndex',30);
+            SearchServices( b64uid + 'Jhdu8K');
+        }
+    } else {
+        $('form#SearchService').find(':checkbox').removeAttr('checked');
+        $('#SidebarContent').fadeOut(100);
+        $('#Sidebar').animate({width:'toggle'},350).css('zIndex',30);
+        $('#SidebarSmall').animate({marginRight: "0px"},350).css('zIndex',30);
+    }
+}
+
+function EnableInput(sub) {
+    if ($(sub).is(":hidden")) {
+        $(sub).show();
+    } else {
+        $(sub).hide();
+    }
 }

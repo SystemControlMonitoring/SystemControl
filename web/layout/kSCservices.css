@@ -267,11 +267,11 @@
     border-bottom: 1px solid #82abcc;
 }
 
-#ServiceLstTable tr:first-child td:first-child + td + td, #ServiceLstTable tr:first-child td:first-child + td + td + td, #ServiceLstTable tr:first-child td:first-child + td + td + td + td, #ServiceLstTable tr:first-child td:first-child + td + td + td + td + td {
+#ServiceLstTable tr:first-child td:first-child + td + td, #ServiceLstTable tr:first-child td:first-child + td + td + td, #ServiceLstTable tr:first-child td:first-child + td + td + td + td, #ServiceLstTable tr:first-child td:first-child + td + td + td + td + td, #ServiceLstTable tr:first-child td:first-child + td + td + td + td + td + td {
     border-top: 1px solid #82abcc;
 }
 
-#ServiceLstTable tr:first-child td:first-child + td + td + td, #ServiceLstTable tr:first-child td:first-child + td + td + td + td {
+#ServiceLstTable tr:first-child td:first-child + td + td + td, #ServiceLstTable tr:first-child td:first-child + td + td + td + td, #ServiceLstTable tr:first-child td:first-child + td + td + td + td + td {
     border-left: 1px solid #82abcc;
     font-size: 12px;
     border-bottom: 1px solid #82abcc;
@@ -281,8 +281,12 @@
     width: 15px;
 }
 
-#ServiceLstTable tr:first-child td:first-child + td + td + td img {
-    margin-bottom: -3px;
+#ServiceLstTable tr:first-child td:first-child + td + td + td + td {
+    width: 20px;
+}
+
+#ServiceLstTable tr:first-child td:first-child + td + td + td img, #ServiceLstTable tr td:first-child + td + td img {
+    margin-bottom: -2px;
 }
 
 #ServiceLstTable tr:first-child + tr td:first-child {
@@ -290,7 +294,7 @@
     border-bottom: none;
 }
 
-#ServiceLstTable tr:first-child + tr td:first-child + td, #ServiceLstTable tr:first-child + tr td:first-child + td + td, #ServiceLstTable tr:first-child + tr td:first-child + td + td + td, #ServiceLstTable td:first-child + td + td + td, #ServiceLstTable td:first-child + td + td, #ServiceLstTable td:first-child + td {
+#ServiceLstTable tr:first-child + tr td:first-child + td, #ServiceLstTable tr:first-child + tr td:first-child + td + td, #ServiceLstTable tr:first-child + tr td:first-child + td + td + td, #ServiceLstTable td:first-child + td + td + td, #ServiceLstTable td:first-child + td + td, #ServiceLstTable td:first-child + td, #ServiceLstTable td:first-child + td + td + td + td {
     border-left: 1px solid #82abcc;
     font-size: 12px;
     border-bottom: 1px solid #82abcc;
@@ -425,6 +429,22 @@
     left: 506px;
 }
 
+#VLFour {
+    position: fixed;
+    width: 1px;
+    background-color: #82abcc;
+    top: 185px;
+    bottom: 55px;
+    /*height: 500px;*/
+    left: 533px;
+}
+
+#CheckBoxAll {
+    position: absolute;
+    top: 59px;
+    left: 510px;
+}
+
 #center a.service img:first-child {
     width: 30px;
     margin-left: 10px;
@@ -483,4 +503,155 @@
     height: 31px;
     color: white;    
     cursor: pointer;
+    z-index: 5;
+}
+
+/* Administration */
+
+#SidebarSubmenu {
+    position: absolute;
+    padding: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    height: 275px;
+}
+
+#AdminTitle {
+    font-size: 32px;
+    letter-spacing:-2px;
+    margin-left: 35px;
+}
+
+#AdminDivs {
+    display: none;
+}
+
+#DivReCheckTable, #DivReCheckTablePost {
+    margin-top: 15px;
+    margin-left: 15px;
+    width: 685px;
+    border-spacing: 0px;
+}
+
+#DivReCheckTable td, #DivReCheckTablePost td {
+    border-bottom: 1px dotted #82abcc;
+    padding: 5px;
+    border-spacing: 0px;
+    text-align: center;
+}
+
+#DivReCheckTable thead, #DivReCheckTablePost thead {
+    height: 20px;
+    color: #82abcc;
+    font-weight: normal;
+    font-size: 11px;
+}
+
+#DivReCheckTable thead tr:hover, #DivReCheckTablePost thead tr:hover {
+    background-color: #004c8a;
+    cursor: default;
+}
+
+#DivReCheckTable tr:hover, #DivReCheckTablePost tr:hover {
+    background-color: #004279;
+    cursor: default;
+}
+
+#success p:first-child {
+    margin-left: 35px;
+    margin-top: 15px;
+    margin-bottom: -10px;
+}
+
+#DivReCheck h3, #DivAcknldge h3, #DivComment h3, #DivDowntime h3, #DivNotify h3, #DivRemAck h3, #DivRemDwntm h3, #DivEnNotify h3 {
+    margin-top: 15px;
+    margin-left: 35px;
+    margin-bottom: 15px;
+}
+
+#Author, #Senden, #CAuthor, #CSenden, #DAuthor, #DSenden {
+    margin-left: 55px;
+}
+
+#Author font, #CAuthor font, #DAuthor font, #DStart font, #DEnd font {
+    font-size: 12px;
+}
+
+#Author input[type=text], #CAuthor input[type=text], #DAuthor input[type=text], #DStart input[type=text], #DEnd input[type=text] {
+    background: #004279;
+    border: 1px solid #82abcc;
+    color: white;
+    padding: 5px;
+    width: 240px;
+}
+
+#Comment, #CComment, #DComment {
+    margin-left: 55px;
+}
+
+#DStart {
+    margin-left: 54px;
+    margin-top: 4px;
+}
+
+#DEnd {
+    margin-left: 64px;
+    margin-top: 5px;
+}
+
+#Comment font, #CComment font, #DComment font {
+    position: absolute;
+    top: 94px;
+    left: 43px;
+    font-size: 12px;
+}
+
+#Comment textarea, #CComment textarea, #DComment textarea {
+    background: #004279;
+    border: 1px solid #82abcc;
+    color: white;
+    padding: 5px;
+    width: 450px;
+    height: 200px;
+    margin-top: 5px;
+    margin-left: 40px;
+    resize: none;
+}
+
+#mailaddr, #Cmailaddr, #Dmailaddr {
+    position: absolute;
+    left: 107px;
+    display: none;
+    background: #004279;
+    border: 1px solid #82abcc;
+    color: white;
+    padding: 5px;
+    width: 452px;
+}
+
+#Senden, #Insertto, #CSenden, #CInsertto, #DSenden, #DInsertto {
+    height: 25px;
+}
+
+#send, #Csend, #Dsend {
+    position: absolute;
+    left: 80px;
+    top: 350px;
+}
+
+#insertto1, #Cinsertto1, #Dinsertto1 {
+    position: absolute;
+    left: 80px;
+    top: 420px;
+}
+
+#insertto2, #Cinsertto2, #Dinsertto2 {
+    position: absolute;
+    left: 105px;
+    display: none;
+    color: greenyellow;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px;
 }
