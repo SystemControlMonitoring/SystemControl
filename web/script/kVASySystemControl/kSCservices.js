@@ -168,14 +168,14 @@ function Top(uid) {
         </div>\n\
         <div id="AdminButtons">\n\
             <span id="LogfileButtons"></span><br>\n\
-            <button id="rc_button" style="margin-left: 2px; margin-top: 10px;">Re-Check</button>\n\
             <button id="ba_button" style="margin-left: 2px; margin-top: 10px;" title="Problem bearbeiten.">Pr. Bearbeiten</button>\n\
             <button id="fr_button" style="margin-left: 2px; margin-top: 10px;" title="Problem freigeben.">Pr. Freigeben</button>\n\
+            <button id="ne_button" style="margin-left: 2px; margin-top: 10px;" title="Benachrichtigungen aktivieren.">Ben. +</button>\n\
+            <button id="ny_button" style="margin-left: 2px; margin-top: 10px;" title="Benachrichtigungen deaktivieren.">Ben. -</button>\n\
+            <button id="rc_button" style="margin-left: 2px; margin-top: 10px;">Re-Check</button>\n\
             <button id="ko_button" style="margin-left: 2px; margin-top: 10px;">Kommentieren</button>\n\
             <button id="dd_button" style="margin-left: 2px; margin-top: 10px;" title="Downtime l&ouml;schen.">Downtime -</button>\n\
             <button id="do_button" style="margin-left: 2px; margin-top: 10px;" title="Downtime festlegen.">Downtime +</button>\n\
-            <button id="ny_button" style="margin-left: 2px; margin-top: 10px;" title="Benachrichtigungen deaktivieren.">Ben. -</button>\n\
-            <button id="ne_button" style="margin-left: 2px; margin-top: 10px;" title="Benachrichtigungen aktivieren.">Ben. +</button>\n\
         </div>\n\
     </div>');
 
@@ -797,6 +797,7 @@ function GridAllServices(uid) {
     $('#SrvCenter').html('');
     $('#theme-roller').append('<img id="AjaxLoader" src="layout/images/ajax-loader.gif">');
     $('#center').html('<section></section>');
+    //$('#SidebarSubmenu').hide();
     if (state.length > 0) {
         GridSpecialServices(uid,state);
     } else {
@@ -835,16 +836,18 @@ function GridServices(uid) {
                     $.each(json, function() {
                         var mnode = this.NODE;
                         $.each(this.HFI, function() {
-                            //var hostname = this.NAME;
+                            var hostname = this.NAME;
                             var hoststatus = this.STATUS;
                             var shorthostname;
                             var hicon = this.ICON;
                             if ( dds == "0" ) { shorthostname = this.NAME; } else { var tmp = this.NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
                             if ( shorthostname.length > 25 ) { shorthostname = shorthostname.substr(0,22) + '...'; }
                             $.each(this.SERVICELIST, function() {
-                                if ( this.SERVICE_NAME.length > 25 ) { this.SERVICE_NAME = this.SERVICE_NAME.substr(0,22) + '...'; }
+                                var servicename = this.SERVICE_NAME;
+                                if ( servicename.length > 20 ) { servicename = servicename.substr(0,17) + '...'; }
                                 if ( this.OUTPUT.length > 38 ) { this.OUTPUT = this.OUTPUT.substr(0,35) + '...'; }
-                                $('section','#center').append('<a href="" class="service" title=""><img class="SrvImgGrid" src="' + hicon + '" /><div id="SrvImgStateGrid"><img src="' + this.SERVICE_STATUS_ICON + '" /></div><div id="SrvTitleGrid">' + this.SERVICE_NAME + '</div><div id="SrvHostNameGrid">' + shorthostname + ' <i>auf ' + mnode + '</i></div><div id="SrvOutputGrid">' + this.OUTPUT + '</div></a>');
+                                $('section','#center').append('<a class="service" title=""><img class="SrvImgGrid" src="' + hicon + '" /><div id="SrvImgStateGrid"><img src="' + this.SERVICE_STATUS_ICON + '" /></div><div id="SrvTitleGrid">' + servicename + '</div><div id="SrvHostNameGrid">' + shorthostname + ' <i>auf ' + mnode + '</i></div><div id="SrvOutputGrid">' + this.OUTPUT + '</div><div id="SvcLinkHover"></div><div id="SvcLinkMenu"><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="Checkbox' + hostcount + '' + servicecount + '" /><label for="Checkbox' + hostcount + '' + servicecount + '" title="Diesen Service Check f&uuml;r ein Kommando markieren.">x</label></div></a>');
+                                $('#Checkbox' + hostcount + '' + servicecount).button();
                                 servicecount++;
                             });
                             hostcount++;
@@ -856,6 +859,7 @@ function GridServices(uid) {
                     
                     $('#servicecount').html(' (' + servicecount + ' auf ' + hostcount + ' Hosts)');
                     $('#AjaxLoader').remove();
+                    $('#TextChkb' + hostcount + '' + servicecount).buttonset();
                     ShowSelect($.base64.encode("a") + 'KdhU7Z');
                     UpdateModView(uid,"GridAllServices");
                 },
@@ -965,7 +969,7 @@ function GridSpecialServices(uid,state) {
                     $.each(json, function() {
                         var mnode = this.NODE;
                         $.each(this.SRVSTATSEL, function() {
-                            //var hostname = this.NAME;
+                            var hostname = this.NAME;
                             var hoststatus = this.STATUS;
                             var shorthostname;
                             var hicon = this.ICON;
@@ -973,9 +977,11 @@ function GridSpecialServices(uid,state) {
                             if ( shorthostname.length > 25 ) { shorthostname = shorthostname.substr(0,22) + '...'; }
                             if (this.SERVICELIST.length > 0) {
                                 $.each(this.SERVICELIST, function() {
-                                    if ( this.SERVICE_NAME.length > 25 ) { this.SERVICE_NAME = this.SERVICE_NAME.substr(0,22) + '...'; }
+                                    var servicename = this.SERVICE_NAME;
+                                    if ( servicename.length > 20 ) { servicename = servicename.substr(0,17) + '...'; }
                                     if ( this.OUTPUT.length > 38 ) { this.OUTPUT = this.OUTPUT.substr(0,35) + '...'; }
-                                    $('section','#center').append('<a href="" class="service" title=""><img class="SrvImgGrid" src="' + hicon + '" /><div id="SrvImgStateGrid"><img src="' + this.SERVICE_STATUS_ICON + '" /></div><div id="SrvTitleGrid">' + this.SERVICE_NAME + '</div><div id="SrvHostNameGrid">' + shorthostname + ' <i>auf ' + mnode + '</i></div><div id="SrvOutputGrid">' + this.OUTPUT + '</div></a>');
+                                    $('section','#center').append('<a class="service" title=""><img class="SrvImgGrid" src="' + hicon + '" /><div id="SrvImgStateGrid"><img src="' + this.SERVICE_STATUS_ICON + '" /></div><div id="SrvTitleGrid">' + servicename + '</div><div id="SrvHostNameGrid">' + shorthostname + ' <i>auf ' + mnode + '</i></div><div id="SrvOutputGrid">' + this.OUTPUT + '</div><div id="SvcLinkHover"></div><div id="SvcLinkMenu"><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="Checkbox' + hostcount + '' + servicecount + '" /><label for="Checkbox' + hostcount + '' + servicecount + '" title="Diesen Service Check f&uuml;r ein Kommando markieren.">x</label></div></a>');
+                                    $('#Checkbox' + hostcount + '' + servicecount).button();
                                     servicecount++;
                                 });
                                 hostcount++;
@@ -1030,7 +1036,7 @@ function GridSearchServices(uid,searchstring) {
                     $.each(json, function() {
                         var mnode = this.NODE;
                         $.each(this.SRVSEARCH, function() {
-                            //var hostname = this.NAME;
+                            var hostname = this.NAME;
                             var hoststatus = this.STATUS;
                             var shorthostname;
                             var hicon = this.ICON;
@@ -1038,9 +1044,11 @@ function GridSearchServices(uid,searchstring) {
                             if ( shorthostname.length > 25 ) { shorthostname = shorthostname.substr(0,22) + '...'; }
                             if (this.SERVICELIST.length > 0) {
                                 $.each(this.SERVICELIST, function() {
-                                    if ( this.SERVICE_NAME.length > 25 ) { this.SERVICE_NAME = this.SERVICE_NAME.substr(0,22) + '...'; }
+                                    var servicename = this.SERVICE_NAME;
+                                    if ( servicename.length > 20 ) { servicename = servicename.substr(0,17) + '...'; }
                                     if ( this.OUTPUT.length > 38 ) { this.OUTPUT = this.OUTPUT.substr(0,35) + '...'; }
-                                    $('section','#center').append('<a href="" class="service" title=""><img class="SrvImgGrid" src="' + hicon + '" /><div id="SrvImgStateGrid"><img src="' + this.SERVICE_STATUS_ICON + '" /></div><div id="SrvTitleGrid">' + this.SERVICE_NAME + '</div><div id="SrvHostNameGrid">' + shorthostname + ' <i>auf ' + mnode + '</i></div><div id="SrvOutputGrid">' + this.OUTPUT + '</div></a>');
+                                    $('section','#center').append('<a class="service" title=""><img class="SrvImgGrid" src="' + hicon + '" /><div id="SrvImgStateGrid"><img src="' + this.SERVICE_STATUS_ICON + '" /></div><div id="SrvTitleGrid">' + servicename + '</div><div id="SrvHostNameGrid">' + shorthostname + ' <i>auf ' + mnode + '</i></div><div id="SrvOutputGrid">' + this.OUTPUT + '</div><div id="SvcLinkHover"></div><div id="SvcLinkMenu"><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="Checkbox' + hostcount + '' + servicecount + '" /><label for="Checkbox' + hostcount + '' + servicecount + '" title="Diesen Service Check f&uuml;r ein Kommando markieren.">x</label></div></a>');
+                                    $('#Checkbox' + hostcount + '' + servicecount).button();
                                     servicecount++;
                                 });
                                 hostcount++;
@@ -1397,10 +1405,14 @@ function CheckAll(uid) {
             SearchServices( b64uid + 'Jhdu8K');
         }
     } else {
-        $('form#SearchService').find(':checkbox').removeAttr('checked');
-        $('#SidebarContent').fadeOut(100);
-        $('#Sidebar').animate({width:'toggle'},350).css('zIndex',30);
-        $('#SidebarSmall').animate({marginRight: "0px"},350).css('zIndex',30);
+        if ($("#Sidebar").is(":hidden")) {
+            $('form#SearchService').find(':checkbox').removeAttr('checked');
+        } else {
+            $('form#SearchService').find(':checkbox').removeAttr('checked');
+            $('#SidebarContent').fadeOut(100);
+            $('#Sidebar').animate({width:'toggle'},350).css('zIndex',30);
+            $('#SidebarSmall').animate({marginRight: "0px"},350).css('zIndex',30);
+        }
     }
 }
 
@@ -1410,4 +1422,8 @@ function EnableInput(sub) {
     } else {
         $(sub).hide();
     }
+}
+
+function OpenWindow(target,mode) {
+    window.open(target,mode);
 }

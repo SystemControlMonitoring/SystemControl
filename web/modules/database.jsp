@@ -80,7 +80,7 @@
                 jQuery.support.cors = true;
                 SubGetBackend();
                 SubLoader();
-                Top();
+                Top(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 SubLiveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 KlickFunctionSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 KeyFunctionSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
@@ -120,7 +120,9 @@
                 <div id="HostInformations">
                     <div id="HostStatus"></div>
                     <div id="HostSummary"></div>
-                    <div id="HostServices"></div>
+                    <form id="SearchService">
+                        <div id="HostServices"></div>
+                    </form>
                 </div>
                 
                 <!-- Detail Ende -->

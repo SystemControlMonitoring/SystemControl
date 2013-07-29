@@ -73,15 +73,15 @@ function SlimTaov(uid) {
             });
             /* BG Color */
             if (HOST_OK != 0) { ocolor = " ok"; }
-            if (HOST_CR != 0) { ccolor = " cr"; }
-            if (HOST_UN != 0) { ucolor = " un"; }
+            if (HOST_CR_NA != 0) { ccolor = " cr"; }
+            if (HOST_UN_NA != 0) { ucolor = " un"; }
             if (SERVICE_OK != 0) { socolor = " ok"; }
-            if (SERVICE_CR != 0) { sccolor = " cr"; }
-            if (SERVICE_UN != 0) { sucolor = " un"; }
-            if (SERVICE_WA != 0) { swcolor = " wa"; }
+            if (SERVICE_CR_NA != 0) { sccolor = " cr"; }
+            if (SERVICE_UN_NA != 0) { sucolor = " un"; }
+            if (SERVICE_WA_NA != 0) { swcolor = " wa"; }
             if (SERVICE_PE != 0) { spcolor = " pe"; }
             if (DB_OK != 0) { dbocolor = " ok"; }
-            if (DB_CR_ALL != 0) { dbccolor = " cr"; }
+            if (DB_CR_NA != 0) { dbccolor = " cr"; }
             if (cnode == 1) { cnodet = "1 Monitoringnode"; } else { cnodet = cnode + " Monitoringnodes"; }
             
             $('#Nodes').append('<span style="float: left;"><table cellpadding=0 cellspacing=0 border=0><tr><td colspan=3><span style="float: left;">Hosts</span><span style="float: left; margin-top: -1px;" class="ui-icon ui-icon-triangle-1-s"></span><span class="Notice" style="float: right;">' + cnodet + '</span></td></tr><tr valign=middle><td class="' + ocolor + '"><b><a href="./hosts.jsp?s=dXA=KdhU7Z">' + HOST_OK + '</a></b> Ok</td><td class="' + ccolor + '"><b><a href="./hosts.jsp?s=ZG9ub2Fjaw==KdhU7Z">' + HOST_CR_NA + '</a></b> | <b><a href="./hosts.jsp?s=ZG9hY2s=KdhU7Z">' + HOST_CR_A + '</a></b> Offline</td><td class="' + ucolor + '"><b><a href="./hosts.jsp?s=dW5ub2Fjaw==KdhU7Z">' + HOST_UN_NA + '</a></b> | <b><a href="./hosts.jsp?s=dW5hY2s=KdhU7Z">' + HOST_UN_A + '</a></b> Nicht Erreichbar</td></tr></table></span>');

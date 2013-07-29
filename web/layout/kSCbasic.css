@@ -427,13 +427,13 @@ body {
 }
 
 #center a span{
-	font-size:36px;
-	letter-spacing:-3px;
+	/*font-size:36px;*/
+	/*letter-spacing:-3px;*/
 }
 
 #center a span.sub-grid {
-    font-size: 16px;
-    letter-spacing: 0px;
+    /*font-size: 16px;
+    letter-spacing: 0px;*/
 }
 
 #center a img{
@@ -462,6 +462,16 @@ body {
 #center a.twitter{
 	height: 100px;
 	width: 260px;
+}
+
+#center a.twitter span{
+	font-size:36px;
+	letter-spacing:-3px;
+}
+
+#center a.twitter span.sub-grid {
+        font-size: 16px;
+        letter-spacing: 0px;
 }
 
 #center a.images {
@@ -493,6 +503,20 @@ body {
 #center a.fulltext {
 	width: 280px;
         height: 85px;
+}
+
+#center a.fulltext span.title{
+	font-size:36px;
+	letter-spacing:-3px;
+}
+
+#center a.fulltext span.host-sub-grid {
+        font-size: 12px;
+        letter-spacing: 0px;
+}
+
+#center a.fulltext:hover div#HostSumy {
+        color: #004279;
 }
 
 #center a.big .small-text {

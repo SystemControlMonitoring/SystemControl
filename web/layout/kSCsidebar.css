@@ -88,7 +88,7 @@
     background-color: #004279;
     cursor: pointer;
     color: #004c8a;
-    /*border-top: 1px solid #004c8a;*/
+    border-top: 1px solid #004c8a;
 }
 
 #SidebarBottomSmall:hover {

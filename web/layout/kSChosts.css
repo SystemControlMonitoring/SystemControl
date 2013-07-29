@@ -475,6 +475,82 @@
     left: 501px;
 }
 
+#CheckBoxAll {
+    position: absolute;
+    top: 59px;
+    left: 238px;
+}
+
+#CheckBoxHost:first-child {
+    z-index: 5;
+    position: absolute;
+    left: 238px;
+    margin-top: 23px;
+}
+
+#CheckBoxHost {
+    z-index: 5;
+    position: absolute;
+    left: 238px;
+    margin-top: 18px;
+}
+
+/* Tab */
+
+#HostLinkMenu {
+    margin-left: 269px;
+    margin-top: -101px;
+    height: 31px;
+    width: 34px;
+    font-size: 12px;
+    z-index: 15;
+    position: absolute;
+}
+    
+#HostLinkMenu label {
+    color: #004279;
+}
+
+#HostLinkHover {
+    width: 330px;
+    height: 135px;
+    margin-top: -103px;
+    margin-left: -25px;
+    z-index: 10;
+    position: absolute;
+    cursor: pointer;
+}
+
+#HostTitle {
+    font-size: 28px;
+    letter-spacing:-3px;
+    margin-left: 50px;
+    margin-top: -40px;
+}
+
+#HostType {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+#HostType img {
+    width: 48px;
+}
+
+#DivHostStatus {
+    margin-left: 50px;
+    margin-top: -40px;
+}
+
+#HostSumy {
+    margin-top: 40px;
+    margin-left: 10px;
+    font-size: 14px;
+    color: #82abcc;
+}
+
+/* #### */
+
 #HostGridSelect {
     position: absolute;
     left: 49px;
@@ -496,12 +572,152 @@
     cursor: pointer;
 }
 
-#DivHostStatus img {
+/* Administration */
+
+#SidebarSubmenu {
     position: absolute;
-    left: 47px;
-    top: -35px;
+    padding: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    height: 275px;
 }
 
-#DivHostStatus {
+#AdminTitle {
+    font-size: 32px;
+    letter-spacing:-2px;
+    margin-left: 35px;
+}
+
+#AdminDivs {
+    display: none;
+}
+
+#DivReCheckTable, #DivReCheckTablePost {
+    margin-top: 15px;
+    margin-left: 15px;
+    width: 685px;
+    border-spacing: 0px;
+}
+
+#DivReCheckTable td, #DivReCheckTablePost td {
+    border-bottom: 1px dotted #82abcc;
+    padding: 5px;
+    border-spacing: 0px;
+    text-align: center;
+}
+
+#DivReCheckTable thead, #DivReCheckTablePost thead {
+    height: 20px;
+    color: #82abcc;
+    font-weight: normal;
+    font-size: 11px;
+}
+
+#DivReCheckTable thead tr:hover, #DivReCheckTablePost thead tr:hover {
+    background-color: #004c8a;
+    cursor: default;
+}
+
+#DivReCheckTable tr:hover, #DivReCheckTablePost tr:hover {
+    background-color: #004279;
+    cursor: default;
+}
+
+#success p:first-child {
+    margin-left: 35px;
+    margin-top: 15px;
+    margin-bottom: -10px;
+}
+
+#DivReCheck h3, #DivAcknldge h3, #DivComment h3, #DivDowntime h3, #DivNotify h3, #DivRemAck h3, #DivRemDwntm h3, #DivEnNotify h3 {
+    margin-top: 15px;
+    margin-left: 35px;
+    margin-bottom: 15px;
+}
+
+#Author, #Senden, #CAuthor, #CSenden, #DAuthor, #DSenden {
+    margin-left: 55px;
+}
+
+#Author font, #CAuthor font, #DAuthor font, #DStart font, #DEnd font {
+    font-size: 12px;
+}
+
+#Author input[type=text], #CAuthor input[type=text], #DAuthor input[type=text], #DStart input[type=text], #DEnd input[type=text] {
+    background: #004279;
+    border: 1px solid #82abcc;
+    color: white;
+    padding: 5px;
+    width: 240px;
+}
+
+#Comment, #CComment, #DComment {
+    margin-left: 55px;
+}
+
+#DStart {
+    margin-left: 54px;
+    margin-top: 4px;
+}
+
+#DEnd {
+    margin-left: 64px;
+    margin-top: 5px;
+}
+
+#Comment font, #CComment font, #DComment font {
     position: absolute;
+    top: 94px;
+    left: 43px;
+    font-size: 12px;
+}
+
+#Comment textarea, #CComment textarea, #DComment textarea {
+    background: #004279;
+    border: 1px solid #82abcc;
+    color: white;
+    padding: 5px;
+    width: 450px;
+    height: 200px;
+    margin-top: 5px;
+    margin-left: 40px;
+    resize: none;
+}
+
+#mailaddr, #Cmailaddr, #Dmailaddr {
+    position: absolute;
+    left: 107px;
+    display: none;
+    background: #004279;
+    border: 1px solid #82abcc;
+    color: white;
+    padding: 5px;
+    width: 452px;
+}
+
+#Senden, #Insertto, #CSenden, #CInsertto, #DSenden, #DInsertto {
+    height: 25px;
+}
+
+#send, #Csend, #Dsend {
+    position: absolute;
+    left: 80px;
+    top: 350px;
+}
+
+#insertto1, #Cinsertto1, #Dinsertto1 {
+    position: absolute;
+    left: 80px;
+    top: 420px;
+}
+
+#insertto2, #Cinsertto2, #Dinsertto2 {
+    position: absolute;
+    left: 105px;
+    display: none;
+    color: greenyellow;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px;
 }
