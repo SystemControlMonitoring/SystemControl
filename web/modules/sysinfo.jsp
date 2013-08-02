@@ -86,6 +86,7 @@
                 SubLoader();
                 Top(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 SubLiveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                SubSlimTaov(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 KlickFunctionSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 KeyFunctionSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 SubBase();
@@ -93,7 +94,6 @@
                 SysInfo(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 $("div.metro-pivot").metroPivot();
                 Storage(<% out.println("'" + request.getRemoteUser() + "'"); %>);
-                SlimTaov(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 ModShowCritical(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 SubStyleSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 LogfilesDiv(<% out.println("'" + request.getRemoteUser() + "'"); %>);
