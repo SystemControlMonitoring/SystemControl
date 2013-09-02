@@ -1,1 +1,1504 @@
-var t;function Top(b){var a=$.base64.encode(b);$("#TopMenu").append('<table cellpadding=0 cellspacing=0 border=0 id="TopMEnuTable"><tr><td><a href=".">Home</a></td><td><span id="TopMenuIcon" class="ui-icon ui-icon-triangle-1-e"></span></td><td>Services<span id="servicecount"></span></td></tr></table>');$.Shortcuts.add({type:"down",mask:"a",handler:function(){AutoReloadStart(b)}}).start();$.Shortcuts.add({type:"down",mask:"q",handler:function(){AutoReloadStop(b)}}).start();$.Shortcuts.add({type:"down",mask:"s",handler:function(){if($("#Sidebar").is(":hidden")){$("#SidebarSmall").animate({marginRight:"400px"},350).css("zIndex",30);$("#Sidebar").animate({width:"toggle"},350,function(){$("#SidebarContent").fadeIn(100)}).css("zIndex",30);SearchServices(a+"Jhdu8K")}else{$("#SidebarContent").fadeOut(100);$("#Sidebar").animate({width:"toggle"},350).css("zIndex",30);$("#SidebarSmall").animate({marginRight:"0px"},350).css("zIndex",30)}}}).start();$.Shortcuts.add({type:"down",mask:"l",handler:function(){ListAllServices(b)}}).start();$.Shortcuts.add({type:"down",mask:"g",handler:function(){GridAllServices(b)}}).start();$.Shortcuts.add({type:"down",mask:"r",handler:function(){Reload(b)}}).start();$("#SidebarSubmenu").append('<div id="OracleDBA"><div id="AdminTitle">Check Kommandos</div>\n        <div id="AdminDivs">\n            <div id="DivReCheck" title="Erneutes Ausf&uuml;hren von Service Checks - 1 von 2">\n                <h3>Es betrifft folgende konfigurierte Checks:</h3>\n                <div id="DivReCheckObjects"></div>\n            </div>\n            <div id="DivAcknldge" title="Bearbeiten des Service Problems - 1 von 2">\n                <h3>Bitte tragen Sie die zus&auml;tzlichen Informationen ein!</h3>\n                <div id="Author">\n                    <font>Author:</font>\n                    <input type="text" name="author" id="auth1" value="'+b+'" readonly />\n                </div>\n                <div id="Comment">\n                    <font>Kommentar:</font>\n                    <textarea name="comment" id="comm1"></textarea>\n                </div>\n                <!--h3>Soll der Eintrag per Mail an den Kunden verschickt werden? (Mail1,Mail2,Mailn)</h3>\n                <div id="Senden">\n                    <input name="mailingto" type="checkbox" id="send" value="1" onclick="EnableInput(\'#mailaddr\');" />\n                    <input name="mailaddr" id="mailaddr" type="text" value=""/>\n                </div>\n                <h3>Soll der Eintrag f&uuml;r die Servicereports in die Datenbank geschrieben werden?</h3>\n                <div id="Insertto">\n                    <input name="insertto" type="checkbox" id="insertto1" value="1" onclick="EnableInput(\'#insertto2\');" />\n                    <span id="insertto2">Ja!</font>\n                </div-->\n                <h3>Es betrifft folgende konfigurierte Checks:</h3>\n                <div id="DivAcknldgeObjects"></div>\n            </div>\n            <div id="DivComment" title="Kommentieren des Service Problems - 1 von 2">\n                <h3>Bitte tragen Sie die zus&auml;tzlichen Informationen ein!</h3>\n                <div id="CAuthor">\n                    <font>Author:</font>\n                    <input type="text" name="author" id="Cauth" value="'+b+'" readonly />\n                </div>\n                <div id="CComment">\n                    <font>Kommentar:</font>\n                    <textarea name="comment" id="Ccomm"></textarea>\n                </div>\n                <!--h3>Soll der Eintrag per Mail an den Kunden verschickt werden? (Mail1,Mail2,Mailn)</h3>\n                <div id="CSenden">\n                    <input name="mailingto" type="checkbox" id="Csend" value="1" onclick="EnableInput(\'#Cmailaddr\');" />\n                    <input name="mailaddr" id="Cmailaddr" type="text" value=""/>\n                </div>\n                <h3>Soll der Eintrag f&uuml;r die Servicereports in die Datenbank geschrieben werden?</h3>\n                <div id="CInsertto">\n                    <input name="insertto" type="checkbox" id="Cinsertto1" value="1" onclick="EnableInput(\'#Cinsertto2\');" />\n                    <span id="Cinsertto2">Ja!</font>\n                </div-->\n                <h3>Es betrifft folgende konfigurierte Checks:</h3>\n                <div id="DivCommentObjects"></div>\n            </div>\n\\n            <div id="DivDowntime" title="Downtime eines Service definieren - 1 von 2">\n                <h3>Bitte tragen Sie die zus&auml;tzlichen Informationen ein!</h3>\n                <div id="DAuthor">\n                    <font>Author:</font>\n                    <input type="text" name="author" id="Dauth" value="'+b+'" readonly />\n                </div>\n                <div id="DComment">\n                    <font>Kommentar:</font>\n                    <textarea name="comment" id="Dcomm"></textarea>\n                </div>\n                <div id="DStart">\n                    <font>Beginn:</font>\n                    <input type="text" name="start" id="Dstartts" />\n                </div>\n                <div id="DEnd">\n                    <font>Ende:</font>\n                    <input type="text" name="end" id="Dendts" />\n                </div>\n                <!--h3>Soll der Eintrag per Mail an den Kunden verschickt werden? (Mail1,Mail2,Mailn)</h3>\n                <div id="DSenden">\n                    <input name="mailingto" type="checkbox" id="Dsend" value="1" onclick="EnableInput(\'#Dmailaddr\');" />\n                    <input name="mailaddr" id="Dmailaddr" type="text" value=""/>\n                </div>\n                <h3>Soll der Eintrag f&uuml;r die Servicereports in die Datenbank geschrieben werden?</h3>\n                <div id="DInsertto">\n                    <input name="insertto" type="checkbox" id="Dinsertto1" value="1" onclick="EnableInput(\'#Dinsertto2\');" />\n                    <span id="Dinsertto2">Ja!</font>\n                </div-->\n                <h3>Es betrifft folgende konfigurierte Checks:</h3>\n                <div id="DivDowntimeObjects"></div>\n            </div>\n            <div id="DivNotify" title="Benachrichtigung der Service Checks deaktivieren - 1 von 2">\n                <h3>Es betrifft folgende konfigurierte Checks:</h3>\n                <div id="DivNotifyObjects"></div>\n            </div>\n            <div id="DivEnNotify" title="Benachrichtigung der Service Checks aktivieren - 1 von 2">\n                <h3>Es betrifft folgende konfigurierte Checks:</h3>\n                <div id="DivEnNotifyObjects"></div>\n            </div>\n            <div id="DivRemAck" title="Service Problem wieder freigeben - 1 von 2">\n                <h3>Es betrifft folgende konfigurierte Checks:</h3>\n                <div id="DivRemAckObjects"></div>\n            </div>\n            <div id="DivRemDwntm" title="Downtime eines Service l&ouml;schen - 1 von 2">\n                <h3>Es betrifft folgende konfigurierte Checks:</h3>\n                <div id="DivRemDwntmObjects"></div>\n            </div>\n            <div id="DivDelLog" title="Leeren eines Logfiles - 1 von 2">\n                <h3>Sie f&uuml;hren das Leeren des Logfiles durch.</h3>\n                <div id="DivDelLogObjects"></div>\n            </div>\n        </div>\n        <div id="AdminButtons">\n            <span id="LogfileButtons"></span><br>\n            <button id="ba_button" style="margin-left: 2px; margin-top: 10px;" title="Problem bearbeiten.">Pr. Bearbeiten</button>\n            <button id="fr_button" style="margin-left: 2px; margin-top: 10px;" title="Problem freigeben.">Pr. Freigeben</button>\n            <button id="ne_button" style="margin-left: 2px; margin-top: 10px;" title="Benachrichtigungen aktivieren.">Ben. +</button>\n            <button id="ny_button" style="margin-left: 2px; margin-top: 10px;" title="Benachrichtigungen deaktivieren.">Ben. -</button>\n            <button id="rc_button" style="margin-left: 2px; margin-top: 10px;">Re-Check</button>\n            <button id="ko_button" style="margin-left: 2px; margin-top: 10px;">Kommentieren</button>\n            <button id="dd_button" style="margin-left: 2px; margin-top: 10px;" title="Downtime l&ouml;schen.">Downtime -</button>\n            <button id="do_button" style="margin-left: 2px; margin-top: 10px;" title="Downtime festlegen.">Downtime +</button>\n            <button id="dl_button" style="margin-left: 2px; margin-top: 10px;" title="Logfile leeren.">Del. Log</button>\n        </div>\n    </div>');$.datepicker.regional.de={closeText:"Schlie&szlig;en",prevText:"Zur&uuml;ck",nextText:"Weiter",currentText:"Jetzt",monthNames:["Januar","Februar","M&auml;rz","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"],monthNamesShort:["Jan","Feb","M&auml;r","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez"],dayNames:["Sonntag","Montag","Diensag","Mittwoch","Donnerstag","Freitag","Samstag"],dayNamesShort:["So","Mo","Di","Mi","Do","Fr","Sa"],dayNamesMin:["So","Mo","Di","Mi","Do","Fr","Sa"],weekHeader:"Wo",dateFormat:"yy-mm-dd",firstDay:1,isRTL:false,showMonthAfterYear:false,yearSuffix:""};$.datepicker.setDefaults($.datepicker.regional.de);$.timepicker.regional.de={timeOnlyTitle:"Uhrzeit ausw&auml;hlen",timeText:"Zeit",hourText:"Stunde",minuteText:"Minute",secondText:"Sekunde",currentText:"Jetzt",timeFormat:"HH:mm:ss",closeText:"Ausw&auml;hlen",ampm:false};$.timepicker.setDefaults($.timepicker.regional.de);$("#Dstartts").datetimepicker();$("#Dendts").datetimepicker();$("#dl_button").button().css("border","1px solid #004279").click(function(){var c="",b="",d=$("form#SearchService").serializeArray();$("#DivDelLogObjects").html('<table id="DivReCheckTable"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th></tr></thead></table>');$.each(d,function(){if(this.name!="s"){c+=this.name+";";b+=this.value+";";$("#DivReCheckTable").append("<tr><td>"+this.name+"</td><td>"+this.value+"</td></tr>")}});$("#DivDelLog").dialog({autoOpen:true,height:300,width:750,draggable:false,resizable:false,modal:true,buttons:{Ausf\u00fchren:function(){$("body").append('<img id="ajax-loader" title="Leeren des Logfiles." src="layout/images/ajax-loader.gif"><div id="ajax-loader-div">Leeren des Logfiles.</div>');$(this).dialog("close");$.ajax({url:"http://"+Backend+"/clientdirect/json/?e=1&m=U3J2TG9nQWRtaW4=KhdU8Z&c="+$.base64.encode(c)+"KjHu8U&log="+b+"&u="+a+"U7g7ZZ&cm=REVMT0c=IZK88i",timeout:3.6e6,success:function(){$("#ajax-loader").remove();$("#ajax-loader-div").remove();$("body").append('<div id="success" title="Leeren des Logfiles - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>Logfiles wurden <b>erfolgreich</b> geleert.</p>');$("#success").dialog({autoOpen:true,height:200,width:500,draggable:false,resizable:false,modal:true,buttons:{OK:function(){$(this).dialog("close");$("#success").remove();$("#DivReCheckObjects").html("")}}})},error:function(){$("#ajax-loader").remove();$("#ajax-loader-div").remove();alert("FEHLER BEI AUSF\u00dcHRUNG: Leeren von Logfiles");$("#DivReCheckObjects").html("")},dataType:"json",cache:false})},Abbrechen:function(){$(this).dialog("close");$("#DivReCheckObjects").html("")}}})});$("#rc_button").button().css("border","1px solid #004279").click(function(){var b="",c=$("form#SearchService").serializeArray();$("#DivReCheckObjects").html('<table id="DivReCheckTable"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th></tr></thead></table>');$.each(c,function(){if(this.name!="s"){b+=this.name+"@"+this.value+";";$("#DivReCheckTable").append("<tr><td>"+this.name+"</td><td>"+this.value+"</td></tr>")}});$("#DivReCheck").dialog({autoOpen:true,height:300,width:750,draggable:false,resizable:false,modal:true,buttons:{Ausf\u00fchren:function(){$("body").append('<img id="ajax-loader" title="Erneutes Ausf&uuml;hren von Service Checks" src="layout/images/ajax-loader.gif"><div id="ajax-loader-div">Erneutes Ausf&uuml;hren von Service Checks</div>');$(this).dialog("close");$.ajax({url:"http://"+Backend+"/commands/json/?e=1&m=UmVDaGVjaw==KlU76T&c="+$.base64.encode(b)+"KjHu8U&u="+a+"U7g7ZZ",timeout:3.6e6,success:function(a){$("#ajax-loader").remove();$("#ajax-loader-div").remove();$("body").append('<div id="success" title="Erneutes Ausf&uuml;hren von Service Checks - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>Service Checks wurden <b>erfolgreich</b> ausgef\u00fchrt.</p><br><table id="DivReCheckTablePost"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th><th>Timestamp</th></tr></thead></table>');$.each(a,function(){$("#DivReCheckTablePost").append("<tr><td>"+this.HOST_NAME+"@"+this.NODE+"</td><td>"+this.SERVICE_NAME+"</td><td>"+this.TS+"</td></tr>")});$("#success").dialog({autoOpen:true,height:300,width:750,draggable:false,resizable:false,modal:true,buttons:{OK:function(){$(this).dialog("close");$("#success").remove();$("#DivReCheckObjects").html("")}}})},error:function(){$("#ajax-loader").remove();$("#ajax-loader-div").remove();alert("FEHLER BEI AUSF\u00dcHRUNG: Erneutes Ausf\u00fchren von Service Checks");$("#DivReCheckObjects").html("")},dataType:"json",cache:false})},Abbrechen:function(){$(this).dialog("close");$("#DivReCheckObjects").html("")}}})});$("#ba_button").button().css("border","1px solid #004279").click(function(){var b="",c=$("form#SearchService").serializeArray();$("#DivAcknldgeObjects").html('<table id="DivReCheckTable"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th></tr></thead></table>');$.each(c,function(){if(this.name!="s"){b+=this.name+"@"+this.value+";";$("#DivReCheckTable").append("<tr><td>"+this.name+"</td><td>"+this.value+"</td></tr>")}});$("#DivAcknldge").dialog({autoOpen:true,height:700,width:750,draggable:false,resizable:false,modal:true,buttons:{Ausf\u00fchren:function(){var d=$("#auth1").attr("value"),c=$("#comm1").attr("value");$("body").append('<img id="ajax-loader" title="Bearbeiten des Service Problems" src="layout/images/ajax-loader.gif"><div id="ajax-loader-div">Bearbeiten des Service Problems</div>');$(this).dialog("close");$.ajax({url:"http://"+Backend+"/commands/json/?e=1&m=QWNrU3ZjKlU76T&c="+$.base64.encode(b)+"KjHu8U&u="+a+"U7g7ZZ&ar="+$.base64.encode(d)+"U7g7ZZ&cm="+$.base64.encode(c)+"U7g7ZZ",timeout:3.6e6,success:function(a){$("#ajax-loader").remove();$("#ajax-loader-div").remove();$("body").append('<div id="success" title="Bearbeiten des Service Problems - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>Service Probleme wurden <b>erfolgreich</b> bearbeitet.</p><br><table id="DivReCheckTablePost"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th><th>Timestamp</th></tr></thead></table>');$.each(a,function(){$("#DivReCheckTablePost").append("<tr><td>"+this.HOST_NAME+"@"+this.NODE+"</td><td>"+this.SERVICE_NAME+"</td><td>"+this.TS+"</td></tr>")});$("#success").dialog({autoOpen:true,height:300,width:750,draggable:false,resizable:false,modal:true,buttons:{OK:function(){$(this).dialog("close");$("#success").remove();$("#DivAcknldgeObjects").html("")}}})},error:function(){$("#ajax-loader").remove();$("#ajax-loader-div").remove();alert("FEHLER BEI AUSF\u00dcHRUNG: Bearbeiten des Service Problems");$("#DivAcknldgeObjects").html("")},dataType:"json",cache:false})},Abbrechen:function(){$(this).dialog("close");$("#DivAcknldgeObjects").html("")}}})});$("#fr_button").button().css("border","1px solid #004279").click(function(){var b="",c=$("form#SearchService").serializeArray();$("#DivRemAckObjects").html('<table id="DivReCheckTable"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th></tr></thead></table>');$.each(c,function(){if(this.name!="s"){b+=this.name+"@"+this.value+";";$("#DivReCheckTable").append("<tr><td>"+this.name+"</td><td>"+this.value+"</td></tr>")}});$("#DivRemAck").dialog({autoOpen:true,height:300,width:750,draggable:false,resizable:false,modal:true,buttons:{Ausf\u00fchren:function(){var d=$("#auth1").attr("value"),c=$("#comm1").attr("value");$("body").append('<img id="ajax-loader" title="Service Problem wieder freigeben" src="layout/images/ajax-loader.gif"><div id="ajax-loader-div">Service Problem wieder freigeben</div>');$(this).dialog("close");$.ajax({url:"http://"+Backend+"/commands/json/?e=1&m=UmVtQWNrU3ZjKlU76T&c="+$.base64.encode(b)+"KjHu8U&u="+a+"U7g7ZZ",timeout:3.6e6,success:function(a){$("#ajax-loader").remove();$("#ajax-loader-div").remove();$("body").append('<div id="success" title="Service Problem wieder freigeben - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>Service Probleme wurden <b>erfolgreich</b> freigegeben.</p><br><table id="DivReCheckTablePost"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th><th>Timestamp</th></tr></thead></table>');$.each(a,function(){$("#DivReCheckTablePost").append("<tr><td>"+this.HOST_NAME+"@"+this.NODE+"</td><td>"+this.SERVICE_NAME+"</td><td>"+this.TS+"</td></tr>")});$("#success").dialog({autoOpen:true,height:300,width:750,draggable:false,resizable:false,modal:true,buttons:{OK:function(){$(this).dialog("close");$("#success").remove();$("#DivRemAckObjects").html("")}}})},error:function(){$("#ajax-loader").remove();$("#ajax-loader-div").remove();alert("FEHLER BEI AUSF\u00dcHRUNG: Service Problem wieder freigeben.");$("#DivRemAckObjects").html("")},dataType:"json",cache:false})},Abbrechen:function(){$(this).dialog("close");$("#DivRemAckObjects").html("")}}})});$("#ko_button").button().css("border","1px solid #004279").click(function(){var b="",c=$("form#SearchService").serializeArray();$("#DivCommentObjects").html('<table id="DivReCheckTable"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th></tr></thead></table>');$.each(c,function(){if(this.name!="s"){b+=this.name+"@"+this.value+";";$("#DivReCheckTable").append("<tr><td>"+this.name+"</td><td>"+this.value+"</td></tr>")}});$("#DivComment").dialog({autoOpen:true,height:700,width:750,draggable:false,resizable:false,modal:true,buttons:{Ausf\u00fchren:function(){var d=$("#Cauth").attr("value"),c=$("#Ccomm").attr("value");$("body").append('<img id="ajax-loader" title="Kommentieren des Service" src="layout/images/ajax-loader.gif"><div id="ajax-loader-div">Kommentieren des Service</div>');$(this).dialog("close");$.ajax({url:"http://"+Backend+"/commands/json/?e=1&m=Q29tU3ZjKlU76T&c="+$.base64.encode(b)+"KjHu8U&u="+a+"U7g7ZZ&ar="+$.base64.encode(d)+"U7g7ZZ&cm="+$.base64.encode(c)+"U7g7ZZ",timeout:3.6e6,success:function(a){$("#ajax-loader").remove();$("#ajax-loader-div").remove();$("body").append('<div id="success" title="Kommentieren des Service - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>Services wurden <b>erfolgreich</b> kommentiert.</p><br><table id="DivReCheckTablePost"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th><th>Timestamp</th></tr></thead></table>');$.each(a,function(){$("#DivReCheckTablePost").append("<tr><td>"+this.HOST_NAME+"@"+this.NODE+"</td><td>"+this.SERVICE_NAME+"</td><td>"+this.TS+"</td></tr>")});$("#success").dialog({autoOpen:true,height:500,width:750,draggable:false,resizable:false,modal:true,buttons:{OK:function(){$(this).dialog("close");$("#success").remove();$("#DivCommentObjects").html("")}}})},error:function(){$("#ajax-loader").remove();$("#ajax-loader-div").remove();alert("FEHLER BEI AUSF\u00dcHRUNG: Kommentieren des Service.");$("#DivCommentObjects").html("")},dataType:"json",cache:false})},Abbrechen:function(){$(this).dialog("close");$("#DivCommentObjects").html("")}}})});$("#do_button").button().css("border","1px solid #004279").click(function(){var b="",c=$("form#SearchService").serializeArray();$("#DivDowntimeObjects").html('<table id="DivReCheckTable"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th></tr></thead></table>');$.each(c,function(){if(this.name!="s"){b+=this.name+"@"+this.value+";";$("#DivReCheckTable").append("<tr><td>"+this.name+"</td><td>"+this.value+"</td></tr>")}});$("#DivDowntime").dialog({autoOpen:true,height:700,width:750,draggable:false,resizable:false,modal:true,buttons:{Ausf\u00fchren:function(){var f=$("#Dauth").attr("value"),d=$("#Dcomm").attr("value"),c=$("#Dstartts").attr("value"),e=$("#Dendts").attr("value");$("body").append('<img id="ajax-loader" title="Downtime eines Service definieren" src="layout/images/ajax-loader.gif"><div id="ajax-loader-div">Downtime eines Service definieren</div>');$(this).dialog("close");$.ajax({url:"http://"+Backend+"/commands/json/?e=1&m=RHdudG1TdmM=KlU76T&c="+$.base64.encode(b)+"KjHu8U&u="+a+"U7g7ZZ&ar="+$.base64.encode(f)+"U7g7ZZ&cm="+$.base64.encode(d)+"U7g7ZZ&ds="+c+"&de="+e,timeout:3.6e6,success:function(a){$("#ajax-loader").remove();$("#ajax-loader-div").remove();$("body").append('<div id="success" title="Downtime eines Service definieren - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>Downtime der Services wurden <b>erfolgreich</b> definiert.</p><br><table id="DivReCheckTablePost"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th><th>Timestamp</th></tr></thead></table>');$.each(a,function(){$("#DivReCheckTablePost").append("<tr><td>"+this.HOST_NAME+"@"+this.NODE+"</td><td>"+this.SERVICE_NAME+"</td><td>"+this.TS+"</td></tr>")});$("#success").dialog({autoOpen:true,height:500,width:750,draggable:false,resizable:false,modal:true,buttons:{OK:function(){$(this).dialog("close");$("#success").remove();$("#DivDowntimeObjects").html("")}}})},error:function(){$("#ajax-loader").remove();$("#ajax-loader-div").remove();alert("FEHLER BEI AUSF\u00dcHRUNG: Kommentieren des Service.");$("#DivDowntimeObjects").html("")},dataType:"json",cache:false})},Abbrechen:function(){$(this).dialog("close");$("#DivDowntimeObjects").html("")}}})});$("#dd_button").button().css("border","1px solid #004279").click(function(){var b="",c=$("form#SearchService").serializeArray();$("#DivRemDwntmObjects").html('<table id="DivReCheckTable"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th></tr></thead></table>');$.each(c,function(){if(this.name!="s"){b+=this.name+"@"+this.value+";";$("#DivReCheckTable").append("<tr><td>"+this.name+"</td><td>"+this.value+"</td></tr>")}});$("#DivRemDwntm").dialog({autoOpen:true,height:300,width:750,draggable:false,resizable:false,modal:true,buttons:{Ausf\u00fchren:function(){var f=$("#Dauth").attr("value"),d=$("#Dcomm").attr("value"),c=$("#Dstartts").attr("value"),e=$("#Dendts").attr("value");$("body").append('<img id="ajax-loader" title="Downtime eines Service l&ouml;schen" src="layout/images/ajax-loader.gif"><div id="ajax-loader-div">Downtime eines Service l&ouml;schen</div>');$(this).dialog("close");$.ajax({url:"http://"+Backend+"/commands/json/?e=1&m=UmVtRHdudG1TdmM=KlU76T&c="+$.base64.encode(b)+"KjHu8U&u="+a+"U7g7ZZ",timeout:3.6e6,success:function(a){$("#ajax-loader").remove();$("#ajax-loader-div").remove();$("body").append('<div id="success" title="Downtime eines Service l&ouml;schen - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>Downtime der Services wurden <b>erfolgreich</b> gel&ouml;scht.</p><br><table id="DivReCheckTablePost"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th><th>Timestamp</th></tr></thead></table>');$.each(a,function(){$("#DivReCheckTablePost").append("<tr><td>"+this.HOST_NAME+"@"+this.NODE+"</td><td>"+this.SERVICE_NAME+"</td><td>"+this.TS+"</td></tr>")});$("#success").dialog({autoOpen:true,height:300,width:750,draggable:false,resizable:false,modal:true,buttons:{OK:function(){$(this).dialog("close");$("#success").remove();$("#DivRemDwntmObjects").html("")}}})},error:function(){$("#ajax-loader").remove();$("#ajax-loader-div").remove();alert("FEHLER BEI AUSF\u00dcHRUNG: Downtime eines Service l&ouml;schen.");$("#DivRemDwntmObjects").html("")},dataType:"json",cache:false})},Abbrechen:function(){$(this).dialog("close");$("#DivRemDwntmObjects").html("")}}})});$("#ny_button").button().css("border","1px solid #004279").click(function(){var b="",c=$("form#SearchService").serializeArray();$("#DivNotifyObjects").html('<table id="DivReCheckTable"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th></tr></thead></table>');$.each(c,function(){if(this.name!="s"){b+=this.name+"@"+this.value+";";$("#DivReCheckTable").append("<tr><td>"+this.name+"</td><td>"+this.value+"</td></tr>")}});$("#DivNotify").dialog({autoOpen:true,height:300,width:750,draggable:false,resizable:false,modal:true,buttons:{Ausf\u00fchren:function(){$("body").append('<img id="ajax-loader" title="Benachrichtigung der Service Checks deaktivieren" src="layout/images/ajax-loader.gif"><div id="ajax-loader-div">Benachrichtigung der Service Checks deaktivieren</div>');$(this).dialog("close");$.ajax({url:"http://"+Backend+"/commands/json/?e=1&m=RGVhY05vdFN2Yw==KlU76T&c="+$.base64.encode(b)+"KjHu8U&u="+a+"U7g7ZZ",timeout:3.6e6,success:function(a){$("#ajax-loader").remove();$("#ajax-loader-div").remove();$("body").append('<div id="success" title="Benachrichtigung der Service Checks deaktivieren - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>Benachrichtgungen der Service Checks wurden <b>erfolgreich</b> deaktiviert.</p><br><table id="DivReCheckTablePost"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th><th>Timestamp</th></tr></thead></table>');$.each(a,function(){$("#DivReCheckTablePost").append("<tr><td>"+this.HOST_NAME+"@"+this.NODE+"</td><td>"+this.SERVICE_NAME+"</td><td>"+this.TS+"</td></tr>")});$("#success").dialog({autoOpen:true,height:300,width:750,draggable:false,resizable:false,modal:true,buttons:{OK:function(){$(this).dialog("close");$("#success").remove();$("#DivNotifyObjects").html("")}}})},error:function(){$("#ajax-loader").remove();$("#ajax-loader-div").remove();alert("FEHLER BEI AUSF\u00dcHRUNG: Erneutes Ausf\u00fchren von Service Checks");$("#DivNotifyObjects").html("")},dataType:"json",cache:false})},Abbrechen:function(){$(this).dialog("close");$("#DivNotifyObjects").html("")}}})});$("#ne_button").button().css("border","1px solid #004279").click(function(){var b="",c=$("form#SearchService").serializeArray();$("#DivEnNotifyObjects").html('<table id="DivReCheckTable"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th></tr></thead></table>');$.each(c,function(){if(this.name!="s"){b+=this.name+"@"+this.value+";";$("#DivReCheckTable").append("<tr><td>"+this.name+"</td><td>"+this.value+"</td></tr>")}});$("#DivEnNotify").dialog({autoOpen:true,height:300,width:750,draggable:false,resizable:false,modal:true,buttons:{Ausf\u00fchren:function(){$("body").append('<img id="ajax-loader" title="Benachrichtigung der Service Checks aktivieren" src="layout/images/ajax-loader.gif"><div id="ajax-loader-div">Benachrichtigung der Service Checks aktivieren</div>');$(this).dialog("close");$.ajax({url:"http://"+Backend+"/commands/json/?e=1&m=QWNOb3RTdmM=KlU76T&c="+$.base64.encode(b)+"KjHu8U&u="+a+"U7g7ZZ",timeout:3.6e6,success:function(a){$("#ajax-loader").remove();$("#ajax-loader-div").remove();$("body").append('<div id="success" title="Benachrichtigung der Service Checks aktivieren - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>Benachrichtgungen der Service Checks wurden <b>erfolgreich</b> aktiviert.</p><br><table id="DivReCheckTablePost"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th><th>Timestamp</th></tr></thead></table>');$.each(a,function(){$("#DivReCheckTablePost").append("<tr><td>"+this.HOST_NAME+"@"+this.NODE+"</td><td>"+this.SERVICE_NAME+"</td><td>"+this.TS+"</td></tr>")});$("#success").dialog({autoOpen:true,height:300,width:750,draggable:false,resizable:false,modal:true,buttons:{OK:function(){$(this).dialog("close");$("#success").remove();$("#DivEnNotifyObjects").html("")}}})},error:function(){$("#ajax-loader").remove();$("#ajax-loader-div").remove();alert("FEHLER BEI AUSF\u00dcHRUNG: Benachrichtigung der Service Checks aktivieren");$("#DivEnNotifyObjects").html("")},dataType:"json",cache:false})},Abbrechen:function(){$(this).dialog("close");$("#DivEnNotifyObjects").html("")}}})})}function Reload(a){$("#TopMenu").append('<img id="AjaxLoader" src="layout/images/ajax-loader.gif">');AllServices(a)}function AutoReloadStart(a){$("#TopMenu").append('<img id="AjaxLoader" src="layout/images/ajax-loader.gif">');AllServices(a);$("#AutoReload").html('<span id="AutoReloadDate"></span>Automatischer Reload: <span id="AutoReloadStat" onclick="AutoReloadStop(\''+a+'\');">Aktiviert (Alle 90s)</span><span id="AutoReloadTimer"></span>');t=setTimeout('AutoReloadStart("'+a+'")',9e4);$("#AutoReloadDate").html(PrintTS()+" Uhr")}function AutoReloadStop(a){$("#AutoReload").html('Automatischer Reload: <span id="AutoReloadStat" onclick="AutoReloadStart(\''+a+"');\">Deaktiviert</span>");clearTimeout(t)}function AllServices(a){var b=$.base64.encode(a);$("#TopMenu").append('<div id="AutoReload"></div>');$("#AutoReload").html('Automatischer Reload: <span id="AutoReloadStat" onclick="AutoReloadStart(\''+a+"');\">Deaktiviert</span>");$.ajax({url:"http://"+Backend+"/repo/json/?e=1&m=U2VsZWN0TW9kVmlldw==Jhdu8d&u="+b+"Adhfg3&k=c2VydmljZXM=JkHu77",crossDomain:true,success:function(b){if(b.MODVIEW=="ListAllServices")ListAllServices(a);else GridAllServices(a)},dataType:"json",cache:false})}function GridAllServices(a){var c=urlPara("s").replace(/%3D/g,"="),b=urlPara("searchstring").replace(/%3D/g,"=").replace(/%20/g," ").replace(/%22/g,'"').replace(/%25/g,"%").replace(/%3C/g,"<").replace(/%3E/g,">").replace(/%5B/g,"[").replace(/%5C/g,"\\").replace(/%5D/g,"]").replace(/%5E/g,"^").replace(/%60/g,"`").replace(/%7B/g,"{").replace(/%7C/g,"|").replace(/%7D/g,"}").replace(/%7E/g,"~").replace(/%7F/g,"").replace(/%28/g,"(").replace(/%29/g,")").replace(/%2B/g,"+");$("#SrvCenter").html("");$("#theme-roller").append('<img id="AjaxLoader" src="layout/images/ajax-loader.gif">');$("#center").html("<section></section>");if(c.length>0)GridSpecialServices(a,c);else if(b.length>0)GridSearchServices(a,b);else GridServices(a)}function GridServices(b){var a=$.base64.encode(b);$("span.UserList").removeClass("Fontffffff");$("span.UserList").addClass("Font82abcc");$("span.UserGrid").removeClass("Font82abcc");$("span.UserGrid").addClass("Fontffffff");$("#AutoReload").css("display","block");$("#ShowGridSearchBar").remove();$.ajax({url:"http://"+Backend+"/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u="+a+"Lkjdu7&m2=Q29uZmlnJq0OpP",crossDomain:true,success:function(d){var c;$.each(d,function(b,a){if(a.KEY=="DeleteDomainSuffix")c=a.ACTION});$.ajax({url:"http://"+Backend+"/proxy/json/?e=1&m=SG9zdEZ1bGxJbmZvHd78h3&u="+a+"LKHld3",crossDomain:true,success:function(e){var d=0,a=0;$.each(e,function(){var b=this.NODE;$.each(this.HFI,function(){var f=this.NAME,j=this.STATUS,e,h=this.ICON,i=this.URL;if(c=="0")e=this.NAME;else{var g=this.NAME;e=g.substr(0,g.indexOf("."))}if(e.length>25)e=e.substr(0,22)+"...";$.each(this.SERVICELIST,function(){var c=this.SERVICE_NAME;if(c.length>20)c=c.substr(0,17)+"...";if(this.OUTPUT.length>38)this.OUTPUT=this.OUTPUT.substr(0,35)+"...";$("section","#center").append('<a class="service" title=""><img class="SrvImgGrid" src="'+h+'" /><div id="SrvImgStateGrid"><img src="'+this.SERVICE_STATUS_ICON+'" /></div><div id="SrvTitleGrid">'+c+'</div><div id="SrvHostNameGrid">'+e+" <i>auf "+b+'</i></div><div id="SrvOutputGrid">'+this.OUTPUT+'</div><div id="SvcLinkHover" onclick="OpenWindow(\'modules/'+i+"?h="+$.base64.encode(b)+"&c="+$.base64.encode(f)+'\',\'_self\');"></div><div id="SvcLinkMenu"><input type="checkbox" name="'+f+"@"+b+'" value="'+this.SERVICE_NAME+'" id="Checkbox'+d+""+a+'" /><label for="Checkbox'+d+""+a+'" title="Diesen Service Check f&uuml;r ein Kommando markieren.">x</label></div></a>');$("#Checkbox"+d+""+a).button();a++});d++})});a==0&&$("#center").append('<div id="NoContent">Die Abfrage ergab kein Ergebnis.</div>');$("#servicecount").html(" ("+a+" auf "+d+" Hosts)");$("#AjaxLoader").remove();$("#TextChkb"+d+""+a).buttonset();ShowSelect($.base64.encode("a")+"KdhU7Z");UpdateModView(b,"GridAllServices")},dataType:"json",cache:false})},dataType:"json",cache:false})}function ShowSelect(a){$("#ServiceGridSelect").html('\n        <select id="ServiceViewSelect" onchange="this.form.submit();" name="s" style="display: none;">\n            <option value="">Alle Services</option>\n            <option value="'+$.base64.encode("ao")+'KdhU7Z">Alle Services mit Status: OK</option>\n            <option value="'+$.base64.encode("aw")+'KdhU7Z">Alle Services mit Status: Warnung</option>\n            <option value="'+$.base64.encode("ac")+'KdhU7Z">Alle Services mit Status: Kritisch</option>\n            <option value="'+$.base64.encode("au")+'KdhU7Z">Alle Services mit Status: Unbekannt</option>\n            <option value="'+$.base64.encode("ap")+'KdhU7Z">Alle Probleme</option>\n            <option value="'+$.base64.encode("apoh")+'KdhU7Z">Alle Probleme auf ONLINE Hosts</option>\n            <option value="'+$.base64.encode("apnaoh")+'KdhU7Z">Alle Probleme, nicht bearbeitet auf ONLINE Hosts</option>\n            <option value="'+$.base64.encode("apdh")+'KdhU7Z">Alle Probleme auf OFFLINE Hosts</option>\n            <option value="'+$.base64.encode("woh")+'KdhU7Z">Services Warnung auf ONLINE Hosts</option>\n            <option value="'+$.base64.encode("wfh")+'KdhU7Z">Services Warnung auf OFFLINE Hosts</option>\n            <option value="'+$.base64.encode("wnaoh")+'KdhU7Z">Services Warnung, nicht bearbeitet auf ONLINE Hosts</option>\n            <option value="'+$.base64.encode("waoh")+'KdhU7Z">Services Warnung, bearbeitet auf ONLINE Hosts</option>\n            <option value="'+$.base64.encode("wnafh")+'KdhU7Z">Services Warnung, nicht bearbeitet auf OFFLINE Hosts</option>\n            <option value="'+$.base64.encode("wafh")+'KdhU7Z">Services Warnung, bearbeitet auf OFFLINE Hosts</option>\n            <option value="'+$.base64.encode("coh")+'KdhU7Z">Services Kritisch auf ONLINE Hosts</option>\n            <option value="'+$.base64.encode("cfh")+'KdhU7Z">Services Kritisch auf OFFLINE Hosts</option>\n            <option value="'+$.base64.encode("cnaoh")+'KdhU7Z">Services Kritisch, nicht bearbeitet auf ONLINE Hosts</option>\n            <option value="'+$.base64.encode("caoh")+'KdhU7Z">Services Kritisch, bearbeitet auf ONLINE Hosts</option>\n            <option value="'+$.base64.encode("cnafh")+'KdhU7Z">Services Kritisch, nicht bearbeitet auf OFFLINE Hosts</option>\n            <option value="'+$.base64.encode("cafh")+'KdhU7Z">Services Kritisch, bearbeitet auf OFFLINE Hosts</option>\n            <option value="'+$.base64.encode("uoh")+'KdhU7Z">Services Unbekannt auf ONLINE Hosts</option>\n            <option value="'+$.base64.encode("ufh")+'KdhU7Z">Services Unbekannt auf OFFLINE Hosts</option>\n            <option value="'+$.base64.encode("unaoh")+'KdhU7Z">Services Unbekannt, nicht bearbeitet auf ONLINE Hosts</option>\n            <option value="'+$.base64.encode("uaoh")+'KdhU7Z">Services Unbekannt, bearbeitet auf ONLINE Hosts</option>\n            <option value="'+$.base64.encode("unafh")+'KdhU7Z">Services Unbekannt, nicht bearbeitet auf OFFLINE Hosts</option>\n            <option value="'+$.base64.encode("uafh")+'KdhU7Z">Services Unbekannt, bearbeitet auf OFFLINE Hosts</option>\n        </select>');$("#ServiceViewSelect").val(a).attr("selected",true);$("#ServiceViewSelect").selectmenu({width:450,menuWidth:450,style:"dropdown",maxHeight:500})}function ShowSelectSearch(){$("#ServiceGridSelect").html('\n        <select id="ServiceViewSelect" onchange="this.form.submit();" name="s" style="display: none;">\n            <option selected value="">Suche ...</option>\n            <option value="">Alle Services</option>\n            <option value="'+$.base64.encode("ao")+'KdhU7Z">Alle Services mit Status: OK</option>\n            <option value="'+$.base64.encode("aw")+'KdhU7Z">Alle Services mit Status: Warnung</option>\n            <option value="'+$.base64.encode("ac")+'KdhU7Z">Alle Services mit Status: Kritisch</option>\n            <option value="'+$.base64.encode("au")+'KdhU7Z">Alle Services mit Status: Unbekannt</option>\n            <option value="'+$.base64.encode("ap")+'KdhU7Z">Alle Probleme</option>\n            <option value="'+$.base64.encode("apoh")+'KdhU7Z">Alle Probleme auf ONLINE Hosts</option>\n            <option value="'+$.base64.encode("apnaoh")+'KdhU7Z">Alle Probleme, nicht bearbeitet auf ONLINE Hosts</option>\n            <option value="'+$.base64.encode("apdh")+'KdhU7Z">Alle Probleme auf OFFLINE Hosts</option>\n            <option value="'+$.base64.encode("woh")+'KdhU7Z">Services Warnung auf ONLINE Hosts</option>\n            <option value="'+$.base64.encode("wfh")+'KdhU7Z">Services Warnung auf OFFLINE Hosts</option>\n            <option value="'+$.base64.encode("wnaoh")+'KdhU7Z">Services Warnung, nicht bearbeitet auf ONLINE Hosts</option>\n            <option value="'+$.base64.encode("waoh")+'KdhU7Z">Services Warnung, bearbeitet auf ONLINE Hosts</option>\n            <option value="'+$.base64.encode("wnafh")+'KdhU7Z">Services Warnung, nicht bearbeitet auf OFFLINE Hosts</option>\n            <option value="'+$.base64.encode("wafh")+'KdhU7Z">Services Warnung, bearbeitet auf OFFLINE Hosts</option>\n            <option value="'+$.base64.encode("coh")+'KdhU7Z">Services Kritisch auf ONLINE Hosts</option>\n            <option value="'+$.base64.encode("cfh")+'KdhU7Z">Services Kritisch auf OFFLINE Hosts</option>\n            <option value="'+$.base64.encode("cnaoh")+'KdhU7Z">Services Kritisch, nicht bearbeitet auf ONLINE Hosts</option>\n            <option value="'+$.base64.encode("caoh")+'KdhU7Z">Services Kritisch, bearbeitet auf ONLINE Hosts</option>\n            <option value="'+$.base64.encode("cnafh")+'KdhU7Z">Services Kritisch, nicht bearbeitet auf OFFLINE Hosts</option>\n            <option value="'+$.base64.encode("cafh")+'KdhU7Z">Services Kritisch, bearbeitet auf OFFLINE Hosts</option>\n            <option value="'+$.base64.encode("uoh")+'KdhU7Z">Services Unbekannt auf ONLINE Hosts</option>\n            <option value="'+$.base64.encode("ufh")+'KdhU7Z">Services Unbekannt auf OFFLINE Hosts</option>\n            <option value="'+$.base64.encode("unaoh")+'KdhU7Z">Services Unbekannt, nicht bearbeitet auf ONLINE Hosts</option>\n            <option value="'+$.base64.encode("uaoh")+'KdhU7Z">Services Unbekannt, bearbeitet auf ONLINE Hosts</option>\n            <option value="'+$.base64.encode("unafh")+'KdhU7Z">Services Unbekannt, nicht bearbeitet auf OFFLINE Hosts</option>\n            <option value="'+$.base64.encode("uafh")+'KdhU7Z">Services Unbekannt, bearbeitet auf OFFLINE Hosts</option>\n        </select>');$("#ServiceViewSelect").selectmenu({width:450,menuWidth:450,style:"dropdown",maxHeight:500})}function GridSpecialServices(c,b){var a=$.base64.encode(c);$("span.UserList").removeClass("Fontffffff");$("span.UserList").addClass("Font82abcc");$("span.UserGrid").removeClass("Font82abcc");$("span.UserGrid").addClass("Fontffffff");$("#AutoReload").css("display","block");$("#ShowGridSearchBar").remove();$.ajax({url:"http://"+Backend+"/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u="+a+"Lkjdu7&m2=Q29uZmlnJq0OpP",crossDomain:true,success:function(e){var d;$.each(e,function(b,a){if(a.KEY=="DeleteDomainSuffix")d=a.ACTION});$.ajax({url:"http://"+Backend+"/proxy/json/?e=1&m=U2VydmljZVN0YXR1c1NlbGVjdA==Ki88uU&u="+a+"LKHld3&s="+b,crossDomain:true,success:function(f){var e=0,a=0;$.each(f,function(){var b=this.NODE;$.each(this.SRVSTATSEL,function(){var f=this.NAME,j=this.STATUS,c,h=this.ICON,i=this.URL;if(d=="0")c=this.NAME;else{var g=this.NAME;c=g.substr(0,g.indexOf("."))}if(c.length>25)c=c.substr(0,22)+"...";if(this.SERVICELIST.length>0){$.each(this.SERVICELIST,function(){var d=this.SERVICE_NAME;if(d.length>20)d=d.substr(0,17)+"...";if(this.OUTPUT.length>38)this.OUTPUT=this.OUTPUT.substr(0,35)+"...";$("section","#center").append('<a class="service" title=""><img class="SrvImgGrid" src="'+h+'" /><div id="SrvImgStateGrid"><img src="'+this.SERVICE_STATUS_ICON+'" /></div><div id="SrvTitleGrid">'+d+'</div><div id="SrvHostNameGrid">'+c+" <i>auf "+b+'</i></div><div id="SrvOutputGrid">'+this.OUTPUT+'</div><div id="SvcLinkHover" onclick="OpenWindow(\'modules/'+i+"?h="+$.base64.encode(b)+"&c="+$.base64.encode(f)+'\',\'_self\');"></div><div id="SvcLinkMenu"><input type="checkbox" name="'+f+"@"+b+'" value="'+this.SERVICE_NAME+'" id="Checkbox'+e+""+a+'" /><label for="Checkbox'+e+""+a+'" title="Diesen Service Check f&uuml;r ein Kommando markieren.">x</label></div></a>');$("#Checkbox"+e+""+a).button();a++});e++}})});a==0&&$("#center").append('<div id="NoContent">Die Abfrage ergab kein Ergebnis.</div>');$("#servicecount").html(" ("+a+" auf "+e+" Hosts)");$("#AjaxLoader").remove();ShowSelect(b);UpdateModView(c,"GridAllServices")},dataType:"json",cache:false})},dataType:"json",cache:false})}function GridSearchServices(b,a){var c=$.base64.encode(b),d=$.base64.encode(a);$("span.UserList").removeClass("Fontffffff");$("span.UserList").addClass("Font82abcc");$("span.UserGrid").removeClass("Font82abcc");$("span.UserGrid").addClass("Fontffffff");$("#AutoReload").css("display","block");$("#ShowGridSearchBar").remove();$("body").append('<div id="ShowGridSearchBar" style="margin-top: 7px; margin-left: 7px;"></div>');$.ajax({url:"http://"+Backend+"/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u="+c+"Lkjdu7&m2=Q29uZmlnJq0OpP",crossDomain:true,success:function(f){var e;$.each(f,function(b,a){if(a.KEY=="DeleteDomainSuffix")e=a.ACTION});$.ajax({url:"http://"+Backend+"/proxy/json/?e=1&m=U2VydmljZVNlYXJjaExpc3Q=Ki88uU&u="+c+"LKHld3&searchstring="+d+"KlUu87",crossDomain:true,success:function(f){var d=0,c=0;$("#ShowGridSearchBar").html("<font size=2 color=#82abcc>Gesucht nach:</font>  "+a+"");$.each(f,function(){var a=this.NODE;$.each(this.SRVSEARCH,function(){var f=this.NAME,j=this.STATUS,b,h=this.ICON,i=this.URL;if(e=="0")b=this.NAME;else{var g=this.NAME;b=g.substr(0,g.indexOf("."))}if(b.length>25)b=b.substr(0,22)+"...";if(this.SERVICELIST.length>0){$.each(this.SERVICELIST,function(){var e=this.SERVICE_NAME;if(e.length>20)e=e.substr(0,17)+"...";if(this.OUTPUT.length>38)this.OUTPUT=this.OUTPUT.substr(0,35)+"...";$("section","#center").append('<a class="service" title=""><img class="SrvImgGrid" src="'+h+'" /><div id="SrvImgStateGrid"><img src="'+this.SERVICE_STATUS_ICON+'" /></div><div id="SrvTitleGrid">'+e+'</div><div id="SrvHostNameGrid">'+b+" <i>auf "+a+'</i></div><div id="SrvOutputGrid">'+this.OUTPUT+'</div><div id="SvcLinkHover" onclick="OpenWindow(\'modules/'+i+"?h="+$.base64.encode(a)+"&c="+$.base64.encode(f)+'\',\'_self\');"></div><div id="SvcLinkMenu"><input type="checkbox" name="'+f+"@"+a+'" value="'+this.SERVICE_NAME+'" id="Checkbox'+d+""+c+'" /><label for="Checkbox'+d+""+c+'" title="Diesen Service Check f&uuml;r ein Kommando markieren.">x</label></div></a>');$("#Checkbox"+d+""+c).button();c++});d++}})});c==0&&$("#center").append('<div id="NoContent">Die Abfrage ergab kein Ergebnis.</div>');$("#servicecount").html(" ("+c+" auf "+d+" Hosts)");$("#AjaxLoader").remove();ShowSelectSearch();KlickFunctionSidebarService(b,a);UpdateModView(b,"GridAllServices")},dataType:"json",cache:false})},dataType:"json",cache:false})}function ListAllServices(a){var c=urlPara("s").replace(/%3D/g,"="),b=urlPara("searchstring").replace(/%3D/g,"=").replace(/%20/g," ").replace(/%22/g,'"').replace(/%25/g,"%").replace(/%3C/g,"<").replace(/%3E/g,">").replace(/%5B/g,"[").replace(/%5C/g,"\\").replace(/%5D/g,"]").replace(/%5E/g,"^").replace(/%60/g,"`").replace(/%7B/g,"{").replace(/%7C/g,"|").replace(/%7D/g,"}").replace(/%7E/g,"~").replace(/%7F/g,"").replace(/%28/g,"(").replace(/%29/g,")").replace(/%2B/g,"+");$("#center").html("");$("#ServiceGridSelect").html("");$("#theme-roller").append('<img id="AjaxLoader" src="layout/images/ajax-loader.gif">');$("#SrvCenter").html('<div id="ServicePane"><div id="ServiceListSearch"></div><div id="HeadDivTableServicesListView"><span>Host Name</span><span>Service Name</span><span>Output</span></div></div><div id="ListDivShowServices"></div>');$("#ServicePane").append('<div id="CheckBoxAll"><input type="checkbox" id="CheckAllCheckboxes" onclick="CheckAll(\''+a+'\');"/></div><div id="VLOne"></div><div id="VLTwo"></div><div id="VLThree"></div><div id="VLFour"></div>');if(c.length>0)ListSpecialServices(a,c);else if(b.length>0)ListSearchServices(a,b);else ListServices(a)}function ListServices(b){var a=$.base64.encode(b);$("span.UserList").addClass("Fontffffff");$("span.UserList").removeClass("Font82abcc");$("span.UserGrid").addClass("Font82abcc");$("span.UserGrid").removeClass("Fontffffff");$("#AutoReload").css("display","block");$("#ShowGridSearchBar").remove();$.ajax({url:"http://"+Backend+"/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u="+a+"Lkjdu7&m2=Q29uZmlnJq0OpP",crossDomain:true,success:function(d){var c;$.each(d,function(b,a){if(a.KEY=="DeleteDomainSuffix")c=a.ACTION});$.ajax({url:"http://"+Backend+"/proxy/json/?e=1&m=SG9zdEZ1bGxJbmZvHd78h3&u="+a+"LKHld3",crossDomain:true,success:function(e){var a=0,d=0;$.each(e,function(){var b=this.NODE;$.each(this.HFI,function(){var e=this.NAME,k=this.STATUS,i=this.ICON,f,j=this.URL;if(c=="0")f=this.NAME;else{var h=this.NAME;f=h.substr(0,h.indexOf("."))}$("#ListDivShowServices").append('<table id="ServiceLstTable" class="'+a+'Services"></table>');var g=0;$.each(this.SERVICELIST,function(){var c;if(this.SERVICE_STATUS=="1")c="taovwa";else if(this.SERVICE_STATUS=="2")c="taovcr";else if(this.SERVICE_STATUS=="3")c="taovun";else c="taovok";if(g==0)$("."+a+"Services").append('<tr class="'+c+'"><td rowspan=2><img src="'+i+'" /></td><td><a href="modules/'+j+"?h="+$.base64.encode(b)+"&c="+$.base64.encode(e)+'">'+f+"</a></td><td>"+this.SERVICE_NAME+'</td><td><img id="ImgServiceStatus" src="'+this.SERVICE_STATUS_ICON+'"></img></td><td><input type="checkbox" name="'+e+"@"+b+'" value="'+this.SERVICE_NAME+'" id="" /></td><td>'+this.OUTPUT+"</td><td>Zuletzt gepr&uuml;ft "+this.LAST_CHECK_ISO+"</td></tr>");else if(g==1)$("."+a+"Services").append('<tr class="'+c+'"><td><i>auf '+b+"</i></td><td>"+this.SERVICE_NAME+'</td><td><img id="ImgServiceStatus" src="'+this.SERVICE_STATUS_ICON+'"></img></td><td><input type="checkbox" name="'+e+"@"+b+'" value="'+this.SERVICE_NAME+'" id="" /></td><td>'+this.OUTPUT+"</td><td>Zuletzt gepr&uuml;ft "+this.LAST_CHECK_ISO+"</td></tr>");else $("."+a+"Services").append('<tr class="'+c+'"><td colspan=2></td><td>'+this.SERVICE_NAME+'</td><td><img id="ImgServiceStatus" src="'+this.SERVICE_STATUS_ICON+'"></img></td><td><input type="checkbox" name="'+e+"@"+b+'" value="'+this.SERVICE_NAME+'" id="" /></td><td>'+this.OUTPUT+"</td><td>Zuletzt gepr&uuml;ft "+this.LAST_CHECK_ISO+"</td></tr>");d++;g++});a++})});if(d==0){$("#ListDivShowServices").append('<div id="NoContent">Die Abfrage ergab kein Ergebnis.</div>');$("#VLOne").remove();$("#VLTwo").remove();$("#VLThree").remove();$("#VLFour").remove();$("#VLFive").remove();$("#VLSix").remove();$("#VLSeven").remove()}$("#servicecount").html(" ("+d+" auf "+a+" Hosts)");$("#AjaxLoader").remove();ShowSelect($.base64.encode("a")+"KdhU7Z");UpdateModView(b,"ListAllServices")},dataType:"json",cache:false})},dataType:"json",cache:false})}function UpdateModView(d,c){var b=$.base64.encode(d),a=$.base64.encode(c);$.ajax({url:"http://"+Backend+"/repo/json/?e=1&m=VXBkYXRlTW9kVmlldw==Jhdu8d&u="+b+"Adhfg3&k=c2VydmljZXM=JkHu77&v1="+a+"HjKi88",crossDomain:true,dataType:"json",cache:false})}function ListSpecialServices(c,b){var a=$.base64.encode(c);$("span.UserList").addClass("Fontffffff");$("span.UserList").removeClass("Font82abcc");$("span.UserGrid").addClass("Font82abcc");$("span.UserGrid").removeClass("Fontffffff");$("#AutoReload").css("display","block");$("#ShowGridSearchBar").remove();$("#center").html("");$.ajax({url:"http://"+Backend+"/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u="+a+"Lkjdu7&m2=Q29uZmlnJq0OpP",crossDomain:true,success:function(e){var d;$.each(e,function(b,a){if(a.KEY=="DeleteDomainSuffix")d=a.ACTION});$.ajax({url:"http://"+Backend+"/proxy/json/?e=1&m=U2VydmljZVN0YXR1c1NlbGVjdA==Ki88uU&u="+a+"LKHld3&s="+b,crossDomain:true,success:function(f){var a=0,e=0;$.each(f,function(){var b=this.NODE;$.each(this.SRVSTATSEL,function(){var c=this.NAME,k=this.STATUS,i=this.ICON,f,j=this.URL;if(d=="0")f=this.NAME;else{var h=this.NAME;f=h.substr(0,h.indexOf("."))}if(this.SERVICELIST.length>0){$("#ListDivShowServices").append('<table id="ServiceLstTable" class="'+a+'Services"></table>');var g=0;$.each(this.SERVICELIST,function(){var d;if(this.SERVICE_STATUS=="1")d="taovwa";else if(this.SERVICE_STATUS=="2")d="taovcr";else if(this.SERVICE_STATUS=="3")d="taovun";else d="taovok";if(g==0)$("."+a+"Services").append('<tr class="'+d+'"><td rowspan=2><img style="width:20px; margin-bottom: -5px;margin-left: 13px;" src="'+i+'" /></td><td><a href="modules/'+j+"?h="+$.base64.encode(b)+"&c="+$.base64.encode(c)+'">'+f+" <i>("+b+")</i></a></td><td>"+this.SERVICE_NAME+'</td><td><img id="ImgServiceStatus" src="'+this.SERVICE_STATUS_ICON+'"></img></td><td><input type="checkbox" name="'+c+"@"+b+'" value="'+this.SERVICE_NAME+'" id="" /></td><td>'+this.OUTPUT+"</td><td>Zuletzt gepr&uuml;ft "+this.LAST_CHECK_ISO+"</td></tr>");else if(g==1)$("."+a+"Services").append('<tr class="'+d+'"><td></td><td>'+this.SERVICE_NAME+'</td><td><img id="ImgServiceStatus" src="'+this.SERVICE_STATUS_ICON+'"></img></td><td><input type="checkbox" name="'+c+"@"+b+'" value="'+this.SERVICE_NAME+'" id="" /></td><td>'+this.OUTPUT+"</td><td>Zuletzt gepr&uuml;ft "+this.LAST_CHECK_ISO+"</td></tr>");else $("."+a+"Services").append('<tr class="'+d+'"><td colspan=2></td><td>'+this.SERVICE_NAME+'</td><td><img id="ImgServiceStatus" src="'+this.SERVICE_STATUS_ICON+'"></img></td><td><input type="checkbox" name="'+c+"@"+b+'" value="'+this.SERVICE_NAME+'" id="" /></td><td>'+this.OUTPUT+"</td><td>Zuletzt gepr&uuml;ft "+this.LAST_CHECK_ISO+"</td></tr>");e++;g++});a++}})});if(e==0){$("#ListDivShowServices").append('<div id="NoContent">Die Abfrage ergab kein Ergebnis.</div>');$("#VLOne").remove();$("#VLTwo").remove();$("#VLThree").remove();$("#VLFour").remove();$("#VLFive").remove();$("#VLSix").remove();$("#VLSeven").remove()}$("#servicecount").html(" ("+e+" auf "+a+" Hosts)");$("#AjaxLoader").remove();ShowSelect(b);UpdateModView(c,"ListAllServices")},dataType:"json",cache:false})},dataType:"json",cache:false})}function ListSearchServices(b,a){var c=$.base64.encode(b),d=$.base64.encode(a);$("span.UserList").addClass("Fontffffff");$("span.UserList").removeClass("Font82abcc");$("span.UserGrid").addClass("Font82abcc");$("span.UserGrid").removeClass("Fontffffff");$("#AutoReload").css("display","block");$("#ShowGridSearchBar").remove();$("body").append('<div id="ShowGridSearchBar" style="margin-top: 7px; margin-left: 7px;"></div>');$("#center").html("");$.ajax({url:"http://"+Backend+"/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u="+c+"Lkjdu7&m2=Q29uZmlnJq0OpP",crossDomain:true,success:function(f){var e;$.each(f,function(b,a){if(a.KEY=="DeleteDomainSuffix")e=a.ACTION});$.ajax({url:"http://"+Backend+"/proxy/json/?e=1&m=U2VydmljZVNlYXJjaExpc3Q=Ki88uU&u="+c+"LKHld3&searchstring="+d+"KlUu87",crossDomain:true,success:function(f){var c=0,d=0;$.each(f,function(){var b=this.NODE;$.each(this.SRVSEARCH,function(){var f=this.NAME,l=this.STATUS,j=this.ICON,g,k=this.URL;$("#ShowGridSearchBar").html("<font size=2 color=#82abcc>Gesucht nach:</font>  "+a+"");if(e=="0")g=this.NAME;else{var i=this.NAME;g=i.substr(0,i.indexOf("."))}if(this.SERVICELIST.length>0){$("#ListDivShowServices").append('<table id="ServiceLstTable" class="'+c+'Services"></table>');var h=0;$.each(this.SERVICELIST,function(){var a;if(this.SERVICE_STATUS=="1")a="taovwa";else if(this.SERVICE_STATUS=="2")a="taovcr";else if(this.SERVICE_STATUS=="3")a="taovun";else a="taovok";if(h==0)$("."+c+"Services").append('<tr class="'+a+'"><td rowspan=2><img style="width:20px; margin-bottom: -5px;margin-left: 13px;" src="'+j+'" /></td><td><a href="modules/'+k+"?h="+$.base64.encode(b)+"&c="+$.base64.encode(f)+'">'+g+" <i>("+b+")</i></a></td><td>"+this.SERVICE_NAME+'</td><td><img id="ImgServiceStatus" src="'+this.SERVICE_STATUS_ICON+'"></img></td><td><input type="checkbox" name="'+f+"@"+b+'" value="'+this.SERVICE_NAME+'" id="" /></td><td>'+this.OUTPUT+"</td><td>Zuletzt gepr&uuml;ft "+this.LAST_CHECK_ISO+"</td></tr>");else if(h==1)$("."+c+"Services").append('<tr class="'+a+'"><td></td><td>'+this.SERVICE_NAME+'</td><td><img id="ImgServiceStatus" src="'+this.SERVICE_STATUS_ICON+'"></img></td><td><input type="checkbox" name="'+f+"@"+b+'" value="'+this.SERVICE_NAME+'" id="" /></td><td>'+this.OUTPUT+"</td><td>Zuletzt gepr&uuml;ft "+this.LAST_CHECK_ISO+"</td></tr>");else $("."+c+"Services").append('<tr class="'+a+'"><td colspan=2></td><td>'+this.SERVICE_NAME+'</td><td><img id="ImgServiceStatus" src="'+this.SERVICE_STATUS_ICON+'"></img></td><td><input type="checkbox" name="'+f+"@"+b+'" value="'+this.SERVICE_NAME+'" id="" /></td><td>'+this.OUTPUT+"</td><td>Zuletzt gepr&uuml;ft "+this.LAST_CHECK_ISO+"</td></tr>");d++;h++});c++}})});if(d==0){$("#ListDivShowServices").append('<div id="NoContent">Die Abfrage ergab kein Ergebnis.</div>');$("#VLOne").remove();$("#VLTwo").remove();$("#VLThree").remove();$("#VLFour").remove();$("#VLFive").remove();$("#VLSix").remove();$("#VLSeven").remove()}$("#servicecount").html(" ("+d+" auf "+c+" Hosts)");$("#FooterDivTableHostsListView").html(d+" Services");$("#AjaxLoader").remove();ShowSelectSearch();KlickFunctionSidebarService(b,a);UpdateModView(b,"ListAllServices")},dataType:"json",cache:false})},dataType:"json",cache:false})}function KlickFunctionSidebarService(c,a){var b=$.base64.encode(c);$("#ShowGridSearchBar").click(function(){if($("#Sidebar").is(":hidden")){$("#SidebarSmall").animate({marginRight:"400px"},350).css("zIndex",30);$("#Sidebar").animate({width:"toggle"},350,function(){$("#SidebarContent").fadeIn(100)}).css("zIndex",30);SearchServicesSearch(b+"Jhdu8K",a)}else{$("#SidebarContent").fadeOut(100);$("#Sidebar").animate({width:"toggle"},350).css("zIndex",30);$("#SidebarSmall").animate({marginRight:"0px"},350).css("zIndex",30)}})}function CheckAll(b){var a=$.base64.encode(b);if($("#CheckAllCheckboxes").is(":checked")){$("form#SearchService").find(":checkbox").attr("checked","checked");if($("#Sidebar").is(":hidden")){$("#SidebarSmall").animate({marginRight:"400px"},350).css("zIndex",30);$("#Sidebar").animate({width:"toggle"},350,function(){$("#SidebarContent").fadeIn(100)}).css("zIndex",30);SearchServices(a+"Jhdu8K")}}else if($("#Sidebar").is(":hidden"))$("form#SearchService").find(":checkbox").removeAttr("checked");else{$("form#SearchService").find(":checkbox").removeAttr("checked");$("#SidebarContent").fadeOut(100);$("#Sidebar").animate({width:"toggle"},350).css("zIndex",30);$("#SidebarSmall").animate({marginRight:"0px"},350).css("zIndex",30)}}function EnableInput(a){if($(a).is(":hidden"))$(a).show();else $(a).hide()}function OpenWindow(a,b){window.open(a,b)}
+var t;
+
+function Top(uid) {
+    var b64uid = $.base64.encode( uid );
+    $('#TopMenu').append('<table cellpadding=0 cellspacing=0 border=0 id="TopMEnuTable"><tr><td><a href=".">Home</a></td><td><span id="TopMenuIcon" class="ui-icon ui-icon-triangle-1-e"></span></td><td>Services<span id="servicecount"></span></td></tr></table>');    
+    
+    $.Shortcuts.add({
+        type: 'down',
+        mask: 'a',
+        handler: function() {
+            AutoReloadStart(uid);
+        }
+    }).start();
+    
+    $.Shortcuts.add({
+        type: 'down',
+        mask: 'q',
+        handler: function() {
+            AutoReloadStop(uid);
+        }
+    }).start();
+    
+    $.Shortcuts.add({
+        type: 'down',
+        mask: 's',
+        handler: function() {
+            if ($("#Sidebar").is(":hidden")) {
+                $('#SidebarSmall').animate({marginRight: "400px"},350).css('zIndex',30);
+                $('#Sidebar').animate({width:'toggle'},350, function() {
+                    $('#SidebarContent').fadeIn(100);
+                }).css('zIndex',30);
+                SearchServices( b64uid + 'Jhdu8K');
+            } else {
+                $('#SidebarContent').fadeOut(100);
+                $('#Sidebar').animate({width:'toggle'},350).css('zIndex',30);
+                $('#SidebarSmall').animate({marginRight: "0px"},350).css('zIndex',30);
+            }
+        }
+    }).start();
+    
+    $.Shortcuts.add({
+        type: 'down',
+        mask: 'l',
+        handler: function() {
+            ListAllServices(uid);
+        }
+    }).start();
+    
+    $.Shortcuts.add({
+        type: 'down',
+        mask: 'g',
+        handler: function() {
+            GridAllServices(uid);
+        }
+    }).start();
+    
+    $.Shortcuts.add({
+        type: 'down',
+        mask: 'r',
+        handler: function() {
+            Reload(uid);
+        }
+    }).start();
+    
+    /**
+     * Administration
+     **/
+    
+    $('#SidebarSubmenu').append('<div id="OracleDBA"><div id="AdminTitle">Check Kommandos</div>\n\
+        <div id="AdminDivs">\n\
+            <div id="DivReCheck" title="Erneutes Ausf&uuml;hren von Service Checks - 1 von 2">\n\
+                <h3>Es betrifft folgende konfigurierte Checks:</h3>\n\
+                <div id="DivReCheckObjects"></div>\n\
+            </div>\n\
+            <div id="DivAcknldge" title="Bearbeiten des Service Problems - 1 von 2">\n\
+                <h3>Bitte tragen Sie die zus&auml;tzlichen Informationen ein!</h3>\n\
+                <div id="Author">\n\
+                    <font>Author:</font>\n\
+                    <input type="text" name="author" id="auth1" value="' + uid + '" readonly />\n\
+                </div>\n\
+                <div id="Comment">\n\
+                    <font>Kommentar:</font>\n\
+                    <textarea name="comment" id="comm1"></textarea>\n\
+                </div>\n\
+                <!--h3>Soll der Eintrag per Mail an den Kunden verschickt werden? (Mail1,Mail2,Mailn)</h3>\n\
+                <div id="Senden">\n\
+                    <input name="mailingto" type="checkbox" id="send" value="1" onclick="EnableInput(\'#mailaddr\');" />\n\
+                    <input name="mailaddr" id="mailaddr" type="text" value=""/>\n\
+                </div>\n\
+                <h3>Soll der Eintrag f&uuml;r die Servicereports in die Datenbank geschrieben werden?</h3>\n\
+                <div id="Insertto">\n\
+                    <input name="insertto" type="checkbox" id="insertto1" value="1" onclick="EnableInput(\'#insertto2\');" />\n\
+                    <span id="insertto2">Ja!</font>\n\
+                </div-->\n\
+                <h3>Es betrifft folgende konfigurierte Checks:</h3>\n\
+                <div id="DivAcknldgeObjects"></div>\n\
+            </div>\n\
+            <div id="DivComment" title="Kommentieren des Service Problems - 1 von 2">\n\
+                <h3>Bitte tragen Sie die zus&auml;tzlichen Informationen ein!</h3>\n\
+                <div id="CAuthor">\n\
+                    <font>Author:</font>\n\
+                    <input type="text" name="author" id="Cauth" value="' + uid + '" readonly />\n\
+                </div>\n\
+                <div id="CComment">\n\
+                    <font>Kommentar:</font>\n\
+                    <textarea name="comment" id="Ccomm"></textarea>\n\
+                </div>\n\
+                <!--h3>Soll der Eintrag per Mail an den Kunden verschickt werden? (Mail1,Mail2,Mailn)</h3>\n\
+                <div id="CSenden">\n\
+                    <input name="mailingto" type="checkbox" id="Csend" value="1" onclick="EnableInput(\'#Cmailaddr\');" />\n\
+                    <input name="mailaddr" id="Cmailaddr" type="text" value=""/>\n\
+                </div>\n\
+                <h3>Soll der Eintrag f&uuml;r die Servicereports in die Datenbank geschrieben werden?</h3>\n\
+                <div id="CInsertto">\n\
+                    <input name="insertto" type="checkbox" id="Cinsertto1" value="1" onclick="EnableInput(\'#Cinsertto2\');" />\n\
+                    <span id="Cinsertto2">Ja!</font>\n\
+                </div-->\n\
+                <h3>Es betrifft folgende konfigurierte Checks:</h3>\n\
+                <div id="DivCommentObjects"></div>\n\
+            </div>\n\\n\
+            <div id="DivDowntime" title="Downtime eines Service definieren - 1 von 2">\n\
+                <h3>Bitte tragen Sie die zus&auml;tzlichen Informationen ein!</h3>\n\
+                <div id="DAuthor">\n\
+                    <font>Author:</font>\n\
+                    <input type="text" name="author" id="Dauth" value="' + uid + '" readonly />\n\
+                </div>\n\
+                <div id="DComment">\n\
+                    <font>Kommentar:</font>\n\
+                    <textarea name="comment" id="Dcomm"></textarea>\n\
+                </div>\n\
+                <div id="DStart">\n\
+                    <font>Beginn:</font>\n\
+                    <input type="text" name="start" id="Dstartts" />\n\
+                </div>\n\
+                <div id="DEnd">\n\
+                    <font>Ende:</font>\n\
+                    <input type="text" name="end" id="Dendts" />\n\
+                </div>\n\
+                <!--h3>Soll der Eintrag per Mail an den Kunden verschickt werden? (Mail1,Mail2,Mailn)</h3>\n\
+                <div id="DSenden">\n\
+                    <input name="mailingto" type="checkbox" id="Dsend" value="1" onclick="EnableInput(\'#Dmailaddr\');" />\n\
+                    <input name="mailaddr" id="Dmailaddr" type="text" value=""/>\n\
+                </div>\n\
+                <h3>Soll der Eintrag f&uuml;r die Servicereports in die Datenbank geschrieben werden?</h3>\n\
+                <div id="DInsertto">\n\
+                    <input name="insertto" type="checkbox" id="Dinsertto1" value="1" onclick="EnableInput(\'#Dinsertto2\');" />\n\
+                    <span id="Dinsertto2">Ja!</font>\n\
+                </div-->\n\
+                <h3>Es betrifft folgende konfigurierte Checks:</h3>\n\
+                <div id="DivDowntimeObjects"></div>\n\
+            </div>\n\
+            <div id="DivNotify" title="Benachrichtigung der Service Checks deaktivieren - 1 von 2">\n\
+                <h3>Es betrifft folgende konfigurierte Checks:</h3>\n\
+                <div id="DivNotifyObjects"></div>\n\
+            </div>\n\
+            <div id="DivEnNotify" title="Benachrichtigung der Service Checks aktivieren - 1 von 2">\n\
+                <h3>Es betrifft folgende konfigurierte Checks:</h3>\n\
+                <div id="DivEnNotifyObjects"></div>\n\
+            </div>\n\
+            <div id="DivRemAck" title="Service Problem wieder freigeben - 1 von 2">\n\
+                <h3>Es betrifft folgende konfigurierte Checks:</h3>\n\
+                <div id="DivRemAckObjects"></div>\n\
+            </div>\n\
+            <div id="DivRemDwntm" title="Downtime eines Service l&ouml;schen - 1 von 2">\n\
+                <h3>Es betrifft folgende konfigurierte Checks:</h3>\n\
+                <div id="DivRemDwntmObjects"></div>\n\
+            </div>\n\
+            <div id="DivDelLog" title="Leeren eines Logfiles - 1 von 2">\n\
+                <h3>Sie f&uuml;hren das Leeren des Logfiles durch.</h3>\n\
+                <div id="DivDelLogObjects"></div>\n\
+            </div>\n\
+        </div>\n\
+        <div id="AdminButtons">\n\
+            <span id="LogfileButtons"></span><br>\n\
+            <button id="ba_button" style="margin-left: 2px; margin-top: 10px;" title="Problem bearbeiten.">Pr. Bearbeiten</button>\n\
+            <button id="fr_button" style="margin-left: 2px; margin-top: 10px;" title="Problem freigeben.">Pr. Freigeben</button>\n\
+            <button id="ne_button" style="margin-left: 2px; margin-top: 10px;" title="Benachrichtigungen aktivieren.">Ben. +</button>\n\
+            <button id="ny_button" style="margin-left: 2px; margin-top: 10px;" title="Benachrichtigungen deaktivieren.">Ben. -</button>\n\
+            <button id="rc_button" style="margin-left: 2px; margin-top: 10px;">Re-Check</button>\n\
+            <button id="ko_button" style="margin-left: 2px; margin-top: 10px;">Kommentieren</button>\n\
+            <button id="dd_button" style="margin-left: 2px; margin-top: 10px;" title="Downtime l&ouml;schen.">Downtime -</button>\n\
+            <button id="do_button" style="margin-left: 2px; margin-top: 10px;" title="Downtime festlegen.">Downtime +</button>\n\
+            <button id="dl_button" style="margin-left: 2px; margin-top: 10px;" title="Logfile leeren.">Del. Log</button>\n\
+        </div>\n\
+    </div>');
+
+    /**
+    * Date Time Picker
+    **/
+
+    $.datepicker.regional['de'] = {
+	closeText: 'Schlie&szlig;en',
+	prevText: 'Zur&uuml;ck',
+	nextText: 'Weiter',
+	currentText: 'Jetzt',
+	monthNames: ['Januar','Februar','M&auml;rz','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'],
+	monthNamesShort: ['Jan','Feb','M&auml;r','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'],
+	dayNames: ['Sonntag','Montag','Diensag','Mittwoch','Donnerstag','Freitag','Samstag'],
+	dayNamesShort: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+	dayNamesMin: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+	weekHeader: 'Wo',
+	dateFormat: 'yy-mm-dd',
+	firstDay: 1,
+	isRTL: false,
+	showMonthAfterYear: false,
+	yearSuffix: ''
+    };
+    $.datepicker.setDefaults($.datepicker.regional['de']);
+
+    $.timepicker.regional['de'] = {
+	timeOnlyTitle: 'Uhrzeit ausw&auml;hlen',
+	timeText: 'Zeit',
+	hourText: 'Stunde',
+	minuteText: 'Minute',
+	secondText: 'Sekunde',
+	currentText: 'Jetzt',
+	timeFormat: 'HH:mm:ss',
+	closeText: 'Ausw&auml;hlen',
+	ampm: false
+    };
+    $.timepicker.setDefaults($.timepicker.regional['de']);
+    
+    $('#Dstartts').datetimepicker();
+    $('#Dendts').datetimepicker();
+
+    $('#dl_button').button().css('border','1px solid #004279').click(function() {
+        var unc = "";
+        var usrv = "";
+        var array = $('form#SearchService').serializeArray();
+        $('#DivDelLogObjects').html('<table id="DivReCheckTable"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th></tr></thead></table>');
+        $.each(array, function() {
+            if (this.name == "s") { /**/ } else { 
+                unc += this.name + ";";
+                usrv += this.value + ";";
+                $('#DivReCheckTable').append('<tr><td>' + this.name + '</td><td>' + this.value + '</td></tr>');
+            }
+        });
+        $('#DivDelLog').dialog({
+            autoOpen: true,
+            height: 300,
+            width: 750,
+            draggable: false,
+            resizable: false,
+            modal: true,
+            buttons: {
+                Ausführen: function() {
+                    $( 'body' ).append('<img id="ajax-loader" title="Leeren des Logfiles." src="layout/images/ajax-loader.gif"><div id="ajax-loader-div">Leeren des Logfiles.</div>');
+                    $(this).dialog('close');
+                    $.ajax({
+                        url: 'http://' + Backend + '/clientdirect/json/?e=1&m=U3J2TG9nQWRtaW4=KhdU8Z&c=' + $.base64.encode( unc ) + 'KjHu8U&log=' + usrv + '&u=' + b64uid + 'U7g7ZZ&cm=REVMT0c=IZK88i',
+                        timeout: 3600000,
+                        success: function(point) {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            $( 'body' ).append('<div id="success" title="Leeren des Logfiles - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>Logfiles wurden <b>erfolgreich</b> geleert.</p>');
+                            $( '#success' ).dialog({
+                                autoOpen: true,
+                                height: 200,
+                                width: 500,
+                                draggable: false,
+                                resizable: false,
+                                modal: true,
+                                buttons: { 
+                                    OK: function() { 
+                                        $( this ).dialog( 'close' );
+                                        $('#success').remove();
+                                        $('#DivReCheckObjects').html('');
+                                    }
+                                }
+                            });
+                        },
+                        error: function() {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            alert('FEHLER BEI AUSFÜHRUNG: Leeren von Logfiles');
+                            $('#DivReCheckObjects').html('');
+                        },
+                        dataType: 'json',
+                        cache: false
+                    });
+                },
+                Abbrechen: function() {
+                    $(this).dialog('close');
+                    $('#DivReCheckObjects').html('');
+                }
+            }
+        });
+    });    
+
+    $('#rc_button').button().css('border','1px solid #004279').click(function() {
+        var u = "";
+        var array = $('form#SearchService').serializeArray();
+        $('#DivReCheckObjects').html('<table id="DivReCheckTable"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th></tr></thead></table>');
+        $.each(array, function() {
+            if (this.name == "s") { /**/ } else { 
+                u += this.name + "@" + this.value + ";";
+                $('#DivReCheckTable').append('<tr><td>' + this.name + '</td><td>' + this.value + '</td></tr>');
+            }
+        });
+        $('#DivReCheck').dialog({
+            autoOpen: true,
+            height: 300,
+            width: 750,
+            draggable: false,
+            resizable: false,
+            modal: true,
+            buttons: {
+                Ausführen: function() {
+                    $( 'body' ).append('<img id="ajax-loader" title="Erneutes Ausf&uuml;hren von Service Checks" src="layout/images/ajax-loader.gif"><div id="ajax-loader-div">Erneutes Ausf&uuml;hren von Service Checks</div>');
+                    $(this).dialog('close');
+                    $.ajax({
+                        url: 'http://' + Backend + '/commands/json/?e=1&m=UmVDaGVjaw==KlU76T&c=' + $.base64.encode( u ) + 'KjHu8U&u=' + b64uid + 'U7g7ZZ',
+                        timeout: 3600000,
+                        success: function(point) {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            $( 'body' ).append('<div id="success" title="Erneutes Ausf&uuml;hren von Service Checks - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>Service Checks wurden <b>erfolgreich</b> ausgeführt.</p><br><table id="DivReCheckTablePost"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th><th>Timestamp</th></tr></thead></table>');
+                            $.each(point, function() {
+                                $('#DivReCheckTablePost').append('<tr><td>' + this.HOST_NAME + '@' + this.NODE + '</td><td>' + this.SERVICE_NAME + '</td><td>' + this.TS + '</td></tr>');
+                            });
+                            $( '#success' ).dialog({
+                                autoOpen: true,
+                                height: 300,
+                                width: 750,
+                                draggable: false,
+                                resizable: false,
+                                modal: true,
+                                buttons: { 
+                                    OK: function() { 
+                                        $( this ).dialog( 'close' );
+                                        $('#success').remove();
+                                        $('#DivReCheckObjects').html('');
+                                    }
+                                }
+                            });
+                        },
+                        error: function() {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            alert('FEHLER BEI AUSFÜHRUNG: Erneutes Ausführen von Service Checks');
+                            $('#DivReCheckObjects').html('');
+                        },
+                        dataType: 'json',
+                        cache: false
+                    });
+                },
+                Abbrechen: function() {
+                    $(this).dialog('close');
+                    $('#DivReCheckObjects').html('');
+                }
+            }
+        });
+    });
+    
+    $('#ba_button').button().css('border','1px solid #004279').click(function() {
+        var u = "";
+        var array = $('form#SearchService').serializeArray();
+        $('#DivAcknldgeObjects').html('<table id="DivReCheckTable"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th></tr></thead></table>');
+        $.each(array, function() {
+            if (this.name == "s") { /**/ } else { 
+                u += this.name + "@" + this.value + ";";
+                $('#DivReCheckTable').append('<tr><td>' + this.name + '</td><td>' + this.value + '</td></tr>');
+            }
+        });
+        $('#DivAcknldge').dialog({
+            autoOpen: true,
+            height: 700,
+            width: 750,
+            draggable: false,
+            resizable: false,
+            modal: true,
+            buttons: {
+                Ausführen: function() {
+                    var author = $('#auth1').attr('value');
+                    var comment = $('#comm1').attr('value');
+                    $( 'body' ).append('<img id="ajax-loader" title="Bearbeiten des Service Problems" src="layout/images/ajax-loader.gif"><div id="ajax-loader-div">Bearbeiten des Service Problems</div>');
+                    $(this).dialog('close');
+                    $.ajax({
+                        url: 'http://' + Backend + '/commands/json/?e=1&m=QWNrU3ZjKlU76T&c=' + $.base64.encode( u ) + 'KjHu8U&u=' + b64uid + 'U7g7ZZ&ar=' + $.base64.encode( author ) + 'U7g7ZZ&cm=' + $.base64.encode( comment ) + 'U7g7ZZ',
+                        timeout: 3600000,
+                        success: function(point) {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            $( 'body' ).append('<div id="success" title="Bearbeiten des Service Problems - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>Service Probleme wurden <b>erfolgreich</b> bearbeitet.</p><br><table id="DivReCheckTablePost"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th><th>Timestamp</th></tr></thead></table>');
+                            $.each(point, function() {
+                                $('#DivReCheckTablePost').append('<tr><td>' + this.HOST_NAME + '@' + this.NODE + '</td><td>' + this.SERVICE_NAME + '</td><td>' + this.TS + '</td></tr>');
+                            });
+                            $( '#success' ).dialog({
+                                autoOpen: true,
+                                height: 300,
+                                width: 750,
+                                draggable: false,
+                                resizable: false,
+                                modal: true,
+                                buttons: { 
+                                    OK: function() { 
+                                        $( this ).dialog( 'close' );
+                                        $('#success').remove();
+                                        $('#DivAcknldgeObjects').html('');
+                                    }
+                                }
+                            });
+                        },
+                        error: function() {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            alert('FEHLER BEI AUSFÜHRUNG: Bearbeiten des Service Problems');
+                            $('#DivAcknldgeObjects').html('');
+                        },
+                        dataType: 'json',
+                        cache: false
+                    });
+                },
+                Abbrechen: function() {
+                    $(this).dialog('close');
+                    $('#DivAcknldgeObjects').html('');
+                }
+            }
+        });
+    });
+
+    $('#fr_button').button().css('border','1px solid #004279').click(function() {
+        var u = "";
+        var array = $('form#SearchService').serializeArray();
+        $('#DivRemAckObjects').html('<table id="DivReCheckTable"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th></tr></thead></table>');
+        $.each(array, function() {
+            if (this.name == "s") { /**/ } else { 
+                u += this.name + "@" + this.value + ";";
+                $('#DivReCheckTable').append('<tr><td>' + this.name + '</td><td>' + this.value + '</td></tr>');
+            }
+        });
+        $('#DivRemAck').dialog({
+            autoOpen: true,
+            height: 300,
+            width: 750,
+            draggable: false,
+            resizable: false,
+            modal: true,
+            buttons: {
+                Ausführen: function() {
+                    var author = $('#auth1').attr('value');
+                    var comment = $('#comm1').attr('value');
+                    $( 'body' ).append('<img id="ajax-loader" title="Service Problem wieder freigeben" src="layout/images/ajax-loader.gif"><div id="ajax-loader-div">Service Problem wieder freigeben</div>');
+                    $(this).dialog('close');
+                    $.ajax({
+                        url: 'http://' + Backend + '/commands/json/?e=1&m=UmVtQWNrU3ZjKlU76T&c=' + $.base64.encode( u ) + 'KjHu8U&u=' + b64uid + 'U7g7ZZ',
+                        timeout: 3600000,
+                        success: function(point) {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            $( 'body' ).append('<div id="success" title="Service Problem wieder freigeben - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>Service Probleme wurden <b>erfolgreich</b> freigegeben.</p><br><table id="DivReCheckTablePost"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th><th>Timestamp</th></tr></thead></table>');
+                            $.each(point, function() {
+                                $('#DivReCheckTablePost').append('<tr><td>' + this.HOST_NAME + '@' + this.NODE + '</td><td>' + this.SERVICE_NAME + '</td><td>' + this.TS + '</td></tr>');
+                            });
+                            $( '#success' ).dialog({
+                                autoOpen: true,
+                                height: 300,
+                                width: 750,
+                                draggable: false,
+                                resizable: false,
+                                modal: true,
+                                buttons: { 
+                                    OK: function() { 
+                                        $( this ).dialog( 'close' );
+                                        $('#success').remove();
+                                        $('#DivRemAckObjects').html('');
+                                    }
+                                }
+                            });
+                        },
+                        error: function() {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            alert('FEHLER BEI AUSFÜHRUNG: Service Problem wieder freigeben.');
+                            $('#DivRemAckObjects').html('');
+                        },
+                        dataType: 'json',
+                        cache: false
+                    });
+                },
+                Abbrechen: function() {
+                    $(this).dialog('close');
+                    $('#DivRemAckObjects').html('');
+                }
+            }
+        });
+    });
+
+    $('#ko_button').button().css('border','1px solid #004279').click(function() {
+        var u = "";
+        var array = $('form#SearchService').serializeArray();
+        $('#DivCommentObjects').html('<table id="DivReCheckTable"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th></tr></thead></table>');
+        $.each(array, function() {
+            if (this.name == "s") { /**/ } else { 
+                u += this.name + "@" + this.value + ";";
+                $('#DivReCheckTable').append('<tr><td>' + this.name + '</td><td>' + this.value + '</td></tr>');
+            }
+        });
+        $('#DivComment').dialog({
+            autoOpen: true,
+            height: 700,
+            width: 750,
+            draggable: false,
+            resizable: false,
+            modal: true,
+            buttons: {
+                Ausführen: function() {
+                    var author = $('#Cauth').attr('value');
+                    var comment = $('#Ccomm').attr('value');
+                    $( 'body' ).append('<img id="ajax-loader" title="Kommentieren des Service" src="layout/images/ajax-loader.gif"><div id="ajax-loader-div">Kommentieren des Service</div>');
+                    $(this).dialog('close');
+                    $.ajax({
+                        url: 'http://' + Backend + '/commands/json/?e=1&m=Q29tU3ZjKlU76T&c=' + $.base64.encode( u ) + 'KjHu8U&u=' + b64uid + 'U7g7ZZ&ar=' + $.base64.encode( author ) + 'U7g7ZZ&cm=' + $.base64.encode( comment ) + 'U7g7ZZ',
+                        timeout: 3600000,
+                        success: function(point) {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            $( 'body' ).append('<div id="success" title="Kommentieren des Service - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>Services wurden <b>erfolgreich</b> kommentiert.</p><br><table id="DivReCheckTablePost"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th><th>Timestamp</th></tr></thead></table>');
+                            $.each(point, function() {
+                                $('#DivReCheckTablePost').append('<tr><td>' + this.HOST_NAME + '@' + this.NODE + '</td><td>' + this.SERVICE_NAME + '</td><td>' + this.TS + '</td></tr>');
+                            });
+                            $( '#success' ).dialog({
+                                autoOpen: true,
+                                height: 500,
+                                width: 750,
+                                draggable: false,
+                                resizable: false,
+                                modal: true,
+                                buttons: { 
+                                    OK: function() { 
+                                        $( this ).dialog( 'close' );
+                                        $('#success').remove();
+                                        $('#DivCommentObjects').html('');
+                                    }
+                                }
+                            });
+                        },
+                        error: function() {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            alert('FEHLER BEI AUSFÜHRUNG: Kommentieren des Service.');
+                            $('#DivCommentObjects').html('');
+                        },
+                        dataType: 'json',
+                        cache: false
+                    });
+                },
+                Abbrechen: function() {
+                    $(this).dialog('close');
+                    $('#DivCommentObjects').html('');
+                }
+            }
+        });
+    });
+    
+    $('#do_button').button().css('border','1px solid #004279').click(function() {
+        var u = "";
+        var array = $('form#SearchService').serializeArray();
+        $('#DivDowntimeObjects').html('<table id="DivReCheckTable"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th></tr></thead></table>');
+        $.each(array, function() {
+            if (this.name == "s") { /**/ } else { 
+                u += this.name + "@" + this.value + ";";
+                $('#DivReCheckTable').append('<tr><td>' + this.name + '</td><td>' + this.value + '</td></tr>');
+            }
+        });
+        $('#DivDowntime').dialog({
+            autoOpen: true,
+            height: 700,
+            width: 750,
+            draggable: false,
+            resizable: false,
+            modal: true,
+            buttons: {
+                Ausführen: function() {
+                    var author = $('#Dauth').attr('value');
+                    var comment = $('#Dcomm').attr('value');
+                    var datestart = $('#Dstartts').attr('value');
+                    var dateend = $('#Dendts').attr('value');
+                    $( 'body' ).append('<img id="ajax-loader" title="Downtime eines Service definieren" src="layout/images/ajax-loader.gif"><div id="ajax-loader-div">Downtime eines Service definieren</div>');
+                    $(this).dialog('close');
+                    $.ajax({
+                        url: 'http://' + Backend + '/commands/json/?e=1&m=RHdudG1TdmM=KlU76T&c=' + $.base64.encode( u ) + 'KjHu8U&u=' + b64uid + 'U7g7ZZ&ar=' + $.base64.encode( author ) + 'U7g7ZZ&cm=' + $.base64.encode( comment ) + 'U7g7ZZ&ds=' + datestart + '&de=' + dateend,
+                        timeout: 3600000,
+                        success: function(point) {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            $( 'body' ).append('<div id="success" title="Downtime eines Service definieren - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>Downtime der Services wurden <b>erfolgreich</b> definiert.</p><br><table id="DivReCheckTablePost"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th><th>Timestamp</th></tr></thead></table>');
+                            $.each(point, function() {
+                                $('#DivReCheckTablePost').append('<tr><td>' + this.HOST_NAME + '@' + this.NODE + '</td><td>' + this.SERVICE_NAME + '</td><td>' + this.TS + '</td></tr>');
+                            });
+                            $( '#success' ).dialog({
+                                autoOpen: true,
+                                height: 500,
+                                width: 750,
+                                draggable: false,
+                                resizable: false,
+                                modal: true,
+                                buttons: { 
+                                    OK: function() { 
+                                        $( this ).dialog( 'close' );
+                                        $('#success').remove();
+                                        $('#DivDowntimeObjects').html('');
+                                    }
+                                }
+                            });
+                        },
+                        error: function() {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            alert('FEHLER BEI AUSFÜHRUNG: Kommentieren des Service.');
+                            $('#DivDowntimeObjects').html('');
+                        },
+                        dataType: 'json',
+                        cache: false
+                    });
+                },
+                Abbrechen: function() {
+                    $(this).dialog('close');
+                    $('#DivDowntimeObjects').html('');
+                }
+            }
+        });	
+    });
+
+    $('#dd_button').button().css('border','1px solid #004279').click(function() {
+        var u = "";
+        var array = $('form#SearchService').serializeArray();
+        $('#DivRemDwntmObjects').html('<table id="DivReCheckTable"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th></tr></thead></table>');
+        $.each(array, function() {
+            if (this.name == "s") { /**/ } else { 
+                u += this.name + "@" + this.value + ";";
+                $('#DivReCheckTable').append('<tr><td>' + this.name + '</td><td>' + this.value + '</td></tr>');
+            }
+        });
+        $('#DivRemDwntm').dialog({
+            autoOpen: true,
+            height: 300,
+            width: 750,
+            draggable: false,
+            resizable: false,
+            modal: true,
+            buttons: {
+                Ausführen: function() {
+                    var author = $('#Dauth').attr('value');
+                    var comment = $('#Dcomm').attr('value');
+                    var datestart = $('#Dstartts').attr('value');
+                    var dateend = $('#Dendts').attr('value');
+                    $( 'body' ).append('<img id="ajax-loader" title="Downtime eines Service l&ouml;schen" src="layout/images/ajax-loader.gif"><div id="ajax-loader-div">Downtime eines Service l&ouml;schen</div>');
+                    $(this).dialog('close');
+                    $.ajax({
+                        url: 'http://' + Backend + '/commands/json/?e=1&m=UmVtRHdudG1TdmM=KlU76T&c=' + $.base64.encode( u ) + 'KjHu8U&u=' + b64uid + 'U7g7ZZ',
+                        timeout: 3600000,
+                        success: function(point) {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            $( 'body' ).append('<div id="success" title="Downtime eines Service l&ouml;schen - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>Downtime der Services wurden <b>erfolgreich</b> gel&ouml;scht.</p><br><table id="DivReCheckTablePost"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th><th>Timestamp</th></tr></thead></table>');
+                            $.each(point, function() {
+                                $('#DivReCheckTablePost').append('<tr><td>' + this.HOST_NAME + '@' + this.NODE + '</td><td>' + this.SERVICE_NAME + '</td><td>' + this.TS + '</td></tr>');
+                            });
+                            $( '#success' ).dialog({
+                                autoOpen: true,
+                                height: 300,
+                                width: 750,
+                                draggable: false,
+                                resizable: false,
+                                modal: true,
+                                buttons: { 
+                                    OK: function() { 
+                                        $( this ).dialog( 'close' );
+                                        $('#success').remove();
+                                        $('#DivRemDwntmObjects').html('');
+                                    }
+                                }
+                            });
+                        },
+                        error: function() {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            alert('FEHLER BEI AUSFÜHRUNG: Downtime eines Service l&ouml;schen.');
+                            $('#DivRemDwntmObjects').html('');
+                        },
+                        dataType: 'json',
+                        cache: false
+                    });
+                },
+                Abbrechen: function() {
+                    $(this).dialog('close');
+                    $('#DivRemDwntmObjects').html('');
+                }
+            }
+        });	
+    });
+
+    $('#ny_button').button().css('border','1px solid #004279').click(function() {
+        var u = "";
+        var array = $('form#SearchService').serializeArray();
+        $('#DivNotifyObjects').html('<table id="DivReCheckTable"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th></tr></thead></table>');
+        $.each(array, function() {
+            if (this.name == "s") { /**/ } else { 
+                u += this.name + "@" + this.value + ";";
+                $('#DivReCheckTable').append('<tr><td>' + this.name + '</td><td>' + this.value + '</td></tr>');
+            }
+        });
+        $('#DivNotify').dialog({
+            autoOpen: true,
+            height: 300,
+            width: 750,
+            draggable: false,
+            resizable: false,
+            modal: true,
+            buttons: {
+                Ausführen: function() {
+                    $( 'body' ).append('<img id="ajax-loader" title="Benachrichtigung der Service Checks deaktivieren" src="layout/images/ajax-loader.gif"><div id="ajax-loader-div">Benachrichtigung der Service Checks deaktivieren</div>');
+                    $(this).dialog('close');
+                    $.ajax({
+                        url: 'http://' + Backend + '/commands/json/?e=1&m=RGVhY05vdFN2Yw==KlU76T&c=' + $.base64.encode( u ) + 'KjHu8U&u=' + b64uid + 'U7g7ZZ',
+                        timeout: 3600000,
+                        success: function(point) {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            $( 'body' ).append('<div id="success" title="Benachrichtigung der Service Checks deaktivieren - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>Benachrichtgungen der Service Checks wurden <b>erfolgreich</b> deaktiviert.</p><br><table id="DivReCheckTablePost"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th><th>Timestamp</th></tr></thead></table>');
+                            $.each(point, function() {
+                                $('#DivReCheckTablePost').append('<tr><td>' + this.HOST_NAME + '@' + this.NODE + '</td><td>' + this.SERVICE_NAME + '</td><td>' + this.TS + '</td></tr>');
+                            });
+                            $( '#success' ).dialog({
+                                autoOpen: true,
+                                height: 300,
+                                width: 750,
+                                draggable: false,
+                                resizable: false,
+                                modal: true,
+                                buttons: { 
+                                    OK: function() { 
+                                        $( this ).dialog( 'close' );
+                                        $('#success').remove();
+                                        $('#DivNotifyObjects').html('');
+                                    }
+                                }
+                            });
+                        },
+                        error: function() {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            alert('FEHLER BEI AUSFÜHRUNG: Erneutes Ausführen von Service Checks');
+                            $('#DivNotifyObjects').html('');
+                        },
+                        dataType: 'json',
+                        cache: false
+                    });
+                },
+                Abbrechen: function() {
+                    $(this).dialog('close');
+                    $('#DivNotifyObjects').html('');
+                }
+            }
+        });	
+    });
+
+    $('#ne_button').button().css('border','1px solid #004279').click(function() {
+        var u = "";
+        var array = $('form#SearchService').serializeArray();
+        $('#DivEnNotifyObjects').html('<table id="DivReCheckTable"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th></tr></thead></table>');
+        $.each(array, function() {
+            if (this.name == "s") { /**/ } else { 
+                u += this.name + "@" + this.value + ";";
+                $('#DivReCheckTable').append('<tr><td>' + this.name + '</td><td>' + this.value + '</td></tr>');
+            }
+        });
+        $('#DivEnNotify').dialog({
+            autoOpen: true,
+            height: 300,
+            width: 750,
+            draggable: false,
+            resizable: false,
+            modal: true,
+            buttons: {
+                Ausführen: function() {
+                    $( 'body' ).append('<img id="ajax-loader" title="Benachrichtigung der Service Checks aktivieren" src="layout/images/ajax-loader.gif"><div id="ajax-loader-div">Benachrichtigung der Service Checks aktivieren</div>');
+                    $(this).dialog('close');
+                    $.ajax({
+                        url: 'http://' + Backend + '/commands/json/?e=1&m=QWNOb3RTdmM=KlU76T&c=' + $.base64.encode( u ) + 'KjHu8U&u=' + b64uid + 'U7g7ZZ',
+                        timeout: 3600000,
+                        success: function(point) {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            $( 'body' ).append('<div id="success" title="Benachrichtigung der Service Checks aktivieren - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>Benachrichtgungen der Service Checks wurden <b>erfolgreich</b> aktiviert.</p><br><table id="DivReCheckTablePost"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th><th>Timestamp</th></tr></thead></table>');
+                            $.each(point, function() {
+                                $('#DivReCheckTablePost').append('<tr><td>' + this.HOST_NAME + '@' + this.NODE + '</td><td>' + this.SERVICE_NAME + '</td><td>' + this.TS + '</td></tr>');
+                            });
+                            $( '#success' ).dialog({
+                                autoOpen: true,
+                                height: 300,
+                                width: 750,
+                                draggable: false,
+                                resizable: false,
+                                modal: true,
+                                buttons: { 
+                                    OK: function() { 
+                                        $( this ).dialog( 'close' );
+                                        $('#success').remove();
+                                        $('#DivEnNotifyObjects').html('');
+                                    }
+                                }
+                            });
+                        },
+                        error: function() {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            alert('FEHLER BEI AUSFÜHRUNG: Benachrichtigung der Service Checks aktivieren');
+                            $('#DivEnNotifyObjects').html('');
+                        },
+                        dataType: 'json',
+                        cache: false
+                    });
+                },
+                Abbrechen: function() {
+                    $(this).dialog('close');
+                    $('#DivEnNotifyObjects').html('');
+                }
+            }
+        });	
+    });
+}
+
+function Reload(uid) {
+    $('#TopMenu').append('<img id="AjaxLoader" src="layout/images/ajax-loader.gif">');
+    AllServices(uid);
+}
+
+function AutoReloadStart(uid) {
+    $('#TopMenu').append('<img id="AjaxLoader" src="layout/images/ajax-loader.gif">');
+    AllServices(uid);
+    $('#AutoReload').html('<span id="AutoReloadDate"></span>Automatischer Reload: <span id="AutoReloadStat" onclick="AutoReloadStop(\'' + uid + '\');">Aktiviert (Alle 90s)</span><span id="AutoReloadTimer"></span>');
+    t=setTimeout('AutoReloadStart("' + uid + '")', 90000);
+    $('#AutoReloadDate').html(PrintTS() + ' Uhr');
+}
+
+function AutoReloadStop(uid) {
+    $('#AutoReload').html('Automatischer Reload: <span id="AutoReloadStat" onclick="AutoReloadStart(\'' + uid + '\');">Deaktiviert</span>');
+    clearTimeout(t);
+}
+
+function AllServices(uid) {
+    var b64uid = $.base64.encode( uid );
+    $('#TopMenu').append('<div id="AutoReload"></div>');
+    $('#AutoReload').html('Automatischer Reload: <span id="AutoReloadStat" onclick="AutoReloadStart(\'' + uid + '\');">Deaktiviert</span>');
+    
+    $.ajax({
+        url: 'http://' + Backend + '/repo/json/?e=1&m=U2VsZWN0TW9kVmlldw==Jhdu8d&u=' + b64uid + 'Adhfg3&k=c2VydmljZXM=JkHu77',
+        crossDomain: true,
+        success: function (json) {
+            if (json.MODVIEW == "ListAllServices") {
+                ListAllServices(uid);
+            } else {
+                GridAllServices(uid);
+            }
+        },
+        dataType: 'json',
+        cache: false
+    });
+}
+
+function GridAllServices(uid) {
+    var state = urlPara('s').replace(/%3D/g,'=');
+    var searchstring = urlPara('searchstring').replace(/%3D/g,'=').replace(/%20/g,' ').replace(/%22/g,'"').replace(/%25/g,'%').replace(/%3C/g,'<').replace(/%3E/g,'>').replace(/%5B/g,'[').replace(/%5C/g,'\\').replace(/%5D/g,']').replace(/%5E/g,'^').replace(/%60/g,'`').replace(/%7B/g,'{').replace(/%7C/g,'|').replace(/%7D/g,'}').replace(/%7E/g,'~').replace(/%7F/g,'').replace(/%28/g,'(').replace(/%29/g,')').replace(/%2B/g,'+');
+    $('#SrvCenter').html('');
+    $('#theme-roller').append('<img id="AjaxLoader" src="layout/images/ajax-loader.gif">');
+    $('#center').html('<section></section>');
+    //$('#SidebarSubmenu').hide();
+    if (state.length > 0) {
+        GridSpecialServices(uid,state);
+    } else {
+        if (searchstring.length > 0) {
+            GridSearchServices(uid,searchstring);
+        } else {
+            GridServices(uid);
+        }
+    }
+}
+
+function GridServices(uid) {
+    var b64uid = $.base64.encode( uid );
+    $('span.UserList').removeClass('Fontffffff');
+    $('span.UserList').addClass('Font82abcc');
+    $('span.UserGrid').removeClass('Font82abcc');
+    $('span.UserGrid').addClass('Fontffffff');
+    $('#AutoReload').css('display', 'block');
+    $('#ShowGridSearchBar').remove();
+    $.ajax({
+        url: 'http://' + Backend + '/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u=' + b64uid + 'Lkjdu7&m2=Q29uZmlnJq0OpP',
+        crossDomain: true,
+        success: function(json) {
+            var dds;
+            $.each(json, function(key,value) {
+                if ( value.KEY == "DeleteDomainSuffix") {
+                    dds = value.ACTION;
+                }
+            });
+            $.ajax({
+                url: 'http://' + Backend + '/proxy/json/?e=1&m=SG9zdEZ1bGxJbmZvHd78h3&u=' + b64uid + 'LKHld3',
+                crossDomain: true,
+                success: function(json) {
+                    var hostcount = 0;
+                    var servicecount = 0;
+                    $.each(json, function() {
+                        var mnode = this.NODE;
+                        $.each(this.HFI, function() {
+                            var hostname = this.NAME;
+                            var hoststatus = this.STATUS;
+                            var shorthostname;
+                            var hicon = this.ICON;
+                            var url = this.URL;
+                            if ( dds == "0" ) { shorthostname = this.NAME; } else { var tmp = this.NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
+                            if ( shorthostname.length > 25 ) { shorthostname = shorthostname.substr(0,22) + '...'; }
+                            $.each(this.SERVICELIST, function() {
+                                var servicename = this.SERVICE_NAME;
+                                if ( servicename.length > 20 ) { servicename = servicename.substr(0,17) + '...'; }
+                                if ( this.OUTPUT.length > 38 ) { this.OUTPUT = this.OUTPUT.substr(0,35) + '...'; }
+                                $('section','#center').append('<a class="service" title=""><img class="SrvImgGrid" src="' + hicon + '" /><div id="SrvImgStateGrid"><img src="' + this.SERVICE_STATUS_ICON + '" /></div><div id="SrvTitleGrid">' + servicename + '</div><div id="SrvHostNameGrid">' + shorthostname + ' <i>auf ' + mnode + '</i></div><div id="SrvOutputGrid">' + this.OUTPUT + '</div><div id="SvcLinkHover" onclick="OpenWindow(\'modules/' + url + '?h=' + $.base64.encode( mnode ) + '&c=' + $.base64.encode( hostname ) + '\',\'_self\');"></div><div id="SvcLinkMenu"><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="Checkbox' + hostcount + '' + servicecount + '" /><label for="Checkbox' + hostcount + '' + servicecount + '" title="Diesen Service Check f&uuml;r ein Kommando markieren.">x</label></div></a>');
+                                $('#Checkbox' + hostcount + '' + servicecount).button();
+                                servicecount++;
+                            });
+                            hostcount++;
+                        });
+                    });
+                    if (servicecount == 0) {
+                        $('#center').append('<div id="NoContent">Die Abfrage ergab kein Ergebnis.</div>');
+                    }
+                    
+                    $('#servicecount').html(' (' + servicecount + ' auf ' + hostcount + ' Hosts)');
+                    $('#AjaxLoader').remove();
+                    $('#TextChkb' + hostcount + '' + servicecount).buttonset();
+                    ShowSelect($.base64.encode("a") + 'KdhU7Z');
+                    UpdateModView(uid,"GridAllServices");
+                },
+                dataType: 'json',
+                cache: false
+            }); 
+        },
+        dataType: 'json',
+        cache: false
+    });
+}
+
+function ShowSelect(state) {
+    $('#ServiceGridSelect').html('\n\
+        <select id="ServiceViewSelect" onchange="this.form.submit();" name="s" style="display: none;">\n\
+            <option value="">Alle Services</option>\n\
+            <option value="' + $.base64.encode("ao") + 'KdhU7Z">Alle Services mit Status: OK</option>\n\
+            <option value="' + $.base64.encode("aw") + 'KdhU7Z">Alle Services mit Status: Warnung</option>\n\
+            <option value="' + $.base64.encode("ac") + 'KdhU7Z">Alle Services mit Status: Kritisch</option>\n\
+            <option value="' + $.base64.encode("au") + 'KdhU7Z">Alle Services mit Status: Unbekannt</option>\n\
+            <option value="' + $.base64.encode("ap") + 'KdhU7Z">Alle Probleme</option>\n\
+            <option value="' + $.base64.encode("apoh") + 'KdhU7Z">Alle Probleme auf ONLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("apnaoh") + 'KdhU7Z">Alle Probleme, nicht bearbeitet auf ONLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("apdh") + 'KdhU7Z">Alle Probleme auf OFFLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("woh") + 'KdhU7Z">Services Warnung auf ONLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("wfh") + 'KdhU7Z">Services Warnung auf OFFLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("wnaoh") + 'KdhU7Z">Services Warnung, nicht bearbeitet auf ONLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("waoh") + 'KdhU7Z">Services Warnung, bearbeitet auf ONLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("wnafh") + 'KdhU7Z">Services Warnung, nicht bearbeitet auf OFFLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("wafh") + 'KdhU7Z">Services Warnung, bearbeitet auf OFFLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("coh") + 'KdhU7Z">Services Kritisch auf ONLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("cfh") + 'KdhU7Z">Services Kritisch auf OFFLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("cnaoh") + 'KdhU7Z">Services Kritisch, nicht bearbeitet auf ONLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("caoh") + 'KdhU7Z">Services Kritisch, bearbeitet auf ONLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("cnafh") + 'KdhU7Z">Services Kritisch, nicht bearbeitet auf OFFLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("cafh") + 'KdhU7Z">Services Kritisch, bearbeitet auf OFFLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("uoh") + 'KdhU7Z">Services Unbekannt auf ONLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("ufh") + 'KdhU7Z">Services Unbekannt auf OFFLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("unaoh") + 'KdhU7Z">Services Unbekannt, nicht bearbeitet auf ONLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("uaoh") + 'KdhU7Z">Services Unbekannt, bearbeitet auf ONLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("unafh") + 'KdhU7Z">Services Unbekannt, nicht bearbeitet auf OFFLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("uafh") + 'KdhU7Z">Services Unbekannt, bearbeitet auf OFFLINE Hosts</option>\n\
+        </select>');
+    $('#ServiceViewSelect').val( state ).attr('selected',true);
+    $('#ServiceViewSelect').selectmenu({width: 450,menuWidth:450,style:'dropdown',maxHeight:500});
+}
+
+function ShowSelectSearch() {
+    $('#ServiceGridSelect').html('\n\
+        <select id="ServiceViewSelect" onchange="this.form.submit();" name="s" style="display: none;">\n\
+            <option selected value="">Suche ...</option>\n\
+            <option value="">Alle Services</option>\n\
+            <option value="' + $.base64.encode("ao") + 'KdhU7Z">Alle Services mit Status: OK</option>\n\
+            <option value="' + $.base64.encode("aw") + 'KdhU7Z">Alle Services mit Status: Warnung</option>\n\
+            <option value="' + $.base64.encode("ac") + 'KdhU7Z">Alle Services mit Status: Kritisch</option>\n\
+            <option value="' + $.base64.encode("au") + 'KdhU7Z">Alle Services mit Status: Unbekannt</option>\n\
+            <option value="' + $.base64.encode("ap") + 'KdhU7Z">Alle Probleme</option>\n\
+            <option value="' + $.base64.encode("apoh") + 'KdhU7Z">Alle Probleme auf ONLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("apnaoh") + 'KdhU7Z">Alle Probleme, nicht bearbeitet auf ONLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("apdh") + 'KdhU7Z">Alle Probleme auf OFFLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("woh") + 'KdhU7Z">Services Warnung auf ONLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("wfh") + 'KdhU7Z">Services Warnung auf OFFLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("wnaoh") + 'KdhU7Z">Services Warnung, nicht bearbeitet auf ONLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("waoh") + 'KdhU7Z">Services Warnung, bearbeitet auf ONLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("wnafh") + 'KdhU7Z">Services Warnung, nicht bearbeitet auf OFFLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("wafh") + 'KdhU7Z">Services Warnung, bearbeitet auf OFFLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("coh") + 'KdhU7Z">Services Kritisch auf ONLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("cfh") + 'KdhU7Z">Services Kritisch auf OFFLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("cnaoh") + 'KdhU7Z">Services Kritisch, nicht bearbeitet auf ONLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("caoh") + 'KdhU7Z">Services Kritisch, bearbeitet auf ONLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("cnafh") + 'KdhU7Z">Services Kritisch, nicht bearbeitet auf OFFLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("cafh") + 'KdhU7Z">Services Kritisch, bearbeitet auf OFFLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("uoh") + 'KdhU7Z">Services Unbekannt auf ONLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("ufh") + 'KdhU7Z">Services Unbekannt auf OFFLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("unaoh") + 'KdhU7Z">Services Unbekannt, nicht bearbeitet auf ONLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("uaoh") + 'KdhU7Z">Services Unbekannt, bearbeitet auf ONLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("unafh") + 'KdhU7Z">Services Unbekannt, nicht bearbeitet auf OFFLINE Hosts</option>\n\
+            <option value="' + $.base64.encode("uafh") + 'KdhU7Z">Services Unbekannt, bearbeitet auf OFFLINE Hosts</option>\n\
+        </select>');
+    $('#ServiceViewSelect').selectmenu({width: 450,menuWidth:450,style:'dropdown',maxHeight:500});
+}
+
+function GridSpecialServices(uid,state) {
+    var b64uid = $.base64.encode( uid );
+    $('span.UserList').removeClass('Fontffffff');
+    $('span.UserList').addClass('Font82abcc');
+    $('span.UserGrid').removeClass('Font82abcc');
+    $('span.UserGrid').addClass('Fontffffff');
+    $('#AutoReload').css('display', 'block');
+    $('#ShowGridSearchBar').remove();
+    $.ajax({
+        url: 'http://' + Backend + '/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u=' + b64uid + 'Lkjdu7&m2=Q29uZmlnJq0OpP',
+        crossDomain: true,
+        success: function(json) {
+            var dds;
+            $.each(json, function(key,value) {
+                if ( value.KEY == "DeleteDomainSuffix") {
+                    dds = value.ACTION;
+                }
+            });
+            $.ajax({
+                url: 'http://' + Backend + '/proxy/json/?e=1&m=U2VydmljZVN0YXR1c1NlbGVjdA==Ki88uU&u=' + b64uid + 'LKHld3&s=' + state,
+                crossDomain: true,
+                success: function(json) {
+                    var hostcount = 0;
+                    var servicecount = 0;
+                    $.each(json, function() {
+                        var mnode = this.NODE;
+                        $.each(this.SRVSTATSEL, function() {
+                            var hostname = this.NAME;
+                            var hoststatus = this.STATUS;
+                            var shorthostname;
+                            var hicon = this.ICON;
+                            var url = this.URL;
+                            if ( dds == "0" ) { shorthostname = this.NAME; } else { var tmp = this.NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
+                            if ( shorthostname.length > 25 ) { shorthostname = shorthostname.substr(0,22) + '...'; }
+                            if (this.SERVICELIST.length > 0) {
+                                $.each(this.SERVICELIST, function() {
+                                    var servicename = this.SERVICE_NAME;
+                                    if ( servicename.length > 20 ) { servicename = servicename.substr(0,17) + '...'; }
+                                    if ( this.OUTPUT.length > 38 ) { this.OUTPUT = this.OUTPUT.substr(0,35) + '...'; }
+                                    $('section','#center').append('<a class="service" title=""><img class="SrvImgGrid" src="' + hicon + '" /><div id="SrvImgStateGrid"><img src="' + this.SERVICE_STATUS_ICON + '" /></div><div id="SrvTitleGrid">' + servicename + '</div><div id="SrvHostNameGrid">' + shorthostname + ' <i>auf ' + mnode + '</i></div><div id="SrvOutputGrid">' + this.OUTPUT + '</div><div id="SvcLinkHover" onclick="OpenWindow(\'modules/' + url + '?h=' + $.base64.encode( mnode ) + '&c=' + $.base64.encode( hostname ) + '\',\'_self\');"></div><div id="SvcLinkMenu"><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="Checkbox' + hostcount + '' + servicecount + '" /><label for="Checkbox' + hostcount + '' + servicecount + '" title="Diesen Service Check f&uuml;r ein Kommando markieren.">x</label></div></a>');
+                                    $('#Checkbox' + hostcount + '' + servicecount).button();
+                                    servicecount++;
+                                });
+                                hostcount++;
+                            }
+                        });
+                    });
+                    if (servicecount == 0) {
+                        $('#center').append('<div id="NoContent">Die Abfrage ergab kein Ergebnis.</div>');
+                    }
+                    
+                    $('#servicecount').html(' (' + servicecount + ' auf ' + hostcount + ' Hosts)');
+                    $('#AjaxLoader').remove();
+                    ShowSelect(state);
+                    UpdateModView(uid,"GridAllServices");
+                },
+                dataType: 'json',
+                cache: false
+            }); 
+        },
+        dataType: 'json',
+        cache: false
+    });
+}
+
+function GridSearchServices(uid,searchstring) {
+    var b64uid = $.base64.encode( uid );
+    var b64searchstring = $.base64.encode( searchstring );
+    $('span.UserList').removeClass('Fontffffff');
+    $('span.UserList').addClass('Font82abcc');
+    $('span.UserGrid').removeClass('Font82abcc');
+    $('span.UserGrid').addClass('Fontffffff');
+    $('#AutoReload').css('display', 'block');
+    $('#ShowGridSearchBar').remove();
+    $('body').append('<div id="ShowGridSearchBar" style="margin-top: 7px; margin-left: 7px;"></div>');
+    $.ajax({
+        url: 'http://' + Backend + '/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u=' + b64uid + 'Lkjdu7&m2=Q29uZmlnJq0OpP',
+        crossDomain: true,
+        success: function(json) {
+            var dds;
+            $.each(json, function(key,value) {
+                if ( value.KEY == "DeleteDomainSuffix") {
+                    dds = value.ACTION;
+                }
+            });
+            $.ajax({
+                url: 'http://' + Backend + '/proxy/json/?e=1&m=U2VydmljZVNlYXJjaExpc3Q=Ki88uU&u=' + b64uid + 'LKHld3&searchstring=' + b64searchstring + 'KlUu87',
+                crossDomain: true,
+                success: function(json) {
+                    var hostcount = 0;
+                    var servicecount = 0;
+                    $('#ShowGridSearchBar').html('<font size=2 color=#82abcc>Gesucht nach:</font>  ' + searchstring + '');
+                    $.each(json, function() {
+                        var mnode = this.NODE;
+                        $.each(this.SRVSEARCH, function() {
+                            var hostname = this.NAME;
+                            var hoststatus = this.STATUS;
+                            var shorthostname;
+                            var hicon = this.ICON;
+                            var url = this.URL;
+                            if ( dds == "0" ) { shorthostname = this.NAME; } else { var tmp = this.NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
+                            if ( shorthostname.length > 25 ) { shorthostname = shorthostname.substr(0,22) + '...'; }
+                            if (this.SERVICELIST.length > 0) {
+                                $.each(this.SERVICELIST, function() {
+                                    var servicename = this.SERVICE_NAME;
+                                    if ( servicename.length > 20 ) { servicename = servicename.substr(0,17) + '...'; }
+                                    if ( this.OUTPUT.length > 38 ) { this.OUTPUT = this.OUTPUT.substr(0,35) + '...'; }
+                                    $('section','#center').append('<a class="service" title=""><img class="SrvImgGrid" src="' + hicon + '" /><div id="SrvImgStateGrid"><img src="' + this.SERVICE_STATUS_ICON + '" /></div><div id="SrvTitleGrid">' + servicename + '</div><div id="SrvHostNameGrid">' + shorthostname + ' <i>auf ' + mnode + '</i></div><div id="SrvOutputGrid">' + this.OUTPUT + '</div><div id="SvcLinkHover" onclick="OpenWindow(\'modules/' + url + '?h=' + $.base64.encode( mnode ) + '&c=' + $.base64.encode( hostname ) + '\',\'_self\');"></div><div id="SvcLinkMenu"><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="Checkbox' + hostcount + '' + servicecount + '" /><label for="Checkbox' + hostcount + '' + servicecount + '" title="Diesen Service Check f&uuml;r ein Kommando markieren.">x</label></div></a>');
+                                    $('#Checkbox' + hostcount + '' + servicecount).button();
+                                    servicecount++;
+                                });
+                                hostcount++;
+                            }
+                        });
+                    });
+                    if (servicecount == 0) {
+                        $('#center').append('<div id="NoContent">Die Abfrage ergab kein Ergebnis.</div>');
+                    }
+                    
+                    $('#servicecount').html(' (' + servicecount + ' auf ' + hostcount + ' Hosts)');
+                    $('#AjaxLoader').remove();
+                    ShowSelectSearch();
+                    KlickFunctionSidebarService(uid,searchstring);
+                    UpdateModView(uid,"GridAllServices");
+                },
+                dataType: 'json',
+                cache: false
+            }); 
+        },
+        dataType: 'json',
+        cache: false
+    });
+}
+
+/*
+ * List View
+ */
+
+function ListAllServices(uid) {
+    var state = urlPara('s').replace(/%3D/g,'=');
+    var searchstring = urlPara('searchstring').replace(/%3D/g,'=').replace(/%20/g,' ').replace(/%22/g,'"').replace(/%25/g,'%').replace(/%3C/g,'<').replace(/%3E/g,'>').replace(/%5B/g,'[').replace(/%5C/g,'\\').replace(/%5D/g,']').replace(/%5E/g,'^').replace(/%60/g,'`').replace(/%7B/g,'{').replace(/%7C/g,'|').replace(/%7D/g,'}').replace(/%7E/g,'~').replace(/%7F/g,'').replace(/%28/g,'(').replace(/%29/g,')').replace(/%2B/g,'+');
+    $('#center').html('');
+    $('#ServiceGridSelect').html('');
+    $('#theme-roller').append('<img id="AjaxLoader" src="layout/images/ajax-loader.gif">');
+    $('#SrvCenter').html('<div id="ServicePane"><div id="ServiceListSearch"></div><div id="HeadDivTableServicesListView"><span>Host Name</span><span>Service Name</span><span>Output</span></div></div><div id="ListDivShowServices"></div>');
+    $('#ServicePane').append('<div id="CheckBoxAll"><input type="checkbox" id="CheckAllCheckboxes" onclick="CheckAll(\'' + uid + '\');"/></div><div id="VLOne"></div><div id="VLTwo"></div><div id="VLThree"></div><div id="VLFour"></div>');
+    if (state.length > 0) {
+        ListSpecialServices(uid,state);
+    } else {
+        if (searchstring.length > 0) {
+            ListSearchServices(uid,searchstring);
+        } else {
+            ListServices(uid);
+        }
+    }
+}
+
+function ListServices(uid) {
+    var b64uid = $.base64.encode( uid );
+    $('span.UserList').addClass('Fontffffff');
+    $('span.UserList').removeClass('Font82abcc');
+    $('span.UserGrid').addClass('Font82abcc');
+    $('span.UserGrid').removeClass('Fontffffff');
+    $('#AutoReload').css('display', 'block');
+    $('#ShowGridSearchBar').remove();
+    $.ajax({
+        url: 'http://' + Backend + '/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u=' + b64uid + 'Lkjdu7&m2=Q29uZmlnJq0OpP',
+        crossDomain: true,
+        success: function(json) {
+            var dds;
+            $.each(json, function(key,value) {
+                if ( value.KEY == "DeleteDomainSuffix") {
+                    dds = value.ACTION;
+                }
+            });
+            $.ajax({
+                url: 'http://' + Backend + '/proxy/json/?e=1&m=SG9zdEZ1bGxJbmZvHd78h3&u=' + b64uid + 'LKHld3',
+                crossDomain: true,
+                success: function(json) {
+                    var hostcount = 0;
+                    var servicecount = 0;
+                    $.each(json, function() {
+                        var mnode = this.NODE;
+                        $.each(this.HFI, function() {
+                            var hostname = this.NAME;
+                            var hoststatus = this.STATUS;
+                            var hosticon = this.ICON;
+                            var shorthostname;
+                            var url = this.URL;
+                            if ( dds == "0" ) { shorthostname = this.NAME; } else { var tmp = this.NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
+                            //if ( shorthostname.length > 13 ) { shorthostname = shorthostname.substr(0,10) + '...'; }
+                            $('#ListDivShowServices').append('<table id="ServiceLstTable" class="' + hostcount + 'Services"></table>');
+                            var srvcount = 0;
+                            $.each(this.SERVICELIST, function() {
+                                var cssclass;
+                                if (this.SERVICE_STATUS == "1") { 
+                                    cssclass = "taovwa"; 
+                                } else if (this.SERVICE_STATUS == "2") { 
+                                    cssclass = "taovcr"; 
+                                } else if (this.SERVICE_STATUS == "3") { 
+                                    cssclass = "taovun"; 
+                                } else { 
+                                    cssclass = "taovok"; 
+                                }
+                                if (srvcount == 0) {
+                                    $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td rowspan=2><img src="' + hosticon + '" /></td><td><a href="modules/' + url + '?h=' + $.base64.encode( mnode ) + '&c=' + $.base64.encode( hostname ) + '">' + shorthostname + '</a></td><td>' + this.SERVICE_NAME + '</td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
+                                } else if (srvcount == 1) {
+                                    $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td><i>auf ' + mnode + '</i></td><td>' + this.SERVICE_NAME + '</td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
+                                } else {
+                                    $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td colspan=2></td><td>' + this.SERVICE_NAME + '</td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
+                                }
+                                servicecount++;
+                                srvcount++;
+                            });
+                            hostcount++;
+                        });
+                    });
+                    
+                    if (servicecount == 0) {
+                        $('#ListDivShowServices').append('<div id="NoContent">Die Abfrage ergab kein Ergebnis.</div>');
+                        $('#VLOne').remove();
+                        $('#VLTwo').remove();
+                        $('#VLThree').remove();
+                        $('#VLFour').remove();
+                        $('#VLFive').remove();
+                        $('#VLSix').remove();
+                        $('#VLSeven').remove();
+                    }
+                    
+                    $('#servicecount').html(' (' + servicecount + ' auf ' + hostcount + ' Hosts)');
+                    $('#AjaxLoader').remove();
+                    ShowSelect($.base64.encode("a") + 'KdhU7Z');
+                    UpdateModView(uid,"ListAllServices");
+                },
+                dataType: 'json',
+                cache: false
+            }); 
+        },
+        dataType: 'json',
+        cache: false
+    });
+}
+
+function UpdateModView(uid,val1) {
+    var b64uid = $.base64.encode( uid );
+    var b64val1 = $.base64.encode( val1 );
+    $.ajax({
+        url: 'http://' + Backend + '/repo/json/?e=1&m=VXBkYXRlTW9kVmlldw==Jhdu8d&u=' + b64uid + 'Adhfg3&k=c2VydmljZXM=JkHu77&v1=' + b64val1 + 'HjKi88',
+        crossDomain: true,
+        dataType: 'json',
+        cache: false
+    });
+}
+
+function ListSpecialServices(uid,state) {
+    var b64uid = $.base64.encode( uid );
+    $('span.UserList').addClass('Fontffffff');
+    $('span.UserList').removeClass('Font82abcc');
+    $('span.UserGrid').addClass('Font82abcc');
+    $('span.UserGrid').removeClass('Fontffffff');
+    $('#AutoReload').css('display', 'block');
+    $('#ShowGridSearchBar').remove();
+    //$('#SrvCenter').html('');
+    $('#center').html('');
+    $.ajax({
+        url: 'http://' + Backend + '/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u=' + b64uid + 'Lkjdu7&m2=Q29uZmlnJq0OpP',
+        crossDomain: true,
+        success: function(json) {
+            var dds;
+            $.each(json, function(key,value) {
+                if ( value.KEY == "DeleteDomainSuffix") {
+                    dds = value.ACTION;
+                }
+            });
+            $.ajax({
+                url: 'http://' + Backend + '/proxy/json/?e=1&m=U2VydmljZVN0YXR1c1NlbGVjdA==Ki88uU&u=' + b64uid + 'LKHld3&s=' + state,
+                crossDomain: true,
+                success: function(json) {
+                    var hostcount = 0;
+                    var servicecount = 0;
+                    $.each(json, function() {
+                        var mnode = this.NODE;
+                        $.each(this.SRVSTATSEL, function() {
+                            var hostname = this.NAME;
+                            var hoststatus = this.STATUS;
+                            var hosticon = this.ICON;
+                            var shorthostname;
+                            var url = this.URL;
+                            if ( dds == "0" ) { shorthostname = this.NAME; } else { var tmp = this.NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
+                            //if ( shorthostname.length > 13 ) { shorthostname = shorthostname.substr(0,10) + '...'; }
+                            if (this.SERVICELIST.length > 0) {
+                                $('#ListDivShowServices').append('<table id="ServiceLstTable" class="' + hostcount + 'Services"></table>');
+                                var srvcount = 0;
+                                $.each(this.SERVICELIST, function() {
+                                    var cssclass;
+                                    if (this.SERVICE_STATUS == "1") { 
+                                        cssclass = "taovwa"; 
+                                    } else if (this.SERVICE_STATUS == "2") { 
+                                        cssclass = "taovcr"; 
+                                    } else if (this.SERVICE_STATUS == "3") { 
+                                        cssclass = "taovun"; 
+                                    } else { 
+                                        cssclass = "taovok"; 
+                                    }
+                                    if (srvcount == 0) {
+                                        $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td rowspan=2><img style="width:20px; margin-bottom: -5px;margin-left: 13px;" src="' + hosticon + '" /></td><td><a href="modules/' + url + '?h=' + $.base64.encode( mnode ) + '&c=' + $.base64.encode( hostname ) + '">' + shorthostname + ' <i>(' + mnode + ')</i></a></td><td>' + this.SERVICE_NAME + '</td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
+                                    } else if (srvcount == 1) {
+                                        $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td></td><td>' + this.SERVICE_NAME + '</td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
+                                    } else {
+                                        $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td colspan=2></td><td>' + this.SERVICE_NAME + '</td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
+                                    }
+                                    servicecount++;
+                                    srvcount++;
+                                });
+                                hostcount++;
+                            }
+                        });
+                    });
+                    
+                    if (servicecount == 0) {
+                        $('#ListDivShowServices').append('<div id="NoContent">Die Abfrage ergab kein Ergebnis.</div>');
+                        $('#VLOne').remove();
+                        $('#VLTwo').remove();
+                        $('#VLThree').remove();
+                        $('#VLFour').remove();
+                        $('#VLFive').remove();
+                        $('#VLSix').remove();
+                        $('#VLSeven').remove();
+                    }
+                    
+                    $('#servicecount').html(' (' + servicecount + ' auf ' + hostcount + ' Hosts)');
+                    $('#AjaxLoader').remove();
+                    ShowSelect(state);
+                    UpdateModView(uid,"ListAllServices");
+                },
+                dataType: 'json',
+                cache: false
+            }); 
+        },
+        dataType: 'json',
+        cache: false
+    });
+}
+
+function ListSearchServices(uid,searchstring) {
+    var b64uid = $.base64.encode( uid );
+    var b64searchstring = $.base64.encode( searchstring );
+    $('span.UserList').addClass('Fontffffff');
+    $('span.UserList').removeClass('Font82abcc');
+    $('span.UserGrid').addClass('Font82abcc');
+    $('span.UserGrid').removeClass('Fontffffff');
+    $('#AutoReload').css('display', 'block');
+    $('#ShowGridSearchBar').remove();
+    $('body').append('<div id="ShowGridSearchBar" style="margin-top: 7px; margin-left: 7px;"></div>');
+    $('#center').html('');
+    $.ajax({
+        url: 'http://' + Backend + '/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u=' + b64uid + 'Lkjdu7&m2=Q29uZmlnJq0OpP',
+        crossDomain: true,
+        success: function(json) {
+            var dds;
+            $.each(json, function(key,value) {
+                if ( value.KEY == "DeleteDomainSuffix") {
+                    dds = value.ACTION;
+                }
+            });
+            $.ajax({
+                url: 'http://' + Backend + '/proxy/json/?e=1&m=U2VydmljZVNlYXJjaExpc3Q=Ki88uU&u=' + b64uid + 'LKHld3&searchstring=' + b64searchstring + 'KlUu87',
+                crossDomain: true,
+                success: function(json) {
+                    var hostcount = 0;
+                    var servicecount = 0;
+                    $.each(json, function() {
+                        var mnode = this.NODE;
+                        $.each(this.SRVSEARCH, function() {
+                            var hostname = this.NAME;
+                            var hoststatus = this.STATUS;
+                            var hosticon = this.ICON;
+                            var shorthostname;
+                            var url = this.URL;
+                            $('#ShowGridSearchBar').html('<font size=2 color=#82abcc>Gesucht nach:</font>  ' + searchstring + '');
+                            if ( dds == "0" ) { shorthostname = this.NAME; } else { var tmp = this.NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
+                            //if ( shorthostname.length > 13 ) { shorthostname = shorthostname.substr(0,10) + '...'; }
+                            if (this.SERVICELIST.length > 0) {
+                                $('#ListDivShowServices').append('<table id="ServiceLstTable" class="' + hostcount + 'Services"></table>');
+                                var srvcount = 0;
+                                $.each(this.SERVICELIST, function() {
+                                    var cssclass;
+                                    if (this.SERVICE_STATUS == "1") { 
+                                        cssclass = "taovwa"; 
+                                    } else if (this.SERVICE_STATUS == "2") { 
+                                        cssclass = "taovcr"; 
+                                    } else if (this.SERVICE_STATUS == "3") { 
+                                        cssclass = "taovun"; 
+                                    } else { 
+                                        cssclass = "taovok"; 
+                                    }
+                                    if (srvcount == 0) {
+                                        $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td rowspan=2><img style="width:20px; margin-bottom: -5px;margin-left: 13px;" src="' + hosticon + '" /></td><td><a href="modules/' + url + '?h=' + $.base64.encode( mnode ) + '&c=' + $.base64.encode( hostname ) + '">' + shorthostname + ' <i>(' + mnode + ')</i></a></td><td>' + this.SERVICE_NAME + '</td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
+                                    } else if (srvcount == 1) {
+                                        $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td></td><td>' + this.SERVICE_NAME + '</td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
+                                    } else {
+                                        $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td colspan=2></td><td>' + this.SERVICE_NAME + '</td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
+                                    }
+                                    servicecount++;
+                                    srvcount++;
+                                });
+                                hostcount++;
+                            }
+                        });
+                    });
+                    
+                    if (servicecount == 0) {
+                        $('#ListDivShowServices').append('<div id="NoContent">Die Abfrage ergab kein Ergebnis.</div>');
+                        $('#VLOne').remove();
+                        $('#VLTwo').remove();
+                        $('#VLThree').remove();
+                        $('#VLFour').remove();
+                        $('#VLFive').remove();
+                        $('#VLSix').remove();
+                        $('#VLSeven').remove();
+                    }
+                    
+                    $('#servicecount').html(' (' + servicecount + ' auf ' + hostcount + ' Hosts)');
+                    $('#FooterDivTableHostsListView').html(servicecount + ' Services');
+                    $('#AjaxLoader').remove();
+                    ShowSelectSearch();
+                    KlickFunctionSidebarService(uid,searchstring);
+                    UpdateModView(uid,"ListAllServices");
+                    //setTimeout('AllServices("' + uid + '")', 30000);
+                },
+                dataType: 'json',
+                cache: false
+            }); 
+        },
+        dataType: 'json',
+        cache: false
+    });
+}
+
+function KlickFunctionSidebarService(uid,searchstring) {
+    var b64uid = $.base64.encode( uid );
+    $('#ShowGridSearchBar').click(function() {
+        if ($("#Sidebar").is(":hidden")) {
+            $('#SidebarSmall').animate({marginRight: "400px"},350).css('zIndex',30);
+            $('#Sidebar').animate({width:'toggle'},350, function() {
+                $('#SidebarContent').fadeIn(100);
+            }).css('zIndex',30);
+            SearchServicesSearch( b64uid + 'Jhdu8K',searchstring);
+        } else {
+            $('#SidebarContent').fadeOut(100);
+            $('#Sidebar').animate({width:'toggle'},350).css('zIndex',30);
+            $('#SidebarSmall').animate({marginRight: "0px"},350).css('zIndex',30);
+        }
+    });
+}
+
+function CheckAll(uid) {
+    var b64uid = $.base64.encode( uid );
+    if($('#CheckAllCheckboxes').is(':checked')) {
+        $('form#SearchService').find(':checkbox').attr('checked', 'checked');
+        if ($("#Sidebar").is(":hidden")) {
+            $('#SidebarSmall').animate({marginRight: "400px"},350).css('zIndex',30);
+            $('#Sidebar').animate({width:'toggle'},350, function() {
+                $('#SidebarContent').fadeIn(100);
+            }).css('zIndex',30);
+            SearchServices( b64uid + 'Jhdu8K');
+        }
+    } else {
+        if ($("#Sidebar").is(":hidden")) {
+            $('form#SearchService').find(':checkbox').removeAttr('checked');
+        } else {
+            $('form#SearchService').find(':checkbox').removeAttr('checked');
+            $('#SidebarContent').fadeOut(100);
+            $('#Sidebar').animate({width:'toggle'},350).css('zIndex',30);
+            $('#SidebarSmall').animate({marginRight: "0px"},350).css('zIndex',30);
+        }
+    }
+}
+
+function EnableInput(sub) {
+    if ($(sub).is(":hidden")) {
+        $(sub).show();
+    } else {
+        $(sub).hide();
+    }
+}
+
+function OpenWindow(target,mode) {
+    window.open(target,mode);
+}

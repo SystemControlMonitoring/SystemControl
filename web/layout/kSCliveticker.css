@@ -1,1 +1,135 @@
-#SubLiveticker{display:none;width:90px;z-index:5;position:absolute;top:38px;right:65px}#Liveticker{margin-left:15px;float:left;z-index:5}#Liveticker table{float:left;height:30px;width:100px}#Liveticker table td{padding-left:5px}#LtHeader{font-size:14px;color:#82abcc;border:1px solid #004279;text-align:left;margin-top:4px}#LtHeader:hover{cursor:pointer}#LtFooter{font-size:12px;color:#82abcc;margin-top:5px;margin-right:3px}#LtImg img{margin-top:3px;margin-left:48px;width:40px;opacity:.4;-moz-opacity:.4;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";filter:alpha(opacity=40);-webkit-opacity:.4;-ms-opacity:.4;-o-opacity:.4}#LtImg img:hover{cursor:pointer;opacity:1;-moz-opacity:1;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";filter:alpha(opacity=100);-webkit-opacity:1;-ms-opacity:1;-o-opacity:1}#ImgStat{position:absolute;margin-top:-45px;right:-1px}#LtInc{position:absolute;margin-top:-45px;right:45px;font-size:12px;color:#fff}#LtContent{display:none;position:absolute;margin-top:-45px;right:42px;width:400px;height:40px;background-color:#004c8a;border:2px solid #82abcc}#LtContent table{width:100%}#LtContent table td{padding:2px}#LtContent table td:first-child{width:200px;text-align:left}#LtContent table tr:first-child td:first-child{color:#82abcc}#LtContent table tr:first-child td:first-child i{font-size:12px}#LtContent table td:last-child{color:#82abcc;font-size:12px;width:125px}#LtContent table tr:first-child td:last-child{text-align:right}#LtContent table tr:last-child td:last-child{text-align:left;color:#fff}
+/* 
+    Document   : Liveticker
+    Created on : 09.04.2013, 15:15:04
+    Author     : sbaresel
+    Description:
+        Purpose of the stylesheet follows.
+*/
+#SubLiveticker {
+    display: none;
+    width: 90px;
+    z-index: 5;
+    position: absolute;
+    top: 38px;
+    right: 65px;
+}
+
+#Liveticker {
+    margin-left: 15px;
+    float: left;
+    z-index: 5;
+}
+
+#Liveticker table {
+    float: left;
+    height: 30px;
+    width: 100px;
+}
+
+#Liveticker table td {
+    padding-left: 5px;
+}
+
+#LtHeader {
+    font-size: 14px;
+    color: #82abcc;
+    border: 1px solid #004279;
+    text-align: left;
+    margin-top: 4px;
+}
+
+#LtHeader:hover {
+    cursor: pointer;
+}
+
+#LtFooter {
+    font-size: 12px;
+    color: #82abcc;
+    margin-top: 5px;
+    margin-right: 3px;
+}
+
+#LtImg img {
+    margin-top: 3px;
+    margin-left: 48px;
+    width: 40px;
+    opacity: 0.4; 
+    -moz-opacity: 0.4; 
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+    filter:alpha(opacity=40);
+    -webkit-opacity: 0.4; 
+    -ms-opacity: 0.4;
+    -o-opacity: 0.4;
+}
+
+#LtImg img:hover {
+    cursor: pointer;
+    opacity: 1; 
+    -moz-opacity: 1; 
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter:alpha(opacity=100);
+    -webkit-opacity: 1; 
+    -ms-opacity: 1;
+    -o-opacity: 1;
+}
+
+#ImgStat {
+    position: absolute;
+    margin-top: -45px;
+    right: -1px;
+}
+
+#LtInc {
+    position: absolute;
+    margin-top: -45px;
+    right: 45px;
+    font-size: 12px;
+    color: #fff;
+}
+
+#LtContent {
+    display: none;
+    position: absolute;
+    margin-top: -45px;
+    right: 42px;
+    width: 400px;
+    height: 40px;
+    background-color: #004c8a;
+    border: 2px solid #82abcc;
+}
+
+#LtContent table {
+    width: 100%;
+}
+
+#LtContent table td {
+    padding: 2px;
+}
+
+#LtContent table td:first-child {
+    width: 200px;
+    text-align: left;
+}
+
+#LtContent table tr:first-child td:first-child {
+    color: #82abcc;
+}
+
+#LtContent table tr:first-child td:first-child i {
+    font-size: 12px;
+}
+
+#LtContent table td:last-child {
+    color: #82abcc;
+    font-size: 12px;
+    width: 125px;
+}
+
+#LtContent table tr:first-child td:last-child {
+    text-align: right;
+}
+
+#LtContent table tr:last-child td:last-child {
+    text-align: left;
+    color: #ffffff;
+}
