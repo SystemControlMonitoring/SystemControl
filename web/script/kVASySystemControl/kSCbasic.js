@@ -376,9 +376,9 @@ function Configuration(uid) {
         <div id="ConfigurationTabs">\n\
             <ul>\n\
                 <li><a href="#ConfigurationTabs1">Web-Konfiguration</a></li>\n\
-                <li><a href="#ConfigurationTabs2">Proxy-Konfiguration</a></li>\n\
+                <!--li><a href="#ConfigurationTabs2">Proxy-Konfiguration</a></li>\n\
                 <li><a href="#ConfigurationTabs3">Core-Konfiguration</a></li>\n\
-                <li><a href="#ConfigurationTabs4">System-Information</a></li>\n\
+                <li><a href="#ConfigurationTabs4">System-Information</a></li-->\n\
             </ul>\n\
             <div id="ConfigurationTabs1">\n\
                 <div id="ConfigurationSection">\n\
@@ -395,7 +395,7 @@ function Configuration(uid) {
                     <button id="3" class="ConfigurationSectionPoint" onclick="DeleteBasicConfig(\'' + b64uid + 'Ljd84K\');">Alle Einstellungen zur&uuml;cksetzen</button>\n\
                 </div>\n\
             </div>\n\
-            <div id="ConfigurationTabs2">\n\
+            <!--div id="ConfigurationTabs2">\n\
                 <p></p>\n\
             </div>\n\
             <div id="ConfigurationTabs3">\n\
@@ -408,7 +408,7 @@ function Configuration(uid) {
                     <div id="ConfigurationSectionTitle">Komponenten Status</div>\n\
                     <div id="Components"></div>\n\
                 </div>\n\
-            </div>\n\
+            </div-->\n\
        </div>\n\
    </div>');
     

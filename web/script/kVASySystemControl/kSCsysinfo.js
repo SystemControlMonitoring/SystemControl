@@ -97,7 +97,7 @@ function LogfilesDiv(uid) {
             $.each(point, function() {
                 var shortname = this.SC;
 		var longname = this.DESC;
-		$('#ButtonListTextDiv').append('<div id="' + shortname + '_dial" title="L&ouml;schen des Logfiles: ' + longname + ' - 1 von 2"><p>Sie f&uuml;hren das L&ouml;schen des Logfiles: ' + longname + ' durch.</p></div>');
+		$('#ButtonListTextDiv').append('<div id="' + shortname + '_dial" title="Leeren des Logfiles: ' + longname + ' - 1 von 2"><p>Sie f&uuml;hren das Leeren des Logfiles: ' + longname + ' durch.</p></div>');
 		$('#ButtonListDiv').append('<button id="' + shortname + '_button" style="margin-left: 2px; margin-top: 5px;">' + longname + '</button>');
 		$('#' + shortname + '_dial').dialog({
                     autoOpen: false,
@@ -108,7 +108,7 @@ function LogfilesDiv(uid) {
                     modal: true,
                     buttons: {
 			OK: function() {
-                            $('body').append('<img id="ajax-loader" title="L&ouml;schen des Logfiles: ' + longname + '" wird ausgef&uuml;hrt." src="../layout/images/ajax-loader.gif" /><div id="ajax-loader-div">L&ouml;schen des Logfiles: ' + longname + '</div>');
+                            $('body').append('<img id="ajax-loader" title="Leeren des Logfiles: ' + longname + '" wird ausgef&uuml;hrt." src="../layout/images/ajax-loader.gif" /><div id="ajax-loader-div">Leeren des Logfiles: ' + longname + '</div>');
                             $(this).dialog('close');
                             $.ajax({
                                 url: 'http://' + Backend + '/clientdirect/json/?e=1&m=TG9nQWRtaW4=KhdU8Z&h=' + node + 'Hjd876&c=' + client + 'Jjd723&log=' + longname + '&u=' + b64uid + 'U7g7ZZ&cm=REVMT0c=IZK88i',
@@ -116,7 +116,7 @@ function LogfilesDiv(uid) {
                                 success: function() {
                                     $('#ajax-loader').remove();
                                     $('#ajax-loader-div').remove();
-                                    $( 'body' ).append('<div id="success" title="L&ouml;schen des Logfiles: ' + longname + '" - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>Das L&ouml;schen des Logfiles ' + longname + ' wurde <b>erfolgreich</b> durchgef&uuml;hrt.</p>');
+                                    $( 'body' ).append('<div id="success" title="Leeren des Logfiles: ' + longname + '" - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>Das Leeren des Logfiles ' + longname + ' wurde <b>erfolgreich</b> durchgef&uuml;hrt.</p>');
                                     $( '#success' ).dialog({
                                         autoOpen: true,
                                         height: 150,
@@ -135,7 +135,7 @@ function LogfilesDiv(uid) {
                                 error: function() {
                                     $('#ajax-loader').remove();
                                     $('#ajax-loader-div').remove();
-                                    alert('FEHLER BEI AUSF&Uuml;HRUNG: L&ouml;schen des Logfiles: ' + longname );
+                                    alert('FEHLER BEI AUSF&Uuml;HRUNG: Leeren des Logfiles: ' + longname );
                                 },
                                 dataType: 'json',
                                 cache: false

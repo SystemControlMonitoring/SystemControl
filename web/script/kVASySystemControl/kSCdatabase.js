@@ -150,6 +150,10 @@ function Top(uid) {
                 <h3>Es betrifft folgende konfigurierte Checks:</h3>\n\
                 <div id="DivRemDwntmObjects"></div>\n\
             </div>\n\
+            <div id="DivDelLog" title="Leeren eines Logfiles - 1 von 2">\n\
+                <h3>Sie f&uuml;hren das Leeren des Logfiles durch.</h3>\n\
+                <div id="DivDelLogObjects"></div>\n\
+            </div>\n\
         </div>\n\
         <div id="AdminButtons">\n\
             <span id="LogfileButtons"></span><br>\n\
@@ -161,6 +165,7 @@ function Top(uid) {
             <button id="ko_button" style="margin-left: 2px; margin-top: 10px;">Kommentieren</button>\n\
             <button id="dd_button" style="margin-left: 2px; margin-top: 10px;" title="Downtime l&ouml;schen.">Downtime -</button>\n\
             <button id="do_button" style="margin-left: 2px; margin-top: 10px;" title="Downtime festlegen.">Downtime +</button>\n\
+            <button id="dl_button" style="margin-left: 2px; margin-top: 10px;" title="Logfile leeren.">Del. Log</button>\n\
         </div>\n\
     </div>');
     
@@ -202,6 +207,70 @@ function Top(uid) {
     
     $('#Dstartts').datetimepicker();
     $('#Dendts').datetimepicker();
+
+    $('#dl_button').button().css('border','1px solid #004279').click(function() {
+        var unc = "";
+        var usrv = "";
+        var array = $('form#SearchService').serializeArray();
+        $('#DivDelLogObjects').html('<table id="DivReCheckTable"><thead><tr><th>Host @ Monitoringnode</th><th>Check Name</th></tr></thead></table>');
+        $.each(array, function() {
+            if (this.name == "s") { /**/ } else { 
+                unc += this.name + ";";
+                usrv += this.value + ";";
+                $('#DivReCheckTable').append('<tr><td>' + this.name + '</td><td>' + this.value + '</td></tr>');
+            }
+        });
+        $('#DivDelLog').dialog({
+            autoOpen: true,
+            height: 300,
+            width: 750,
+            draggable: false,
+            resizable: false,
+            modal: true,
+            buttons: {
+                Ausführen: function() {
+                    $( 'body' ).append('<img id="ajax-loader" title="Leeren des Logfiles." src="layout/images/ajax-loader.gif"><div id="ajax-loader-div">Leeren des Logfiles.</div>');
+                    $(this).dialog('close');
+                    $.ajax({
+                        url: 'http://' + Backend + '/clientdirect/json/?e=1&m=U3J2TG9nQWRtaW4=KhdU8Z&c=' + $.base64.encode( unc ) + 'KjHu8U&log=' + usrv + '&u=' + b64uid + 'U7g7ZZ&cm=REVMT0c=IZK88i',
+                        timeout: 3600000,
+                        success: function(point) {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            $( 'body' ).append('<div id="success" title="Leeren des Logfiles - 2 von 2"><p><span class="ui-icon ui-icon-circle-check" style="float: left; margin: 0 7px;"></span>Logfiles wurden <b>erfolgreich</b> geleert.</p>');
+                            $( '#success' ).dialog({
+                                autoOpen: true,
+                                height: 200,
+                                width: 500,
+                                draggable: false,
+                                resizable: false,
+                                modal: true,
+                                buttons: { 
+                                    OK: function() { 
+                                        $( this ).dialog( 'close' );
+                                        $('#success').remove();
+                                        $('#DivReCheckObjects').html('');
+                                    }
+                                }
+                            });
+                        },
+                        error: function() {
+                            $('#ajax-loader').remove();
+                            $('#ajax-loader-div').remove();
+                            alert('FEHLER BEI AUSFÜHRUNG: Leeren von Logfiles');
+                            $('#DivReCheckObjects').html('');
+                        },
+                        dataType: 'json',
+                        cache: false
+                    });
+                },
+                Abbrechen: function() {
+                    $(this).dialog('close');
+                    $('#DivReCheckObjects').html('');
+                }
+            }
+        });
+    }); 
 
     $('#rc_button').button().css('border','1px solid #004279').click(function() {
         var u = "";

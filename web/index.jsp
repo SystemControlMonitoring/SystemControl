@@ -124,9 +124,9 @@
                                 <div id="DashboardLinks"></div>
                                 <!-- DashboardLinks Stop -->
                                 
-				<a href="#" class="AddNext" onclick="AddLink();">
+				<!--a href="#" class="AddNext" onclick="AddLink();">
                                     <img src='layout/images/white/add.png' alt='AddNext' title='F&uuml;ge weiteren Men&uuml;punkt hinzu!' width='50' height='50'>
-				</a>
+				</a-->
 			</section>
 		</div>
                 

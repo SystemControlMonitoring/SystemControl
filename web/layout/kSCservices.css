@@ -585,7 +585,7 @@
     margin-bottom: -10px;
 }
 
-#DivReCheck h3, #DivAcknldge h3, #DivComment h3, #DivDowntime h3, #DivNotify h3, #DivRemAck h3, #DivRemDwntm h3, #DivEnNotify h3 {
+#DivReCheck h3, #DivAcknldge h3, #DivComment h3, #DivDowntime h3, #DivNotify h3, #DivRemAck h3, #DivRemDwntm h3, #DivEnNotify h3, #DivDelLog h3 {
     margin-top: 15px;
     margin-left: 35px;
     margin-bottom: 15px;
