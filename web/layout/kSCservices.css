@@ -133,6 +133,26 @@
     margin-bottom: -5px;
 }
 
+#ImgService {
+    position: absolute;
+    left: 430px;
+    width: 50px;
+    text-align: right;
+    margin-top: -16px;
+}
+
+#ImgServiceGridAck {
+    position: absolute;
+    margin-left: 220px;
+    margin-top: 27px;
+}
+
+#ImgServiceGridCmt {
+    position: absolute;
+    margin-left: 200px;
+    margin-top: 27px;
+}
+
 #DivShowServices table {
     width: 100%;
     border: 1px solid #82abcc;

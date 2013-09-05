@@ -338,11 +338,58 @@ function ShowCritical(uid) {
                         //if ( shorthostname.length > 13 ) { shorthostname = shorthostname.substr(0,10) + '...'; }
                         if (this.SERVICE_STATUS == "1") { cssclass = "taovwa"; } else if (this.SERVICE_STATUS == "2") { cssclass = "taovcr"; } else { cssclass = "taovun"; }
                         if (this.SERVICE_NAME == "") { cssclass = "taovcr"; this.SERVICE_NAME = "HOST"; }
-                        $('#SubDivShowCritical').append('<table class="' + cssclass + '" cellpadding=0 cellspacing=0><tr><td rowspan=2><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><b>' + shorthostname + '</b> <i>auf ' + this.NODE + '</i></td><td>' + this.HOST_STATUS + '</td><td>Zuletzt gepr&uuml;ft ' + this.TIMESTAMP + '</td></tr><tr><td>Servicename: ' + this.SERVICE_NAME + '</td><td colspan=2>' + this.OUTPUT + '</td></tr></table>');
+                        $('#SubDivShowCritical').append('<table class="' + cssclass + '" cellpadding=0 cellspacing=0><tr><td rowspan=2><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><b>' + shorthostname + '</b> <i>auf ' + this.NODE + '</i></td><td id="' + srvcount + 'SrvStatus">' + this.HOST_STATUS + '</td><td>Zuletzt gepr&uuml;ft ' + this.TIMESTAMP + '</td></tr><tr><td>Servicename: ' + this.SERVICE_NAME + '</td><td colspan=2>' + this.OUTPUT + '</td></tr></table>');
+                        if (this.ACK == "1") { $('#' + srvcount + 'SrvStatus').append('<div id="TaovImgServiceAck"><img src="layout/images/icons/eye.png" title="Service Problem ist bearbeitet." /></div>'); }
+                        if (this.CMT == "") { /**/ } else { $('#' + srvcount + 'SrvStatus').append('<div id="TaovImgServiceCmt"><img src="layout/images/icons/balloon-left.png" title="Service wurde kommentiert." /></div>'); }
                         srvcount++;
                     });
+                    if (srvcount == 0) {
+                        $('#SubDivShowCritical').append('<div id="NoContent">Die Abfrage ergab kein Ergebnis.</div>');
+                    }
                     $('#FooterDivShowCritical').html('' + srvcount + ' Probleme');
                     setTimeout('ShowCritical("' + uid + '")', 30000);
+                },
+                dataType: 'json',
+                cache: false
+            }); 
+        },
+        dataType: 'json',
+        cache: false
+    });
+}
+
+function ShowAllComments(uid) {
+    var b64uid = $.base64.encode( uid );
+    $.ajax({
+        url: 'http://' + Backend + '/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u=' + b64uid + 'Lkjdu7&m2=Q29uZmlnJq0OpP',
+        crossDomain: true,
+        success: function(json) {
+            var dds;
+            $.each(json, function(key,value) {
+                if ( value.KEY == "DeleteDomainSuffix") {
+                    dds = value.ACTION;
+                }
+            });
+            $.ajax({
+                url: 'http://' + Backend + '/proxy/json/?e=1&m=U2hvd0FsbENvbW1lbnRzKi88uU&u=' + b64uid + 'LKHld3',
+                crossDomain: true,
+                success: function(json) {
+                    var srvcount = 0;
+                    $('#Comments').html('<div id="SubComments"><table id="SubCommentsTable" cellpadding=0 cellspacing=0></table></div>');
+                    $.each(json, function() {                        
+                        var hostname = this.HOST_NAME;
+                        var shorthostname;
+                        var cssclass;
+                        if ( dds == "0" ) { shorthostname = this.HOST_NAME; } else { var tmp = this.HOST_NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
+                        //if ( shorthostname.length > 13 ) { shorthostname = shorthostname.substr(0,10) + '...'; }
+                        $('#SubComments').append('<tr><td><table id="TableComments"><tr><td class="TextHeader"><i>' + this.AUTHOR + '</i> am ' + this.TIMESTAMP_ISO + '</td></tr><tr><td class="TextSrvHst">F&uuml;r Service: <b>' + this.SERVICE_NAME + '</b> auf <b>' + shorthostname + '</b>(<i>' + this.NODE + '</i>)</td></tr><tr><td class="TextComment">' + this.COMMENT + '</td></tr></table></td></tr>');
+                        srvcount++;
+                    });
+                    if (srvcount == 0) {
+                        $('#SubComments').append('<div id="NoContent">Die Abfrage ergab kein Ergebnis.</div>');
+                    }
+                    $('#FooterComments').html('' + srvcount + ' Kommentare');
+                    setTimeout('ShowAllComments("' + uid + '")', 30000);
                 },
                 dataType: 'json',
                 cache: false
@@ -378,7 +425,9 @@ function ModShowCritical(uid) {
                         if ( dds == "0" ) { shorthostname = this.HOST_NAME; } else { var tmp = this.HOST_NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
                         //if ( shorthostname.length > 13 ) { shorthostname = shorthostname.substr(0,10) + '...'; }
                         if (this.SERVICE_STATUS == "1") { cssclass = "taovwa"; } else if (this.SERVICE_STATUS == "2") { cssclass = "taovcr"; } else { cssclass = "taovun"; }
-                        $('#SubDivShowCritical').append('<table class="' + cssclass + '" cellpadding=0 cellspacing=0><tr><td rowspan=2><img id="ImgServiceStatus" src="../' + this.SERVICE_STATUS_ICON + '"></img></td><td><b>' + shorthostname + '</b> <i>auf ' + this.NODE + '</i></td><td>' + this.HOST_STATUS + '</td><td>Zuletzt gepr&uuml;ft ' + this.TIMESTAMP + '</td></tr><tr><td>Servicename: ' + this.SERVICE_NAME + '</td><td colspan=2>' + this.OUTPUT + '</td></tr></table>');
+                        $('#SubDivShowCritical').append('<table class="' + cssclass + '" cellpadding=0 cellspacing=0><tr><td rowspan=2><img id="ImgServiceStatus" src="../' + this.SERVICE_STATUS_ICON + '"></img></td><td><b>' + shorthostname + '</b> <i>auf ' + this.NODE + '</i></td><td id="' + srvcount + 'SrvStatus">' + this.HOST_STATUS + '</td><td>Zuletzt gepr&uuml;ft ' + this.TIMESTAMP + '</td></tr><tr><td>Servicename: ' + this.SERVICE_NAME + '</td><td colspan=2>' + this.OUTPUT + '</td></tr></table>');
+                        if (this.ACK == "1") { $('#' + srvcount + 'SrvStatus').append('<div id="TaovImgServiceAck"><img src="../layout/images/icons/eye.png" title="Service Problem ist bearbeitet." /></div>'); }
+                        if (this.CMT == "") { /**/ } else { $('#' + srvcount + 'SrvStatus').append('<div id="TaovImgServiceCmt"><img src="../layout/images/icons/balloon-left.png" title="Service wurde kommentiert." /></div>'); }
                         srvcount++;
                     });
                     $('#FooterDivShowCritical').html('' + srvcount + ' Probleme');

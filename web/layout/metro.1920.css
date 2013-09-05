@@ -868,3 +868,11 @@ table.ui-datepicker-calendar th {
 #HeadComments, #FooterComments {
     width: 743px;
 }
+
+#TableComments {
+    width: 746px;
+}
+
+#SubCommentsTable {
+    width: 746px;
+}

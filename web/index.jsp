@@ -85,6 +85,7 @@
                 KeyFunctionSidebar2(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 DashboardLinks(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 SlimTaov(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                ShowAllComments(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 ShowCritical(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 StyleSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
             });
@@ -175,7 +176,7 @@
                                 <td>
                                     <div id="HeadComments">Letzte Kommentare</div>
                                     <div id="Comments"></div>
-                                    <div id="FooterComments">22 Kommentare</div>
+                                    <div id="FooterComments"></div>
                                 </td>
                                 <td>
                                     <div id="HeaderServicePie">Service Status &Uuml;bersicht (ONLINE Hosts)</div>

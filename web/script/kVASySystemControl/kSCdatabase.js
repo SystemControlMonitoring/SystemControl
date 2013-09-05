@@ -900,7 +900,9 @@ function SrvInfo(uid) {
                 //if ( shorthostname.length > 13 ) { shorthostname = shorthostname.substr(0,10) + '...'; }
                 if (this.SERVICE_STATUS == "1") { cssclass = "taovwa"; } else if (this.SERVICE_STATUS == "2") { cssclass = "taovcr"; } else if (this.SERVICE_STATUS == "3") { cssclass = "taovun"; } else { cssclass = "taovok"; }
                 if (this.SERVICE_NAME == "") { cssclass = "taovcr"; this.SERVICE_NAME = "HOST"; }
-                $('#HostSrvList').append('<div id="CheckBoxTable"><input type="checkbox" name="' + $.base64.decode( client ) + '@' + $.base64.decode( node ) + '" value="' + this.SERVICE_NAME + '" id="" /></div><table class="' + cssclass + '" cellpadding=0 cellspacing=0><tr><td><img id="ImgServiceStatusHl" src="../' + this.SERVICE_STATUS_ICON + '" /></td><td>' + this.SERVICE_NAME + '</td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr></table>');
+                $('#HostSrvList').append('<div id="' + i + 'ServiceStatus"></div><div id="CheckBoxTable"><input type="checkbox" name="' + $.base64.decode( client ) + '@' + $.base64.decode( node ) + '" value="' + this.SERVICE_NAME + '" id="" /></div><table class="' + cssclass + '" cellpadding=0 cellspacing=0><tr><td><img id="ImgServiceStatusHl" src="../' + this.SERVICE_STATUS_ICON + '" /></td><td>' + this.SERVICE_NAME + '</td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr></table>');
+                if (this.ACK == "1") { $('#' + i + 'ServiceStatus').append('<img id="ImgServiceAck" src="../layout/images/icons/eye.png" title="Service Problem ist bearbeitet." />'); }
+                if (this.CMT == "") { /**/ } else { $('#' + i + 'ServiceStatus').append('<img id="ImgServiceCmt" src="../layout/images/icons/balloon-left.png" title="Service wurde kommentiert." />'); }
                 i++;
             });
             $('#FooterHostSrvList').html(i + ' Services');

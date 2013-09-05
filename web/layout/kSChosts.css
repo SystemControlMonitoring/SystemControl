@@ -148,6 +148,30 @@
     margin-bottom: -5px;
 }
 
+#ImgHostAck {
+    position: absolute;
+    margin-left: 200px;
+    margin-top: -38px;
+}
+
+#ImgHostCmt {
+    position: absolute;
+    margin-left: 220px;
+    margin-top: -38px;
+}
+
+#ImgHostGridAck {
+    position: absolute;
+    margin-left: 270px;
+    margin-top: -25px;
+}
+
+#ImgHostGridCmt {
+    position: absolute;
+    margin-left: 250px;
+    margin-top: -25px;
+}
+
 #DivShowServices table {
     width: 100%;
     border: 1px solid #82abcc;

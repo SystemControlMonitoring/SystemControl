@@ -172,6 +172,15 @@
     border: 2px solid #82abcc;
 }
 
+#TableComments {
+    border-bottom: 1px solid #82abcc;
+    border-top: 1px solid #82abcc;
+}
+
+#TableComments:hover {
+    background-color: #004279;
+}
+
 #TPie {
     height: 200px;
 }
@@ -246,4 +255,41 @@
     text-align: left;
     border-left: 2px solid #82abcc;
     padding: 3px;
+}
+
+#TaovImgServiceAck {
+    margin-top: -14px;
+    margin-left: -45px;
+}
+
+#TaovImgServiceCmt {
+    margin-top: -18px;
+    margin-left: -25px;
+}
+
+.TextComment {
+    font-size: 11px;
+    color: #82abcc;
+    padding: 5px;
+}
+
+.TextSrvHst {
+    font-size: 13px;
+    color: #fff;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.TextHeader {
+    font-size: 13px;
+    color: #82abcc;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+}
+
+.TextHeader i {
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold;
 }

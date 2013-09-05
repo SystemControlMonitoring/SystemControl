@@ -87,6 +87,7 @@
                 Top(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 SubLiveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 SubSlimTaov(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                ShowAllComments(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 KlickFunctionSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 KeyFunctionSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 SubBase();
@@ -208,7 +209,7 @@
                                 <td>
                                     <div id="HeadComments">Letzte Kommentare</div>
                                     <div id="Comments"></div>
-                                    <div id="FooterComments">22 Kommentare</div>
+                                    <div id="FooterComments"></div>
                                 </td>
                                 <td>
                                     <div id="HeaderServicePie">Service Status &Uuml;bersicht (ONLINE Hosts)</div>

@@ -577,3 +577,15 @@ img#HostTypeIcon {
     margin-top: 3px;
     margin-left: 280px;
 }
+
+#ImgServiceAck {
+    position: absolute;
+    margin-left: 242px;
+    margin-top: 5px;
+}
+
+#ImgServiceCmt {
+    position: absolute;
+    margin-left: 262px;
+    margin-top: 5px;
+}
