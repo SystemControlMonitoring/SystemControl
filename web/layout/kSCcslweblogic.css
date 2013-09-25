@@ -1,0 +1,22 @@
+/* 
+    Document   : kSCoracle_database
+    Created on : 22.07.2013, 10:41:08
+    Author     : sbaresel
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#SidebarSubmenu {
+    position: absolute;
+    padding: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    height: 275px;
+}
+
+#AdminTitle {
+    font-size: 32px;
+    letter-spacing:-2px;
+    margin-left: 35px;
+}

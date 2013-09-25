@@ -1,0 +1,591 @@
+/* 
+    Document   : kSCdatabase
+    Created on : 06.06.2013, 18:14:54
+    Author     : sbaresel
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#SubCenter a span.host-sub-grid {
+    font-size: 14px;
+    letter-spacing: 0px;
+    color: #82abcc;
+}
+
+#SubCenter a img.Type {
+    width: 48px;
+    margin-left: -10px;
+    margin-bottom: -12px;
+    margin-right: 5px;
+}
+
+#SubCenter a.prebig, #SubCenter a.normal, #SubCenter a.numbers, #SubCenter a.fulltext, #SubCenter a.preview, #SubCenter a.twitter, #SubCenter a.stats, #SubCenter a.ticker, #SubCenter a.icon, #SubCenter a.search, #SubCenter a.big, #SubCenter div.big { background: #004c8a; border:1px solid #82abcc; font-size:16px; }
+
+#SubCenter a.prebig#SubCenter a.normal:hover, #SubCenter a.numbers:hover, #SubCenter a.fulltext:hover, #SubCenter a.preview:hover, #SubCenter a.twitter:hover, #SubCenter a.stats:hover, #SubCenter a.ticker:hover, #SubCenter a.icon:hover, #SubCenter a.search:hover { background: #82abcc; border:1px solid #82abcc; font-size:16px; }
+
+#SubCenter a.big:hover, #SubCenter a.prebig:hover, #SubCenter a.big:hover>span {  }
+
+#SubCenter a.AddNext { opacity: 0.1; filter: alpha(opacity=10); -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=10)"; -moz-opacity: 0.1; -khtml-opacity: 0.1;}
+#SubCenter a.AddNext:hover { opacity: 1.0; filter: alpha(opacity=100); -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; -moz-opacity: 1.0; -khtml-opacity: 1.0; }
+
+#SubCenter a.normal:hover>span, #SubCenter a.numbers:hover>span, #SubCenter a.fulltext:hover>span, #SubCenter a.preview:hover>span, #SubCenter a.twitter:hover>span, #SubCenter a.stats:hover>span, #SubCenter a.ticker:hover>span, #SubCenter a.icon:hover>span, #SubCenter a.search:hover>span, #SubCenter a.ticker:hover>.subcontent { color: #004c8a; }
+
+#SubCenter, .metro-pivot{
+	padding: 45px;
+	overflow: hidden;
+}
+
+#SubCenter {
+    margin-bottom: 20px;
+}
+
+#SubCenter a:focus {
+	outline:0
+}
+
+#SubCenter section{
+	display:inline-block;
+	margin-right:100px;
+}
+
+#SubCenter a{
+	display:block;
+	float:left;
+	margin:4px;
+	height:100px;
+	width:260px;
+	padding:25px;
+	z-index:0;
+	color:#fff;
+	font-size:18px;
+	text-decoration:none;
+}
+
+#SubCenter a span{
+	font-size:36px;
+	letter-spacing:-3px;
+}
+
+#SubCenter a span.sub-grid {
+    font-size: 16px;
+    letter-spacing: 0px;
+}
+
+#SubCenter a img{
+	display:inline;
+	margin:-25px 0 0 -25px;
+}
+
+#SubCenter a.icon, #SubCenter a.search, #SubCenter a.AddNext{
+	width:100px;
+}
+
+#SubCenter a.AddNext>img {
+	margin-top: 25px;
+	margin-left: 22px;
+}
+
+#SubCenter a.preview{
+	font-size:30px;
+}
+
+#SubCenter a.preview img{
+	display:block;
+	margin-bottom:5px
+}
+
+#SubCenter a.twitter{
+	font-size:14px;
+	text-shadow:1px 1px 2px ##652d9a;
+	padding-top:15px;
+	padding-left:15px;
+	height: 110px;
+	width: 260px;
+}
+
+#SubCenter a.twitter>span {
+	font-size:20px;
+}
+
+#SubCenter a.twitter>i {
+	font-size:.9em;
+	font-style:italic;
+}
+
+#SubCenter a.twitter>img {
+	float:left;
+	margin:0 5px 0 0;
+}
+
+#SubCenter a.images {
+	padding:0;
+	width:302px;
+	height:152px;
+}
+
+#SubCenter a.stats {
+	width: 580px;
+	height: 260px;
+}
+
+#SubCenter a.ticker {
+    width: 260px;
+    height: 260px;
+}
+
+#SubCenter a.big {
+    height: 360px;
+}
+
+#SubCenter a.big .small-text {
+    letter-spacing: 0px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+center#ad-container {
+    padding-top:5px;
+    border-top:solid 1px #eee;
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:white;
+}
+
+#SubCenter a.prebig {
+    height: 260px;
+}
+
+/*
+*
+* Informations Section
+*
+*/
+
+#HostInformations {
+    position: absolute;
+    top: 144px;
+    padding: 5px;
+    bottom: 95px;
+}
+
+/*
+* 
+* Host Service List
+*
+*/
+
+#HostSrvList {
+    position: absolute;
+    border-top: 1px solid #82abcc;
+    border-bottom: 1px solid #82abcc;
+    overflow-x: auto;
+    overflow-y: scroll;
+    bottom: -32px;
+    top: 30px;
+}
+
+#HostSrvList table {
+    width: 100%;
+    border: 1px solid #82abcc;
+    font-size: 14px;
+    table-layout: fixed;
+}
+
+#HostSrvList table td {
+    padding: 5px;
+}
+
+#HostSrvList table td:first-child {
+    width: 30px;
+    text-align: center;
+}
+
+#HostSrvList table td:first-child img {
+    margin-bottom: -5px;
+    margin-left: 10px;
+}
+
+#HostSrvList table td:first-child + td {
+    width: 250px;
+    border-right: 2px solid #82abcc;
+}
+
+#HostSrvList table td:last-child {
+    width: 185px;
+    font-size: 12px;
+    color: #82abcc;
+}
+
+#HeadHostSrvList {
+    padding: 9px;
+    cursor: default;
+    font-size: 12px;
+    color: #82abcc;
+}
+
+#HeadHostSrvList span:first-child {
+    margin-left: 100px;
+}
+
+#HeadHostSrvList span:first-child + span {
+    margin-left: 183px;
+}
+
+#FooterHostSrvList {
+    border-left: 2px solid #82abcc;
+    border-right: 2px solid #82abcc;
+    border-bottom: 2px solid #82abcc;
+    font-size: 12px;
+    padding: 9px;
+    background-color: #004c8a;
+    cursor: default;
+    position: absolute;
+    bottom: -32px;
+}
+
+/*
+*
+* Host Services
+*
+*/
+
+#HostServices {
+    position: absolute;
+    top: 190px;
+    bottom: 0px;
+}
+
+/*
+*
+* Host Status
+*
+*/
+
+#HostStatus {
+    position: absolute;
+    width: 330px;
+    height: 170px;
+}
+
+img#HostTypeIcon {
+    position: absolute;
+    width: 65px;
+    top: 0px;
+    left: 0px;
+}
+
+#HostTypeDesc {
+    position: absolute;
+    top: 0px;
+    left: 75px;
+    width: 250px;
+}
+
+#HostTypeState {
+    position: absolute;
+    left: 0px;
+    top: 70px;
+    font-size: 13px;
+    width: 64px;
+    text-align: center;
+}
+
+#HostTypeAgent {
+    position: absolute;
+    left: 75px;
+    top: 30px;
+    font-size: 13px;
+    width: 250px;
+}
+
+#HostTypeAgentEt {
+    position: absolute;
+    left: 75px;
+    top: 43px;
+    font-size: 13px;
+    width: 250px;
+}
+
+#HostTypeStartup {
+    position: absolute;
+    left: 75px;
+    top: 70px;
+    font-size: 13px;
+    width: 250px;   
+}
+
+#HostTypeUptime {
+    position: absolute;
+    left: 75px;
+    top: 83px;
+    font-size: 13px;
+    width: 250px;    
+}
+
+/*
+*
+* Host Summary
+*
+*/
+
+#HostSummary {
+    position: absolute;
+    margin-left: 350px;
+    height: 170px;
+}
+
+#HostSumName font, #HostSumNode font, #HostSumIP font, #HostSumLSt font, #HostSumNSt font, #HostSumHgp font {
+    color: #82abcc;
+}
+
+#HostSumName {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+}
+
+#HostSumNode {
+    position: absolute;
+    left: 0px;
+    top: 16px;
+    width: 100%;
+}
+
+#HostSumIP {
+    position: absolute;
+    left: 0px;
+    top: 37px;
+    width: 100%;
+    font-size: 13px;
+}
+
+#HostSumLSt {
+    position: absolute;
+    left: 0px;
+    top: 56px;
+    width: 175px;
+    font-size: 13px;
+}
+
+#HostSumNSt {
+    position: absolute;
+    left: 175px;
+    top: 56px;
+    width: 175px;
+    font-size: 13px;
+}
+
+#HostSumHgp {
+    position: absolute;
+    left: 0px;
+    top: 95px;
+    width: 100%;
+    font-size: 13px;
+}
+
+#HostSumServices {
+    position: absolute;
+    top: 130px;
+    left: 0px;
+    color: white;
+    font-size: 12px;
+    width: 400px;
+}
+
+#HostSumServices a {
+    color: white;
+}
+
+#HostSumServices table td {
+    padding: 3px;
+}
+
+#HostSumServices table {
+    border-spacing: 4px 0px;
+}
+
+#HostSumLocalAccess {
+    position: absolute;
+    right: -15px;
+    top: 0px;
+    font-size: 16px;
+}
+
+/*
+ * Admin Menu
+ */ 
+
+#SidebarSubmenu {
+    position: absolute;
+    padding: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    height: 275px;
+}
+
+#AdminTitle {
+    font-size: 32px;
+    letter-spacing:-2px;
+    margin-left: 35px;
+}
+
+#AdminDivs {
+    display: none;
+}
+
+#DivReCheckTable, #DivReCheckTablePost {
+    margin-top: 15px;
+    margin-left: 15px;
+    width: 685px;
+    border-spacing: 0px;
+}
+
+#DivReCheckTable td, #DivReCheckTablePost td {
+    border-bottom: 1px dotted #82abcc;
+    padding: 5px;
+    border-spacing: 0px;
+    text-align: center;
+}
+
+#DivReCheckTable thead, #DivReCheckTablePost thead {
+    height: 20px;
+    color: #82abcc;
+    font-weight: normal;
+    font-size: 11px;
+}
+
+#DivReCheckTable thead tr:hover, #DivReCheckTablePost thead tr:hover {
+    background-color: #004c8a;
+    cursor: default;
+}
+
+#DivReCheckTable tr:hover, #DivReCheckTablePost tr:hover {
+    background-color: #004279;
+    cursor: default;
+}
+
+#success p:first-child {
+    margin-left: 35px;
+    margin-top: 15px;
+    margin-bottom: -10px;
+}
+
+#DivReCheck h3, #DivAcknldge h3, #DivComment h3, #DivDowntime h3, #DivNotify h3, #DivRemAck h3, #DivRemDwntm h3, #DivEnNotify h3, #DivDelLog h3 {
+    margin-top: 15px;
+    margin-left: 35px;
+    margin-bottom: 15px;
+}
+
+#Author, #Senden, #CAuthor, #CSenden, #DAuthor, #DSenden {
+    margin-left: 55px;
+}
+
+#Author font, #CAuthor font, #DAuthor font, #DStart font, #DEnd font {
+    font-size: 12px;
+}
+
+#Author input[type=text], #CAuthor input[type=text], #DAuthor input[type=text], #DStart input[type=text], #DEnd input[type=text] {
+    background: #004279;
+    border: 1px solid #82abcc;
+    color: white;
+    padding: 5px;
+    width: 240px;
+}
+
+#Comment, #CComment, #DComment {
+    margin-left: 55px;
+}
+
+#DStart {
+    margin-left: 55px;
+    margin-top: 4px;
+}
+
+#DEnd {
+    margin-left: 64px;
+    margin-top: 5px;
+}
+
+#Comment font, #CComment font, #DComment font {
+    position: absolute;
+    top: 94px;
+    left: 43px;
+    font-size: 12px;
+}
+
+#Comment textarea, #CComment textarea, #DComment textarea {
+    background: #004279;
+    border: 1px solid #82abcc;
+    color: white;
+    padding: 5px;
+    width: 450px;
+    height: 200px;
+    margin-top: 5px;
+    margin-left: 40px;
+    resize: none;
+}
+
+#mailaddr, #Cmailaddr, #Dmailaddr {
+    position: absolute;
+    left: 107px;
+    display: none;
+    background: #004279;
+    border: 1px solid #82abcc;
+    color: white;
+    padding: 5px;
+    width: 452px;
+}
+
+#Senden, #Insertto, #CSenden, #CInsertto, #DSenden, #DInsertto {
+    height: 25px;
+}
+
+#send, #Csend, #Dsend {
+    position: absolute;
+    left: 80px;
+    top: 350px;
+}
+
+#insertto1, #Cinsertto1, #Dinsertto1 {
+    position: absolute;
+    left: 80px;
+    top: 420px;
+}
+
+#insertto2, #Cinsertto2, #Dinsertto2 {
+    position: absolute;
+    left: 105px;
+    display: none;
+    color: greenyellow;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px;
+}
+
+#CheckBoxAll {
+    position: absolute;
+    top: 5px;
+    left: 280px;
+}
+
+#CheckBoxTable {
+    position: absolute;
+    margin-top: 3px;
+    margin-left: 280px;
+}
+
+#ImgServiceAck {
+    position: absolute;
+    margin-left: 242px;
+    margin-top: 5px;
+}
+
+#ImgServiceCmt {
+    position: absolute;
+    margin-left: 262px;
+    margin-top: 5px;
+}
