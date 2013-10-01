@@ -167,8 +167,16 @@ function Storage(uid) {
         }
     });
     
-    // OS Independent
+    ChartNwIo(node,client,b64uid);
+    ChartMemIo(node,client,b64uid);
     
+    // OS Dependent
+    
+    if ( $.base64.decode( urlPara('t') ) == "WIN" ) {
+
+    ChartWinCpu(node,client,b64uid);
+    ChartWinIo(node,client,b64uid);
+
     $('#bios').jqGrid({ 
 	url:'http://' + Backend + '/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=QklPUw==JhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
 	datatype: 'json',
@@ -220,16 +228,6 @@ function Storage(uid) {
 	autowidth: true
     });
     $('#onboard').jqGrid('navGrid','#pageronb',{edit:false,add:false,del:false,search:false});
-    
-    ChartNwIo(node,client,b64uid);
-    ChartMemIo(node,client,b64uid);
-    
-    // OS Dependent
-    
-    if ( $.base64.decode( urlPara('t') ) == "WIN" ) {
-
-    ChartWinCpu(node,client,b64uid);
-    ChartWinIo(node,client,b64uid);
 
     $('#storage').jqGrid({ 
 	url:'http://' + Backend + '/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=RlM=JhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
@@ -373,20 +371,72 @@ function Storage(uid) {
     ChartLinuxCpu(node,client,b64uid);
     ChartLinuxIo(node,client,b64uid);
 
+    $('#bios').jqGrid({ 
+	url:'http://' + Backend + '/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=QklPUw==JhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
+	datatype: 'json',
+	colNames:['Hersteller', 'Version', 'Release Date', 'Firmware', 'Revision'],
+	colModel:[
+            {name:'capt', width: 325, align:'left', sortable: false, resizable:true},
+            {name:'reda', width: 200, align:'center', sortable: false, resizable:true},
+            {name:'senu', width: 200, align:'center', sortable: false, resizable:true},
+            {name:'smbi', width: 165, align:'left', sortable: false, resizable:true},
+            {name:'stat', width: 165, align:'center', sortable: false, resizable:true}
+	],
+	rowNum:1,
+	pager: '#pagerbios',
+	viewrecords: false,
+	sortname: 'name',
+	sortorder: 'asc',
+	caption: 'Zusammenfassung',
+	height: 25,
+	width: '1040',
+	shrinkToFit: false,
+	autowidth: true,
+	pgbuttons: false,
+	hidegrid: false,
+	pgtext: null
+    });
+    $('#bios').jqGrid('navGrid','#pagerbios',{edit:false,add:false,del:false,search:false});
+
+    $('#onboard').jqGrid({ 
+	url:'http://' + Backend + '/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=T05CT0FSRA==JhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
+	datatype: 'json',
+	colNames:[ 'Beschreibung', 'Enabled'],
+	colModel:[
+            {name:'desc', width: 457, align:'left', sortable: false, resizable:true},
+            {name:'dtyp', width: 200, align:'center', sortable: false, resizable:true}
+        ],
+	rowNum:10,
+	rowList:[3,6,10,20,30],
+	pager: '#pageronb',
+        sortname: 'name',
+	sortorder: 'asc',
+	viewrecords: true,
+	caption: 'Onboard Device',
+	height: 251,
+	width: '520',
+	shrinkToFit: false,
+	hidegrid: false,
+	autowidth: true
+    });
+    $('#onboard').jqGrid('navGrid','#pageronb',{edit:false,add:false,del:false,search:false});
+
     $('#storage').jqGrid({ 
 	url:'http://' + Backend + '/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=RlM=JhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
 	datatype: 'json',
-        colNames:['Typ', 'Device', 'Gr&ouml;&szlig;e', 'Nutzung', 'Frei', 'Mount Point'],
-	colModel:[ 
+        colNames:['Typ', 'Mount Point', 'Gr&ouml;&szlig;e', 'Nutzung', 'Frei', 'Pfad'],
+	colModel:[
             {name:'type', width: 50, align:'center', sortable: false, resizable:true},
-            {name:'name', width: 225, align:'left', sortable: false, resizable:true},
+            {name:'name', width: 100, align:'left', sortable: false, resizable:true},
             {name:'size', width: 75, align:'center', sortable: false, resizable:true},
             {name:'usage', width: 75, align:'center', sortable: false, resizable:true},
             {name:'free', width: 75, align:'center', sortable: false, resizable:true},
-            {name:'desc', width: 155, align:'left', sortable: false, resizable:true}
-	],
+            {name:'desc', width: 280, align:'left', sortable: false, resizable:true}
+        ],
 	rowNum:10,
 	rowList:[3,6,10,20,30],
+        sortname: 'name',
+        sortorder: 'asc',
 	pager: '#pagersto',
 	viewrecords: true,
 	caption: 'Mountpoints',
@@ -401,15 +451,18 @@ function Storage(uid) {
     $('#devcont').jqGrid({ 
 	url:'http://' + Backend + '/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=REVWQ09OVA==JhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
 	datatype: 'json',
-	colNames:['Beschreibung', 'Hersteller', 'Protokoll', 'Status'],
-	colModel:[ 
-            {name:'desc', width: 805, align:'left', sortable: false, resizable:true},
+	colNames:['Beschreibung', 'Hersteller', 'Protokoll', 'Status', 'Status Information'],
+	colModel:[
+            {name:'desc', width: 600, align:'left', sortable: false, resizable:true},
             {name:'vend', width: 113, align:'left', sortable: false, resizable:true},
             {name:'prot', width: 80, align:'center', sortable: false, resizable:true},
             {name:'stat', width: 80, align:'center', sortable: false, resizable:true},
+            {name:'stai', width: 200, align:'left', sortable: false, resizable:true}
 	],
 	rowNum:6,
 	rowList:[3,6,10,20],
+        sortname: 'name',
+        sortorder: 'asc',
 	pager: '#pagerdc',
 	viewrecords: true,
 	caption: 'Device Controller',
@@ -425,12 +478,14 @@ function Storage(uid) {
 	url:'http://' + Backend + '/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=RE1BJhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
 	datatype: 'json',
 	colNames:['Kanal', 'Gr&ouml;&szlig;e'],
-	colModel:[ 
+	colModel:[
             {name:'chan', width: 265, align:'left', sortable: false, resizable:true},
             {name:'stat', width: 112, align:'center', sortable: false, resizable:true}
 	],
 	rowNum:10,
 	rowList:[3,6,10,20,30],
+        sortname: 'name',
+        sortorder: 'asc',
 	pager: '#pagerdma',
 	viewrecords: false,
 	caption: 'RAM Channel',
@@ -447,20 +502,22 @@ function Storage(uid) {
 	datatype: 'json',
 	colNames:['User', 'PId', 'CPU%', 'MEM%', 'VSZ', 'RSS', 'TTY', 'STAT', 'Start Datum', 'Start Zeit', 'Command Line'],
 	colModel:[
-            {name:'capt', width: 100, align:'left', sortable: false, resizable:true},
+            {name:'name', width: 100, align:'center', sortable: false, resizable:true},
             {name:'cmdl', width: 50, align:'center', sortable: false, resizable:true},
-            {name:'crda', width: 50, align:'center', sortable: false, resizable:true},
-            {name:'haco', width: 50, align:'center', sortable: false, resizable:true},
-            {name:'name', width: 50, align:'left', sortable: false, resizable:true},
-            {name:'pfus', width: 50, align:'left', sortable: false, resizable:true},
+            {name:'date', width: 50, align:'center', sortable: false, resizable:true},
+            {name:'hndl', width: 50, align:'center', sortable: false, resizable:true},
+            {name:'dscr', width: 75, align:'center', sortable: false, resizable:true},
+            {name:'pfus', width: 75, align:'center', sortable: false, resizable:true},
             {name:'ppid', width: 50, align:'center', sortable: false, resizable:true},
-            {name:'prid', width: 50, align:'center', sortable: false, resizable:true},
-            {name:'ropc', width: 70, align:'center', sortable: false, resizable:true},
-            {name:'thco', width: 70, align:'center', sortable: false, resizable:true},
-            {name:'visi', width: 435, align:'left', sortable: false, resizable:true},
+            {name:'apid', width: 50, align:'center', sortable: false, resizable:true},
+            {name:'ropc', width: 60, align:'center', sortable: false, resizable:true},
+            {name:'thco', width: 60, align:'center', sortable: false, resizable:true},
+            {name:'visi', width: 405, align:'left', sortable: false, resizable:true},
 	],
 	rowNum:24,
 	rowList:[18,24,30,40,50],
+        sortname: 'name',
+        sortorder: 'asc',
 	pager: '#pagerproc',
 	viewrecords: true,
 	sortorder: 'asc',
@@ -476,13 +533,19 @@ function Storage(uid) {
     $('#log').jqGrid({ 
 	url:'http://' + Backend + '/jqgrid/json/?e=1&m=U3lzSnFHcmlkJkd873&cm=TE9HJhDQ83&h=' + node + 'Hjd876&c=' + client + 'Jjd723&u=' + b64uid + 'U7g7ZZ',
 	datatype: 'json',
-	colNames:['Typ','Meldung'],
+	colNames:['Event Typ', 'Logfile', 'Meldung', 'Quelle', 'Erstellt', 'Nutzer'],
 	colModel:[
-            {name:'typ', width: 50, align:'left', sortable: false, resizable:true},
-            {name:'mes', width: 1022, align:'left', sortable: false, resizable:true}
+            {name:'evt', width: 60, align:'center', sortable: false, resizable:true},
+            {name:'lgf', width: 75, align:'left', sortable: false, resizable:true},
+            {name:'mes', width: 375, align:'left', sortable: false, resizable:true},
+            {name:'sor', width: 275, align:'left', sortable: false, resizable:true},
+            {name:'cre', width: 125, align:'center', sortable: false, resizable:true},
+            {name:'use', width: 140, align:'center', sortable: false, resizable:true}
 	],
 	rowNum:24,
 	rowList:[18,24,30,40,50],
+        sortname: 'crtd',
+        sortorder: 'desc',
 	pager: '#pagerlog',
 	viewrecords: true,
 	sortorder: 'asc',
