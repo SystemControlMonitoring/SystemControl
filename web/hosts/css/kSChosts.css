@@ -1,0 +1,699 @@
+/* 
+    Document   : kSChosts
+    Created on : 11.04.2013, 16:34:16
+    Author     : sbaresel
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#center {
+    border-top: 1px solid #004c8a;
+    border-bottom: 1px solid #004c8a;
+}
+
+/*
+ * Summary
+ */
+
+ #StatusSummaryHead {
+     position: absolute;
+     top: 290px;
+     left: 10px;
+     right: 10px;
+     border: 2px solid #82abcc;
+     height: 33px;
+     background-color: #004c8a;
+ }
+  
+ #StatusSummary {
+     position: absolute;
+     top: 123px;
+     left: 10px;
+     right: 10px;
+     height: 160px;
+ }
+ 
+ #HostStatusSummary {
+     left: 2px;
+     width: 246px;
+ }
+
+ #ServiceStatusSummary {
+     left: 255px;
+     right: 2px;
+ }
+ 
+ #ServiceStatusSummary, #HostStatusSummary {
+     position: absolute;
+     margin-top: 23px;
+     height: 133px;
+     overflow-x: hidden;
+     overflow-y: auto;
+ }
+  
+ #HostStatusSummaryHead, #ServiceStatusSummaryHead {
+     position: absolute;
+     margin-top: 6px;
+     font-size: 12px;
+     cursor: default;
+ }
+ 
+ #HostStatusSummaryHead {
+     left: 10px;
+ }
+ 
+ #ServiceStatusSummaryHead {
+     left: 265px;
+ }
+ 
+ #SummaryBox {
+     display: block;
+     border: 1px solid #82abcc;
+     width: 20px;
+     height: 20px;
+     float: left;
+     margin: 1px;
+     cursor: default;
+ }
+ 
+ #ServicesHost {
+     position: absolute;
+     margin-top: -20px;
+     right: 200px;
+     left: 800px;
+     height: 48px;
+     overflow-y: hidden;
+ }
+ 
+ #HostGridSelect {
+    position: absolute;
+    left: 12px;
+    top: 293px;
+    width: 450px;
+    height: 31px;
+    color: white;
+    background-color: #004c8a;
+    z-index: 5;
+    border-right: 1px dotted #82abcc;
+}
+
+#ShowGridSearchBar {
+    position: absolute;
+    top: 10px;
+    right: 300px;
+    color: white;    
+    cursor: pointer;
+    font-size: 12px;
+    width: 200px;
+    z-index:5;
+    text-align: right:
+}
+ 
+/*
+ * List
+ */
+
+ #StatusListHead {
+     position: absolute;
+     top: 335px;
+     left: 10px;
+     right: 10px;
+     border-top: 2px solid #82abcc;
+     border-left: 2px solid #82abcc;
+     border-right: 2px solid #82abcc;
+     height: 33px;
+     background-color: #004c8a;
+ }
+ 
+ #StatusList {
+     position: absolute;
+     border: 2px solid #82abcc;
+     left: 10px;
+     right: 10px;
+     top: 370px;
+     bottom: 65px;
+     overflow-x: hidden;
+     overflow-y: auto;
+ }
+ 
+/*
+ * Weiteres
+ */
+
+#NoContent {
+    margin-left: 15px;
+    margin-top: 15px;
+    font-size: 12px;
+}
+
+.default {
+    background-color: #004279;
+    border: 2px solid #004c8a;
+}
+
+.ok {
+    background-color: #088A08;
+    border: 2px solid #088A08;
+}
+
+.cr {
+    background-color: #9c1919;
+    border: 2px solid #9c1919;
+}
+
+.un {
+    background-color: #C800C8;
+    border: 2px solid #C800C8;
+}
+
+.wa {
+    background-color: orange;
+    border: 2px solid orange;
+}
+
+.pe {
+    background-color: #C800C8;
+    border: 2px solid #C800C8;
+}
+
+.fok {
+    color: #088A08;
+}
+
+.fcr {
+    color: #ff3333;
+}
+
+.fun {
+    color: #C800C8;
+}
+
+.fwa {
+    color: orange;
+}
+
+.Notice {
+    color: #82abcc;
+}
+
+.hcr {
+    background-color: #9c1919;
+}
+
+.hun {
+    background-color: #6c006c;
+}
+
+.hwa {
+    background-color: orange;
+}
+
+.hok {
+    background-color: #088A08;
+}
+
+.hpe {
+    background-color: grey;
+}
+
+.FontSmallShowCritical {
+    font-size: 12px;
+    color: #82abcc;
+}
+
+.FontBigShowCritical {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.DefFontBigShowCritical {
+    font-size: 12px;
+    font-weight: bold;
+    color: #82abcc;
+}
+
+.BorderBottom {
+    border-bottom: 1px solid #82abcc;
+}
+
+/*
+ * Notifications
+ */
+
+ #HostNotifications {
+     position: absolute;
+     margin-left: 105px;
+     margin-top: -17px;
+     width: 100px;
+     height: 15px;
+     text-align: right;
+ }
+
+/*
+ * List Table
+ */
+
+#StatusListEntry table {
+    width: 100%;
+    border-spacing:0;
+    border-collapse:collapse;
+    font-size: 12px;
+    table-layout: fixed;
+}
+
+#StatusListEntry table tr {
+    vertical-align: middle;
+}
+
+#StatusListEntry table tr:first-child td:first-child img {
+    width: 32px;
+    margin-bottom: -23px;
+    margin-left: 4px;
+}
+
+#StatusListEntry table tr:first-child td:first-child {
+    width: 50px;
+    text-align: center;
+    border-top: 1px solid #82abcc;
+    border-bottom: 1px solid #82abcc;
+    border-left: 1px solid #82abcc;
+}
+
+#StatusListEntry table tr:first-child td:first-child + td {
+    width: 200px;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px;
+    border-top: 1px solid #82abcc;
+}
+
+#StatusListEntry table tr:first-child + tr td:first-child {
+    padding: 5px;
+    border-bottom: 1px solid #82abcc;
+}
+
+#StatusListEntry table tr:first-child + tr td:first-child:hover {
+    background-color: #004c8a;
+}
+
+#StatusListEntry table tr:first-child td:first-child + td + td {
+    width: 100px;
+    border-top: 1px solid #82abcc;
+    border-bottom: 1px solid #82abcc;
+    padding: 5px;
+}
+
+#StatusListEntry table tr:first-child td:first-child + td + td + td {
+    width: 25px;
+    text-align: center;
+    border-top: 1px solid #82abcc;
+    border-bottom: 1px solid #82abcc;
+}
+
+#StatusListEntry table tr:first-child td:first-child + td + td + td + td, #StatusListEntry table tr:first-child td:first-child + td + td + td + td + td, #StatusListEntry table tr:first-child td:first-child + td + td + td + td + td + td, #StatusListEntry table tr:first-child td:first-child + td + td + td + td + td + td + td, #StatusListEntry table tr:first-child td:first-child + td + td + td + td + td + td + td + td {
+    width: 25px;
+    text-align: center;
+    border-left: 1px solid #82abcc;
+    border-top: 1px solid #82abcc;
+    border-bottom: 1px solid #82abcc;
+}
+
+#StatusListEntry table tr:first-child td:first-child + td + td + td + td + td + td + td + td + td {
+    border-left: 1px solid #82abcc;
+    border-top: 1px solid #82abcc;
+    border-bottom: 1px solid #82abcc;
+    padding-left: 5px;
+}
+
+#StatusListEntry table tr:first-child td:first-child + td + td + td + td + td + td + td + td + td + td {
+    width: 180px;
+    color: #82abcc;
+    border-top: 1px solid #82abcc;
+    border-bottom: 1px solid #82abcc;
+    border-right: 1px solid #82abcc;
+}
+
+/*
+ *
+ */
+
+#HostIcon {
+    width: 40px;
+}
+
+#HostText {
+    position: absolute;
+    margin-left: 30px;
+    margin-top: 7px;
+}
+
+#HostText b {
+    font-size: 20px;
+}
+
+#HostStatusIcon {
+    position: absolute;
+    margin-top: 12px;
+    margin-left: 10px;
+}
+
+#SubDivShowServices {
+    margin-top: -2px;
+}
+
+#ServiceLst table {
+    margin-left: -32px;
+}
+
+#ServiceLst table:first-child {
+    margin-top: -15px;
+}
+
+#ServiceLst table:last-child {
+    margin-bottom: -14px;
+}
+
+#DivTableHostsListView {
+    position: absolute;
+    overflow-x: hidden;
+    overflow-y: auto;
+    bottom: 55px;
+    width: 100%;
+    top: 210px;
+    background-color: #004279;
+    z-index:0;
+    border-bottom: 1px solid #82abcc;
+}
+
+#DivTableHostsListView a {
+    color: #fff;
+}
+
+/*
+ * Head Table
+ */
+
+#HeadDivTableHostsListView {
+    position: absolute;
+    z-index: 1;
+    top: 0px;
+    padding: 10px;
+    cursor: default;
+    font-size: 12px;
+    color: #82abcc;
+}
+
+#HeadDivTableHostsListView span:first-child {
+    margin-left: 95px;
+}
+
+#HeadDivTableHostsListView span:first-child + span {
+    margin-left: 140px;
+}
+
+#HeadDivTableHostsListView span:first-child + span + span {
+    margin-left: 73px;
+}
+
+#HeadDivTableHostsListView span:first-child + span + span + span {
+    margin-left: 12px;
+}
+
+#HeadDivTableHostsListView span:first-child + span + span + span + span, #HeadDivTableHostsListView span:first-child + span + span + span + span + span, #HeadDivTableHostsListView span:first-child + span + span + span + span + span + span, #HeadDivTableHostsListView span:first-child + span + span + span + span + span + span + span {
+    margin-left: 12px;
+}
+
+#HeadDivTableHostsListView span:first-child + span + span + span + span + span + span + span + span {
+    margin-left: 50px;
+}
+
+/*
+*
+* Select
+*
+*/
+
+#HostsListSelect {
+    position: absolute;
+    top: 10px;
+    left: 25px;
+    width: 450px;
+    height: 31px;
+    color: white;
+    border: 2px solid #82abcc;
+}
+
+#HostsListSearch {
+    position: absolute;
+    top: 12px;
+    left: 525px;
+    height: 31px;
+    color: white;    
+    cursor: pointer;
+}
+
+#AutoReload {
+    position: absolute;
+    top: 302px;
+    right: 5px;
+    color: #82abcc;
+    cursor: default;
+    width: 225px;
+    z-index: 5;
+    font-size: 12px;
+}
+
+#AutoReloadStat {
+    color: #ffffff;
+    cursor: pointer;
+}
+
+#AutoReloadDate {
+    position: absolute;
+    top: 0;
+    left: -75px;
+}
+
+/*
+ * Checkbox 
+ */
+
+#CheckBoxAll {
+    position: absolute;
+    top: 7px;
+    left: 373px;
+    z-index:5;
+}
+
+#CheckBoxHost {
+    width: 20px;
+    height: 20px;
+}
+
+/* Tab */
+
+#HostLinkMenu {
+    margin-left: 269px;
+    margin-top: -101px;
+    height: 31px;
+    width: 34px;
+    font-size: 12px;
+    z-index: 15;
+    position: absolute;
+}
+    
+#HostLinkMenu label {
+    color: #004279;
+}
+
+#HostLinkHover {
+    width: 330px;
+    height: 135px;
+    margin-top: -103px;
+    margin-left: -25px;
+    z-index: 10;
+    position: absolute;
+    cursor: pointer;
+}
+
+#HostTitle {
+    font-size: 28px;
+    letter-spacing:-3px;
+    margin-left: 50px;
+    margin-top: -40px;
+}
+
+#HostType {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+#HostType img {
+    width: 48px;
+}
+
+#DivHostStatus {
+    margin-left: 50px;
+    margin-top: -40px;
+}
+
+#HostSumy {
+    margin-top: 40px;
+    margin-left: 10px;
+    font-size: 14px;
+    color: #82abcc;
+}
+
+/* #### */
+
+
+
+/* Administration */
+
+#SidebarSubmenu {
+    position: absolute;
+    padding: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    height: 275px;
+}
+
+#AdminTitle {
+    font-size: 32px;
+    letter-spacing:-2px;
+    margin-left: 35px;
+}
+
+#AdminDivs {
+    display: none;
+}
+
+#DivReCheckTable, #DivReCheckTablePost {
+    margin-top: 15px;
+    margin-left: 15px;
+    width: 685px;
+    border-spacing: 0px;
+}
+
+#DivReCheckTable td, #DivReCheckTablePost td {
+    border-bottom: 1px dotted #82abcc;
+    padding: 5px;
+    border-spacing: 0px;
+    text-align: center;
+}
+
+#DivReCheckTable thead, #DivReCheckTablePost thead {
+    height: 20px;
+    color: #82abcc;
+    font-weight: normal;
+    font-size: 11px;
+}
+
+#DivReCheckTable thead tr:hover, #DivReCheckTablePost thead tr:hover {
+    background-color: #004c8a;
+    cursor: default;
+}
+
+#DivReCheckTable tr:hover, #DivReCheckTablePost tr:hover {
+    background-color: #004279;
+    cursor: default;
+}
+
+#success p:first-child {
+    margin-left: 35px;
+    margin-top: 15px;
+    margin-bottom: -10px;
+}
+
+#DivReCheck h3, #DivAcknldge h3, #DivComment h3, #DivDowntime h3, #DivNotify h3, #DivRemAck h3, #DivRemDwntm h3, #DivEnNotify h3 {
+    margin-top: 15px;
+    margin-left: 35px;
+    margin-bottom: 15px;
+}
+
+#Author, #Senden, #CAuthor, #CSenden, #DAuthor, #DSenden {
+    margin-left: 55px;
+}
+
+#Author font, #CAuthor font, #DAuthor font, #DStart font, #DEnd font {
+    font-size: 12px;
+}
+
+#Author input[type=text], #CAuthor input[type=text], #DAuthor input[type=text], #DStart input[type=text], #DEnd input[type=text] {
+    background: #004279;
+    border: 1px solid #82abcc;
+    color: white;
+    padding: 5px;
+    width: 240px;
+}
+
+#Comment, #CComment, #DComment {
+    margin-left: 55px;
+}
+
+#DStart {
+    margin-left: 54px;
+    margin-top: 4px;
+}
+
+#DEnd {
+    margin-left: 64px;
+    margin-top: 5px;
+}
+
+#Comment font, #CComment font, #DComment font {
+    position: absolute;
+    top: 94px;
+    left: 43px;
+    font-size: 12px;
+}
+
+#Comment textarea, #CComment textarea, #DComment textarea {
+    background: #004279;
+    border: 1px solid #82abcc;
+    color: white;
+    padding: 5px;
+    width: 450px;
+    height: 200px;
+    margin-top: 5px;
+    margin-left: 40px;
+    resize: none;
+}
+
+#mailaddr, #Cmailaddr, #Dmailaddr {
+    position: absolute;
+    left: 107px;
+    display: none;
+    background: #004279;
+    border: 1px solid #82abcc;
+    color: white;
+    padding: 5px;
+    width: 452px;
+}
+
+#Senden, #Insertto, #CSenden, #CInsertto, #DSenden, #DInsertto {
+    height: 25px;
+}
+
+#send, #Csend, #Dsend {
+    position: absolute;
+    left: 80px;
+    top: 350px;
+}
+
+#insertto1, #Cinsertto1, #Dinsertto1 {
+    position: absolute;
+    left: 80px;
+    top: 420px;
+}
+
+#insertto2, #Cinsertto2, #Dinsertto2 {
+    position: absolute;
+    left: 105px;
+    display: none;
+    color: greenyellow;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px;
+}

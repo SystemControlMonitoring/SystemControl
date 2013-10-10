@@ -12,6 +12,10 @@
  */
 
 var Backend;
+var DeleteDomainSuffix;
+var state = urlPara('s').replace(/%3D/g,'=');
+var searchstring = urlPara('searchstring').replace(/%3D/g,'=').replace(/%20/g,' ').replace(/%22/g,'"').replace(/%25/g,'%').replace(/%3C/g,'<').replace(/%3E/g,'>').replace(/%5B/g,'[').replace(/%5C/g,'\\').replace(/%5D/g,']').replace(/%5E/g,'^').replace(/%60/g,'`').replace(/%7B/g,'{').replace(/%7C/g,'|').replace(/%7D/g,'}').replace(/%7E/g,'~').replace(/%7F/g,'').replace(/%28/g,'(').replace(/%29/g,')').replace(/%2B/g,'+');
+var suburl = window.location.pathname.split("/")[1];
 
 function GetBackend() {
     $.ajax({
@@ -153,7 +157,7 @@ function FormSubmit() {
 }
 
 function SearchHosts(uid) {
-    $('form#SearchForm').attr('action', 'hosts.jsp');
+    $('form#SearchForm').attr('action', '');
     $('#SubTitle').html('.. nach Hosts');
     $('input#SearchInput').val('Hostname');
     $('#SFService').removeClass('BgBlue');
@@ -614,4 +618,25 @@ function PrintTS() {
         seconds = "0" + seconds
     }
     return(hours + ":" + minutes + ":" + seconds)
+}
+
+function DeDoSu(uid) {
+    var b64uid = $.base64.encode( uid );
+    $.ajax({
+        url: 'http://' + Backend + '/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u=' + b64uid + 'Lkjdu7&m2=Q29uZmlnJq0OpP',
+        dataType: 'json',
+        cache: false,
+        async: false,
+        success: function(json) {
+            $.each(json, function(key,value) {
+                if ( value.KEY == "DeleteDomainSuffix") {
+                    DeleteDomainSuffix = value;
+                }
+            });
+        }
+    });
+}
+
+function OpenWindow(target,mode) {
+    window.open(target,mode);
 }

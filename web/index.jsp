@@ -108,7 +108,7 @@
                                 <a href="#" class="icon" onclick="Configuration(<% out.println("'" + request.getRemoteUser() + "'"); %>);">
 					<img src="layout/images/gear_icon.png" alt="games" width="148" height="148">
 				</a>
-				<a href="hosts.jsp" class="twitter">
+				<a href="hosts/" class="twitter">
 					<span>Hosts</span><br></br>
 					<span class="sub-grid">Eine &Uuml;bersicht &uuml;ber alle eingerichteten Server.</span>
 				</a>
