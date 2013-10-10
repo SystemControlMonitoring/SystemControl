@@ -488,6 +488,7 @@
 #CheckBoxHost {
     width: 20px;
     height: 20px;
+    z-index: 55;
 }
 
 /* Tab */
