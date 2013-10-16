@@ -57,12 +57,12 @@ function Top(uid) {
 
 function Reload(uid) {
     $('#TopMenu').append('<img id="AjaxLoader" src="../layout/images/ajax-loader.gif">');
-    AllDBs(uid);
+    AllMWs(uid);
 }
 
 function AutoReloadStart(uid) {
     $('#TopMenu').append('<img id="AjaxLoader" src="../layout/images/ajax-loader.gif">');
-    AllDBs(uid);
+    AllMWs(uid);
     $('#AutoReload').html('<span id="AutoReloadDate"></span>Automatischer Reload: <span id="AutoReloadStat" onclick="AutoReloadStop(\'' + uid + '\');">Aktiviert (Alle 90s)</span><span id="AutoReloadTimer"></span>');
     t=setTimeout('AutoReloadStart("' + uid + '")', 90000);
     $('#AutoReloadDate').html(PrintTS() + ' Uhr');
