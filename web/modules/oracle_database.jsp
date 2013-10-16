@@ -83,6 +83,7 @@
             $(document).ready(function() {
                 jQuery.support.cors = true;
                 SubGetBackend();
+                DeDoSu(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 SubLoader();
                 Top(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 SubLiveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);

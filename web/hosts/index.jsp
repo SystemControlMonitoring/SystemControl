@@ -1,5 +1,5 @@
 <%-- 
-    Document   : hosts.jsp
+    Document   : hosts/index.jsp
     Created on : 25.04.2013, 10:54:14
     Author     : sbaresel
 --%>
@@ -15,9 +15,8 @@
 	<meta name="description" content="kVASy(R) System Control.">
 	<meta name="keywords" content="kVASy, System Control, kVASy System Control">
 	<title>Hosts - kVASy&reg; System Control</title>
-	<meta name="language" content="it">
+	<meta name="language" content="de">
 	<meta name="charset" content="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<script type="text/javascript" src="../script/jquery-1.8.2.min.js"></script>
         <script type="text/javascript" src="../script/jquery-ui-1.9.0.custom.min.js"></script>
     	<script type="text/javascript" src="../script/jquery.cookie.js"></script>
@@ -49,7 +48,6 @@
         <link rel='stylesheet' href='../layout/kSCsidebar.css' />
         <link rel='stylesheet' href='../layout/kSCtaov.css' />
         <link rel='stylesheet' href='css/kSChosts.css' />
-        <link rel='stylesheet' href='../layout/ui.jqgrid.css' />
 	<link rel='stylesheet' href='../layout/searchFilter.css' />        
         
         <!-- Personal Computer -> 1024x768 -->

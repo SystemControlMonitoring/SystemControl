@@ -29,6 +29,7 @@ function SlimTaov(uid) {
         crossDomain: true,
         success: function(json) {
             var dbocolor = " default"; var dbccolor = " default"; var DB_OK_ALL = 0; var DB_OK = 0; var DB_CR_ALL = 0; var DB_CR_A = 0; var DB_CR_NA = 0; var DB_CR_NA_OFF = 0; var cnodet; var cnode = 0; var ocolor = " default"; var ccolor = " default"; var ucolor = " default"; var socolor = " default"; var sccolor = " default"; var sucolor = " default"; var swcolor = " default"; var spcolor = " default";var HOST_OK = 0; var HOST_CR = 0; var HOST_CR_NA = 0; var HOST_CR_A = 0; var HOST_UN = 0; var HOST_UN_NA = 0; var HOST_UN_A = 0; var SERVICE_OK_ALL = 0; var SERVICE_OK = 0; var SERVICE_WA_ALL = 0; var SERVICE_WA = 0; var SERVICE_WA_NA = 0; var SERVICE_WA_A = 0; var SERVICE_WA_NA_OFF = 0; var SERVICE_CR_ALL = 0; var SERVICE_CR = 0; var SERVICE_CR_NA = 0; var SERVICE_CR_A = 0; var SERVICE_CR_NA_OFF = 0; var SERVICE_UN_ALL = 0; var SERVICE_UN = 0; var SERVICE_UN_NA = 0; var SERVICE_UN_A = 0; var SERVICE_UN_NA_OFF = 0; var SERVICE_PE = 0;
+            var mwocolor = " default"; var mwccolor = " default"; var MW_OK_ALL = 0; var MW_OK = 0; var MW_CR_ALL = 0; var MW_CR_A = 0; var MW_CR_NA = 0; var MW_CR_NA_OFF = 0;
             $('#SlimTaov').html('<div id="Nodes"></div>');
             $.each(json, function() {
                 HOST_OK = parseInt(this.HOST.OK.COUNT, 10) + HOST_OK; 
@@ -69,6 +70,13 @@ function SlimTaov(uid) {
                 DB_CR_NA = parseInt(this.DATABASE.OFFLINE.NACK_ON, 10) + DB_CR_NA; 
                 DB_CR_NA_OFF = parseInt(this.DATABASE.OFFLINE.NACK_OFF, 10) + DB_CR_NA_OFF;
                 
+                MW_OK_ALL = parseInt(this.MIDDLEWARE.ONLINE.COUNT_ALL, 10) + MW_OK_ALL;
+                MW_OK = parseInt(this.MIDDLEWARE.ONLINE.COUNT_ON, 10) + MW_OK; 
+                MW_CR_ALL = parseInt(this.MIDDLEWARE.OFFLINE.COUNT_ALL, 10) + MW_CR_ALL;
+                MW_CR_A = parseInt(this.MIDDLEWARE.OFFLINE.ACK_ON, 10) + MW_CR_A; 
+                MW_CR_NA = parseInt(this.MIDDLEWARE.OFFLINE.NACK_ON, 10) + MW_CR_NA; 
+                MW_CR_NA_OFF = parseInt(this.MIDDLEWARE.OFFLINE.NACK_OFF, 10) + MW_CR_NA_OFF;
+                
                 cnode++;
             });
             /* BG Color */
@@ -82,11 +90,14 @@ function SlimTaov(uid) {
             if (SERVICE_PE != 0) { spcolor = " pe"; }
             if (DB_OK != 0) { dbocolor = " ok"; }
             if (DB_CR_NA != 0) { dbccolor = " cr"; }
+            if (MW_OK != 0) { mwocolor = " ok"; }
+            if (MW_CR_NA != 0) { mwccolor = " cr"; }
             if (cnode == 1) { cnodet = "1 Monitoringnode"; } else { cnodet = cnode + " Monitoringnodes"; }
             
             $('#Nodes').append('<span style="float: left;"><table cellpadding=0 cellspacing=0 border=0><tr><td colspan=3><span style="float: left;">Hosts</span><span style="float: left; margin-top: -1px;" class="ui-icon ui-icon-triangle-1-s"></span><span class="Notice" style="float: right;">' + cnodet + '</span></td></tr><tr valign=middle><td class="' + ocolor + '"><b><a href="/' + suburl + '/hosts/?s=dXA=KdhU7Z">' + HOST_OK + '</a></b> Ok</td><td class="' + ccolor + '"><b><a href="/' + suburl + '/hosts/?s=ZG9ub2Fjaw==KdhU7Z">' + HOST_CR_NA + '</a></b> | <b><a href="/' + suburl + '/hosts/?s=ZG9hY2s=KdhU7Z">' + HOST_CR_A + '</a></b> Offline</td><td class="' + ucolor + '"><b><a href="/' + suburl + '/hosts/?s=dW5ub2Fjaw==KdhU7Z">' + HOST_UN_NA + '</a></b> | <b><a href="/' + suburl + '/hosts/?s=dW5hY2s=KdhU7Z">' + HOST_UN_A + '</a></b> Nicht Erreichbar</td></tr></table></span>');
-            $('#Nodes').append('<span style="float: left;"><table cellpadding=0 cellspacing=0 border=0><tr><td colspan=3><span style="float: left;">Services</span><span style="float: left; margin-top: -1px;" class="ui-icon ui-icon-triangle-1-s"></span></td></tr><tr valign=middle><td class="default" title="Gesamt Ok.">' + SERVICE_OK_ALL + '</td><td class="' + socolor + '" title="Auf ONLINE Hosts."><b><a href="/' + suburl + '/services.jsp?s=YW8=KdhU7Z">' + SERVICE_OK + '</a></b> Ok</td><td class="default" title="Gesamt Warnung.">' + SERVICE_WA_ALL + '</td><td class="' + swcolor + '"><b><a href="/' + suburl + '/services.jsp?s=d25hb2g=KdhU7Z">' + SERVICE_WA_NA + '</a></b> | <b><a href="/' + suburl + '/services.jsp?s=d2FvaA==KdhU7Z">' + SERVICE_WA_A + '</a></b> | <b><a href="/' + suburl + '/services.jsp?s=d25hZmg=KdhU7Z">' + SERVICE_WA_NA_OFF + '</a></b> Warnung</td><td class="default" title="Gesamt Kritisch.">' + SERVICE_CR_ALL + '</td><td class="' + sccolor + '"><b><a href="/' + suburl + '/services.jsp?s=Y25hb2g=KdhU7Z">' + SERVICE_CR_NA + '</a></b> | <b><a href="/' + suburl + '/services.jsp?s=Y2FvaA==KdhU7Z">' + SERVICE_CR_A + '</a></b> | <b><a href="/' + suburl + '/services.jsp?s=Y25hZmg=KdhU7Z">' + SERVICE_CR_NA_OFF + '</a></b> Kritisch</td><td class="default" title="Gesamt Unbekannt.">' + SERVICE_UN_ALL + '</td><td class="' + sucolor + '"><b><a href="/' + suburl + '/services.jsp?s=dW5hb2g=KdhU7Z">' + SERVICE_UN_NA + '</a></b> | <b><a href="/' + suburl + '/services.jsp?s=dWFvaA==KdhU7Z">' + SERVICE_UN_A + '</a></b> | <b><a href="/' + suburl + '/services.jsp?s=dW5hZmg=KdhU7Z">' + SERVICE_UN_NA_OFF + '</a></b> Unbekannt</td><td class="' + spcolor + '"><b><a href="">' + SERVICE_PE + '</a></b> Ausstehend</td></tr></table></span>');
-            $('#Nodes').append('<span style="float: left;"><table cellpadding=0 cellspacing=0 border=0><tr><td colspan=3><span style="float: left;">Datenbanken</span><span style="float: left; margin-top: -1px;" class="ui-icon ui-icon-triangle-1-s"></span></td></tr><tr valign=middle><td class="default" title="Gesamt Online.">' + DB_OK_ALL + '</td><td class="' + dbocolor + '" title="Auf ONLINE Hosts."><b><a href="/' + suburl + '/db.jsp?s=YW8=KdhU7Z">' + DB_OK + '</a></b> Online</td><td class="default" title="Gesamt Offline.">' + DB_CR_ALL + '</td><td class="' + dbccolor + '"><b><a href="/' + suburl + '/db.jsp?s=YXBuYW9oKdhU7Z">' + DB_CR_NA + '</a></b> | <b><a href="/' + suburl + '/db.jsp?s=YXBhb2g=KdhU7Z">' + DB_CR_A + '</a></b> | <b><a href="/' + suburl + '/db.jsp?s=YXBkaA==KdhU7Z">' + DB_CR_NA_OFF + '</a></b> Offline</td></tr></table></span>');
+            $('#Nodes').append('<span style="float: left;"><table cellpadding=0 cellspacing=0 border=0><tr><td colspan=3><span style="float: left;">Services</span><span style="float: left; margin-top: -1px;" class="ui-icon ui-icon-triangle-1-s"></span></td></tr><tr valign=middle><td class="default" title="Gesamt Ok.">' + SERVICE_OK_ALL + '</td><td class="' + socolor + '" title="Auf ONLINE Hosts."><b><a href="/' + suburl + '/services/?s=YW8=KdhU7Z">' + SERVICE_OK + '</a></b> Ok</td><td class="default" title="Gesamt Warnung.">' + SERVICE_WA_ALL + '</td><td class="' + swcolor + '"><b><a href="/' + suburl + '/services/?s=d25hb2g=KdhU7Z">' + SERVICE_WA_NA + '</a></b> | <b><a href="/' + suburl + '/services/?s=d2FvaA==KdhU7Z">' + SERVICE_WA_A + '</a></b> | <b><a href="/' + suburl + '/services/?s=d25hZmg=KdhU7Z">' + SERVICE_WA_NA_OFF + '</a></b> Warnung</td><td class="default" title="Gesamt Kritisch.">' + SERVICE_CR_ALL + '</td><td class="' + sccolor + '"><b><a href="/' + suburl + '/services/?s=Y25hb2g=KdhU7Z">' + SERVICE_CR_NA + '</a></b> | <b><a href="/' + suburl + '/services/?s=Y2FvaA==KdhU7Z">' + SERVICE_CR_A + '</a></b> | <b><a href="/' + suburl + '/services/?s=Y25hZmg=KdhU7Z">' + SERVICE_CR_NA_OFF + '</a></b> Kritisch</td><td class="default" title="Gesamt Unbekannt.">' + SERVICE_UN_ALL + '</td><td class="' + sucolor + '"><b><a href="/' + suburl + '/services/?s=dW5hb2g=KdhU7Z">' + SERVICE_UN_NA + '</a></b> | <b><a href="/' + suburl + '/services/?s=dWFvaA==KdhU7Z">' + SERVICE_UN_A + '</a></b> | <b><a href="/' + suburl + '/services/?s=dW5hZmg=KdhU7Z">' + SERVICE_UN_NA_OFF + '</a></b> Unbekannt</td><td class="' + spcolor + '"><b><a href="">' + SERVICE_PE + '</a></b> Ausstehend</td></tr></table></span>');
+            $('#Nodes').append('<span style="float: left;"><table cellpadding=0 cellspacing=0 border=0><tr><td colspan=3><span style="float: left;">Datenbanken</span><span style="float: left; margin-top: -1px;" class="ui-icon ui-icon-triangle-1-s"></span></td></tr><tr valign=middle><td class="default" title="Gesamt Online.">' + DB_OK_ALL + '</td><td class="' + dbocolor + '" title="Auf ONLINE Hosts."><b><a href="/' + suburl + '/database/?s=YW8=KdhU7Z">' + DB_OK + '</a></b> Online</td><td class="default" title="Gesamt Offline.">' + DB_CR_ALL + '</td><td class="' + dbccolor + '"><b><a href="/' + suburl + '/database/?s=YXBuYW9oKdhU7Z">' + DB_CR_NA + '</a></b> | <b><a href="/' + suburl + '/database/?s=YXBhb2g=KdhU7Z">' + DB_CR_A + '</a></b> | <b><a href="/' + suburl + '/database/?s=YXBkaA==KdhU7Z">' + DB_CR_NA_OFF + '</a></b> Offline</td></tr></table></span>');
+            $('#Nodes').append('<span style="float: left;"><table cellpadding=0 cellspacing=0 border=0><tr><td colspan=3><span style="float: left;">Middleware</span><span style="float: left; margin-top: -1px;" class="ui-icon ui-icon-triangle-1-s"></span></td></tr><tr valign=middle><td class="default" title="Gesamt Online.">' + MW_OK_ALL + '</td><td class="' + mwocolor + '" title="Auf ONLINE Hosts."><b><a href="/' + suburl + '/middleware/?s=YW8=KdhU7Z">' + MW_OK + '</a></b> Online</td><td class="default" title="Gesamt Offline.">' + MW_CR_ALL + '</td><td class="' + mwccolor + '"><b><a href="/' + suburl + '/middleware/?s=YXBuYW9oKdhU7Z">' + MW_CR_NA + '</a></b> | <b><a href="/' + suburl + '/middleware/?s=YXBhb2g=KdhU7Z">' + MW_CR_A + '</a></b> | <b><a href="/' + suburl + '/middleware/?s=YXBkaA==KdhU7Z">' + MW_CR_NA_OFF + '</a></b> Offline</td></tr></table></span>');
             
             /*
              * Hosts
@@ -174,131 +185,86 @@ function SubSlimTaov(uid) {
 function ShowCritical(uid) {
     var b64uid = $.base64.encode( uid );
     $.ajax({
-        url: 'http://' + Backend + '/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u=' + b64uid + 'Lkjdu7&m2=Q29uZmlnJq0OpP',
+        url: 'http://' + Backend + '/proxy/json/?e=1&m=U2hvd0NyaXRpY2FsHjdz6d&u=' + b64uid + 'LKHld3',
         crossDomain: true,
         success: function(json) {
-            var dds;
-            $.each(json, function(key,value) {
-                if ( value.KEY == "DeleteDomainSuffix") {
-                    dds = value.ACTION;
-                }
+            var srvcount = 0;
+            $('#DivShowCritical').html('<div id="SubDivShowCritical"></div>');
+            $.each(json, function() {                        
+                var hostname = this.HOST_NAME;
+                var shorthostname;
+                var cssclass;
+                if ( DeleteDomainSuffix == "0" ) { shorthostname = this.HOST_NAME; } else { var tmp = this.HOST_NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
+                if (this.SERVICE_STATUS == "1") { cssclass = "taovwa"; } else if (this.SERVICE_STATUS == "2") { cssclass = "taovcr"; } else { cssclass = "taovun"; }
+                if (this.SERVICE_NAME == "") { cssclass = "taovcr"; this.SERVICE_NAME = "HOST"; }
+                $('#SubDivShowCritical').append('<table class="' + cssclass + '" cellpadding=0 cellspacing=0><tr><td rowspan=2><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><b>' + shorthostname + '</b> <i>auf ' + this.NODE + '</i></td><td id="' + srvcount + 'SrvStatus">' + this.HOST_STATUS + '</td><td>Zuletzt gepr&uuml;ft ' + this.TIMESTAMP + '</td></tr><tr><td>Servicename: ' + this.SERVICE_NAME + '</td><td colspan=2>' + this.OUTPUT + '</td></tr></table>');
+                if (this.ACK == "1") { $('#' + srvcount + 'SrvStatus').append('<div id="TaovImgServiceAck"><img src="layout/images/icons/eye.png" title="Service Problem ist bearbeitet." /></div>'); }
+                if (this.CMT == "") { /**/ } else { $('#' + srvcount + 'SrvStatus').append('<div id="TaovImgServiceCmt"><img src="layout/images/icons/balloon-left.png" title="Service wurde kommentiert." /></div>'); }
+                srvcount++;
             });
-            $.ajax({
-                url: 'http://' + Backend + '/proxy/json/?e=1&m=U2hvd0NyaXRpY2FsHjdz6d&u=' + b64uid + 'LKHld3',
-                crossDomain: true,
-                success: function(json) {
-                    var srvcount = 0;
-                    $('#DivShowCritical').html('<div id="SubDivShowCritical"></div>');
-                    $.each(json, function() {                        
-                        var hostname = this.HOST_NAME;
-                        var shorthostname;
-                        var cssclass;
-                        if ( dds == "0" ) { shorthostname = this.HOST_NAME; } else { var tmp = this.HOST_NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
-                        //if ( shorthostname.length > 13 ) { shorthostname = shorthostname.substr(0,10) + '...'; }
-                        if (this.SERVICE_STATUS == "1") { cssclass = "taovwa"; } else if (this.SERVICE_STATUS == "2") { cssclass = "taovcr"; } else { cssclass = "taovun"; }
-                        if (this.SERVICE_NAME == "") { cssclass = "taovcr"; this.SERVICE_NAME = "HOST"; }
-                        $('#SubDivShowCritical').append('<table class="' + cssclass + '" cellpadding=0 cellspacing=0><tr><td rowspan=2><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><b>' + shorthostname + '</b> <i>auf ' + this.NODE + '</i></td><td id="' + srvcount + 'SrvStatus">' + this.HOST_STATUS + '</td><td>Zuletzt gepr&uuml;ft ' + this.TIMESTAMP + '</td></tr><tr><td>Servicename: ' + this.SERVICE_NAME + '</td><td colspan=2>' + this.OUTPUT + '</td></tr></table>');
-                        if (this.ACK == "1") { $('#' + srvcount + 'SrvStatus').append('<div id="TaovImgServiceAck"><img src="layout/images/icons/eye.png" title="Service Problem ist bearbeitet." /></div>'); }
-                        if (this.CMT == "") { /**/ } else { $('#' + srvcount + 'SrvStatus').append('<div id="TaovImgServiceCmt"><img src="layout/images/icons/balloon-left.png" title="Service wurde kommentiert." /></div>'); }
-                        srvcount++;
-                    });
-                    if (srvcount == 0) {
-                        $('#SubDivShowCritical').append('<div id="NoContent">Die Abfrage ergab kein Ergebnis.</div>');
-                    }
-                    $('#FooterDivShowCritical').html('' + srvcount + ' Probleme');
-                    setTimeout('ShowCritical("' + uid + '")', 30000);
-                },
-                dataType: 'json',
-                cache: false
-            }); 
+            if (srvcount == 0) {
+                $('#SubDivShowCritical').append('<div id="NoContent">Die Abfrage ergab kein Ergebnis.</div>');
+            }
+            $('#FooterDivShowCritical').html('' + srvcount + ' Probleme');
+            setTimeout('ShowCritical("' + uid + '")', 30000);
         },
         dataType: 'json',
         cache: false
-    });
+    }); 
 }
 
 function ShowAllComments(uid) {
     var b64uid = $.base64.encode( uid );
     $.ajax({
-        url: 'http://' + Backend + '/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u=' + b64uid + 'Lkjdu7&m2=Q29uZmlnJq0OpP',
+        url: 'http://' + Backend + '/proxy/json/?e=1&m=U2hvd0FsbENvbW1lbnRzKi88uU&u=' + b64uid + 'LKHld3',
         crossDomain: true,
         success: function(json) {
-            var dds;
-            $.each(json, function(key,value) {
-                if ( value.KEY == "DeleteDomainSuffix") {
-                    dds = value.ACTION;
-                }
+            var srvcount = 0;
+            $('#Comments').html('<div id="SubComments"><table id="SubCommentsTable" cellpadding=0 cellspacing=0></table></div>');
+            $.each(json, function() {                        
+                var hostname = this.HOST_NAME;
+                var shorthostname;
+                var cssclass;
+                if ( DeleteDomainSuffix == "0" ) { shorthostname = this.HOST_NAME; } else { var tmp = this.HOST_NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
+                $('#SubComments').append('<tr><td><table id="TableComments"><tr><td class="TextHeader"><i>' + this.AUTHOR + '</i> am ' + this.TIMESTAMP_ISO + '</td></tr><tr><td class="TextSrvHst">F&uuml;r Service: <b>' + this.SERVICE_NAME + '</b> auf <b>' + shorthostname + '</b>(<i>' + this.NODE + '</i>)</td></tr><tr><td class="TextComment">' + this.COMMENT + '</td></tr></table></td></tr>');
+                srvcount++;
             });
-            $.ajax({
-                url: 'http://' + Backend + '/proxy/json/?e=1&m=U2hvd0FsbENvbW1lbnRzKi88uU&u=' + b64uid + 'LKHld3',
-                crossDomain: true,
-                success: function(json) {
-                    var srvcount = 0;
-                    $('#Comments').html('<div id="SubComments"><table id="SubCommentsTable" cellpadding=0 cellspacing=0></table></div>');
-                    $.each(json, function() {                        
-                        var hostname = this.HOST_NAME;
-                        var shorthostname;
-                        var cssclass;
-                        if ( dds == "0" ) { shorthostname = this.HOST_NAME; } else { var tmp = this.HOST_NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
-                        //if ( shorthostname.length > 13 ) { shorthostname = shorthostname.substr(0,10) + '...'; }
-                        $('#SubComments').append('<tr><td><table id="TableComments"><tr><td class="TextHeader"><i>' + this.AUTHOR + '</i> am ' + this.TIMESTAMP_ISO + '</td></tr><tr><td class="TextSrvHst">F&uuml;r Service: <b>' + this.SERVICE_NAME + '</b> auf <b>' + shorthostname + '</b>(<i>' + this.NODE + '</i>)</td></tr><tr><td class="TextComment">' + this.COMMENT + '</td></tr></table></td></tr>');
-                        srvcount++;
-                    });
-                    if (srvcount == 0) {
-                        $('#SubComments').append('<div id="NoContent">Die Abfrage ergab kein Ergebnis.</div>');
-                    }
-                    $('#FooterComments').html('' + srvcount + ' Kommentare');
-                    setTimeout('ShowAllComments("' + uid + '")', 30000);
-                },
-                dataType: 'json',
-                cache: false
-            }); 
+            if (srvcount == 0) {
+                $('#SubComments').append('<div id="NoContent">Die Abfrage ergab kein Ergebnis.</div>');
+            }
+            $('#FooterComments').html('' + srvcount + ' Kommentare');
+            setTimeout('ShowAllComments("' + uid + '")', 30000);
         },
         dataType: 'json',
         cache: false
-    });
+    }); 
 }
 
 function ModShowCritical(uid) {
     var b64uid = $.base64.encode( uid );
     $.ajax({
-        url: 'http://' + Backend + '/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u=' + b64uid + 'Lkjdu7&m2=Q29uZmlnJq0OpP',
+        url: 'http://' + Backend + '/proxy/json/?e=1&m=U2hvd0NyaXRpY2FsHjdz6d&u=' + b64uid + 'LKHld3',
         crossDomain: true,
         success: function(json) {
-            var dds;
-            $.each(json, function(key,value) {
-                if ( value.KEY == "DeleteDomainSuffix") {
-                    dds = value.ACTION;
-                }
+            var srvcount = 0;
+            $('#DivShowCritical').html('<div id="SubDivShowCritical"></div>');
+            $.each(json, function() {                        
+                var hostname = this.HOST_NAME;
+                var shorthostname;
+                var cssclass;
+                if ( DeleteDomainSuffix == "0" ) { shorthostname = this.HOST_NAME; } else { var tmp = this.HOST_NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
+                if (this.SERVICE_STATUS == "1") { cssclass = "taovwa"; } else if (this.SERVICE_STATUS == "2") { cssclass = "taovcr"; } else { cssclass = "taovun"; }
+                $('#SubDivShowCritical').append('<table class="' + cssclass + '" cellpadding=0 cellspacing=0><tr><td rowspan=2><img id="ImgServiceStatus" src="../' + this.SERVICE_STATUS_ICON + '"></img></td><td><b>' + shorthostname + '</b> <i>auf ' + this.NODE + '</i></td><td id="' + srvcount + 'SrvStatus">' + this.HOST_STATUS + '</td><td>Zuletzt gepr&uuml;ft ' + this.TIMESTAMP + '</td></tr><tr><td>Servicename: ' + this.SERVICE_NAME + '</td><td colspan=2>' + this.OUTPUT + '</td></tr></table>');
+                if (this.ACK == "1") { $('#' + srvcount + 'SrvStatus').append('<div id="TaovImgServiceAck"><img src="../layout/images/icons/eye.png" title="Service Problem ist bearbeitet." /></div>'); }
+                if (this.CMT == "") { /**/ } else { $('#' + srvcount + 'SrvStatus').append('<div id="TaovImgServiceCmt"><img src="../layout/images/icons/balloon-left.png" title="Service wurde kommentiert." /></div>'); }
+                srvcount++;
             });
-            $.ajax({
-                url: 'http://' + Backend + '/proxy/json/?e=1&m=U2hvd0NyaXRpY2FsHjdz6d&u=' + b64uid + 'LKHld3',
-                crossDomain: true,
-                success: function(json) {
-                    var srvcount = 0;
-                    $('#DivShowCritical').html('<div id="SubDivShowCritical"></div>');
-                    $.each(json, function() {                        
-                        var hostname = this.HOST_NAME;
-                        var shorthostname;
-                        var cssclass;
-                        if ( dds == "0" ) { shorthostname = this.HOST_NAME; } else { var tmp = this.HOST_NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
-                        //if ( shorthostname.length > 13 ) { shorthostname = shorthostname.substr(0,10) + '...'; }
-                        if (this.SERVICE_STATUS == "1") { cssclass = "taovwa"; } else if (this.SERVICE_STATUS == "2") { cssclass = "taovcr"; } else { cssclass = "taovun"; }
-                        $('#SubDivShowCritical').append('<table class="' + cssclass + '" cellpadding=0 cellspacing=0><tr><td rowspan=2><img id="ImgServiceStatus" src="../' + this.SERVICE_STATUS_ICON + '"></img></td><td><b>' + shorthostname + '</b> <i>auf ' + this.NODE + '</i></td><td id="' + srvcount + 'SrvStatus">' + this.HOST_STATUS + '</td><td>Zuletzt gepr&uuml;ft ' + this.TIMESTAMP + '</td></tr><tr><td>Servicename: ' + this.SERVICE_NAME + '</td><td colspan=2>' + this.OUTPUT + '</td></tr></table>');
-                        if (this.ACK == "1") { $('#' + srvcount + 'SrvStatus').append('<div id="TaovImgServiceAck"><img src="../layout/images/icons/eye.png" title="Service Problem ist bearbeitet." /></div>'); }
-                        if (this.CMT == "") { /**/ } else { $('#' + srvcount + 'SrvStatus').append('<div id="TaovImgServiceCmt"><img src="../layout/images/icons/balloon-left.png" title="Service wurde kommentiert." /></div>'); }
-                        srvcount++;
-                    });
-                    $('#FooterDivShowCritical').html('' + srvcount + ' Probleme');
-                    setTimeout('ModShowCritical("' + uid + '")', 30000);
-                },
-                dataType: 'json',
-                cache: false
-            }); 
+            $('#FooterDivShowCritical').html('' + srvcount + ' Probleme');
+            setTimeout('ModShowCritical("' + uid + '")', 30000);
         },
         dataType: 'json',
         cache: false
-    });
+    }); 
 }
 
 /*

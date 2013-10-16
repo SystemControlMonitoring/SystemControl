@@ -1,5 +1,5 @@
 /* 
-    Document   : kSChosts
+    Document   : kSCservices
     Created on : 11.04.2013, 16:34:16
     Author     : sbaresel
     Description:
@@ -108,6 +108,14 @@
  * List
  */
 
+ #HostNode {
+     position: absolute;
+     font-size: 13px;
+     margin-top: 25px;
+     font-weight: bold;
+     color: #82abcc;
+ }
+ 
  #StatusListHead {
      position: absolute;
      top: 335px;
@@ -252,89 +260,60 @@
  * List Table
  */
 
-#StatusListEntry table {
-    width: 100%;
-    border-spacing:0;
-    border-collapse:collapse;
-    font-size: 12px;
-    table-layout: fixed;
+#TableShowServices td:first-child + td + td {
+    border-left: 1px solid #82abcc;
 }
 
-#StatusListEntry table tr {
-    vertical-align: middle;
+#ImgServiceStatus {
+    margin-bottom: -5px;
 }
 
-#StatusListEntry table tr:first-child td:first-child img {
-    width: 32px;
-    margin-bottom: -23px;
-    margin-left: 4px;
-}
-
-#StatusListEntry table tr:first-child td:first-child {
+#ImgService {
+    position: absolute;
+    left: 450px;
     width: 50px;
-    text-align: center;
-    border-top: 1px solid #82abcc;
-    border-bottom: 1px solid #82abcc;
-    border-left: 1px solid #82abcc;
+    text-align: right;
+    margin-top: -24px;
 }
 
-#StatusListEntry table tr:first-child td:first-child + td {
+#ImgServiceGridAck {
+    position: absolute;
+    margin-left: 220px;
+    margin-top: 27px;
+}
+
+#ImgServiceGridCmt {
+    position: absolute;
+    margin-left: 200px;
+    margin-top: 27px;
+}
+
+#DivShowServices table {
+    width: 100%;
+    border: 1px solid #82abcc;
+    font-size: 14px;
+}
+
+#DivShowServices table td:first-child {
+    width: 30px;
+    text-align: center;
+}
+
+#DivShowServices table td:first-child + td {
+    width: 300px;
+}
+
+#DivShowServices table td:first-child + td + td {
+    border-left: 2px solid #82abcc;
+    padding: 3px;
+}
+
+#DivShowServices table td:first-child + td + td + td {
+    padding: 3px;
     width: 200px;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 5px;
-    border-top: 1px solid #82abcc;
-}
-
-#StatusListEntry table tr:first-child + tr td:first-child {
-    padding: 5px;
-    border-bottom: 1px solid #82abcc;
-}
-
-#StatusListEntry table tr:first-child + tr td:first-child:hover {
-    background-color: #004c8a;
-}
-
-#StatusListEntry table tr:first-child td:first-child + td + td {
-    width: 100px;
-    border-top: 1px solid #82abcc;
-    border-bottom: 1px solid #82abcc;
-    padding: 5px;
-}
-
-#StatusListEntry table tr:first-child td:first-child + td + td + td {
-    width: 25px;
-    text-align: center;
-    border-top: 1px solid #82abcc;
-    border-bottom: 1px solid #82abcc;
-}
-
-#StatusListEntry table tr:first-child td:first-child + td + td + td + td, #StatusListEntry table tr:first-child td:first-child + td + td + td + td + td, #StatusListEntry table tr:first-child td:first-child + td + td + td + td + td + td, #StatusListEntry table tr:first-child td:first-child + td + td + td + td + td + td + td, #StatusListEntry table tr:first-child td:first-child + td + td + td + td + td + td + td + td {
-    width: 25px;
-    text-align: center;
-    border-left: 1px solid #82abcc;
-    border-top: 1px solid #82abcc;
-    border-bottom: 1px solid #82abcc;
-}
-
-#StatusListEntry table tr:first-child td:first-child + td + td + td + td + td + td + td + td + td {
-    border-left: 1px solid #82abcc;
-    border-top: 1px solid #82abcc;
-    border-bottom: 1px solid #82abcc;
-    padding-left: 5px;
-}
-
-#StatusListEntry table tr:first-child td:first-child + td + td + td + td + td + td + td + td + td + td {
-    width: 180px;
     color: #82abcc;
-    border-top: 1px solid #82abcc;
-    border-bottom: 1px solid #82abcc;
-    border-right: 1px solid #82abcc;
+    font-size: 12px;
 }
-
-/*
- *
- */
 
 #HostIcon {
     width: 40px;
@@ -372,7 +351,7 @@
     margin-bottom: -14px;
 }
 
-#DivTableHostsListView {
+#ListDivShowServices {
     position: absolute;
     overflow-x: hidden;
     overflow-y: auto;
@@ -384,15 +363,130 @@
     border-bottom: 1px solid #82abcc;
 }
 
-#DivTableHostsListView a {
-    color: #fff;
+#ListDivShowServices table:first-child {
+    /*margin-top: 10px;*/
+}
+
+#ServiceOutput {
+    padding-bottom: 7px;
+    white-space: pre-wrap;
 }
 
 /*
- * Head Table
+ * Service Lst Table
  */
 
-#HeadDivTableHostsListView {
+ #TableImgService {
+     border: 1px solid #82abcc;
+     padding: 5px;
+     margin-top: 1px;
+     margin-bottom: 1px;
+ }
+ 
+ .ServiceEntry, .ServiceEntryDummy {
+     background-color: #004c8a;
+ }
+ 
+ .ServiceEntry:hover {
+     background-color: #004279;
+ }
+ 
+ .DoubleClick {
+     cursor: pointer;
+ }
+ 
+#ServiceLstTable {
+    width: 100%;
+    border-spacing:0;
+    border-collapse:collapse;
+    table-layout: fixed;
+    border: 1px solid #82abcc;
+}
+
+#ServiceLstTable i {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+#ServiceLstTable td {
+    padding-left: 10px;
+    padding-right: 2px;
+}
+
+#ServiceLstTable tr:first-child td:first-child {
+    width: 40px;
+    border-bottom: none;
+}
+
+#ServiceLstTable tr:first-child td:first-child img {
+    width: 32px;
+    margin-bottom: -23px;
+    margin-left: 4px;
+}
+
+#ServiceLstTable tr:first-child td:first-child + td {
+    width: 200px;
+    font-size: 16px;
+    font-weight: bold;
+    border-left: none;
+    border-bottom: none;
+    background-color: #004c8a;
+    cursor: pointer;
+}
+
+#ServiceLstTable tr:first-child td:first-child + td + td {
+    width: 225px;
+    font-size: 12px;
+    cursor: default;
+}
+
+#ServiceLstTable tr:first-child td:last-child {
+    width: 180px;
+    color: #82abcc;
+    font-size: 12px;
+    cursor: default;
+}
+
+#ServiceLstTable tr:first-child td:first-child + td + td + td + td, #ServiceLstTable td:first-child + td + td + td {
+    border-left: none;
+    font-size: 12px;
+    cursor: default;
+}
+
+#ServiceLstTable tr:first-child td:first-child + td + td + td {
+    width: 15px;
+}
+
+#ServiceLstTable tr:first-child td:first-child + td + td, #ServiceLstTable tr:first-child + tr td:first-child + td, #ServiceLstTable tr td:first-child + td {
+    cursor: default;
+}
+
+#ServiceLstTable tr:first-child + tr td:first-child, #ServiceLstTable tr:first-child td:first-child + td + td + td {
+    border-left: none;
+    border-bottom: none;
+    cursor: default;
+}
+
+#ServiceLstTable tr:first-child td:first-child + td + td + td, #ServiceLstTable tr:first-child + tr td:first-child + td, #ServiceLstTable tr:first-child + tr td:first-child + td + td, #ServiceLstTable tr:first-child + tr td:first-child + td + td + td, #ServiceLstTable td:first-child + td + td, #ServiceLstTable td:first-child + td {
+    font-size: 12px;
+}
+
+#ServiceLstTable tr:first-child + tr td:last-child, #ServiceLstTable td:last-child {
+    width: 180px;
+    color: #82abcc;
+    font-size: 12px;
+    cursor: default;
+}
+
+#ServiceLstTable tr td:first-child, #ServiceLstTable tr:hover td:first-child, #ServiceLstTable tr:first-child:hover td:first-child + td, #ServiceLstTable tr:first-child td:first-child + td {
+    background-color: #004c8a;
+}
+
+/*
+ * 
+ */
+
+#HeadDivTableServicesListView {
     position: absolute;
     z-index: 1;
     top: 0px;
@@ -402,28 +496,16 @@
     color: #82abcc;
 }
 
-#HeadDivTableHostsListView span:first-child {
-    margin-left: 95px;
+#HeadDivTableServicesListView span:first-child {
+    margin-left: 70px;
 }
 
-#HeadDivTableHostsListView span:first-child + span {
-    margin-left: 140px;
+#HeadDivTableServicesListView span:first-child + span {
+    margin-left: 200px;
 }
 
-#HeadDivTableHostsListView span:first-child + span + span {
-    margin-left: 73px;
-}
-
-#HeadDivTableHostsListView span:first-child + span + span + span {
-    margin-left: 12px;
-}
-
-#HeadDivTableHostsListView span:first-child + span + span + span + span, #HeadDivTableHostsListView span:first-child + span + span + span + span + span, #HeadDivTableHostsListView span:first-child + span + span + span + span + span + span, #HeadDivTableHostsListView span:first-child + span + span + span + span + span + span + span {
-    margin-left: 12px;
-}
-
-#HeadDivTableHostsListView span:first-child + span + span + span + span + span + span + span + span {
-    margin-left: 50px;
+#HeadDivTableServicesListView span:first-child + span + span {
+    margin-left: 175px;
 }
 
 /*
@@ -432,7 +514,7 @@
 *
 */
 
-#HostsListSelect {
+#ServiceListSelect {
     position: absolute;
     top: 10px;
     left: 25px;
@@ -442,13 +524,28 @@
     border: 2px solid #82abcc;
 }
 
-#HostsListSearch {
+#ServiceListSearch {
     position: absolute;
     top: 12px;
     left: 525px;
     height: 31px;
     color: white;    
     cursor: pointer;
+}
+
+#ServicePane {
+    position: absolute;
+    width: 100%;
+    height: 80px;
+    border-bottom: 1px solid #82abcc;
+    /*border-top: 1px solid #82abcc;*/
+    top: 128px;
+    left: 0px;
+    /*-moz-box-shadow: 0 -2px 11px 2px #000;
+    -webkit-box-shadow: 0 -2px 11px 2px #000;
+    box-shadow: 0 -2px 11px 2px #000;*/
+    z-index: 1;
+    /*background-color: #004c8a;*/
 }
 
 #AutoReload {
@@ -473,80 +570,72 @@
     left: -75px;
 }
 
-/*
- * Checkbox 
- */
-
 #CheckBoxAll {
     position: absolute;
     top: 7px;
-    left: 373px;
+    left: 514px;
     z-index:5;
 }
 
-#CheckBoxHost {
-    width: 20px;
-    height: 20px;
-    z-index: 55;
-}
-
-/* Tab */
-
-#HostLinkMenu {
-    margin-left: 269px;
-    margin-top: -101px;
+#SvcLinkMenu {
+    position: absolute;
+    margin-top: -63px;
+    margin-left: 241px;
     height: 31px;
     width: 34px;
     font-size: 12px;
-    z-index: 15;
-    position: absolute;
+    z-index: 5;
 }
     
-#HostLinkMenu label {
+#SvcLinkMenu label {
     color: #004279;
 }
 
-#HostLinkHover {
-    width: 330px;
-    height: 135px;
-    margin-top: -103px;
-    margin-left: -25px;
-    z-index: 10;
+#SvcLinkHover {
+    width: 280px;
+    height: 80px;
     position: absolute;
-    cursor: pointer;
+    margin-top: -65px;
 }
 
-#HostTitle {
-    font-size: 28px;
-    letter-spacing:-3px;
-    margin-left: 50px;
-    margin-top: -40px;
-}
-
-#HostType {
-    margin-top: 20px;
-    margin-left: 20px;
-}
-
-#HostType img {
-    width: 48px;
-}
-
-#DivHostStatus {
-    margin-left: 50px;
-    margin-top: -40px;
-}
-
-#HostSumy {
-    margin-top: 40px;
+#center a.service img:first-child {
+    width: 30px;
     margin-left: 10px;
+    margin-top: 10px;
+}
+
+#center a.service img:last-child {
+    position: absolute;
+    width: 15px;
+    margin-left: 33px;
+    margin-top: -38px;
+}
+
+#SrvTitleGrid {
+    position: absolute;
     font-size: 14px;
+    font-weight: bold;
+    margin-left: 50px;
+    margin-top: -25px;
+}
+
+#SrvHostNameGrid {
+    position: absolute;
+    font-size: 12px;
+    margin-left: 50px;
+    margin-top: -10px;
     color: #82abcc;
 }
 
-/* #### */
+#center a.service:hover>div#SrvHostNameGrid {
+    color: #004c8a;
+}
 
-
+#SrvOutputGrid {
+    font-size: 12px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
 
 /* Administration */
 
@@ -606,7 +695,7 @@
     margin-bottom: -10px;
 }
 
-#DivReCheck h3, #DivAcknldge h3, #DivComment h3, #DivDowntime h3, #DivNotify h3, #DivRemAck h3, #DivRemDwntm h3, #DivEnNotify h3 {
+#DivReCheck h3, #DivAcknldge h3, #DivComment h3, #DivDowntime h3, #DivNotify h3, #DivRemAck h3, #DivRemDwntm h3, #DivEnNotify h3, #DivDelLog h3 {
     margin-top: 15px;
     margin-left: 35px;
     margin-bottom: 15px;

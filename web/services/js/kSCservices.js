@@ -1,8 +1,16 @@
+/*
+ * Variablen Definition
+ */
+
 var t;
+
+/*
+ * Funktionen
+ */
 
 function Top(uid) {
     var b64uid = $.base64.encode( uid );
-    $('#TopMenu').append('<table cellpadding=0 cellspacing=0 border=0 id="TopMEnuTable"><tr><td><a href=".">Home</a></td><td><span id="TopMenuIcon" class="ui-icon ui-icon-triangle-1-e"></span></td><td>Services<span id="servicecount"></span></td></tr></table>');    
+    $('#TopMenu').append('<table cellpadding=0 cellspacing=0 border=0 id="TopMEnuTable"><tr><td><a href="../">Home</a></td><td><span id="TopMenuIcon" class="ui-icon ui-icon-triangle-1-e"></span></td><td>Services<span id="servicecount"></span></td></tr></table>');    
     
     $.Shortcuts.add({
         type: 'down',
@@ -841,112 +849,23 @@ function AutoReloadStop(uid) {
 }
 
 function AllServices(uid) {
-    var b64uid = $.base64.encode( uid );
-    $('#TopMenu').append('<div id="AutoReload"></div>');
+    $('#StatusListHead').html('<div id="CheckBoxAll"><input type="checkbox" id="CheckAllCheckboxes" onclick="CheckAll(\'' + uid + '\');"/></div><div id="HeadDivTableServicesListView"><span>Host Name</span><span>Service Name</span><span>Output</span></div></div>');
+    $('#StatusListTable').html(''); $('#HostStatusSummaryContent').html(''); $('#ServiceStatusSummaryContent').html('');
     $('#AutoReload').html('Automatischer Reload: <span id="AutoReloadStat" onclick="AutoReloadStart(\'' + uid + '\');">Deaktiviert</span>');
-    
-    $.ajax({
-        url: 'http://' + Backend + '/repo/json/?e=1&m=U2VsZWN0TW9kVmlldw==Jhdu8d&u=' + b64uid + 'Adhfg3&k=c2VydmljZXM=JkHu77',
-        crossDomain: true,
-        success: function (json) {
-            if (json.MODVIEW == "ListAllServices") {
-                ListAllServices(uid);
-            } else {
-                GridAllServices(uid);
-            }
-        },
-        dataType: 'json',
-        cache: false
-    });
-}
-
-function GridAllServices(uid) {
-    var state = urlPara('s').replace(/%3D/g,'=');
-    var searchstring = urlPara('searchstring').replace(/%3D/g,'=').replace(/%20/g,' ').replace(/%22/g,'"').replace(/%25/g,'%').replace(/%3C/g,'<').replace(/%3E/g,'>').replace(/%5B/g,'[').replace(/%5C/g,'\\').replace(/%5D/g,']').replace(/%5E/g,'^').replace(/%60/g,'`').replace(/%7B/g,'{').replace(/%7C/g,'|').replace(/%7D/g,'}').replace(/%7E/g,'~').replace(/%7F/g,'').replace(/%28/g,'(').replace(/%29/g,')').replace(/%2B/g,'+');
-    $('#SrvCenter').html('');
-    $('#theme-roller').append('<img id="AjaxLoader" src="layout/images/ajax-loader.gif">');
-    $('#center').html('<section></section>');
-    //$('#SidebarSubmenu').hide();
     if (state.length > 0) {
-        GridSpecialServices(uid,state);
+        ListServicesByStatus(uid,state);
     } else {
         if (searchstring.length > 0) {
-            GridSearchServices(uid,searchstring);
+            ListServicesBySearch(uid,searchstring);
         } else {
-            GridServices(uid);
+            ListServices(uid);
         }
     }
 }
 
-function GridServices(uid) {
-    var b64uid = $.base64.encode( uid );
-    $('span.UserList').removeClass('Fontffffff');
-    $('span.UserList').addClass('Font82abcc');
-    $('span.UserGrid').removeClass('Font82abcc');
-    $('span.UserGrid').addClass('Fontffffff');
-    $('#AutoReload').css('display', 'block');
-    $('#ShowGridSearchBar').remove();
-    $.ajax({
-        url: 'http://' + Backend + '/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u=' + b64uid + 'Lkjdu7&m2=Q29uZmlnJq0OpP',
-        crossDomain: true,
-        success: function(json) {
-            var dds;
-            $.each(json, function(key,value) {
-                if ( value.KEY == "DeleteDomainSuffix") {
-                    dds = value.ACTION;
-                }
-            });
-            $.ajax({
-                url: 'http://' + Backend + '/proxy/json/?e=1&m=SG9zdEZ1bGxJbmZvHd78h3&u=' + b64uid + 'LKHld3',
-                crossDomain: true,
-                success: function(json) {
-                    var hostcount = 0;
-                    var servicecount = 0;
-                    $.each(json, function() {
-                        var mnode = this.NODE;
-                        $.each(this.HFI, function() {
-                            var hostname = this.NAME;
-                            var hoststatus = this.STATUS;
-                            var shorthostname;
-                            var hicon = this.ICON;
-                            var url = this.URL;
-                            if ( dds == "0" ) { shorthostname = this.NAME; } else { var tmp = this.NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
-                            if ( shorthostname.length > 25 ) { shorthostname = shorthostname.substr(0,22) + '...'; }
-                            $.each(this.SERVICELIST, function() {
-                                var servicename = this.SERVICE_NAME;
-                                if ( servicename.length > 20 ) { servicename = servicename.substr(0,17) + '...'; }
-                                if ( this.OUTPUT.length > 38 ) { this.OUTPUT = this.OUTPUT.substr(0,35) + '...'; }
-                                $('section','#center').append('<a class="service" title="" id="' + servicecount + 'SrvImgStateGrid"><img class="SrvImgGrid" src="' + hicon + '" /><div id="SrvImgStateGrid"><img src="' + this.SERVICE_STATUS_ICON + '" /></div><div id="SrvTitleGrid">' + servicename + '</div><div id="SrvHostNameGrid">' + shorthostname + ' <i>auf ' + mnode + '</i></div><div id="SrvOutputGrid">' + this.OUTPUT + '</div><div id="SvcLinkHover" onclick="OpenWindow(\'modules/' + url + '?h=' + $.base64.encode( mnode ) + '&c=' + $.base64.encode( hostname ) + '\',\'_self\');"></div><div id="SvcLinkMenu"><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="Checkbox' + hostcount + '' + servicecount + '" /><label for="Checkbox' + hostcount + '' + servicecount + '" title="Diesen Service Check f&uuml;r ein Kommando markieren.">x</label></div></a>');
-                                $('#Checkbox' + hostcount + '' + servicecount).button();
-                                if (this.ACK == "1") { $('#' + servicecount + 'SrvImgStateGrid').append('<div id="ImgServiceGridAck"><img src="layout/images/icons/eye.png" title="Service Problem ist bearbeitet." /></div>'); }
-                                if (this.CMT == "") { /**/ } else { $('#' + servicecount + 'SrvImgStateGrid').append('<div id="ImgServiceGridCmt"><img src="layout/images/icons/balloon-left.png" title="Service wurde kommentiert." /></div>'); }
-                                servicecount++;
-                            });
-                            hostcount++;
-                        });
-                    });
-                    if (servicecount == 0) {
-                        $('#center').append('<div id="NoContent">Die Abfrage ergab kein Ergebnis.</div>');
-                    }
-                    
-                    $('#servicecount').html(' (' + servicecount + ' auf ' + hostcount + ' Hosts)');
-                    $('#AjaxLoader').remove();
-                    $('#TextChkb' + hostcount + '' + servicecount).buttonset();
-                    ShowSelect($.base64.encode("a") + 'KdhU7Z');
-                    UpdateModView(uid,"GridAllServices");
-                },
-                dataType: 'json',
-                cache: false
-            }); 
-        },
-        dataType: 'json',
-        cache: false
-    });
-}
-
 function ShowSelect(state) {
-    $('#ServiceGridSelect').html('\n\
-        <select id="ServiceViewSelect" onchange="this.form.submit();" name="s" style="display: none;">\n\
+    $('#HostGridSelect').html('\n\
+        <select id="HostsViewSelect" onchange="this.form.submit();" name="s" style="display: none;">\n\
             <option value="">Alle Services</option>\n\
             <option value="' + $.base64.encode("ao") + 'KdhU7Z">Alle Services mit Status: OK</option>\n\
             <option value="' + $.base64.encode("aw") + 'KdhU7Z">Alle Services mit Status: Warnung</option>\n\
@@ -975,13 +894,13 @@ function ShowSelect(state) {
             <option value="' + $.base64.encode("unafh") + 'KdhU7Z">Services Unbekannt, nicht bearbeitet auf OFFLINE Hosts</option>\n\
             <option value="' + $.base64.encode("uafh") + 'KdhU7Z">Services Unbekannt, bearbeitet auf OFFLINE Hosts</option>\n\
         </select>');
-    $('#ServiceViewSelect').val( state ).attr('selected',true);
-    $('#ServiceViewSelect').selectmenu({width: 450,menuWidth:450,style:'dropdown',maxHeight:500});
+    $('#HostsViewSelect').val( state ).attr('selected',true);
+    $('#HostsViewSelect').selectmenu({width: 450,menuWidth:450,style:'dropdown',maxHeight:500});
 }
 
 function ShowSelectSearch() {
-    $('#ServiceGridSelect').html('\n\
-        <select id="ServiceViewSelect" onchange="this.form.submit();" name="s" style="display: none;">\n\
+    $('#HostGridSelect').html('\n\
+        <select id="HostsViewSelect" onchange="this.form.submit();" name="s" style="display: none;">\n\
             <option selected value="">Suche ...</option>\n\
             <option value="">Alle Services</option>\n\
             <option value="' + $.base64.encode("ao") + 'KdhU7Z">Alle Services mit Status: OK</option>\n\
@@ -1011,456 +930,212 @@ function ShowSelectSearch() {
             <option value="' + $.base64.encode("unafh") + 'KdhU7Z">Services Unbekannt, nicht bearbeitet auf OFFLINE Hosts</option>\n\
             <option value="' + $.base64.encode("uafh") + 'KdhU7Z">Services Unbekannt, bearbeitet auf OFFLINE Hosts</option>\n\
         </select>');
-    $('#ServiceViewSelect').selectmenu({width: 450,menuWidth:450,style:'dropdown',maxHeight:500});
+    $('#HostsViewSelect').selectmenu({width: 450,menuWidth:450,style:'dropdown',maxHeight:500});
 }
 
-function GridSpecialServices(uid,state) {
+function SummaryView(uid) {
     var b64uid = $.base64.encode( uid );
-    $('span.UserList').removeClass('Fontffffff');
-    $('span.UserList').addClass('Font82abcc');
-    $('span.UserGrid').removeClass('Font82abcc');
-    $('span.UserGrid').addClass('Fontffffff');
-    $('#AutoReload').css('display', 'block');
-    $('#ShowGridSearchBar').remove();
     $.ajax({
-        url: 'http://' + Backend + '/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u=' + b64uid + 'Lkjdu7&m2=Q29uZmlnJq0OpP',
+        url: 'http://' + Backend + '/proxy/json/?e=1&m=SG9zdEZ1bGxJbmZvHd78h3&u=' + b64uid + 'LKHld3',
         crossDomain: true,
         success: function(json) {
-            var dds;
-            $.each(json, function(key,value) {
-                if ( value.KEY == "DeleteDomainSuffix") {
-                    dds = value.ACTION;
-                }
-            });
-            $.ajax({
-                url: 'http://' + Backend + '/proxy/json/?e=1&m=U2VydmljZVN0YXR1c1NlbGVjdA==Ki88uU&u=' + b64uid + 'LKHld3&s=' + state,
-                crossDomain: true,
-                success: function(json) {
-                    var hostcount = 0;
-                    var servicecount = 0;
-                    $.each(json, function() {
-                        var mnode = this.NODE;
-                        $.each(this.SRVSTATSEL, function() {
-                            var hostname = this.NAME;
-                            var hoststatus = this.STATUS;
-                            var shorthostname;
-                            var hicon = this.ICON;
-                            var url = this.URL;
-                            if ( dds == "0" ) { shorthostname = this.NAME; } else { var tmp = this.NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
-                            if ( shorthostname.length > 25 ) { shorthostname = shorthostname.substr(0,22) + '...'; }
-                            if (this.SERVICELIST.length > 0) {
-                                $.each(this.SERVICELIST, function() {
-                                    var servicename = this.SERVICE_NAME;
-                                    if ( servicename.length > 20 ) { servicename = servicename.substr(0,17) + '...'; }
-                                    if ( this.OUTPUT.length > 38 ) { this.OUTPUT = this.OUTPUT.substr(0,35) + '...'; }
-                                    $('section','#center').append('<a class="service" title="" id="' + servicecount + 'SrvImgStateGrid"><img class="SrvImgGrid" src="' + hicon + '" /><div id="SrvImgStateGrid"><img src="' + this.SERVICE_STATUS_ICON + '" /></div><div id="SrvTitleGrid">' + servicename + '</div><div id="SrvHostNameGrid">' + shorthostname + ' <i>auf ' + mnode + '</i></div><div id="SrvOutputGrid">' + this.OUTPUT + '</div><div id="SvcLinkHover" onclick="OpenWindow(\'modules/' + url + '?h=' + $.base64.encode( mnode ) + '&c=' + $.base64.encode( hostname ) + '\',\'_self\');"></div><div id="SvcLinkMenu"><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="Checkbox' + hostcount + '' + servicecount + '" /><label for="Checkbox' + hostcount + '' + servicecount + '" title="Diesen Service Check f&uuml;r ein Kommando markieren.">x</label></div></a>');
-                                    $('#Checkbox' + hostcount + '' + servicecount).button();
-                                    if (this.ACK == "1") { $('#' + servicecount + 'SrvImgStateGrid').append('<div id="ImgServiceGridAck"><img src="layout/images/icons/eye.png" title="Service Problem ist bearbeitet." /></div>'); }
-                                    if (this.CMT == "") { /**/ } else { $('#' + servicecount + 'SrvImgStateGrid').append('<div id="ImgServiceGridCmt"><img src="layout/images/icons/balloon-left.png" title="Service wurde kommentiert." /></div>'); }
-                                    servicecount++;
-                                });
-                                hostcount++;
-                            }
-                        });
+            var hostcount = 0;
+            $.each(json, function() {
+                var mnode = this.NODE;
+                $.each(this.HFI, function() {
+                    var shorthostname;
+                    if ( DeleteDomainSuffix == "0" ) { shorthostname = this.NAME; } else { var tmp = this.NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
+                    var csscl;
+                    if (this.STATUS == "1") { csscl = "cr"; } else if (this.STATUS == "2") { csscl = "un"; } else { csscl = "ok"; }
+                    $('#HostStatusSummaryContent').append('<span id="SummaryBox" class="' + csscl + '" title="' + mnode + ': ' + shorthostname + '">&nbsp;</span>');
+                    $.each(this.SERVICELIST, function() {
+                        var cssclass;
+                        if (this.SERVICE_STATUS == "1") { cssclass = "hwa"; } else if (this.SERVICE_STATUS == "2") { cssclass = "hcr"; } else if (this.SERVICE_STATUS == "3") { cssclass = "hun"; } else { cssclass = "hok"; }
+                        if (this.ACK == "1") { cssclass = "hack"; }
+                        $('#ServiceStatusSummaryContent').append('<span id="SummaryBox" class="' + cssclass + '" title="' + mnode + ': ' + this.SERVICE_NAME + '@' + shorthostname + '">&nbsp;</span>');
                     });
-                    if (servicecount == 0) {
-                        $('#center').append('<div id="NoContent">Die Abfrage ergab kein Ergebnis.</div>');
-                    }
-                    
-                    $('#servicecount').html(' (' + servicecount + ' auf ' + hostcount + ' Hosts)');
-                    $('#AjaxLoader').remove();
-                    ShowSelect(state);
-                    UpdateModView(uid,"GridAllServices");
-                },
-                dataType: 'json',
-                cache: false
-            }); 
+                    hostcount++;
+                });
+            });
         },
         dataType: 'json',
         cache: false
-    });
-}
-
-function GridSearchServices(uid,searchstring) {
-    var b64uid = $.base64.encode( uid );
-    var b64searchstring = $.base64.encode( searchstring );
-    $('span.UserList').removeClass('Fontffffff');
-    $('span.UserList').addClass('Font82abcc');
-    $('span.UserGrid').removeClass('Font82abcc');
-    $('span.UserGrid').addClass('Fontffffff');
-    $('#AutoReload').css('display', 'block');
-    $('#ShowGridSearchBar').remove();
-    $('body').append('<div id="ShowGridSearchBar" style="margin-top: 7px; margin-left: 7px;"></div>');
-    $.ajax({
-        url: 'http://' + Backend + '/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u=' + b64uid + 'Lkjdu7&m2=Q29uZmlnJq0OpP',
-        crossDomain: true,
-        success: function(json) {
-            var dds;
-            $.each(json, function(key,value) {
-                if ( value.KEY == "DeleteDomainSuffix") {
-                    dds = value.ACTION;
-                }
-            });
-            $.ajax({
-                url: 'http://' + Backend + '/proxy/json/?e=1&m=U2VydmljZVNlYXJjaExpc3Q=Ki88uU&u=' + b64uid + 'LKHld3&searchstring=' + b64searchstring + 'KlUu87',
-                crossDomain: true,
-                success: function(json) {
-                    var hostcount = 0;
-                    var servicecount = 0;
-                    $('#ShowGridSearchBar').html('<font size=2 color=#82abcc>Gesucht nach:</font>  ' + searchstring + '');
-                    $.each(json, function() {
-                        var mnode = this.NODE;
-                        $.each(this.SRVSEARCH, function() {
-                            var hostname = this.NAME;
-                            var hoststatus = this.STATUS;
-                            var shorthostname;
-                            var hicon = this.ICON;
-                            var url = this.URL;
-                            if ( dds == "0" ) { shorthostname = this.NAME; } else { var tmp = this.NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
-                            if ( shorthostname.length > 25 ) { shorthostname = shorthostname.substr(0,22) + '...'; }
-                            if (this.SERVICELIST.length > 0) {
-                                $.each(this.SERVICELIST, function() {
-                                    var servicename = this.SERVICE_NAME;
-                                    if ( servicename.length > 20 ) { servicename = servicename.substr(0,17) + '...'; }
-                                    if ( this.OUTPUT.length > 38 ) { this.OUTPUT = this.OUTPUT.substr(0,35) + '...'; }
-                                    $('section','#center').append('<a class="service" title="" id="' + servicecount + 'SrvImgStateGrid"><img class="SrvImgGrid" src="' + hicon + '" /><div id="SrvImgStateGrid"><img src="' + this.SERVICE_STATUS_ICON + '" /></div><div id="SrvTitleGrid">' + servicename + '</div><div id="SrvHostNameGrid">' + shorthostname + ' <i>auf ' + mnode + '</i></div><div id="SrvOutputGrid">' + this.OUTPUT + '</div><div id="SvcLinkHover" onclick="OpenWindow(\'modules/' + url + '?h=' + $.base64.encode( mnode ) + '&c=' + $.base64.encode( hostname ) + '\',\'_self\');"></div><div id="SvcLinkMenu"><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="Checkbox' + hostcount + '' + servicecount + '" /><label for="Checkbox' + hostcount + '' + servicecount + '" title="Diesen Service Check f&uuml;r ein Kommando markieren.">x</label></div></a>');
-                                    $('#Checkbox' + hostcount + '' + servicecount).button();
-                                    if (this.ACK == "1") { $('#' + servicecount + 'SrvImgStateGrid').append('<div id="ImgServiceGridAck"><img src="layout/images/icons/eye.png" title="Service Problem ist bearbeitet." /></div>'); }
-                                    if (this.CMT == "") { /**/ } else { $('#' + servicecount + 'SrvImgStateGrid').append('<div id="ImgServiceGridCmt"><img src="layout/images/icons/balloon-left.png" title="Service wurde kommentiert." /></div>'); }
-                                    servicecount++;
-                                });
-                                hostcount++;
-                            }
-                        });
-                    });
-                    if (servicecount == 0) {
-                        $('#center').append('<div id="NoContent">Die Abfrage ergab kein Ergebnis.</div>');
-                    }
-                    
-                    $('#servicecount').html(' (' + servicecount + ' auf ' + hostcount + ' Hosts)');
-                    $('#AjaxLoader').remove();
-                    ShowSelectSearch();
-                    KlickFunctionSidebarService(uid,searchstring);
-                    UpdateModView(uid,"GridAllServices");
-                },
-                dataType: 'json',
-                cache: false
-            }); 
-        },
-        dataType: 'json',
-        cache: false
-    });
+    }); 
 }
 
 /*
  * List View
  */
 
-function ListAllServices(uid) {
-    var state = urlPara('s').replace(/%3D/g,'=');
-    var searchstring = urlPara('searchstring').replace(/%3D/g,'=').replace(/%20/g,' ').replace(/%22/g,'"').replace(/%25/g,'%').replace(/%3C/g,'<').replace(/%3E/g,'>').replace(/%5B/g,'[').replace(/%5C/g,'\\').replace(/%5D/g,']').replace(/%5E/g,'^').replace(/%60/g,'`').replace(/%7B/g,'{').replace(/%7C/g,'|').replace(/%7D/g,'}').replace(/%7E/g,'~').replace(/%7F/g,'').replace(/%28/g,'(').replace(/%29/g,')').replace(/%2B/g,'+');
-    $('#center').html('');
-    $('#ServiceGridSelect').html('');
-    $('#theme-roller').append('<img id="AjaxLoader" src="layout/images/ajax-loader.gif">');
-    $('#SrvCenter').html('<div id="ServicePane"><div id="ServiceListSearch"></div><div id="HeadDivTableServicesListView"><span>Host Name</span><span>Service Name</span><span>Output</span></div></div><div id="ListDivShowServices"></div>');
-    $('#ServicePane').append('<div id="CheckBoxAll"><input type="checkbox" id="CheckAllCheckboxes" onclick="CheckAll(\'' + uid + '\');"/></div><div id="VLOne"></div><div id="VLTwo"></div><div id="VLThree"></div><div id="VLFour"></div>');
-    if (state.length > 0) {
-        ListSpecialServices(uid,state);
-    } else {
-        if (searchstring.length > 0) {
-            ListSearchServices(uid,searchstring);
-        } else {
-            ListServices(uid);
-        }
-    }
-}
-
 function ListServices(uid) {
     var b64uid = $.base64.encode( uid );
-    $('span.UserList').addClass('Fontffffff');
-    $('span.UserList').removeClass('Font82abcc');
-    $('span.UserGrid').addClass('Font82abcc');
-    $('span.UserGrid').removeClass('Fontffffff');
-    $('#AutoReload').css('display', 'block');
-    $('#ShowGridSearchBar').remove();
     $.ajax({
-        url: 'http://' + Backend + '/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u=' + b64uid + 'Lkjdu7&m2=Q29uZmlnJq0OpP',
+        url: 'http://' + Backend + '/proxy/json/?e=1&m=SG9zdEZ1bGxJbmZvHd78h3&u=' + b64uid + 'LKHld3',
         crossDomain: true,
         success: function(json) {
-            var dds;
-            $.each(json, function(key,value) {
-                if ( value.KEY == "DeleteDomainSuffix") {
-                    dds = value.ACTION;
-                }
-            });
-            $.ajax({
-                url: 'http://' + Backend + '/proxy/json/?e=1&m=SG9zdEZ1bGxJbmZvHd78h3&u=' + b64uid + 'LKHld3',
-                crossDomain: true,
-                success: function(json) {
-                    var hostcount = 0;
-                    var servicecount = 0;
-                    $.each(json, function() {
-                        var mnode = this.NODE;
-                        $.each(this.HFI, function() {
-                            var hostname = this.NAME;
-                            var hoststatus = this.STATUS;
-                            var hosticon = this.ICON;
-                            var shorthostname;
-                            var url = this.URL;
-                            if ( dds == "0" ) { shorthostname = this.NAME; } else { var tmp = this.NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
-                            //if ( shorthostname.length > 13 ) { shorthostname = shorthostname.substr(0,10) + '...'; }
-                            $('#ListDivShowServices').append('<table id="ServiceLstTable" class="' + hostcount + 'Services"></table>');
-                            var srvcount = 0;
-                            $.each(this.SERVICELIST, function() {
-                                var cssclass;
-                                if (this.SERVICE_STATUS == "1") { 
-                                    cssclass = "taovwa"; 
-                                } else if (this.SERVICE_STATUS == "2") { 
-                                    cssclass = "taovcr"; 
-                                } else if (this.SERVICE_STATUS == "3") { 
-                                    cssclass = "taovun"; 
-                                } else { 
-                                    cssclass = "taovok"; 
-                                }
-                                if (srvcount == 0) {
-                                    $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td rowspan=2><img src="' + hosticon + '" /></td><td><a href="modules/' + url + '?h=' + $.base64.encode( mnode ) + '&c=' + $.base64.encode( hostname ) + '">' + shorthostname + '</a></td><td>' + this.SERVICE_NAME + '<div id="ImgService" class=' + servicecount + 'ImgServiceStatus></div></td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
-                                } else if (srvcount == 1) {
-                                    $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td><i>auf ' + mnode + '</i></td><td>' + this.SERVICE_NAME + '<div id="ImgService" class=' + servicecount + 'ImgServiceStatus></div></td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
-                                } else {
-                                    $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td colspan=2></td><td>' + this.SERVICE_NAME + '<div id="ImgService" class=' + servicecount + 'ImgServiceStatus></div></td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
-                                }
-                                if (this.ACK == "1") { $('.' + servicecount + 'ImgServiceStatus').append('<img id="ImgServiceAck" src="layout/images/icons/eye.png" title="Service Problem ist bearbeitet." />'); }
-                                if (this.CMT == "") { /**/ } else { $('.' + servicecount + 'ImgServiceStatus').append('<img id="ImgServiceCmt" src="layout/images/icons/balloon-left.png" title="Service wurde kommentiert." />'); }
-                                servicecount++;
-                                srvcount++;
-                            });
-                            hostcount++;
-                        });
+            var hostcount = 0;
+            var servicecount = 0;
+            $.each(json, function() {
+                var mnode = this.NODE;
+                $.each(this.HFI, function() {
+                    var lth = this.SERVICELIST.length;
+                    var hostname = this.NAME;
+                    var hoststatus = this.STATUS;
+                    var hosticon = this.ICON;
+                    var shorthostname;
+                    var url = this.URL;
+                    if ( DeleteDomainSuffix == "0" ) { shorthostname = this.NAME; } else { var tmp = this.NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
+                    var csscl;
+                    if (this.STATUS == "1") { csscl = "cr"; } else if (this.STATUS == "2") { csscl = "un"; } else { csscl = "ok"; }
+                    $('#HostStatusSummaryContent').append('<span id="SummaryBox" class="' + csscl + '" title="' + mnode + ': ' + shorthostname + '">&nbsp;</span>');
+                    $('#StatusListTable').append('<tr><td><table id="ServiceLstTable" class="' + hostcount + 'Services"></table></td></tr>');
+                    var srvcount=0;
+                    $.each(this.SERVICELIST, function() {
+                        var cssclass;
+                        if (this.SERVICE_STATUS == "1") { cssclass = "hwa"; } else if (this.SERVICE_STATUS == "2") { cssclass = "hcr"; } else if (this.SERVICE_STATUS == "3") { cssclass = "hun"; } else { cssclass = "hok"; }
+                        if (this.ACK == "1") { cssclass = "hack"; }
+                        $('#ServiceStatusSummaryContent').append('<span id="SummaryBox" class="' + cssclass + '" title="' + mnode + ': ' + this.SERVICE_NAME + '@' + shorthostname + '">&nbsp;</span>');
+                        if (srvcount == 0) {
+                            $('.' + hostcount + 'Services').append('<tr class="ServiceEntry"><td rowspan=2><img src="../' + hosticon + '" /></td><td class="DoubleClick" ondblclick="OpenWindow(\'../modules/' + url + '?h=' + $.base64.encode( mnode ) + '&c=' + $.base64.encode( hostname ) + '\',\'_blank\');"><div id="HostNode">auf ' + mnode + '</div>' + shorthostname + '</a></td><td><div id="TableImgService" class="' + cssclass + '">' + this.SERVICE_NAME + '</div><div id="ImgService" class=' + servicecount + 'ImgServiceStatus></div></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td><div id="ServiceOutput">' + this.OUTPUT + '</div></td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
+                        } else if (srvcount == 1) {
+                            $('.' + hostcount + 'Services').append('<tr class="ServiceEntry"><td></td><td><div id="TableImgService" class="' + cssclass + '">' + this.SERVICE_NAME + '</div><div id="ImgService" class=' + servicecount + 'ImgServiceStatus></div></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td><div id="ServiceOutput">' + this.OUTPUT + '</div></td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
+                        } else {
+                            $('.' + hostcount + 'Services').append('<tr class="ServiceEntry"><td colspan=2></td><td><div id="TableImgService" class="' + cssclass + '">' + this.SERVICE_NAME + '</div><div id="ImgService" class=' + servicecount + 'ImgServiceStatus></div></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td><div id="ServiceOutput">' + this.OUTPUT + '</div></td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
+                        }
+                        if (lth == 1) {
+                                $('.' + hostcount + 'Services').append('<tr class="ServiceEntryDummy"><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr>');
+                        }
+                        if (this.SCMT == "") { /**/ } else { $('.' + servicecount + 'ImgServiceStatus').append('<img id="ImgServiceCmt" src="../layout/images/icons/balloon-left.png" title="Service wurde kommentiert." />'); }
+                        servicecount++;
+                        srvcount++;
                     });
-                    
-                    if (servicecount == 0) {
-                        $('#ListDivShowServices').append('<div id="NoContent">Die Abfrage ergab kein Ergebnis.</div>');
-                        $('#VLOne').remove();
-                        $('#VLTwo').remove();
-                        $('#VLThree').remove();
-                        $('#VLFour').remove();
-                        $('#VLFive').remove();
-                        $('#VLSix').remove();
-                        $('#VLSeven').remove();
-                    }
-                    
-                    $('#servicecount').html(' (' + servicecount + ' auf ' + hostcount + ' Hosts)');
-                    $('#AjaxLoader').remove();
-                    ShowSelect($.base64.encode("a") + 'KdhU7Z');
-                    UpdateModView(uid,"ListAllServices");
-                },
-                dataType: 'json',
-                cache: false
-            }); 
+                    hostcount++;
+                });
+            });
+            if (hostcount == 0) { $('#StatusListTable').append('<div id="NoContent">Die Abfrage ergab kein Ergebnis.</div>'); }
+            $('#servicecount').html(' (' + servicecount + ' auf ' + hostcount + ' Hosts)');
+            $('#AjaxLoader').remove();
+            ShowSelect($.base64.encode("a") + 'KdhU7Z');
         },
         dataType: 'json',
         cache: false
-    });
+    }); 
 }
 
-function UpdateModView(uid,val1) {
+function ListServicesByStatus(uid,state) {
+    SummaryView(uid);
     var b64uid = $.base64.encode( uid );
-    var b64val1 = $.base64.encode( val1 );
     $.ajax({
-        url: 'http://' + Backend + '/repo/json/?e=1&m=VXBkYXRlTW9kVmlldw==Jhdu8d&u=' + b64uid + 'Adhfg3&k=c2VydmljZXM=JkHu77&v1=' + b64val1 + 'HjKi88',
-        crossDomain: true,
-        dataType: 'json',
-        cache: false
-    });
-}
-
-function ListSpecialServices(uid,state) {
-    var b64uid = $.base64.encode( uid );
-    $('span.UserList').addClass('Fontffffff');
-    $('span.UserList').removeClass('Font82abcc');
-    $('span.UserGrid').addClass('Font82abcc');
-    $('span.UserGrid').removeClass('Fontffffff');
-    $('#AutoReload').css('display', 'block');
-    $('#ShowGridSearchBar').remove();
-    //$('#SrvCenter').html('');
-    $('#center').html('');
-    $.ajax({
-        url: 'http://' + Backend + '/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u=' + b64uid + 'Lkjdu7&m2=Q29uZmlnJq0OpP',
+        url: 'http://' + Backend + '/proxy/json/?e=1&m=U2VydmljZVN0YXR1c1NlbGVjdA==Ki88uU&u=' + b64uid + 'LKHld3&s=' + state,
         crossDomain: true,
         success: function(json) {
-            var dds;
-            $.each(json, function(key,value) {
-                if ( value.KEY == "DeleteDomainSuffix") {
-                    dds = value.ACTION;
-                }
-            });
-            $.ajax({
-                url: 'http://' + Backend + '/proxy/json/?e=1&m=U2VydmljZVN0YXR1c1NlbGVjdA==Ki88uU&u=' + b64uid + 'LKHld3&s=' + state,
-                crossDomain: true,
-                success: function(json) {
-                    var hostcount = 0;
-                    var servicecount = 0;
-                    $.each(json, function() {
-                        var mnode = this.NODE;
-                        $.each(this.SRVSTATSEL, function() {
-                            var hostname = this.NAME;
-                            var hoststatus = this.STATUS;
-                            var hosticon = this.ICON;
-                            var shorthostname;
-                            var url = this.URL;
-                            if ( dds == "0" ) { shorthostname = this.NAME; } else { var tmp = this.NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
-                            //if ( shorthostname.length > 13 ) { shorthostname = shorthostname.substr(0,10) + '...'; }
-                            if (this.SERVICELIST.length > 0) {
-                                $('#ListDivShowServices').append('<table id="ServiceLstTable" class="' + hostcount + 'Services"></table>');
-                                var srvcount = 0;
-                                $.each(this.SERVICELIST, function() {
-                                    var cssclass;
-                                    if (this.SERVICE_STATUS == "1") { 
-                                        cssclass = "taovwa"; 
-                                    } else if (this.SERVICE_STATUS == "2") { 
-                                        cssclass = "taovcr"; 
-                                    } else if (this.SERVICE_STATUS == "3") { 
-                                        cssclass = "taovun"; 
-                                    } else { 
-                                        cssclass = "taovok"; 
-                                    }
-                                    if (srvcount == 0) {
-                                        $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td rowspan=2><img style="width:20px; margin-bottom: -5px;margin-left: 13px;" src="' + hosticon + '" /></td><td><a href="modules/' + url + '?h=' + $.base64.encode( mnode ) + '&c=' + $.base64.encode( hostname ) + '">' + shorthostname + ' <i>(' + mnode + ')</i></a></td><td>' + this.SERVICE_NAME + '<div id="ImgService" class=' + servicecount + 'ImgServiceStatus></div></td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
-                                    } else if (srvcount == 1) {
-                                        $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td></td><td>' + this.SERVICE_NAME + '<div id="ImgService" class=' + servicecount + 'ImgServiceStatus></div></td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
-                                    } else {
-                                        $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td colspan=2></td><td>' + this.SERVICE_NAME + '<div id="ImgService" class=' + servicecount + 'ImgServiceStatus></div></td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
-                                    }
-                                    if (this.ACK == "1") { $('.' + servicecount + 'ImgServiceStatus').append('<img id="ImgServiceAck" src="layout/images/icons/eye.png" title="Service Problem ist bearbeitet." />'); }
-                                    if (this.CMT == "") { /**/ } else { $('.' + servicecount + 'ImgServiceStatus').append('<img id="ImgServiceCmt" src="layout/images/icons/balloon-left.png" title="Service wurde kommentiert." />'); }
-                                    servicecount++;
-                                    srvcount++;
-                                });
-                                hostcount++;
+            var hostcount = 0;
+            var servicecount = 0;
+            $.each(json, function() {
+                var mnode = this.NODE;
+                $.each(this.SRVSTATSEL, function() {
+                    var hostname = this.NAME;
+                    var hoststatus = this.STATUS;
+                    var hosticon = this.ICON;
+                    var shorthostname;
+                    var url = this.URL;
+                    if ( DeleteDomainSuffix == "0" ) { shorthostname = this.NAME; } else { var tmp = this.NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
+                    if (this.SERVICELIST.length > 0) {
+                        var lth = this.SERVICELIST.length;
+                        var csscl;
+                        if (this.STATUS == "1") { csscl = "cr"; } else if (this.STATUS == "2") { csscl = "un"; } else { csscl = "ok"; }
+                        $('#StatusListTable').append('<tr><td><table id="ServiceLstTable" class="' + hostcount + 'Services"></table></td></tr>');
+                        var srvcount=0;
+                        $.each(this.SERVICELIST, function() {
+                            var cssclass;
+                            if (this.SERVICE_STATUS == "1") { cssclass = "hwa"; } else if (this.SERVICE_STATUS == "2") { cssclass = "hcr"; } else if (this.SERVICE_STATUS == "3") { cssclass = "hun"; } else { cssclass = "hok"; }
+                            if (this.ACK == "1") { cssclass = "hack"; }
+                            if (srvcount == 0) {
+                                $('.' + hostcount + 'Services').append('<tr class="ServiceEntry"><td rowspan=2><img src="../' + hosticon + '" /></td><td class="DoubleClick" ondblclick="OpenWindow(\'../modules/' + url + '?h=' + $.base64.encode( mnode ) + '&c=' + $.base64.encode( hostname ) + '\',\'_blank\');"><div id="HostNode">auf ' + mnode + '</div>' + shorthostname + '</td><td><div id="TableImgService" class="' + cssclass + '">' + this.SERVICE_NAME + '</div><div id="ImgService" class=' + servicecount + 'ImgServiceStatus></div></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td><div id="ServiceOutput">' + this.OUTPUT + '</div></td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
+                            } else if (srvcount == 1) {
+                                $('.' + hostcount + 'Services').append('<tr class="ServiceEntry"><td></td><td><div id="TableImgService" class="' + cssclass + '">' + this.SERVICE_NAME + '</div><div id="ImgService" class=' + servicecount + 'ImgServiceStatus></div></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td><div id="ServiceOutput">' + this.OUTPUT + '</div></td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
+                            } else {
+                                $('.' + hostcount + 'Services').append('<tr class="ServiceEntry"><td colspan=2></td><td><div id="TableImgService" class="' + cssclass + '">' + this.SERVICE_NAME + '</div><div id="ImgService" class=' + servicecount + 'ImgServiceStatus></div></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td><div id="ServiceOutput">' + this.OUTPUT + '</div></td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
                             }
+                            if (lth == 1) {
+                                $('.' + hostcount + 'Services').append('<tr class="ServiceEntryDummy"><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr>');
+                            }
+                            if (this.SCMT == "") { /**/ } else { $('.' + servicecount + 'ImgServiceStatus').append('<img id="ImgServiceCmt" src="../layout/images/icons/balloon-left.png" title="Service wurde kommentiert." />'); }
+                            servicecount++;
+                            srvcount++;
                         });
-                    });
-                    
-                    if (servicecount == 0) {
-                        $('#ListDivShowServices').append('<div id="NoContent">Die Abfrage ergab kein Ergebnis.</div>');
-                        $('#VLOne').remove();
-                        $('#VLTwo').remove();
-                        $('#VLThree').remove();
-                        $('#VLFour').remove();
-                        $('#VLFive').remove();
-                        $('#VLSix').remove();
-                        $('#VLSeven').remove();
+                        hostcount++;
                     }
-                    
-                    $('#servicecount').html(' (' + servicecount + ' auf ' + hostcount + ' Hosts)');
-                    $('#AjaxLoader').remove();
-                    ShowSelect(state);
-                    UpdateModView(uid,"ListAllServices");
-                },
-                dataType: 'json',
-                cache: false
-            }); 
+                });
+            });
+            if (hostcount == 0) { $('#StatusListTable').append('<div id="NoContent">Die Abfrage ergab kein Ergebnis.</div>'); }
+            $('#servicecount').html(' (' + servicecount + ' auf ' + hostcount + ' Hosts)');
+            $('#AjaxLoader').remove();
+            ShowSelect(state);
         },
         dataType: 'json',
         cache: false
-    });
+    }); 
 }
 
-function ListSearchServices(uid,searchstring) {
+function ListServicesBySearch(uid,searchstring) {
+    SummaryView(uid);
     var b64uid = $.base64.encode( uid );
     var b64searchstring = $.base64.encode( searchstring );
-    $('span.UserList').addClass('Fontffffff');
-    $('span.UserList').removeClass('Font82abcc');
-    $('span.UserGrid').addClass('Font82abcc');
-    $('span.UserGrid').removeClass('Fontffffff');
-    $('#AutoReload').css('display', 'block');
-    $('#ShowGridSearchBar').remove();
-    $('body').append('<div id="ShowGridSearchBar" style="margin-top: 7px; margin-left: 7px;"></div>');
-    $('#center').html('');
     $.ajax({
-        url: 'http://' + Backend + '/repo/json/?e=1&m=U2VsZWN0Q29uZmlnJk8Uhg&u=' + b64uid + 'Lkjdu7&m2=Q29uZmlnJq0OpP',
+        url: 'http://' + Backend + '/proxy/json/?e=1&m=U2VydmljZVNlYXJjaExpc3Q=Ki88uU&u=' + b64uid + 'LKHld3&searchstring=' + b64searchstring + 'KlUu87',
         crossDomain: true,
         success: function(json) {
-            var dds;
-            $.each(json, function(key,value) {
-                if ( value.KEY == "DeleteDomainSuffix") {
-                    dds = value.ACTION;
-                }
-            });
-            $.ajax({
-                url: 'http://' + Backend + '/proxy/json/?e=1&m=U2VydmljZVNlYXJjaExpc3Q=Ki88uU&u=' + b64uid + 'LKHld3&searchstring=' + b64searchstring + 'KlUu87',
-                crossDomain: true,
-                success: function(json) {
-                    var hostcount = 0;
-                    var servicecount = 0;
-                    $.each(json, function() {
-                        var mnode = this.NODE;
-                        $.each(this.SRVSEARCH, function() {
-                            var hostname = this.NAME;
-                            var hoststatus = this.STATUS;
-                            var hosticon = this.ICON;
-                            var shorthostname;
-                            var url = this.URL;
-                            $('#ShowGridSearchBar').html('<font size=2 color=#82abcc>Gesucht nach:</font>  ' + searchstring + '');
-                            if ( dds == "0" ) { shorthostname = this.NAME; } else { var tmp = this.NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
-                            //if ( shorthostname.length > 13 ) { shorthostname = shorthostname.substr(0,10) + '...'; }
-                            if (this.SERVICELIST.length > 0) {
-                                $('#ListDivShowServices').append('<table id="ServiceLstTable" class="' + hostcount + 'Services"></table>');
-                                var srvcount = 0;
-                                $.each(this.SERVICELIST, function() {
-                                    var cssclass;
-                                    if (this.SERVICE_STATUS == "1") { 
-                                        cssclass = "taovwa"; 
-                                    } else if (this.SERVICE_STATUS == "2") { 
-                                        cssclass = "taovcr"; 
-                                    } else if (this.SERVICE_STATUS == "3") { 
-                                        cssclass = "taovun"; 
-                                    } else { 
-                                        cssclass = "taovok"; 
-                                    }
-                                    if (srvcount == 0) {
-                                        $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td rowspan=2><img style="width:20px; margin-bottom: -5px;margin-left: 13px;" src="' + hosticon + '" /></td><td><a href="modules/' + url + '?h=' + $.base64.encode( mnode ) + '&c=' + $.base64.encode( hostname ) + '">' + shorthostname + ' <i>(' + mnode + ')</i></a></td><td>' + this.SERVICE_NAME + '<div id="ImgService" class=' + servicecount + 'ImgServiceStatus></div></td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
-                                    } else if (srvcount == 1) {
-                                        $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td></td><td>' + this.SERVICE_NAME + '<div id="ImgService" class=' + servicecount + 'ImgServiceStatus></div></td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
-                                    } else {
-                                        $('.' + hostcount + 'Services').append('<tr class="' + cssclass + '"><td colspan=2></td><td>' + this.SERVICE_NAME + '<div id="ImgService" class=' + servicecount + 'ImgServiceStatus></div></td><td><img id="ImgServiceStatus" src="' + this.SERVICE_STATUS_ICON + '"></img></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td>' + this.OUTPUT + '</td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
-                                    }
-                                    if (this.ACK == "1") { $('.' + servicecount + 'ImgServiceStatus').append('<img id="ImgServiceAck" src="layout/images/icons/eye.png" title="Service Problem ist bearbeitet." />'); }
-                                    if (this.CMT == "") { /**/ } else { $('.' + servicecount + 'ImgServiceStatus').append('<img id="ImgServiceCmt" src="layout/images/icons/balloon-left.png" title="Service wurde kommentiert." />'); }
-                                    servicecount++;
-                                    srvcount++;
-                                });
-                                hostcount++;
+            $('#ShowGridSearchBar').remove();
+            $('#StatusSummaryHead').append('<div id="ShowGridSearchBar">Gesucht nach: ' + searchstring + '</div>');
+            var hostcount = 0;
+            var servicecount = 0;
+            $.each(json, function() {
+                var mnode = this.NODE;
+                $.each(this.SRVSEARCH, function() {
+                    var hostname = this.NAME;
+                    var hoststatus = this.STATUS;
+                    var hosticon = this.ICON;
+                    var shorthostname;
+                    var url = this.URL;
+                    if ( DeleteDomainSuffix == "0" ) { shorthostname = this.NAME; } else { var tmp = this.NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
+                    if (this.SERVICELIST.length > 0) {
+                        var lth = this.SERVICELIST.length;
+                        var csscl;
+                        if (this.STATUS == "1") { csscl = "cr"; } else if (this.STATUS == "2") { csscl = "un"; } else { csscl = "ok"; }
+                        $('#StatusListTable').append('<tr><td><table id="ServiceLstTable" class="' + hostcount + 'Services"></table></td></tr>');
+                        var srvcount=0;
+                        $.each(this.SERVICELIST, function() {
+                            var cssclass;
+                            if (this.SERVICE_STATUS == "1") { cssclass = "hwa"; } else if (this.SERVICE_STATUS == "2") { cssclass = "hcr"; } else if (this.SERVICE_STATUS == "3") { cssclass = "hun"; } else { cssclass = "hok"; }
+                            if (this.ACK == "1") { cssclass = "hack"; }
+                            if (srvcount == 0) {
+                                $('.' + hostcount + 'Services').append('<tr class="ServiceEntry"><td rowspan=2><img src="../' + hosticon + '" /></td><td class="DoubleClick" ondblclick="OpenWindow(\'../modules/' + url + '?h=' + $.base64.encode( mnode ) + '&c=' + $.base64.encode( hostname ) + '\',\'_blank\');"><div id="HostNode">auf ' + mnode + '</div>' + shorthostname + '</td><td><div id="TableImgService" class="' + cssclass + '">' + this.SERVICE_NAME + '</div><div id="ImgService" class=' + servicecount + 'ImgServiceStatus></div></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td><div id="ServiceOutput">' + this.OUTPUT + '</div></td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
+                            } else if (srvcount == 1) {
+                                $('.' + hostcount + 'Services').append('<tr class="ServiceEntry"><td></td><td><div id="TableImgService" class="' + cssclass + '">' + this.SERVICE_NAME + '</div><div id="ImgService" class=' + servicecount + 'ImgServiceStatus></div></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td><div id="ServiceOutput">' + this.OUTPUT + '</div></td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
+                            } else {
+                                $('.' + hostcount + 'Services').append('<tr class="ServiceEntry"><td colspan=2></td><td><div id="TableImgService" class="' + cssclass + '">' + this.SERVICE_NAME + '</div><div id="ImgService" class=' + servicecount + 'ImgServiceStatus></div></td><td><input type="checkbox" name="' + hostname + '@' + mnode + '" value="' + this.SERVICE_NAME + '" id="" /></td><td><div id="ServiceOutput">' + this.OUTPUT + '</div></td><td>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr>');
                             }
+                            if (lth == 1) {
+                                $('.' + hostcount + 'Services').append('<tr class="ServiceEntryDummy"><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr>');
+                            }
+                            if (this.SCMT == "") { /**/ } else { $('.' + servicecount + 'ImgServiceStatus').append('<img id="ImgServiceCmt" src="../layout/images/icons/balloon-left.png" title="Service wurde kommentiert." />'); }
+                            servicecount++;
+                            srvcount++;
                         });
-                    });
-                    
-                    if (servicecount == 0) {
-                        $('#ListDivShowServices').append('<div id="NoContent">Die Abfrage ergab kein Ergebnis.</div>');
-                        $('#VLOne').remove();
-                        $('#VLTwo').remove();
-                        $('#VLThree').remove();
-                        $('#VLFour').remove();
-                        $('#VLFive').remove();
-                        $('#VLSix').remove();
-                        $('#VLSeven').remove();
+                        hostcount++;
                     }
-                    
-                    $('#servicecount').html(' (' + servicecount + ' auf ' + hostcount + ' Hosts)');
-                    $('#FooterDivTableHostsListView').html(servicecount + ' Services');
-                    $('#AjaxLoader').remove();
-                    ShowSelectSearch();
-                    KlickFunctionSidebarService(uid,searchstring);
-                    UpdateModView(uid,"ListAllServices");
-                    //setTimeout('AllServices("' + uid + '")', 30000);
-                },
-                dataType: 'json',
-                cache: false
-            }); 
+                });
+            });
+            if (hostcount == 0) { $('#StatusListTable').append('<div id="NoContent">Die Abfrage ergab kein Ergebnis.</div>'); }
+            $('#servicecount').html(' (' + servicecount + ' auf ' + hostcount + ' Hosts)');
+            $('#AjaxLoader').remove();
+            ShowSelectSearch();
+            KlickFunctionSidebarService(uid,searchstring);
         },
         dataType: 'json',
         cache: false
-    });
+    }); 
 }
 
 function KlickFunctionSidebarService(uid,searchstring) {

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : CslWeblogic
-    Created on : 25.09.2013, 08:14:21
+    Document   : services.jsp
+    Created on : 25.04.2013, 10:54:14
     Author     : sbaresel
 --%>
 
@@ -13,31 +13,18 @@
         <meta name="author" content="Steffen Baresel">
 	<meta name="description" content="kVASy(R) System Control.">
 	<meta name="keywords" content="kVASy, System Control, kVASy System Control">
-	<title>Loading ...</title>
-	<meta name="language" content="it">
+	<title>Services - kVASy&reg; System Control</title>
+	<meta name="language" content="de">
 	<meta name="charset" content="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<script type="text/javascript" src="../script/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript" src="../script/jquery-1.8.2.min.js"></script>
         <script type="text/javascript" src="../script/jquery-ui-1.9.0.custom.min.js"></script>
-    	<script type="text/javascript" src="../script/jquery.metro.js"></script>
     	<script type="text/javascript" src="../script/jquery.cookie.js"></script>
-	<script type="text/javascript" src="../script/metro.js"></script>
-	<script type="text/javascript" src="../script/main.js"></script>
         <script type="text/javascript" src="../script/highcharts.js"></script>
-	<script type="text/javascript" src="../script/prototype-adapter.js"></script>	
 	<script type="text/javascript" src="../script/exporting.js"></script>
 	<script type="text/javascript" src="../script/data.js"></script>
-	<script type="text/javascript" src="../script/highcharts-more.js"></script>
-	<script type="text/javascript" src="../script/grid.locale-de.js"></script>
-	<script type="text/javascript" src="../script/jquery.jqGrid.min.js"></script>
 	<script type="text/javascript" src="../script/jquery.searchFilter.js"></script>
-	<script type="text/javascript" src="../script/jquery.tablednd.js"></script>
-	<script type="text/javascript" src="../script/grid.postext.js"></script>
-	<script type="text/javascript" src="../script/grid.setcolumns.js"></script>
-	<script type="text/javascript" src="../script/jquery.contextmenu.js"></script>
-	<script type="text/javascript" src="../script/grid.addons.js"></script>
-	<script type="text/javascript" src="../script/MetroJs.a.js"></script>
-	<script type="text/javascript" src="../script/timepicker.js"></script>
+        <script type="text/javascript" src="../script/jquery.selectmenu.js"></script>
+        <script type="text/javascript" src="../script/timepicker.js"></script>
         <script type="text/javascript" src="../script/jquery.shortcuts.min.js"></script>
         
         <!-- KSC Basicfunctions -->
@@ -45,8 +32,8 @@
         <!-- Liveticker -->
         <script type="text/javascript" src="../script/kVASySystemControl/kSCbase64.js"></script>
         <script type="text/javascript" src="../script/kVASySystemControl/kSCliveticker.js"></script>
-        <!-- KSC Database Modul -->
-        <script type="text/javascript" src="../script/kVASySystemControl/kSCcslweblogic.js"></script>
+        <!-- KSC Services -->
+        <script type="text/javascript" src="js/kSCservices.js"></script>
         <!-- KSC Tactical Overview -->
         <script type="text/javascript" src="../script/kVASySystemControl/kSCtaov.js"></script>
         
@@ -59,11 +46,8 @@
         <link rel='stylesheet' href='../layout/kSCliveticker.css' />
         <link rel='stylesheet' href='../layout/kSCsidebar.css' />
         <link rel='stylesheet' href='../layout/kSCtaov.css' />
-        <link rel='stylesheet' href='../layout/ui.jqgrid.css' />
-	<link rel='stylesheet' href='../layout/searchFilter.css' />
-	<link rel='stylesheet' href='../layout/ui.multiselect.css' />
-	<link rel='stylesheet' href='../layout/MetroJs.a.css' />
-        <link rel='stylesheet' href='../layout/kSCcslweblogic.css' />
+        <link rel='stylesheet' href='css/kSCservices.css' />
+	<link rel='stylesheet' href='../layout/searchFilter.css' /> 
         
         <!-- Personal Computer -> 1024x768 -->
         <link rel='stylesheet' media='screen and (max-width: 1214px)' href='../layout/metro.1024.css' />
@@ -87,16 +71,13 @@
                 SubLoader();
                 Top(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 SubLiveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);
-                SubSlimTaov(<% out.println("'" + request.getRemoteUser() + "'"); %>);
-                ShowAllComments(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 KlickFunctionSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 KeyFunctionSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 SubBase();
-                ChangeTitle();
-                WlsInfo(<% out.println("'" + request.getRemoteUser() + "'"); %>);
-                $("div.metro-pivot").metroPivot();
-                Summary(<% out.println("'" + request.getRemoteUser() + "'"); %>);
-                ModShowCritical(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                SlimTaov(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                ShowAllComments(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                ShowCritical(<% out.println("'" + request.getRemoteUser() + "'"); %>);
+                AllServices(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 SubStyleSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
             });
         });
@@ -104,36 +85,39 @@
         
 	</head>
     <body theme="dark">
-        
+
         <div id="TopMenu"></div>
         
         <span id="top">
                 <p class="title"><font class="kvasy">kVASy&reg;</font> System Control</p><div id="logo-div"><img class='logo' src='../layout/images/logo_backgroundblue_whitetext.png' title='SIV.AG'/></div>
 		<p class="subtitle">Monitoring quite simple!</p></span>
 
+
 		<div id="UserMenu"><table cellpadding=0 cellspacing=0 border=0><tr><td><span class="UserDesc" style="float: left;">User</span><span style="float: left; margin-top: -1px;" class="ui-icon ui-icon-triangle-1-s"></span></td><td width="10"></td><td colspan=3><span class="UserDesc" style="float: left;">Session</span><span style="float: left; margin-top: -1px;" class="ui-icon ui-icon-triangle-1-s"></span></td></tr><tr valign=middle><td><% out.println( "<p class='login_username'>" + search.getDisplayName(request.getRemoteUser()) + "</p>" ); %></td><td width="10"></td><td><p class="login_shortname"><a href="../logout.jsp">Abmelden</a><p></td></tr></table><div id="Liveticker"></div></div>
 
-		<div id="back-div"></div>
+                <div id="UserView"><table cellpadding=0 cellspacing=0 border=0><tr><td><span class="UserDesc" style="float: left;">View</span><span style="float: left; margin-top: -1px;" class="ui-icon ui-icon-triangle-1-s"></span></td></tr><tr><td><span class="UserReload" onclick="Reload(<% out.println("'" + request.getRemoteUser() + "'"); %>); ">Reload</span></td></tr></table></div>
+
+                <div id="back-div"></div>
+                    
+                <!-- Services Start -->
                 
-                <div id="ExtSysInfo"></div>
-                
-                <!-- Detail Start -->
-                
-                <div class='metro-pivot'>
-                    <div class='pivot-item'><h3>summary</h3>
-			<div class='metro-right-content'>
-				<div id='tlist2'><table id='list2'></table><div id='pager2'></div></div><br></br>
-				<div id='tlist3'><table id='list3'></table><div id='pager3'></div></div>
-			</div>
+                <form id="SearchService" method="GET" action="">
+                    <div id="HostGridSelect"></div>
+                    <div id="AutoReload"></div>
+                    <div id="StatusSummaryHead"></div>
+                    <div id="StatusSummary">
+                        <div id="HostStatusSummaryHead"><span style="float: left;">Hosts</span><span style="float: left; margin-top: -1px;" class="ui-icon ui-icon-triangle-1-s"></span></div>
+                        <div id="HostStatusSummary"><div id="HostStatusSummaryContent"></div></div>
+                        <div id="ServiceStatusSummaryHead"><span style="float: left;">Services</span><span style="float: left; margin-top: -1px;" class="ui-icon ui-icon-triangle-1-s"></span></div>
+                        <div id="ServiceStatusSummary"><div id="ServiceStatusSummaryContent"></div></div>
                     </div>
-                    <div class='pivot-item'><h3>heap size</h3>
-			<div class='metro-right-content'>
-				<div id='heapsize'></div>
-			</div>
+                    <div id="StatusListHead"></div>
+                    <div id="StatusList">
+                        <table id="StatusListTable"></table>
                     </div>
-                </div>
-                
-                <!-- Detail Ende -->
+                </form>
+                    
+                <!-- Services Ende -->
                 
                 <!-- Configuration Start -->
                 
@@ -160,12 +144,6 @@
                 </div>
                 
                 <!-- Sidebar Ende -->
-                
-                <!-- Liveticker Start -->
-                
-                <div id="Liveticker"></div> 
-                
-                <!-- Liveticker Ende -->
                 
                 <div id="SidebarBottomSmall">
                     <div id="SlimTaov"></div>
@@ -202,6 +180,5 @@
                         <div id="FooterDivShowCritical"></div>
                     </div>
                 </div>
-
 	</body>
 </html>

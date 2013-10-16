@@ -832,6 +832,36 @@ function ShowSelectSearch() {
     $('#HostsViewSelect').selectmenu({width: 450,menuWidth:450,style:'dropdown',maxHeight:500});
 }
 
+function SummaryView(uid) {
+    var b64uid = $.base64.encode( uid );
+    $.ajax({
+        url: 'http://' + Backend + '/proxy/json/?e=1&m=SG9zdEZ1bGxJbmZvHd78h3&u=' + b64uid + 'LKHld3',
+        crossDomain: true,
+        success: function(json) {
+            var hostcount = 0;
+            $.each(json, function() {
+                var mnode = this.NODE;
+                $.each(this.HFI, function() {
+                    var shorthostname;
+                    if ( DeleteDomainSuffix == "0" ) { shorthostname = this.NAME; } else { var tmp = this.NAME; shorthostname = tmp.substr(0, tmp.indexOf('.')); }
+                    var csscl;
+                    if (this.STATUS == "1") { csscl = "cr"; } else if (this.STATUS == "2") { csscl = "un"; } else { csscl = "ok"; }
+                    $('#HostStatusSummaryContent').append('<span id="SummaryBox" class="' + csscl + '" title="' + mnode + ': ' + shorthostname + '">&nbsp;</span>');
+                    $.each(this.SERVICELIST, function() {
+                        var cssclass;
+                        if (this.SERVICE_STATUS == "1") { cssclass = "hwa"; } else if (this.SERVICE_STATUS == "2") { cssclass = "hcr"; } else if (this.SERVICE_STATUS == "3") { cssclass = "hun"; } else { cssclass = "hok"; }
+                        if (this.ACK == "1") { cssclass = "hack"; }
+                        $('#ServiceStatusSummaryContent').append('<span id="SummaryBox" class="' + cssclass + '" title="' + mnode + ': ' + this.SERVICE_NAME + '@' + shorthostname + '">&nbsp;</span>');
+                    });
+                    hostcount++;
+                });
+            });
+        },
+        dataType: 'json',
+        cache: false
+    }); 
+}
+
 /*
  * List Hosts
  */
@@ -856,7 +886,7 @@ function ListHosts(uid) {
                     if (this.SRV_UN != "0") { srvun = "hun"; } else { srvun = ""; }
                     if (this.SRV_OK != "0") { srvok = "hok"; } else { srvok = ""; }
                     if (this.SRV_PE != "0") { srvpe = "hpe"; } else { srvpe = ""; }
-                    $('#StatusListTable').append('<tr><td ondblclick="OpenWindow(\'../modules/' + this.URL + '?h=' + $.base64.encode( mnode ) + '&c=' + $.base64.encode( hostname ) + '\',\'_blank\');"><div id="StatusListEntry"><table class="' + cssclass + '" cellpadding=0 cellspacing=0><tr class="' + cssclass + '"><td rowspan=2><img src="../' + this.ICON + '" /></td><td>' + shorthostname + '<div id="HostNotifications" class="Host' + hostcount + '"></div></td><td rowspan=2>' + this.CUSTOM_VAR + '</td><td rowspan=2><div id="CheckBoxHost"><input type="checkbox" name="' + hostname + '@' + mnode + '" value="HOST" /></div></td><td class="' + srvcr + '" rowspan=2>' + this.SRV_CR + '</td><td class="' + srvwa + '" rowspan=2>' + this.SRV_WA + '</td><td class="' + srvun + '" rowspan=2>' + this.SRV_UN + '</td><td class="' + srvok + '" rowspan=2>' + this.SRV_OK + '</td><td class="' + srvpe + '" rowspan=2>' + this.SRV_PE + '</td><td rowspan=2>' + this.OUTPUT + '<div id="ServicesHost" class="ServicesHost' + hostcount + '"></div></td><td rowspan=2>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr><tr><td><i>auf ' + mnode + '</i></td></tr></table></div></td></tr>');
+                    $('#StatusListTable').append('<tr><td ondblclick="OpenWindow(\'../modules/' + this.URL + '?h=' + $.base64.encode( mnode ) + '&c=' + $.base64.encode( hostname ) + '\',\'_blank\');"><div id="StatusListEntry"><table class="' + cssclass + '" cellpadding=0 cellspacing=0><tr class="' + cssclass + '"><td rowspan=2><img src="../' + this.ICON + '" /></td><td>' + shorthostname + '<div id="HostNotifications" class="Host' + hostcount + '"></div></td><td rowspan=2>' + this.CUSTOM_VAR + '</td><td rowspan=2><div id="CheckBoxHost"><input type="checkbox" name="' + hostname + '@' + mnode + '" value="HOST" /></div></td><td class="' + srvcr + '" rowspan=2>' + this.SRV_CR + '</td><td class="' + srvwa + '" rowspan=2>' + this.SRV_WA + '</td><td class="' + srvun + '" rowspan=2>' + this.SRV_UN + '</td><td class="' + srvok + '" rowspan=2>' + this.SRV_OK + '</td><td class="' + srvpe + '" rowspan=2>' + this.SRV_PE + '</td><td rowspan=2>' + this.OUTPUT + '<div id="ServicesHost" class="ServicesHost' + hostcount + '"></div></td><td rowspan=2>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr><tr><td style="color: #82abcc;"><b>auf ' + mnode + '</b></td></tr></table></div></td></tr>');
                     if (this.STATUS != "0") { $('.Host' + hostcount).append('<img id="ImgHostStatus" src="../layout/images/icons/server--exclamation.png" />'); };
                     if (this.ACK == "1") { $('.Host' + hostcount).append('<img id="ImgHostAck" src="../layout/images/icons/eye.png" title="Host Problem ist bearbeitet." />'); }
                     if (this.CMT == "") { /**/ } else { $('.Host' + hostcount).append('<img id="ImgHostCmt" src="../layout/images/icons/balloon-left.png" title="Host wurde kommentiert." />'); }
@@ -866,6 +896,7 @@ function ListHosts(uid) {
                     $.each(this.SERVICELIST, function() {
                         var cssclass;
                         if (this.SERVICE_STATUS == "1") { cssclass = "wa"; } else if (this.SERVICE_STATUS == "2") { cssclass = "cr"; } else if (this.SERVICE_STATUS == "3") { cssclass = "un"; } else { cssclass = "ok"; }
+                        if (this.ACK == "1") { cssclass = "hack"; }
                         $('#ServiceStatusSummaryContent').append('<span id="SummaryBox" class="' + cssclass + '" title="' + mnode + ': ' + this.SERVICE_NAME + '@' + shorthostname + '">&nbsp;</span>');
                         $('.ServicesHost' + hostcount).append('<span id="SummaryBox" class="' + cssclass + '" title="' + this.SERVICE_NAME + '">&nbsp;</span>');
                     });
@@ -883,6 +914,7 @@ function ListHosts(uid) {
 }
 
 function ListHostsByStatus(uid,state) {
+    SummaryView(uid);
     var b64uid = $.base64.encode( uid );
     $.ajax({
         url: 'http://' + Backend + '/proxy/json/?e=1&m=SG9zdEZ1bGxJbmZvU3RhdHVzSG9zdA==Ki88uU&u=' + b64uid + 'LKHld3&s=' + state,
@@ -902,17 +934,14 @@ function ListHostsByStatus(uid,state) {
                     if (this.SRV_UN != "0") { srvun = "hun"; } else { srvun = ""; }
                     if (this.SRV_OK != "0") { srvok = "hok"; } else { srvok = ""; }
                     if (this.SRV_PE != "0") { srvpe = "hpe"; } else { srvpe = ""; }
-                    $('#StatusListTable').append('<tr><td ondblclick="OpenWindow(\'../modules/' + this.URL + '?h=' + $.base64.encode( mnode ) + '&c=' + $.base64.encode( hostname ) + '\',\'_blank\');"><div id="StatusListEntry"><table class="' + cssclass + '" cellpadding=0 cellspacing=0><tr class="' + cssclass + '"><td rowspan=2><img src="../' + this.ICON + '" /></td><td>' + shorthostname + '<div id="HostNotifications" class="Host' + hostcount + '"></div></td><td rowspan=2>' + this.CUSTOM_VAR + '</td><td rowspan=2><div id="CheckBoxHost"><input type="checkbox" name="' + hostname + '@' + mnode + '" value="HOST" /></div></td><td class="' + srvcr + '" rowspan=2>' + this.SRV_CR + '</td><td class="' + srvwa + '" rowspan=2>' + this.SRV_WA + '</td><td class="' + srvun + '" rowspan=2>' + this.SRV_UN + '</td><td class="' + srvok + '" rowspan=2>' + this.SRV_OK + '</td><td class="' + srvpe + '" rowspan=2>' + this.SRV_PE + '</td><td rowspan=2>' + this.OUTPUT + '<div id="ServicesHost" class="ServicesHost' + hostcount + '"></div></td><td rowspan=2>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr><tr><td><i>auf ' + mnode + '</i></td></tr></table></div></td></tr>');
+                    $('#StatusListTable').append('<tr><td ondblclick="OpenWindow(\'../modules/' + this.URL + '?h=' + $.base64.encode( mnode ) + '&c=' + $.base64.encode( hostname ) + '\',\'_blank\');"><div id="StatusListEntry"><table class="' + cssclass + '" cellpadding=0 cellspacing=0><tr class="' + cssclass + '"><td rowspan=2><img src="../' + this.ICON + '" /></td><td>' + shorthostname + '<div id="HostNotifications" class="Host' + hostcount + '"></div></td><td rowspan=2>' + this.CUSTOM_VAR + '</td><td rowspan=2><div id="CheckBoxHost"><input type="checkbox" name="' + hostname + '@' + mnode + '" value="HOST" /></div></td><td class="' + srvcr + '" rowspan=2>' + this.SRV_CR + '</td><td class="' + srvwa + '" rowspan=2>' + this.SRV_WA + '</td><td class="' + srvun + '" rowspan=2>' + this.SRV_UN + '</td><td class="' + srvok + '" rowspan=2>' + this.SRV_OK + '</td><td class="' + srvpe + '" rowspan=2>' + this.SRV_PE + '</td><td rowspan=2>' + this.OUTPUT + '<div id="ServicesHost" class="ServicesHost' + hostcount + '"></div></td><td rowspan=2>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr><tr><td style="color: #82abcc;"><b>auf ' + mnode + '</b></td></tr></table></div></td></tr>');
                     if (this.STATUS != "0") { $('.Host' + hostcount).append('<img id="ImgHostStatus" src="../layout/images/icons/server--exclamation.png" />'); };
                     if (this.ACK == "1") { $('.Host' + hostcount).append('<img id="ImgHostAck" src="../layout/images/icons/eye.png" title="Host Problem ist bearbeitet." />'); }
                     if (this.CMT == "") { /**/ } else { $('.Host' + hostcount).append('<img id="ImgHostCmt" src="../layout/images/icons/balloon-left.png" title="Host wurde kommentiert." />'); }
-                    var csscl;
-                    if (this.STATUS == "1") { csscl = "cr"; } else if (this.STATUS == "2") { csscl = "un"; } else { csscl = "ok"; }
-                    $('#HostStatusSummaryContent').append('<span id="SummaryBox" class="' + csscl + '" title="' + mnode + ': ' + shorthostname + '">&nbsp;</span>');
                     $.each(this.SERVICELIST, function() {
                         var cssclass;
                         if (this.SERVICE_STATUS == "1") { cssclass = "wa"; } else if (this.SERVICE_STATUS == "2") { cssclass = "cr"; } else if (this.SERVICE_STATUS == "3") { cssclass = "un"; } else { cssclass = "ok"; }
-                        $('#ServiceStatusSummaryContent').append('<span id="SummaryBox" class="' + cssclass + '" title="' + mnode + ': ' + this.SERVICE_NAME + '@' + shorthostname + '">&nbsp;</span>');
+                        if (this.ACK == "1") { cssclass = "hack"; }
                         $('.ServicesHost' + hostcount).append('<span id="SummaryBox" class="' + cssclass + '" title="' + this.SERVICE_NAME + '">&nbsp;</span>');
                     });
                     hostcount++;
@@ -929,6 +958,7 @@ function ListHostsByStatus(uid,state) {
 }
 
 function ListHostsBySearch(uid,searchstring) {
+    SummaryView(uid);
     var b64uid = $.base64.encode( uid );
     var b64searchstring = $.base64.encode( searchstring );
     $.ajax({
@@ -951,17 +981,14 @@ function ListHostsBySearch(uid,searchstring) {
                     if (this.SRV_UN != "0") { srvun = "hun"; } else { srvun = ""; }
                     if (this.SRV_OK != "0") { srvok = "hok"; } else { srvok = ""; }
                     if (this.SRV_PE != "0") { srvpe = "hpe"; } else { srvpe = ""; }
-                    $('#StatusListTable').append('<tr><td ondblclick="OpenWindow(\'../modules/' + this.URL + '?h=' + $.base64.encode( mnode ) + '&c=' + $.base64.encode( hostname ) + '\',\'_blank\');"><div id="StatusListEntry"><table class="' + cssclass + '" cellpadding=0 cellspacing=0><tr class="' + cssclass + '"><td rowspan=2><img src="../' + this.ICON + '" /></td><td>' + shorthostname + '<div id="HostNotifications" class="Host' + hostcount + '"></div></td><td rowspan=2>' + this.CUSTOM_VAR + '</td><td rowspan=2><div id="CheckBoxHost"><input type="checkbox" name="' + hostname + '@' + mnode + '" value="HOST" /></div></td><td class="' + srvcr + '" rowspan=2>' + this.SRV_CR + '</td><td class="' + srvwa + '" rowspan=2>' + this.SRV_WA + '</td><td class="' + srvun + '" rowspan=2>' + this.SRV_UN + '</td><td class="' + srvok + '" rowspan=2>' + this.SRV_OK + '</td><td class="' + srvpe + '" rowspan=2>' + this.SRV_PE + '</td><td rowspan=2>' + this.OUTPUT + '<div id="ServicesHost" class="ServicesHost' + hostcount + '"></div></td><td rowspan=2>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr><tr><td><i>auf ' + mnode + '</i></td></tr></table></div></td></tr>');
+                    $('#StatusListTable').append('<tr><td ondblclick="OpenWindow(\'../modules/' + this.URL + '?h=' + $.base64.encode( mnode ) + '&c=' + $.base64.encode( hostname ) + '\',\'_blank\');"><div id="StatusListEntry"><table class="' + cssclass + '" cellpadding=0 cellspacing=0><tr class="' + cssclass + '"><td rowspan=2><img src="../' + this.ICON + '" /></td><td>' + shorthostname + '<div id="HostNotifications" class="Host' + hostcount + '"></div></td><td rowspan=2>' + this.CUSTOM_VAR + '</td><td rowspan=2><div id="CheckBoxHost"><input type="checkbox" name="' + hostname + '@' + mnode + '" value="HOST" /></div></td><td class="' + srvcr + '" rowspan=2>' + this.SRV_CR + '</td><td class="' + srvwa + '" rowspan=2>' + this.SRV_WA + '</td><td class="' + srvun + '" rowspan=2>' + this.SRV_UN + '</td><td class="' + srvok + '" rowspan=2>' + this.SRV_OK + '</td><td class="' + srvpe + '" rowspan=2>' + this.SRV_PE + '</td><td rowspan=2>' + this.OUTPUT + '<div id="ServicesHost" class="ServicesHost' + hostcount + '"></div></td><td rowspan=2>Zuletzt gepr&uuml;ft ' + this.LAST_CHECK_ISO + '</td></tr><tr><td style="color: #82abcc;"><b>auf ' + mnode + '</b></td></tr></table></div></td></tr>');
                     if (this.STATUS != "0") { $('.Host' + hostcount).append('<img id="ImgHostStatus" src="../layout/images/icons/server--exclamation.png" />'); };
                     if (this.ACK == "1") { $('.Host' + hostcount).append('<img id="ImgHostAck" src="../layout/images/icons/eye.png" title="Host Problem ist bearbeitet." />'); }
                     if (this.CMT == "") { /**/ } else { $('.Host' + hostcount).append('<img id="ImgHostCmt" src="../layout/images/icons/balloon-left.png" title="Host wurde kommentiert." />'); }
-                    var csscl;
-                    if (this.STATUS == "1") { csscl = "cr"; } else if (this.STATUS == "2") { csscl = "un"; } else { csscl = "ok"; }
-                    $('#HostStatusSummaryContent').append('<span id="SummaryBox" class="' + csscl + '" title="' + mnode + ': ' + shorthostname + '">&nbsp;</span>');
                     $.each(this.SERVICELIST, function() {
                         var cssclass;
                         if (this.SERVICE_STATUS == "1") { cssclass = "wa"; } else if (this.SERVICE_STATUS == "2") { cssclass = "cr"; } else if (this.SERVICE_STATUS == "3") { cssclass = "un"; } else { cssclass = "ok"; }
-                        $('#ServiceStatusSummaryContent').append('<span id="SummaryBox" class="' + cssclass + '" title="' + mnode + ': ' + this.SERVICE_NAME + '@' + shorthostname + '">&nbsp;</span>');
+                        if (this.ACK == "1") { cssclass = "hack"; }
                         $('.ServicesHost' + hostcount).append('<span id="SummaryBox" class="' + cssclass + '" title="' + this.SERVICE_NAME + '">&nbsp;</span>');
                     });
                     hostcount++;

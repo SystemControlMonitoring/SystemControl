@@ -136,7 +136,7 @@ function StyleSidebar(uid) {
     $('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFHost" onclick="SearchHosts(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="layout/images/server.png"><span>Hosts</span></div>');
     $('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFService" onclick="SearchServices(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="layout/images/services.png"><span>Services</span></div>');
     $('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFDatabase" onclick="SearchDatabases(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="layout/images/database.png"><span>Datenbanken</span></div>');
-    //$('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFHostgroup" onclick="SearchHostgroups(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="layout/images/layers.png"><span>Hostgruppen</span></div>');
+    $('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFMiddleware" onclick="SearchMiddleware(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="layout/images/layers.png"><span>Middleware</span></div>');
 }
 
 function SubStyleSidebar(uid) {
@@ -145,7 +145,7 @@ function SubStyleSidebar(uid) {
     $('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFHost" onclick="SearchHosts(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="../layout/images/server.png"><span>Hosts</span></div>');
     $('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFService" onclick="SearchServices(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="../layout/images/services.png"><span>Services</span></div>');
     $('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFDatabase" onclick="SearchDatabases(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="../layout/images/database.png"><span>Datenbanken</span></div>');
-    //$('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFHostgroup" onclick="SearchHostgroups(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="../layout/images/layers.png"><span>Hostgruppen</span></div>');
+    $('#SidebarSearchFilter').append('<div class="DivSearchFilter" id="SFMiddleware" onclick="SearchMiddleware(\'' + b64uid + 'Ljd84K\');"><img id="SearchImg" src="../layout/images/layers.png"><span>Middleware</span></div>');
 }
 
 function DeleteVal() {
@@ -157,13 +157,13 @@ function FormSubmit() {
 }
 
 function SearchHosts(uid) {
-    $('form#SearchForm').attr('action', '');
+    $('form#SearchForm').attr('action', '/' + suburl + '/hosts/');
     $('#SubTitle').html('.. nach Hosts');
     $('input#SearchInput').val('Hostname');
     $('#SFService').removeClass('BgBlue');
     $('#SFHost').addClass('BgBlue');
     $('#SFDatabase').removeClass('BgBlue');
-    $('#SFHostgroup').removeClass('BgBlue');
+    $('#SFMiddleware').removeClass('BgBlue');
     $('#SearchInput').autocomplete({
         source: function( request, response ) {
             $.ajax({
@@ -188,12 +188,12 @@ function SearchHosts(uid) {
 }
 
 function SearchServices(uid) {
-    $('form#SearchForm').attr('action', 'services.jsp');
+    $('form#SearchForm').attr('action', '/' + suburl + '/services/');
     $('#SubTitle').html('.. nach Services');
     $('input#SearchInput').val('Servicename');
     $('#SFHost').removeClass('BgBlue');
     $('#SFService').addClass('BgBlue');
-    $('#SFHostgroup').removeClass('BgBlue');
+    $('#SFMiddleware').removeClass('BgBlue');
     $('#SFDatabase').removeClass('BgBlue');
     $('#SearchInput').autocomplete({
         source: function( request, response ) {
@@ -219,12 +219,12 @@ function SearchServices(uid) {
 }
 
 function SearchDatabases(uid) {
-    $('form#SearchForm').attr('action', 'db.jsp');
+    $('form#SearchForm').attr('action', '/' + suburl + '/database/');
     $('#SubTitle').html('.. nach Datenbanken');
     $('input#SearchInput').val('SID');
     $('#SFHost').removeClass('BgBlue');
     $('#SFService').removeClass('BgBlue');
-    $('#SFHostgroup').removeClass('BgBlue');
+    $('#SFMiddleware').removeClass('BgBlue');
     $('#SFDatabase').addClass('BgBlue');
     $('#SearchInput').autocomplete({
         source: function( request, response ) {
@@ -249,6 +249,37 @@ function SearchDatabases(uid) {
     });
 }
 
+function SearchMiddleware(uid) {
+    $('form#SearchForm').attr('action', '/' + suburl + '/middleware/');
+    $('#SubTitle').html('.. nach Middleware Instanzen');
+    $('input#SearchInput').val('Type/Port');
+    $('#SFHost').removeClass('BgBlue');
+    $('#SFService').removeClass('BgBlue');
+    $('#SFMiddleware').addClass('BgBlue');
+    $('#SFDatabase').removeClass('BgBlue');
+    $('#SearchInput').autocomplete({
+        source: function( request, response ) {
+            $.ajax({
+                url: 'http://' + Backend + '/proxy/json/?e=1&m=TGlzdE1pZGRsZXdhcmU=Hj86Hz&u=' + uid,
+                dataType: 'json',
+                cache: false,
+                data: {                    
+                    searchstring: request.term
+                },
+                success: function( data ) {
+                    response( $.map( data.middleware, function( item ) {
+                        return {
+                            label: item.HOST +  ' (' + item.NODE + ') - ' + item.NAME,
+                            value: item.NAME
+                        }
+                    }));
+                }
+            });
+        },
+        minLength: 1
+    });
+}
+
 function SearchHostgroups(uid) {
     $('form#SearchForm').attr('action', 'services4.jsp');
     $('#SubTitle').html('.. nach Hostgruppen');
@@ -256,7 +287,7 @@ function SearchHostgroups(uid) {
     $('#SFHost').removeClass('BgBlue');
     $('#SFService').removeClass('BgBlue');
     $('#SFDatabase').removeClass('BgBlue');
-    $('#SFHostgroup').addClass('BgBlue');
+    $('#SFMiddleware').addClass('BgBlue');
     $('#SearchInput').autocomplete({
         source: function( request, response ) {
             $.ajax({
@@ -281,12 +312,12 @@ function SearchHostgroups(uid) {
 }
 
 function SearchServicesSearch(uid,content) {
-    $('form#SearchForm').attr('action', 'services.jsp');
+    $('form#SearchForm').attr('action', '/' + suburl + '/services/');
     $('#SubTitle').html('.. nach Services');
     $('input#SearchInput').val(content);
     $('#SFHost').removeClass('BgBlue');
     $('#SFService').addClass('BgBlue');
-    $('#SFHostgroup').removeClass('BgBlue');
+    $('#SFMiddleware').removeClass('BgBlue');
     $('#SFDatabase').removeClass('BgBlue');
     $('#SearchInput').autocomplete({
         source: function( request, response ) {
@@ -312,13 +343,13 @@ function SearchServicesSearch(uid,content) {
 }
 
 function SearchHostsSearch(uid,content) {
-    $('form#SearchForm').attr('action', 'hosts.jsp');
+    $('form#SearchForm').attr('action', '/' + suburl + '/hosts/');
     $('#SubTitle').html('.. nach Hosts');
     $('input#SearchInput').val(content);
     $('#SFService').removeClass('BgBlue');
     $('#SFHost').addClass('BgBlue');
     $('#SFDatabase').removeClass('BgBlue');
-    $('#SFHostgroup').removeClass('BgBlue');
+    $('#SFMiddleware').removeClass('BgBlue');
     $('#SearchInput').autocomplete({
         source: function( request, response ) {
             $.ajax({
@@ -343,12 +374,12 @@ function SearchHostsSearch(uid,content) {
 }
 
 function SearchDatabasesSearch(uid,content) {
-    $('form#SearchForm').attr('action', 'db.jsp');
+    $('form#SearchForm').attr('action', '/' + suburl + '/database/');
     $('#SubTitle').html('.. nach Datenbanken');
     $('input#SearchInput').val(content);
     $('#SFHost').removeClass('BgBlue');
     $('#SFService').removeClass('BgBlue');
-    $('#SFHostgroup').removeClass('BgBlue');
+    $('#SFMiddleware').removeClass('BgBlue');
     $('#SFDatabase').addClass('BgBlue');
     $('#SearchInput').autocomplete({
         source: function( request, response ) {
@@ -361,6 +392,37 @@ function SearchDatabasesSearch(uid,content) {
                 },
                 success: function( data ) {
                     response( $.map( data.databases, function( item ) {
+                        return {
+                            label: item.HOST +  ' (' + item.NODE + ') - ' + item.NAME,
+                            value: item.NAME
+                        }
+                    }));
+                }
+            });
+        },
+        minLength: 1
+    });
+}
+
+function SearchMiddlewareSearch(uid,content) {
+    $('form#SearchForm').attr('action', '/' + suburl + '/middleware/');
+    $('#SubTitle').html('.. nach Middleware Instanzen');
+    $('input#SearchInput').val(content);
+    $('#SFHost').removeClass('BgBlue');
+    $('#SFService').removeClass('BgBlue');
+    $('#SFMiddleware').addClass('BgBlue');
+    $('#SFDatabase').removeClass('BgBlue');
+    $('#SearchInput').autocomplete({
+        source: function( request, response ) {
+            $.ajax({
+                url: 'http://' + Backend + '/proxy/json/?e=1&m=TGlzdE1pZGRsZXdhcmU=Hj86Hz&u=' + uid,
+                dataType: 'json',
+                cache: false,
+                data: {                    
+                    searchstring: request.term
+                },
+                success: function( data ) {
+                    response( $.map( data.middleware, function( item ) {
                         return {
                             label: item.HOST +  ' (' + item.NODE + ') - ' + item.NAME,
                             value: item.NAME

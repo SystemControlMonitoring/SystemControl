@@ -15,26 +15,15 @@
 	<title>Startseite - kVASy&reg; System Control</title>
 	<meta name="language" content="it">
 	<meta name="charset" content="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<script type="text/javascript" src="script/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript" src="script/jquery-1.8.2.min.js"></script>
         <script type="text/javascript" src="script/jquery-ui-1.9.0.custom.min.js"></script>
-    	<script type="text/javascript" src="script/jquery.metro.js"></script>
     	<script type="text/javascript" src="script/jquery.cookie.js"></script>
-	<script type="text/javascript" src="script/metro.js"></script>
-	<script type="text/javascript" src="script/main.js"></script>
         <script type="text/javascript" src="script/highcharts.js"></script>
-	<script type="text/javascript" src="script/prototype-adapter.js"></script>	
 	<script type="text/javascript" src="script/exporting.js"></script>
 	<script type="text/javascript" src="script/data.js"></script>
-	<script type="text/javascript" src="script/highcharts-more.js"></script>
-        <script type="text/javascript" src="script/grid.locale-de.js"></script>
-	<script type="text/javascript" src="script/jquery.jqGrid.min.js"></script>
 	<script type="text/javascript" src="script/jquery.searchFilter.js"></script>
-	<script type="text/javascript" src="script/jquery.tablednd.js"></script>
-	<script type="text/javascript" src="script/grid.postext.js"></script>
-	<script type="text/javascript" src="script/grid.setcolumns.js"></script>
-	<script type="text/javascript" src="script/jquery.contextmenu.js"></script>
-	<script type="text/javascript" src="script/grid.addons.js"></script>
+        <script type="text/javascript" src="script/jquery.selectmenu.js"></script>
+        <script type="text/javascript" src="script/timepicker.js"></script>
         <script type="text/javascript" src="script/jquery.shortcuts.min.js"></script>
         
         <!-- KSC Basicfunctions -->
@@ -56,7 +45,6 @@
         <link rel='stylesheet' href='layout/kSCliveticker.css' />
         <link rel='stylesheet' href='layout/kSCsidebar.css' />
         <link rel='stylesheet' href='layout/kSCtaov.css' />
-        <link rel='stylesheet' href='layout/ui.jqgrid.css' />
 	<link rel='stylesheet' href='layout/searchFilter.css' />
         
         
@@ -78,6 +66,7 @@
             $(document).ready(function() {
                 jQuery.support.cors = true;
                 GetBackend();
+                DeDoSu(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 Loader();
                 Liveticker(<% out.println("'" + request.getRemoteUser() + "'"); %>);
                 KlickFunctionSidebar(<% out.println("'" + request.getRemoteUser() + "'"); %>);
@@ -112,7 +101,7 @@
 					<span>Hosts</span><br></br>
 					<span class="sub-grid">Eine &Uuml;bersicht &uuml;ber alle eingerichteten Server.</span>
 				</a>
-				<a href="services.jsp" class="twitter">
+				<a href="services/" class="twitter">
 					<span>Services</span><br></br>
 					<span class="sub-grid">Eine &Uuml;bersicht &uuml;ber alle eingerichteten Services.</span>
 				</a>
